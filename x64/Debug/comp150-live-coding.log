@@ -1,0 +1,10 @@
+﻿  stdafx.cpp
+  Texture.cpp
+  Spike.cpp
+  InitialisationError.cpp
+  GameObject.cpp
+  comp150-live-coding.cpp
+  CoinGame.cpp
+  Coin.cpp
+  Generating Code...
+  comp150-live-coding.vcxproj -> C:\Users\maddi\Documents\GitHub\Desktop_game\x64\Debug\comp150-live-coding.exe
