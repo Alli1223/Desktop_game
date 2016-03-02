@@ -7,6 +7,9 @@ public:
 
 	int getCellSize() { return cellSize; }
 
+	bool isRoom;
+
+
 private:
 	int cellSize = 10;
 };
