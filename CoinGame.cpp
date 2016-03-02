@@ -12,7 +12,7 @@ CoinGame::CoinGame()
 		throw InitialisationError("SDL_Init failed");
 	}
 
-	window = SDL_CreateWindow("COMP150 live coding", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("COMP150 Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
 		throw InitialisationError("SDL_CreateWindow failed");

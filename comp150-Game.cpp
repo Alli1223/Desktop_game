@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "comp150-live-coding.h"
+#include "comp150-Game.h"
 #include "CoinGame.h"
 #include "InitialisationError.h"
 

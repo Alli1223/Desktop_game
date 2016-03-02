@@ -24,9 +24,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="comp150-live-coding.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CoinGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,12 +42,12 @@
     <ClInclude Include="Spike.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="comp150-Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="comp150-live-coding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoinGame.cpp">
@@ -69,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Spike.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comp150-Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
