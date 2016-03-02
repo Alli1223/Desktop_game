@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="InitialisationError.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SDL_project.h" />
     <ClInclude Include="SpaceGame.h" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="InitialisationError.cpp" />
     <ClCompile Include="SDL_project.cpp" />
     <ClCompile Include="SpaceGame.cpp" />
     <ClCompile Include="stdafx.cpp">

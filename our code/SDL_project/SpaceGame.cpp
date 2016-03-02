@@ -1,25 +1,26 @@
 #include "stdafx.h"
 #include "SpaceGame.h"
+#include "InitialisationError.h"
 
 
 SpaceGame::SpaceGame()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		//throw InitialisationError("SDL_Init failed");
-		//Need to add error handling system
+		throw InitialisationError("SDL_Init failed");
+
 	}
 
 	window = SDL_CreateWindow("COMP150 Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
-		//throw InitialisationError("SDL_CreateWindow failed");
+		throw InitialisationError("SDL_CreateWindow failed");
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr)
 	{
-		//throw InitialisationError("SDL_CreateRenderer failed");
+		throw InitialisationError("SDL_CreateRenderer failed");
 	}
 }
 
