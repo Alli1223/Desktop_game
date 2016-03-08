@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "SpaceGame.h"
 #include "InitialisationError.h"
+#include "Cell.h"
 
 
 SpaceGame::SpaceGame()
+	: cellSprite("Resources\\cell_test.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -34,6 +36,7 @@ SpaceGame::~SpaceGame()
 
 void SpaceGame::run()
 {
+	Cell cell;
 	running = true;
 	while (running)
 	{
@@ -54,8 +57,12 @@ void SpaceGame::run()
 
 		
 		//SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 1, 0, 0, 255);
-	
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
+
+		cellSprite.render(renderer, cell.getX(), cell.getY(), cell.getCellSize(), cell.getCellSize());
+
+		// Present the rendered display
 		SDL_RenderPresent(renderer);
 	}
 
