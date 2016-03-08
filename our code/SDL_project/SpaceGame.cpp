@@ -51,6 +51,12 @@ void SpaceGame::run()
 				break;
 			}
 		}
+
+		
+		//SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(renderer, 1, 0, 0, 255);
+	
+		SDL_RenderPresent(renderer);
 	}
 
 }
