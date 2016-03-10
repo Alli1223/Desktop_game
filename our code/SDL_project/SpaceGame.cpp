@@ -37,7 +37,11 @@ SpaceGame::~SpaceGame()
 
 void SpaceGame::run()
 {
-	Cell cell;
+	
+
+	Grid room;
+	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+
 	running = true;
 	while (running)
 	{
@@ -56,12 +60,20 @@ void SpaceGame::run()
 			}
 		}
 
-		
+
+
 		//SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
-		cellSprite.render(renderer, cell.getX(), cell.getY(), cell.getCellSize(), cell.getCellSize());
+		int cellSize = room.getCellSize();
+
+		for (int i = 0; i < room.grid.size(); i++)
+		{
+			//Cell cell = room.grid[i];
+			cellSprite.render(renderer, room.grid[i].getX() * cellSize, room.grid[i].getY() * cellSize, cellSize, cellSize);
+		}
+		
 
 		// Present the rendered display
 		SDL_RenderPresent(renderer);

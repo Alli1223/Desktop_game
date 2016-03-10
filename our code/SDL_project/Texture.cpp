@@ -29,8 +29,8 @@ void Texture::render(SDL_Renderer* renderer, int x, int y, int width, int height
 	}
 
 	SDL_Rect dest;
-	dest.x = x - width / 2;
-	dest.y = y - height / 2;
+	dest.x = x - width;
+	dest.y = y - height;
 	dest.w = width;
 	dest.h = height;
 	SDL_RenderCopy(renderer, texture, nullptr, &dest);

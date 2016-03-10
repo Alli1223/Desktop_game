@@ -12,6 +12,8 @@ public:
 
 	std::vector<Cell> grid;
 
+	void makeGrid(int Window_Width, int Window_Height);
+
 
 protected:
 

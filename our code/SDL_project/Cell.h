@@ -22,6 +22,6 @@ private:
 	int cellSize = 50;
 	Texture* sprite;
 	//int x, y;
-	int x = 10;
-	int y = 10;
+	int x;
+	int y;
 };
