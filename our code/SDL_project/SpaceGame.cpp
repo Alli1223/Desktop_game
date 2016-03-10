@@ -2,6 +2,7 @@
 #include "SpaceGame.h"
 #include "InitialisationError.h"
 #include "Cell.h"
+#include "Grid.h"
 
 
 SpaceGame::SpaceGame()

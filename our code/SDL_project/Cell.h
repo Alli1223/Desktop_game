@@ -9,18 +9,19 @@ public:
 	~Cell();
 
 	int getCellSize() { return cellSize; }
-	void render(SDL_Renderer* renderer);
 
 	bool isRoom;
 
 	int getX() { return x; }
 	int getY() { return y; }
+	int setX(int newX) { return x = newX; }
+	int setY(int newY) { return y = newY; }
+
 
 private:
-	int cellSize = 100;
+	int cellSize = 50;
 	Texture* sprite;
 	//int x, y;
 	int x = 10;
 	int y = 10;
 };
-
