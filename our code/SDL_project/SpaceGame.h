@@ -19,6 +19,7 @@ private:
 	SDL_Renderer* renderer;
 
 	Texture cellSprite;
+	Texture cellSprite2;
 
 	bool running;
 

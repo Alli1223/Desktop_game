@@ -8,7 +8,7 @@ public:
 	Cell();
 	~Cell();
 
-	int getCellSize() { return cellSize; }
+
 
 	bool isRoom;
 
@@ -19,7 +19,7 @@ public:
 
 
 private:
-	int cellSize = 50;
+
 	Texture* sprite;
 	//int x, y;
 	int x;

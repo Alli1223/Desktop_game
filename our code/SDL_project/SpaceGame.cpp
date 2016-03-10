@@ -6,7 +6,8 @@
 
 
 SpaceGame::SpaceGame()
-	: cellSprite("Resources\\cell_test.png")
+	: cellSprite("Resources\\cell_test.png"), 
+	cellSprite2("Resources\\cell_test2.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -70,8 +71,17 @@ void SpaceGame::run()
 
 		for (int i = 0; i < room.grid.size(); i++)
 		{
-			//Cell cell = room.grid[i];
-			cellSprite.render(renderer, room.grid[i].getX() * cellSize, room.grid[i].getY() * cellSize, cellSize, cellSize);
+
+			if (i < 50)
+			{
+				cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize /2, cellSize, cellSize);
+			}
+			else
+			{
+				cellSprite2.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
+			}
+			
+			
 		}
 		
 
