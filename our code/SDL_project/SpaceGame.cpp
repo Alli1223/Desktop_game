@@ -1,9 +1,13 @@
 #include "stdafx.h"
 #include "SpaceGame.h"
 #include "InitialisationError.h"
+#include "Cell.h"
+#include "Grid.h"
 
 
 SpaceGame::SpaceGame()
+	: cellSprite("Resources\\cell_test.png"), 
+	cellSprite2("Resources\\cell_test2.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -34,6 +38,11 @@ SpaceGame::~SpaceGame()
 
 void SpaceGame::run()
 {
+	
+
+	Grid room;
+	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+
 	running = true;
 	while (running)
 	{
@@ -51,6 +60,33 @@ void SpaceGame::run()
 				break;
 			}
 		}
+
+
+
+		//SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
+
+		int cellSize = room.getCellSize();
+
+		for (int i = 0; i < room.grid.size(); i++)
+		{
+
+			if (i < 50)
+			{
+				cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize /2, cellSize, cellSize);
+			}
+			else
+			{
+				cellSprite2.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
+			}
+			
+			
+		}
+		
+
+		// Present the rendered display
+		SDL_RenderPresent(renderer);
 	}
 
 }

@@ -3,6 +3,7 @@
 
 
 Cell::Cell()
+	: sprite(sprite)
 {
 }
 
@@ -10,5 +11,4 @@ Cell::Cell()
 Cell::~Cell()
 {
 }
-
 

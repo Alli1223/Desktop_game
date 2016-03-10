@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Texture.h"
+
 
 class SpaceGame
 {
@@ -15,6 +17,9 @@ public:
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+
+	Texture cellSprite;
+	Texture cellSprite2;
 
 	bool running;
 

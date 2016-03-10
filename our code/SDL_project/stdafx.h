@@ -16,7 +16,7 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
-
+#include <SDL_image.h>
 #include <SDL.h>
 #include <iostream>
 
