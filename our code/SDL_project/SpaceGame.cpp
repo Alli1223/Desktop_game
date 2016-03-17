@@ -3,11 +3,13 @@
 #include "InitialisationError.h"
 #include "Cell.h"
 #include "Grid.h"
+#include "Character.h"
 
 
 SpaceGame::SpaceGame()
 	: cellSprite("Resources\\cell_test.png"), 
-	cellSprite2("Resources\\cell_test2.png")
+	cellSprite2("Resources\\cell_test2.png"),
+	characterTex("Resources\\char.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -41,6 +43,7 @@ void SpaceGame::run()
 	
 
 	Grid room;
+	Character character;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	running = true;
@@ -62,13 +65,13 @@ void SpaceGame::run()
 		}
 
 
-
+		character.update();
 		//SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
 		int cellSize = room.getCellSize();
-
+		
 		for (int i = 0; i < room.grid.size(); i++)
 		{
 
@@ -82,7 +85,9 @@ void SpaceGame::run()
 			}
 			
 			
-		}
+		}//End for loop
+
+		characterTex.render(renderer, character.getX(), character.getY(), character.getSize(), character.getSize());
 		
 
 		// Present the rendered display

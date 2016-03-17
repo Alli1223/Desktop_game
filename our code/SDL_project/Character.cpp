@@ -10,3 +10,9 @@ Character::Character()
 Character::~Character()
 {
 }
+
+void Character::update()
+{
+	setX(getX() + 1);
+	setY(getY() + 1);
+}

@@ -20,6 +20,7 @@ private:
 
 	Texture cellSprite;
 	Texture cellSprite2;
+	Texture characterTex;
 
 	bool running;
 
