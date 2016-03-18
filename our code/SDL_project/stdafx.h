@@ -19,6 +19,7 @@
 #include <SDL_image.h>
 #include <SDL.h>
 #include <iostream>
+#include <memory>
 
 
 // TODO: reference additional headers your program requires here

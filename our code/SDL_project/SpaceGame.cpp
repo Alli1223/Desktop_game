@@ -72,17 +72,16 @@ void SpaceGame::run()
 
 		int cellSize = room.getCellSize();
 		
-		for (int i = 0; i < room.grid.size(); i++)
+		for (int x = 0; x < room.grid.size(); x++)
 		{
-
-			if (i < 50)
+			for (int y = 0; y < room.grid[x].size(); y++)
 			{
-				cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize /2, cellSize, cellSize);
+				int xPos = x * cellSize + cellSize / 2;
+				int yPos = y * cellSize + cellSize / 2;
+				cellSprite.render(renderer, xPos, yPos, cellSize, cellSize);
 			}
-			else
-			{
-				cellSprite2.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
-			}
+		
+			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
 			
 			
 		}//End for loop
