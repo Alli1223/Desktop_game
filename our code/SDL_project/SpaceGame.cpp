@@ -65,7 +65,18 @@ void SpaceGame::run()
 		}
 
 
-		character.update();
+		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
+			character.update("up");
+		if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
+			character.update("down");
+		if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
+			character.update("left");
+		if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
+			character.update("right");
+
+
+
 		//SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);

@@ -15,7 +15,7 @@ public:
 	int setY(int newY) { return y = newY; }
 	
 	//Update function to be called on every frame update
-	void update();
+	void update(std::string direction);
 
 
 
