@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Texture.h"
+#include "Grid.h"
 
 
 class SpaceGame
@@ -10,6 +11,7 @@ public:
 	~SpaceGame();
 
 	void run();
+
 	
 	static const int WINDOW_WIDTH = 800;
 	static const int WINDOW_HEIGHT = 800;

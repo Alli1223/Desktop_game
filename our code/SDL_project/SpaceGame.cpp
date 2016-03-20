@@ -62,9 +62,9 @@ void SpaceGame::run()
 			default:
 				break;
 			}
-		}
+		}//End pollevent if
 
-
+		//checks keyboard state then updates character
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
 			character.update("up");
@@ -76,8 +76,6 @@ void SpaceGame::run()
 			character.update("right");
 
 
-
-		//SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
@@ -90,18 +88,18 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
 				cellSprite.render(renderer, xPos, yPos, cellSize, cellSize);
-			}
+			} //End for Y loop
 		
 			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
 			
 			
-		}//End for loop
+		}//End for X loop
 
 		characterTex.render(renderer, character.getX(), character.getY(), character.getSize(), character.getSize());
 		
 
 		// Present the rendered display
 		SDL_RenderPresent(renderer);
-	}
+	}//End while running
 
 }
