@@ -12,9 +12,12 @@ public:
 
 private:
 	//For a 800px X 800px window size there are 16 cols X 16 rows
-	const char* MAP_NAME = "Resources\\Map\\test_map.txt";
+	Map* map;
 	int width;
 	int height;
+	
+	//determines what type of cell it is from the file.
+	int Cell_Value;
 };
 
 
