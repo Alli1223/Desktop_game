@@ -38,6 +38,14 @@ SpaceGame::~SpaceGame()
 	SDL_Quit();
 }
 
+bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid)
+{ //Currently checks to see if a cell is part of a room or not
+	int xCell = x / cellSize;
+	int yCell = y / cellSize;
+	bool state = grid[xCell][yCell]->isRoom; //Access violation error
+	return state;
+}
+
 void SpaceGame::run()
 {
 	
@@ -68,12 +76,14 @@ void SpaceGame::run()
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
 			character.update("up");
-		if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
+		else if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
 			character.update("down");
-		if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
+		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
 			character.update("left");
-		if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
+		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
 			character.update("right");
+		
+		bool cellIsRoom = getCellState(character.getX() + 1, character.getY(), room.getCellSize(), room.grid);
 
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
