@@ -17,6 +17,12 @@
 * Have not seen 4th member(Angus)
 * Trello board wasn't used properly
 
+#Sprint 2 
+##Good:
+* Used shared pointers
+* Kept Trello board up to date
+##Bad:
+* git merge conflicts  
 ___
 
 #Weekly Report:
@@ -29,3 +35,13 @@ We had a problem where everything was rendering in one location, we overcame thi
 ##Week Two
 
 We had a problem understanding pointers, so we avoided using them. We will overcome this by attempting to use smart pointers in the future.
+
+##Week Three
+After researching shared pointers we refactored the grid class to use shared pointers of cells.
+
+
+##Week Four
+
+We discoverd an issue where the grid class was creating nullptrs instead of cells and managed to fix the issue.
+
+Had an issue with merge conflicts but managed to resolve it use tortoise git.
