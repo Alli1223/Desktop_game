@@ -54,9 +54,13 @@ Map::Map(const std::string& filename)
 			}
 		}
 	}
+
+	if (map)
+		delete map;
 }
 
 
 Map::~Map()
 {
+
 }
