@@ -99,8 +99,8 @@ void SpaceGame::run()
 				characterOne.update("left");
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
-		{
+		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])  
+		{//Change from else if to if for diagonal movement
 			roomState = getCellState(characterOne.getX() + characterOne.getSpeed(), characterOne.getY(), characterOne.getSize(), room.grid);
 			if (roomState == true && characterOne.getX() + characterOne.getSpeed() < WINDOW_WIDTH)
 			{
