@@ -25,7 +25,6 @@ Map::Map(const std::string& filename)
 
 	//set the height to the ammount of columns in the text file
 	height = lines.size();
-	int test_value = 0;
 
 	//loop through the rows in the text file
 	for (int x = 0; x < height; x++)
@@ -53,11 +52,6 @@ Map::Map(const std::string& filename)
 			default:
 				Cell_Value = 0;
 			}
-			if (Cell_Value == 2)
-			{
-				test_value++;
-			}
-
 		}
 	}
 }
