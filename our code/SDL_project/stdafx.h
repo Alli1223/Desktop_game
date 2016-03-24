@@ -18,7 +18,13 @@
 #include <tchar.h>
 #include <SDL_image.h>
 #include <SDL.h>
-#include <iostream>
+
 
 
 // TODO: reference additional headers your program requires here
+#include <iostream>
+#include <memory>
+#include <map>
+#include <fstream>
+#include <string>
+#include <vector>

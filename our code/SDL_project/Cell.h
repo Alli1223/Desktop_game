@@ -7,10 +7,8 @@ class Cell
 public:
 	Cell();
 	~Cell();
-
-
-
-	bool isRoom;
+	
+	bool isRoom = true;  //Whether the cell is part of a room or not
 
 	int getX() { return x; }
 	int getY() { return y; }
@@ -18,10 +16,11 @@ public:
 	int setY(int newY) { return y = newY; }
 
 
+
+
 private:
 
 	Texture* sprite;
-	//int x, y;
-	int x;
-	int y;
+	int x, y;
+
 };

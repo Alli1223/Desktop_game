@@ -10,7 +10,7 @@ public:
 
 	int getCellSize() { return cellSize; }
 
-	std::vector<Cell> grid;
+	std::vector<std::vector<std::shared_ptr<Cell>>> grid;
 
 	void makeGrid(int Window_Width, int Window_Height);
 
@@ -18,7 +18,5 @@ public:
 protected:
 
 	int cellSize = 50;
-	
-	Cell placeCell(int xPos, int yPos);
 };
 
