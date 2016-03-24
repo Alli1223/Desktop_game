@@ -7,8 +7,8 @@
 
 
 SpaceGame::SpaceGame()
-	: cellSprite("Resources\\cell_test.png"), 
-	cellSprite2("Resources\\cell_test2.png"),
+	: notRoomCell("Resources\\cell_test.png"), 
+	roomCell("Resources\\cell_test2.png"),
 	characterTex("Resources\\char.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -119,7 +119,7 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
-				cellSprite.render(renderer, xPos, yPos, cellSize, cellSize);
+				notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 			} //End for Y loop
 		
 			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);

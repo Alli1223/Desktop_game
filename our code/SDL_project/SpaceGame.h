@@ -22,8 +22,8 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
-	Texture cellSprite;
-	Texture cellSprite2;
+	Texture notRoomCell;
+	Texture roomCell;
 	Texture characterTex;
 
 	bool running;
