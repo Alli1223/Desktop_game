@@ -14,8 +14,11 @@ void Grid::makeGrid(int Window_Width, int Window_Height)
 		grid.push_back(column);
 		for (int y = 0; y < YAxis_Max; y++)
 		{
-			std::shared_ptr<Cell> cell;
-			grid[x].push_back(cell);
+			Cell cell;
+			cell.setX(x);
+			cell.setY(y);
+			auto sharedCell = std::make_shared<Cell> (cell);
+			grid[x].push_back(sharedCell);
 		}
 	}
 }

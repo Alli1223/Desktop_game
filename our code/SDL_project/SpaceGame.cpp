@@ -3,7 +3,7 @@
 #include "InitialisationError.h"
 #include "Cell.h"
 #include "Grid.h"
-#include "Character.h"
+#include "MainCharacter.h"
 
 
 SpaceGame::SpaceGame()
@@ -14,7 +14,6 @@ SpaceGame::SpaceGame()
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
-
 	}
 
 	window = SDL_CreateWindow("COMP150 Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
@@ -48,12 +47,10 @@ bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector
 
 void SpaceGame::run()
 {
-	
-
 	Grid room;
-	Character character;
+	
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
-
+	MainCharacter characterOne;
 	running = true;
 	while (running)
 	{
@@ -75,17 +72,14 @@ void SpaceGame::run()
 		//checks keyboard state then updates character
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
-			character.update("up");
+			characterOne.update("up");
 		else if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
-			character.update("down");
+			characterOne.update("down");
 		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
-			character.update("left");
+			characterOne.update("left");
 		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
-			character.update("right");
+			characterOne.update("right");
 		
-		bool cellIsRoom = getCellState(character.getX() + 1, character.getY(), room.getCellSize(), room.grid);
-
-
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
@@ -105,9 +99,9 @@ void SpaceGame::run()
 			
 		}//End for X loop
 
-		characterTex.render(renderer, character.getX(), character.getY(), character.getSize(), character.getSize());
+		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
-
+		bool roomState = getCellState(characterOne.getX(), characterOne.getY(), characterOne.getSize(), room.grid);
 		// Present the rendered display
 		SDL_RenderPresent(renderer);
 	}//End while running

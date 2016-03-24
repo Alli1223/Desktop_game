@@ -5,6 +5,7 @@ public:
 	Character();
 	~Character();
 
+	
 	//Getter methods
 	int getX() { return x; }
 	int getY() { return y; }
@@ -13,10 +14,10 @@ public:
 	//Setter methods
 	int setX(int newX) { return x = newX; }
 	int setY(int newY) { return y = newY; }
-	
+
+
 	//Update function to be called on every frame update
-	//Update now takes a direction then updates that charcter's x and y position accordingly
-	void update(std::string direction);
+	void update();
 
 
 
