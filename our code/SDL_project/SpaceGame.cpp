@@ -70,18 +70,41 @@ void SpaceGame::run()
 
 		//checks keyboard state then updates character
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+		bool roomState;
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
-			characterOne.update("up");
+		{
+			roomState = getCellState(characterOne.getX(), characterOne.getY() + 1, characterOne.getSize(), room.grid);
+			if (roomState == true)
+			{
+				characterOne.update("up");
+			}
+		}
+			
 		else if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
-			
-			characterOne.update("down");
+		{
+
+			roomState = getCellState(characterOne.getX(), characterOne.getY() - 1, characterOne.getSize(), room.grid);
+			if (roomState == true)
+			{
+				characterOne.update("down");
+			}
+		}
 		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
-			
-			characterOne.update("left");
+		{
+			roomState = getCellState(characterOne.getX() - 1, characterOne.getY(), characterOne.getSize(), room.grid);
+			if (roomState == true)
+			{
+				characterOne.update("left");
+			}
+		}
 		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
-			
-			characterOne.update("right");
-		
+		{
+			roomState = getCellState(characterOne.getX() + 1, characterOne.getY(), characterOne.getSize(), room.grid);
+			if (roomState == true)
+			{
+				characterOne.update("right");
+			}
+		}
 		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
@@ -105,8 +128,7 @@ void SpaceGame::run()
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
-		bool roomState = getCellState(characterOne.getX(), characterOne.getY(), characterOne.getSize(), room.grid);
-		// Present the rendered display
+		
 		SDL_RenderPresent(renderer);
 	}//End while running
 
