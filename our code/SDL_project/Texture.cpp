@@ -2,7 +2,9 @@
 #include "Texture.h"
 #include "InitialisationError.h"
 
-
+/*
+Texture class that manages the rendering of textures in the game
+*/
 Texture::Texture(const std::string& fileName)
 	: fileName(fileName), texture(nullptr)
 {
