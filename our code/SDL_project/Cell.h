@@ -8,7 +8,7 @@ public:
 	Cell();
 	~Cell();
 	
-	bool isRoom;  //Whether the cell is part of a room or not
+	bool isRoom = true;  //Whether the cell is part of a room or not
 
 	int getX() { return x; }
 	int getY() { return y; }

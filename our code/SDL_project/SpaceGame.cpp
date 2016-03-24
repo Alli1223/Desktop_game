@@ -74,7 +74,7 @@ void SpaceGame::run()
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
 		{
 			roomState = getCellState(characterOne.getX(), characterOne.getY() + 1, characterOne.getSize(), room.grid);
-			if (roomState == true)
+			if (roomState == true && characterOne.getY() + 1 > 0)
 			{
 				characterOne.update("up");
 			}
@@ -84,7 +84,7 @@ void SpaceGame::run()
 		{
 
 			roomState = getCellState(characterOne.getX(), characterOne.getY() - 1, characterOne.getSize(), room.grid);
-			if (roomState == true)
+			if (roomState == true && characterOne.getY() - 1 < WINDOW_HEIGHT)
 			{
 				characterOne.update("down");
 			}
@@ -92,7 +92,7 @@ void SpaceGame::run()
 		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
 		{
 			roomState = getCellState(characterOne.getX() - 1, characterOne.getY(), characterOne.getSize(), room.grid);
-			if (roomState == true)
+			if (roomState == true && characterOne.getX() - 1 > 0)
 			{
 				characterOne.update("left");
 			}
@@ -100,7 +100,7 @@ void SpaceGame::run()
 		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
 		{
 			roomState = getCellState(characterOne.getX() + 1, characterOne.getY(), characterOne.getSize(), room.grid);
-			if (roomState == true)
+			if (roomState == true && characterOne.getX() + 1 < WINDOW_WIDTH)
 			{
 				characterOne.update("right");
 			}
