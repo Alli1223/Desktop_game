@@ -71,12 +71,14 @@ void SpaceGame::run()
 		//checks keyboard state then updates character
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		bool roomState;
+		// Checks keyboard state and deicdes whether the character can move in that direction
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
 		{
 			roomState = getCellState(characterOne.getX(), characterOne.getY() + 1, characterOne.getSize(), room.grid);
-			if (roomState == true && characterOne.getY() + 1 > 0)
+			if (roomState == true && characterOne.getY() + 1 > 0) //Only lets character move if the next cell is a room and is on screen
 			{
 				characterOne.update("up");
+				//updates chracter position depending on direction
 			}
 		}
 			

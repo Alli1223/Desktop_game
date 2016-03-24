@@ -13,13 +13,13 @@ MainCharacter::~MainCharacter()
 
 
 void MainCharacter::update(std::string direction)
-{
+{ //Updates the the characters postion based on the keyboard key pressed and the characters current speed
 	if (direction == "up")
-		setY(getY() - 1);
+		setY(getY() - getSpeed());
 	else if (direction == "down")
-		setY(getY() + 1);
+		setY(getY() + getSpeed());
 	else if (direction == "left")
-		setX(getX() - 1);
+		setX(getX() - getSpeed());
 	else if (direction == "right")
-		setX(getX() + 1);
+		setX(getX() + getSpeed());
 }
