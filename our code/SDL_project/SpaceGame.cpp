@@ -48,7 +48,6 @@ bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector
 void SpaceGame::run()
 {
 	Grid room;
-	
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
 	running = true;
@@ -74,11 +73,15 @@ void SpaceGame::run()
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
 			characterOne.update("up");
 		else if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
+			
 			characterOne.update("down");
 		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
+			
 			characterOne.update("left");
 		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
+			
 			characterOne.update("right");
+		
 		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
@@ -99,6 +102,7 @@ void SpaceGame::run()
 			
 		}//End for X loop
 
+		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
 		bool roomState = getCellState(characterOne.getX(), characterOne.getY(), characterOne.getSize(), room.grid);
