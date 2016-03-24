@@ -74,8 +74,8 @@ void SpaceGame::run()
 		// Checks keyboard state and deicdes whether the character can move in that direction
 		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
 		{
-			roomState = getCellState(characterOne.getX(), characterOne.getY() + 1, characterOne.getSize(), room.grid);
-			if (roomState == true && characterOne.getY() + 1 > 0) //Only lets character move if the next cell is a room and is on screen
+			roomState = getCellState(characterOne.getX(), characterOne.getY() + characterOne.getSpeed(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getY() + characterOne.getSpeed() > 0) //Only lets character move if the next cell is a room and is on screen
 			{
 				characterOne.update("up");
 				//updates chracter position depending on direction
@@ -85,24 +85,24 @@ void SpaceGame::run()
 		else if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
 		{
 
-			roomState = getCellState(characterOne.getX(), characterOne.getY() - 1, characterOne.getSize(), room.grid);
-			if (roomState == true && characterOne.getY() - 1 < WINDOW_HEIGHT)
+			roomState = getCellState(characterOne.getX(), characterOne.getY() - characterOne.getSpeed(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getY() - characterOne.getSpeed() < WINDOW_HEIGHT)
 			{
 				characterOne.update("down");
 			}
 		}
 		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
 		{
-			roomState = getCellState(characterOne.getX() - 1, characterOne.getY(), characterOne.getSize(), room.grid);
-			if (roomState == true && characterOne.getX() - 1 > 0)
+			roomState = getCellState(characterOne.getX() - characterOne.getSpeed(), characterOne.getY(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getX() - characterOne.getSpeed() > 0)
 			{
 				characterOne.update("left");
 			}
 		}
 		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
 		{
-			roomState = getCellState(characterOne.getX() + 1, characterOne.getY(), characterOne.getSize(), room.grid);
-			if (roomState == true && characterOne.getX() + 1 < WINDOW_WIDTH)
+			roomState = getCellState(characterOne.getX() + characterOne.getSpeed(), characterOne.getY(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getX() + characterOne.getSpeed() < WINDOW_WIDTH)
 			{
 				characterOne.update("right");
 			}
