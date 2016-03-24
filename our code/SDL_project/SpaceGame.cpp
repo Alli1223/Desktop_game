@@ -83,7 +83,7 @@ void SpaceGame::run()
 		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])
 			character.update("right");
 		
-		bool cellIsRoom = getCellState(character.getX() + 1, character.getY(), room.getCellSize(), room.grid);
+		//bool cellIsRoom = getCellState(character.getX() + 1, character.getY(), room.getCellSize(), room.grid);
 
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);

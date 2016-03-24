@@ -162,6 +162,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InitialisationError.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Oxygen.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SDL_project.h" />
     <ClInclude Include="SpaceGame.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InitialisationError.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Oxygen.cpp" />
     <ClCompile Include="SDL_project.cpp" />
     <ClCompile Include="SpaceGame.cpp" />
     <ClCompile Include="stdafx.cpp">
