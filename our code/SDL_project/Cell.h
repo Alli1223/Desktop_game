@@ -15,9 +15,6 @@ public:
 	int setX(int newX) { return x = newX; }
 	int setY(int newY) { return y = newY; }
 
-
-
-
 private:
 
 	Texture* sprite;

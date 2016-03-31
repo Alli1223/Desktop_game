@@ -119,7 +119,15 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
-				notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				//Renders cell based on state
+				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				else
+				{
+					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
 			} //End for Y loop
 		
 			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
