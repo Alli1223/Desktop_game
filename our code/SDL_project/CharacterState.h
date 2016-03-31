@@ -7,6 +7,6 @@ public:
 	CharacterState();
 	~CharacterState();
 
-	virtual void update(Character& character) = 0;
+	void update();
 };
 

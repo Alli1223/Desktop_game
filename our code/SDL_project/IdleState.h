@@ -6,5 +6,7 @@ class IdleState: public CharacterState
 public:
 	IdleState();
 	~IdleState();
+
+	//void update(Character& character);
 };
 

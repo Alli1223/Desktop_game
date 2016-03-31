@@ -1,5 +1,5 @@
 #pragma once
-#include"CharacterState.h"
+class CharacterState; //forward declartion I think
 
 class Character
 {//Abstract character class that the other types of character will inherit from
