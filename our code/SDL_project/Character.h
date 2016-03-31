@@ -1,4 +1,6 @@
 #pragma once
+#include"CharacterState.h"
+
 class Character
 {//Abstract character class that the other types of character will inherit from
 public:
@@ -18,9 +20,10 @@ public:
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
 
 	//Update function to be called on every frame update
-	void update();
-
-
+	void update(); //pass in cell state?
+	
+	std::shared_ptr<CharacterState> state;
+	int health = 100;
 
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position
