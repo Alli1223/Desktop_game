@@ -21,9 +21,11 @@ public:
 
 	//Update function to be called on every frame update
 	void update(); //pass in cell state?
+	void playerControlled();
 	
 	std::shared_ptr<CharacterState> state;
 	int health = 100;
+	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
 
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position

@@ -10,3 +10,7 @@ CharacterState::CharacterState()
 CharacterState::~CharacterState()
 {
 }
+
+void CharacterState::update()
+{
+}
