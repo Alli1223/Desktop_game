@@ -20,8 +20,13 @@ public:
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
 
 	//Update function to be called on every frame update
-	void update(); //pass in cell state?
+	void update(); //Maybe not needed
+	
+	//Different states
 	void playerControlled();
+	void reactToFire();
+	void reactToOxygen();
+	void wanderAroundRoom();
 	
 	std::shared_ptr<CharacterState> state;
 	int health = 100;

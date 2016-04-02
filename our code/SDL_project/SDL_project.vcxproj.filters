@@ -78,14 +78,14 @@
     <ClInclude Include="FireState.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="LowOxygenState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WanderingState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="MovingState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="LowOxygenState.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -140,11 +140,11 @@
     <ClCompile Include="LowOxygenState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="WanderingState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MovingState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderingState.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

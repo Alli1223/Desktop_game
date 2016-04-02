@@ -60,6 +60,7 @@ void MainCharacter::playerControlled(std::vector<std::vector<std::shared_ptr<Cel
 	}
 }
 
-void MainCharacter::update(Grid grid, int windowWidth, int windowHeight)
+void MainCharacter::reactToFire()
 {
+
 }
