@@ -8,8 +8,6 @@ public:
 	DeadState();
 	~DeadState();
 
-	int deadTime;
-
 	void update(Character& character);
 };
 

@@ -21,7 +21,7 @@ void IdleState::update(Character& character)
 		character.state = std::make_shared<DeadState>();
 		//No function to call as character does nothing when dead
 	//else if (timer < 5)
-		//character.state = std::make_shared<WandeingState>();
+		//character.state = std::make_shared<WanderingState>();
 	//else if (keyboardState != nullptr)
 		//character.state = std::make_shared<PlayerControlledState>();
 }
