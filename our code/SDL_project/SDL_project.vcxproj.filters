@@ -16,6 +16,9 @@
     <Filter Include="Header Files\States">
       <UniqueIdentifier>{526d261f-63d6-4a22-888f-f73c4bedd6d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{279d2c38-1a2a-4c4b-8563-dc23d0c7d267}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,6 +75,12 @@
     <ClInclude Include="PlayerControlledState.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
+    <ClInclude Include="FireState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="LowOxygenState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,15 +117,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CharacterState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="DeadState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="PlayerControlledState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="FireState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="LowOxygenState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

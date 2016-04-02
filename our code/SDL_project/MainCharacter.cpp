@@ -15,7 +15,7 @@ bool MainCharacter::getCellState(int x, int y, int cellSize, std::vector<std::ve
 { //Currently checks to see if a cell is part of a room or not
 	int xCell = x / cellSize;
 	int yCell = y / cellSize;
-	bool state = grid[xCell][yCell]->isRoom; //Access violation error
+	bool state = grid[xCell][yCell]->isRoom;
 	return state;
 }
 
@@ -62,6 +62,4 @@ void MainCharacter::playerControlled(std::vector<std::vector<std::shared_ptr<Cel
 
 void MainCharacter::update(Grid grid, int windowWidth, int windowHeight)
 {
-	
-	//state->update();
 }
