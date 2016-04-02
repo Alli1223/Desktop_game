@@ -1,6 +1,6 @@
 #pragma once
-#include "CharacterState.h"
-class LowOxygenState : public CharacterState
+#include "PlayerControlledState.h"
+class LowOxygenState : public PlayerControlledState
 {
 public:
 	LowOxygenState();

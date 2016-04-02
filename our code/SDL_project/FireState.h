@@ -1,6 +1,6 @@
 #pragma once
-#include "CharacterState.h"
-class FireState : public CharacterState
+#include "MovingState.h"
+class FireState : public MovingState
 {
 public:
 	FireState();
