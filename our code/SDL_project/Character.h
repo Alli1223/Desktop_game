@@ -35,6 +35,6 @@ public:
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position
 	int size = 100;  //The size of the character sprite when rendered 
-	int moveSpeed = 2; //The speed that the character intially moves at
+	int moveSpeed; //The speed that the character intially moves at
 };
 

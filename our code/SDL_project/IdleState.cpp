@@ -17,11 +17,13 @@ void IdleState::update(Character& character, Grid grid)
 	timer = timer + (1 / FRAME_RATE); 
 
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-
+	
 	//If character is dead
 	if (character.health == 0)
 		character.state = std::make_shared<DeadState>();
 		//No function to call as character does nothing when dead
+		//Once character enters dead state they can't leave it
+
 	//If character is on fire
 	else if (grid.grid[character.getX()][character.getY()]->onFire)
 	{

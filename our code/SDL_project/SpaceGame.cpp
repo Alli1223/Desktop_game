@@ -65,7 +65,7 @@ void SpaceGame::run()
 		}//End pollevent if
 
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-		characterOne.state->update();
+		characterOne.state->update(characterOne, room);
 		//characterOne.update(room);
 
 		

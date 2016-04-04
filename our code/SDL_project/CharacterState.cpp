@@ -11,6 +11,6 @@ CharacterState::~CharacterState()
 {
 }
 
-void CharacterState::update()
+void CharacterState::update(Character& character, Grid grid)
 {
 }

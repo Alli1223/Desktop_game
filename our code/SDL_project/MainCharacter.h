@@ -18,5 +18,11 @@ public:
 
 	void playerControlled(std::vector<std::vector<std::shared_ptr<Cell>>> grid, const Uint8* keyboardState, int windowWidth, int windowHeight);
 
+	//States
+	void playerControlled();
+	void reactToFire();
+	void reactToOxygen();
+	void wanderAroundRoom();
+
 };
 

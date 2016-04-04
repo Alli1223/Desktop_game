@@ -58,9 +58,19 @@ void MainCharacter::playerControlled(std::vector<std::vector<std::shared_ptr<Cel
 			setX(getX() + getSpeed());
 		}
 	}
+	//else
+		//state = std::make_shared<IdleState>();
 }
 
 void MainCharacter::reactToFire()
 {
-
+	health = health - 1;
+}
+void MainCharacter::reactToOxygen()
+{
+	setSpeed(getSpeed() / 2);
+}
+void MainCharacter::wanderAroundRoom()
+{
+	setX(getX());
 }

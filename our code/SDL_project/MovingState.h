@@ -6,5 +6,8 @@ class MovingState :
 public:
 	MovingState();
 	~MovingState();
+
+	void update(Character& character, Grid grid);
+
 };
 

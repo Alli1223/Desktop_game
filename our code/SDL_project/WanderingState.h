@@ -6,6 +6,6 @@ public:
 	WanderingState();
 	~WanderingState();
 
-	void update(Character& character);
+	void update(Character& character, Grid grid);
 };
 
