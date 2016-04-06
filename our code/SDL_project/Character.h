@@ -1,4 +1,5 @@
 #pragma once
+#include"Grid.h"
 class CharacterState; //forward declartion I think
 
 class Character
@@ -20,8 +21,8 @@ public:
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
 
 	//Update function to be called on every frame update
-	void update(); //Maybe not needed
-	void dead();
+	void update(); 
+	void getCellState(Grid grid); //Will find cell that character is on and that cells state
 	
 	//Different states
 	void playerControlled();
@@ -32,6 +33,7 @@ public:
 	std::shared_ptr<CharacterState> state;
 	int health = 100;
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
+	int oxygenLevel = 100; //Will move to cell and then fetch from cell on update
 
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position

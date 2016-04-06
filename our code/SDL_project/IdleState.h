@@ -2,6 +2,7 @@
 #include"CharacterState.h"
 #include"Grid.h"
 #include "DeadState.h"
+#include "LowOxygenState.h"
 
 
 class IdleState: public CharacterState

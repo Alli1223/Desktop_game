@@ -8,6 +8,6 @@ public:
 	DeadState();
 	~DeadState();
 
-	void update(Character& character);
+	void update(Character& character, Grid grid);
 };
 

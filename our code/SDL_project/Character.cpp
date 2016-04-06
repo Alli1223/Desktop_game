@@ -32,9 +32,3 @@ void Character::wanderAroundRoom()
 {
 
 }
-void Character::dead()
-{
-	if (isAlive)
-		isAlive = false;
-	
-}

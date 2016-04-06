@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "IdleState.h"
-#include "DeadState.h"
+
 
 
 IdleState::IdleState()
@@ -25,6 +25,13 @@ void IdleState::update(Character& character, Grid grid)
 	{
 		character.state = std::make_shared<DeadState>();
 		character.isAlive = false;
+		count = 2;
+	}
+	else if (character.oxygenLevel < 50)
+	{
+		character.state = std::make_shared<LowOxygenState>();
+		character.setSpeed(1);
+		count = 3;
 	}
 
 }
