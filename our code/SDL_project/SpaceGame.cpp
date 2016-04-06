@@ -45,7 +45,7 @@ void SpaceGame::run()
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
 	characterOne.state = std::make_shared<IdleState>();
-	characterOne.health = 0;
+	//characterOne.health = 0;
 	running = true;
 	while (running)
 	{
@@ -66,9 +66,7 @@ void SpaceGame::run()
 
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		characterOne.state->update(characterOne, room);
-		//characterOne.update(room);
-
-		
+			
 		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);

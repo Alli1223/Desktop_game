@@ -21,6 +21,7 @@ public:
 
 	//Update function to be called on every frame update
 	void update(); //Maybe not needed
+	void dead();
 	
 	//Different states
 	void playerControlled();

@@ -72,21 +72,6 @@
     <ClInclude Include="IdleState.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerControlledState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="FireState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="WanderingState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="LowOxygenState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -129,21 +114,6 @@
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerControlledState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="FireState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="LowOxygenState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="WanderingState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
