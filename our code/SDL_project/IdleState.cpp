@@ -33,5 +33,11 @@ void IdleState::update(Character& character, Grid grid)
 		character.setSpeed(1);
 		count = 3;
 	}
+	else if (!character.keyboardInput)
+	{
+		character.state = std::make_shared<PlayerControlledState>();
+		character.moveCharacter();
+		count = 4;
+	}
 
 }

@@ -44,9 +44,10 @@ void SpaceGame::run()
 	Grid room;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
+	characterOne.currentRoom = std::make_shared<Grid>(room);  //to get room state
 	characterOne.state = std::make_shared<IdleState>();
 	//characterOne.health = 0;  //For testing
-	characterOne.oxygenLevel = 49;
+	//characterOne.oxygenLevel = 49; //For testing
 	running = true;
 	while (running)
 	{
@@ -66,10 +67,14 @@ void SpaceGame::run()
 		}//End pollevent if
 
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+		characterOne.keyboardInput = keyboardState;
 		characterOne.state->update(characterOne, room);
 		
-		characterOne.oxygenLevel = 55;
-		
+		if (characterOne.keyboardInput)
+		{
+			characterOne.setY(characterOne.getY() + 10);
+		}
+
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 

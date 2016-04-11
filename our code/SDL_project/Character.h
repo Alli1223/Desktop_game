@@ -25,7 +25,7 @@ public:
 	void getCellState(Grid grid); //Will find cell that character is on and that cells state
 	
 	//Different states
-	void playerControlled();
+	void moveCharacter();
 	void reactToFire();
 	void reactToOxygen();
 	void wanderAroundRoom();
@@ -35,9 +35,12 @@ public:
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
 	int oxygenLevel = 100; //Will move to cell and then fetch from cell on update
 
+	const Uint8* keyboardInput = nullptr;
+	std::shared_ptr<Grid> currentRoom;
+
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position
 	int size = 100;  //The size of the character sprite when rendered 
-	int moveSpeed; //The speed that the character intially moves at
+	int moveSpeed = 1; //The speed that the character intially moves at
 };
 
