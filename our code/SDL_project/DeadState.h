@@ -8,6 +8,6 @@ public:
 	DeadState();
 	~DeadState();
 
-	void update(Character& character, Grid grid);
+	void update(Character& character, Grid grid, const Uint8* keyboardState);
 };
 

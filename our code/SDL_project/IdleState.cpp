@@ -13,12 +13,10 @@ IdleState::~IdleState()
 {
 }
 
-void IdleState::update(Character& character, Grid grid)
+void IdleState::update(Character& character, Grid grid, const Uint8* keyboardState)
 {
 	//Idle state is for the start and the a for when the character has just stopped being controlled by the player
 	timer = timer + (1 / FRAME_RATE); 
-	
-	//const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 	
 	//If character is dead
 	if (character.health == 0)
@@ -33,11 +31,12 @@ void IdleState::update(Character& character, Grid grid)
 		character.setSpeed(1);
 		count = 3;
 	}
-	else if (!character.keyboardInput)
+	else if (keyboardState != SDL_GetKeyboardState(nullptr))
 	{
 		character.state = std::make_shared<PlayerControlledState>();
-		character.moveCharacter();
+		//character.moveCharacter();
 		count = 4;
 	}
+
 
 }

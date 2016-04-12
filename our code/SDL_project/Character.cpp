@@ -41,7 +41,7 @@ void Character::moveCharacter()
 	{
 		setX(getX() + getSpeed());
 	}*/
-	setY(getY());
+	setX(getX() + 2);
 		
 }
 

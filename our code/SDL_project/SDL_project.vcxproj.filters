@@ -76,7 +76,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerControlledState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +126,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerControlledState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

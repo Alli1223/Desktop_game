@@ -14,7 +14,7 @@ public:
 
 	double timer = 0; //used to check how long the character has been in the idle state
 	
-	void update(Character& character, Grid grid);
+	void update(Character& character, Grid grid, const Uint8* keyboardState);
 
 	double FRAME_RATE = 60;
 };

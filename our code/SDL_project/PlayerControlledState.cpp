@@ -12,7 +12,12 @@ PlayerControlledState::~PlayerControlledState()
 {
 }
 
-void PlayerControlledState::update(Character& character, Grid grid)
+void PlayerControlledState::update(Character& character, Grid grid, const Uint8* keyboardState)
 {
 	character.moveCharacter();
+
+	if (keyboardState == SDL_GetKeyboardState(nullptr))
+	{
+		character.state = std::make_shared<IdleState>();
+	}
 }
