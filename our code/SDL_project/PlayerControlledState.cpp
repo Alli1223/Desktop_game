@@ -33,4 +33,9 @@ void PlayerControlledState::update(Character& character, Grid grid, const Uint8*
 		character.setSpeed(1);
 		count = 3;
 	}
+	/*else if (cellstate.isFire = true)
+	{
+	character.state = std::make_shared<RoomOnFireState>();
+	character.reactToFire()
+	}*/
 }

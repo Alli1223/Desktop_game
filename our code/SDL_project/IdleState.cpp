@@ -18,15 +18,15 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 	//Idle state is for the start and the a for when the character has just stopped being controlled by the player
 	timer = timer + (1 / FRAME_RATE); 
 	
-	//If character is dead
+	
 	if (character.health == 0)
-	{
+	{//When health = 0 the character enters the dead state
 		character.state = std::make_shared<DeadState>();
 		character.isAlive = false;
 		count = 2;
 	}
 	else if (character.oxygenLevel < 50)
-	{
+	{//If the oxygen goes beneath a certain level the character slows down 
 		character.state = std::make_shared<LowOxygenState>();
 		character.setSpeed(1);
 		count = 3;
@@ -42,5 +42,10 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 		count = 5;
 		//character.state = std::make_shared<WanderingState>();
 	}
+	/*else if (cellstate.isFire = true)
+	{
+		character.state = std::make_shared<RoomOnFireState>();
+		character.reactToFire()
+	}*/
 	
 }

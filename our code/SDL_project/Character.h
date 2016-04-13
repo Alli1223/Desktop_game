@@ -20,14 +20,11 @@ public:
 	int setY(int newY) { return y = newY; }
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
 
-	//Update function to be called on every frame update
-	void update(); 
 	void getCellState(Grid grid); //Will find cell that character is on and that cells state
 	
 	//Different states
 	void moveCharacter(const Uint8* keyboardState);
 	void reactToFire();
-	void reactToOxygen();
 	void wanderAroundRoom();
 	
 	std::shared_ptr<CharacterState> state;
@@ -35,8 +32,7 @@ public:
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
 	int oxygenLevel = 100; //Will move to cell and then fetch from cell on update
 
-	const Uint8* keyboardInput = nullptr;
-	std::shared_ptr<Grid> currentRoom;
+	std::shared_ptr<Grid> currentRoom; //Will be used to check surronding cell states
 
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position
