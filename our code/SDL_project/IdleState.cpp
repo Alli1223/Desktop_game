@@ -31,7 +31,7 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 		character.setSpeed(1);
 		count = 3;
 	}
-	else if (keyboardState != SDL_GetKeyboardState(nullptr))
+	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
 	{
 		character.state = std::make_shared<PlayerControlledState>();
 		//character.moveCharacter();

@@ -67,12 +67,6 @@ void SpaceGame::run()
 
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		characterOne.state->update(characterOne, room, keyboardState);
-		
-		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
-		{
-			characterOne.moveCharacter();
-		}
-
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
