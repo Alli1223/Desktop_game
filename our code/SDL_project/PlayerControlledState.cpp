@@ -14,7 +14,7 @@ PlayerControlledState::~PlayerControlledState()
 
 void PlayerControlledState::update(Character& character, Grid grid, const Uint8* keyboardState)
 {
-	character.moveCharacter();
+	character.moveCharacter(keyboardState);
 
 	if (character.health == 0)
 	{

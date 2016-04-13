@@ -34,9 +34,13 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
 	{
 		character.state = std::make_shared<PlayerControlledState>();
-		//character.moveCharacter();
+		character.moveCharacter(keyboardState);
 		count = 4;
 	}
-
-
+	else if (timer > 5)
+	{
+		count = 5;
+		//character.state = std::make_shared<WanderingState>();
+	}
+	
 }

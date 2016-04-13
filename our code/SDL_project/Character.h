@@ -25,7 +25,7 @@ public:
 	void getCellState(Grid grid); //Will find cell that character is on and that cells state
 	
 	//Different states
-	void moveCharacter();
+	void moveCharacter(const Uint8* keyboardState);
 	void reactToFire();
 	void reactToOxygen();
 	void wanderAroundRoom();

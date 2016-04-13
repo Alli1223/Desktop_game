@@ -16,9 +16,9 @@ void Character::update()
 
 }
 
-void Character::moveCharacter()
+void Character::moveCharacter(const Uint8* keyboardState)
 {
-	/*if (keyboardInput[SDL_SCANCODE_UP] || keyboardInput[SDL_SCANCODE_W])
+	/*if (keyboardState[SDL_SCANCODE_W])
 	{
 		//check cell state
 		if (getY() + getSpeed() > 0) //Only lets character move if the next cell is a room and is on screen
@@ -26,22 +26,27 @@ void Character::moveCharacter()
 			setY(getY() + getSpeed());
 			//updates chracter position depending on direction
 		}
-	}
-	else if (keyboardInput[SDL_SCANCODE_DOWN] || keyboardInput[SDL_SCANCODE_S])
+	}*/
+	if (keyboardState[SDL_SCANCODE_W] && getY() + getSpeed() > 0)
 	{
 		setY(getY() - getSpeed());
 	}
 
-	else if (keyboardInput[SDL_SCANCODE_LEFT] || keyboardInput[SDL_SCANCODE_A])
+	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800) //Change to pass in screen width
+	{
+		setY(getY() + getSpeed());
+	}
+
+	else if (keyboardState[SDL_SCANCODE_A] && getX() + getSpeed() > 0)
 	{
 		if (getX() + getSpeed() > 0)
 			setX(getX() - getSpeed());
 	}
-	else if (keyboardInput[SDL_SCANCODE_RIGHT] || keyboardInput[SDL_SCANCODE_D])
+	else if (keyboardState[SDL_SCANCODE_D] && getX() + getSpeed() < 800)
 	{
 		setX(getX() + getSpeed());
-	}*/
-	setX(getX() + 2);
+	}
+	//setX(getX() + 2);
 		
 }
 
