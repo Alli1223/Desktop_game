@@ -9,6 +9,8 @@ public:
 	CharacterState();
 	~CharacterState();
 
+	double timer; //used when entering or using IdleState
+
 	int count;  //For testing
 	const Uint8* keyboardState;
 

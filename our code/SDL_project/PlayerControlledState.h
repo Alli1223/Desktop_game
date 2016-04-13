@@ -1,6 +1,9 @@
 #pragma once
 #include "CharacterState.h"
 #include "IdleState.h"
+#include "DeadState.h"
+#include "LowOxygenState.h"
+
 class PlayerControlledState :
 	public CharacterState
 {
