@@ -22,6 +22,7 @@ void Grid::makeGrid(int Window_Width, int Window_Height)
 			cell.setY(y);
 			auto sharedCell = std::make_shared<Cell> (cell);
 			grid[x].push_back(sharedCell);
+			
 		}
 	}
 }

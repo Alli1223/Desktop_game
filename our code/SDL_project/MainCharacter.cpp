@@ -22,4 +22,5 @@ void MainCharacter::update(std::string direction)
 		setX(getX() - getSpeed());
 	else if (direction == "right")
 		setX(getX() + getSpeed());
+
 }
