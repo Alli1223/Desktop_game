@@ -47,6 +47,20 @@ void Oxygen::spawnOxygen()
 void Oxygen::removeOxygen()
 {
 
+	float oxygen_Level = Get_Oxygen_Level();
+
+	if (oxygen_Level -= 0)
+	{
+		//Oyxgen in cell is empty
+		oxygen_Level = 0;
+
+		//update cell sprite
+	}
+	else
+	{
+		oxygen_Level--;
+	}
+
 }
 
 
