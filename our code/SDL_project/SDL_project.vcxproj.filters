@@ -57,7 +57,7 @@
     <ClInclude Include="Oxygen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerEvents.h">
+    <ClInclude Include="PlayerEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClCompile Include="Oxygen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerEvents.cpp">
+    <ClCompile Include="PlayerEventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

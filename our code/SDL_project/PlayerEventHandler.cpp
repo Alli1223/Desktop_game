@@ -1,13 +1,13 @@
 #include "stdafx.h"
-#include "PlayerEvents.h"
+#include "PlayerEventHandler.h"
 #include "MainCharacter.h"
 
 
-PlayerEvents::PlayerEvents()
+PlayerEventHandler::PlayerEventHandler()
 {
 }
 
 
-PlayerEvents::~PlayerEvents()
+PlayerEventHandler::~PlayerEventHandler()
 {
 }

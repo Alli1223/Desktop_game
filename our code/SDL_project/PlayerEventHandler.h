@@ -1,9 +1,9 @@
 #pragma once
-class PlayerEvents
+class PlayerEventHandler
 {
 public:
-	PlayerEvents();
-	~PlayerEvents();
+	PlayerEventHandler();
+	~PlayerEventHandler();
 
 	float getMouseX() { return mouseX; }
 	float getMouseY() { return mouseY; }
