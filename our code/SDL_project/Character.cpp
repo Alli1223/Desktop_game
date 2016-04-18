@@ -16,11 +16,12 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	//TODO: Need to check cell states to see if they're rooms or not
 
 	if (keyboardState[SDL_SCANCODE_W] && getY() + getSpeed() > 0)
-	{//If the W key is pressed and the character won't be moved off screen move teh character
+	{//If the W key is pressed and the character won't be moved off screen move the character
+		//if (isCellARoom(getX(), getY() + getSpeed())) //need to stop it checking outside of grid because causes error
 		setY(getY() - getSpeed());
 	}
 
-	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800) //Will hange to pass in screen height
+	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800) //Will change to pass in screen height
 	{
 		setY(getY() + getSpeed());
 	}
@@ -36,10 +37,28 @@ void Character::moveCharacter(const Uint8* keyboardState)
 }
 
 void Character::reactToFire()
-{//Will make the character move away from fire
+{
+	health = health - 1;
+	//TODO: Make character move away from fire
 }
 
 void Character::wanderAroundRoom()
 {
-	//Will make the character move around a room when not being controlled by player
+	//TODO: Check surrounding cells and then make character to "wander" in one direction until they hit a wall or change state
 }
+
+bool Character::isCellARoom(int x, int y)
+{//Checks to see if a cell is a room
+	return currentRoom->grid[x][y]->isRoom;
+}
+
+bool Character::isCellOnFire(int x, int y)
+{//Checks to see if a cell is on fire
+	return currentRoom->grid[x][y]->onFire;
+}
+
+int Character::getOxygenLevel(int x, int y)
+{//Gets the oxygen level of the specified cell
+	return currentRoom->grid[x][y]->oxygenLevel;
+}
+

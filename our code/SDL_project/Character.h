@@ -19,8 +19,9 @@ public:
 	int setX(int newX) { return x = newX; }
 	int setY(int newY) { return y = newY; }
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
-
-	bool isCellARoom(int x, int y); //Will find cell that character is on and that cells state
+	
+	//Cell checking functions
+	bool isCellARoom(int x, int y);
 	bool isCellOnFire(int x, int y);
 	int getOxygenLevel(int x, int y);
 	
@@ -30,12 +31,12 @@ public:
 	void wanderAroundRoom();
 	
 	std::shared_ptr<CharacterState> state;
-	int health = 100;
+	std::shared_ptr<Grid> currentRoom; //Will be used to check cell states
+
+	int health = 100; //Character health level, will change to use getters and setters
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
 	int oxygenLevel = 100; //Will move to cell and then fetch from cell on update
-
-	std::shared_ptr<Grid> currentRoom; //Will be used to check surronding cell states
-
+	
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position
 	int size = 100;  //The size of the character sprite when rendered 
