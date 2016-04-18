@@ -20,7 +20,9 @@ public:
 	int setY(int newY) { return y = newY; }
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
 
-	void getCellState(Grid grid); //Will find cell that character is on and that cells state
+	bool isCellARoom(int x, int y); //Will find cell that character is on and that cells state
+	bool isCellOnFire(int x, int y);
+	int getOxygenLevel(int x, int y);
 	
 	//Different states
 	void moveCharacter(const Uint8* keyboardState);

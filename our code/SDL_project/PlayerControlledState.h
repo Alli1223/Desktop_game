@@ -7,6 +7,7 @@
 class PlayerControlledState :
 	public CharacterState
 {
+	
 public:
 	PlayerControlledState();
 	~PlayerControlledState();
