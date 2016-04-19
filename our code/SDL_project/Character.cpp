@@ -17,22 +17,25 @@ void Character::moveCharacter(const Uint8* keyboardState)
 
 	if (keyboardState[SDL_SCANCODE_W] && getY() + getSpeed() > 0)
 	{//If the W key is pressed and the character won't be moved off screen move the character
-		//if (isCellARoom(getX(), getY() + getSpeed())) //need to stop it checking outside of grid because causes error
-		setY(getY() - getSpeed());
+		if (isCellARoom(getX(), getY() + getSpeed())) //need to stop it checking outside of grid because causes error
+			setY(getY() - getSpeed());
 	}
 
 	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800) //Will change to pass in screen height
 	{
-		setY(getY() + getSpeed());
+		if (isCellARoom(getX(), getY() + getSpeed()))
+			setY(getY() + getSpeed());
 	}
 
 	else if (keyboardState[SDL_SCANCODE_A] && getX() + getSpeed() > 0)
 	{
-		setX(getX() - getSpeed());
+		if (isCellARoom(getX() - getSpeed(), getY()))
+			setX(getX() - getSpeed());
 	}
 	else if (keyboardState[SDL_SCANCODE_D] && getX() + getSpeed() < 800)
 	{
-		setX(getX() + getSpeed());
+		if (isCellARoom(getX() + getSpeed(), getY()))
+			setX(getX() + getSpeed());
 	}
 }
 
@@ -49,16 +52,22 @@ void Character::wanderAroundRoom()
 
 bool Character::isCellARoom(int x, int y)
 {//Checks to see if a cell is a room
-	return currentRoom->grid[x][y]->isRoom;
+	int xCell = x / currentRoom->getCellSize();
+	int yCell = y / currentRoom->getCellSize();
+	return currentRoom->grid[xCell][yCell]->isRoom;
 }
 
 bool Character::isCellOnFire(int x, int y)
 {//Checks to see if a cell is on fire
-	return currentRoom->grid[x][y]->onFire;
+	int xCell = x / currentRoom->getCellSize();
+	int yCell = y / currentRoom->getCellSize();
+	return currentRoom->grid[xCell][yCell]->onFire;
 }
 
 int Character::getOxygenLevel(int x, int y)
 {//Gets the oxygen level of the specified cell
-	return currentRoom->grid[x][y]->oxygenLevel;
+	int xCell = x / currentRoom->getCellSize();
+	int yCell = y / currentRoom->getCellSize();
+	return currentRoom->grid[xCell][yCell]->oxygenLevel;
 }
 
