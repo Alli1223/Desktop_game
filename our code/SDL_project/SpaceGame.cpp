@@ -95,10 +95,8 @@ void SpaceGame::run()
 			
 		}//End for X loop
 
-		
+		//Need to render character based on state 
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		
-		
 		SDL_RenderPresent(renderer);
 		
 	}//End while running

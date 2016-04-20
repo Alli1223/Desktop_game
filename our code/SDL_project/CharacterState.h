@@ -9,9 +9,7 @@ public:
 	CharacterState();
 	~CharacterState();
 
-	double timer; //used when entering or using IdleState
-
-	int count;  //For testing
+	double timer = 0; //used when entering or using IdleState
 	
 	virtual void update(Character& character, Grid grid, const Uint8* keyboardState);
     //Will check on each frame what state the character should be in

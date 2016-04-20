@@ -4,7 +4,7 @@ class OnFire :
 	public GameControlledState
 {
 public:
-	//If the character in on or one cell away from fire they'll run away
+	//If the character is in on or one cell away from fire they'll run away
 	OnFire();
 	~OnFire();
 

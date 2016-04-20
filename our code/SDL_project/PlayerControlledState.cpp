@@ -4,7 +4,6 @@
 
 PlayerControlledState::PlayerControlledState()
 {
-	count = 4;
 }
 
 
@@ -20,22 +19,20 @@ void PlayerControlledState::update(Character& character, Grid grid, const Uint8*
 	{
 		character.state = std::make_shared<DeadState>();
 		character.isAlive = false;
-		count = 2;
 	}
 	else if (!(keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D]))
 	{
 		character.state = std::make_shared<IdleState>();
-		character.state->timer = 1;
+		character.state->timer = 0;
 	}
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
 	{
 		character.state = std::make_shared<LowOxygenState>();
 		character.setSpeed(1);
-		count = 3;
 	}
-	/*else if (cellstate.isFire = true)
+	else if (character.isCellOnFire(character.getX(), character.getY()))
 	{
-	character.state = std::make_shared<RoomOnFireState>();
-	character.reactToFire()
-	}*/
+	character.state = std::make_shared<OnFire>();
+	character.reactToFire();
+	}
 }

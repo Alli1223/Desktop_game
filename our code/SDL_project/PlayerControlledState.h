@@ -3,6 +3,7 @@
 #include "IdleState.h"
 #include "DeadState.h"
 #include "LowOxygenState.h"
+#include"OnFire.h"
 
 class PlayerControlledState :
 	public CharacterState
