@@ -7,8 +7,7 @@ class Character
 public:
 	Character();
 	~Character();
-
-	
+		
 	//Getter methods
 	int getX() { return x; }
 	int getY() { return y; }
@@ -35,11 +34,11 @@ public:
 
 	int health = 100; //Character health level, will change to use getters and setters
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
-	int oxygenLevel = 100; //Will move to cell and then fetch from cell on update
-	
+		
 private:
 	int x = 10, y = 10; //Characters intial start X and Y position
 	int size = 100;  //The size of the character sprite when rendered 
 	int moveSpeed = 1; //The speed that the character intially moves at
+	// Add other speeds normal, running & oxygen deprived
 };
 

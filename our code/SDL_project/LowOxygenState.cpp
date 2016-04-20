@@ -16,7 +16,7 @@ void LowOxygenState::update(Character& character, Grid grid)
 {
 	character.setSpeed(1);  //Will change to a variable and use framerate
 	count = 1;
-	if (character.oxygenLevel > 50)
+	if (character.getOxygenLevel(character.getX(), character.getY()) > 50)
 	{
 		character.state = std::make_shared<IdleState>();
 		character.setSpeed(2);

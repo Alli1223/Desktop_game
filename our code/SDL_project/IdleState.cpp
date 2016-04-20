@@ -25,7 +25,7 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 		character.isAlive = false;
 		count = 2;
 	}
-	else if (character.oxygenLevel < 50)
+	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
 	{//If the oxygen goes beneath a certain level the character slows down 
 		character.state = std::make_shared<LowOxygenState>();
 		character.setSpeed(1);
@@ -40,7 +40,8 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 	else if (timer > 5)
 	{
 		count = 5;
-		//character.state = std::make_shared<WanderingState>();
+		character.state = std::make_shared<WanderingState>();
+		character.wanderAroundRoom();
 	}
 	/*else if (cellstate.isFire = true)
 	{

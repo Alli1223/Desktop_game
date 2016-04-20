@@ -4,6 +4,7 @@
 #include "DeadState.h"
 #include "LowOxygenState.h"
 #include"PlayerControlledState.h"
+#include"WanderingState.h"
 
 
 class IdleState: public CharacterState
