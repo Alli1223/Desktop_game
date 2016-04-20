@@ -4,6 +4,8 @@
 #include "Cell.h"
 #include "Grid.h"
 #include "MainCharacter.h"
+#include "Oxygen.h"
+#include "PlayerEventHandler.h"
 
 
 SpaceGame::SpaceGame()
@@ -106,6 +108,17 @@ void SpaceGame::run()
 			{
 				characterOne.update("right");
 			}
+		}
+
+		//Gets mouse input
+		int mouse_X, mouse_Y;
+		SDL_PumpEvents();
+		if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
+		{
+			Oxygen oxygen;
+			oxygen.spawnOxygen(mouse_X, mouse_Y);
+			SDL_Log("" + mouse_X + mouse_Y);
+						
 		}
 		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
