@@ -9,3 +9,9 @@ WanderingState::WanderingState()
 WanderingState::~WanderingState()
 {
 }
+
+void WanderingState::update(Character& character, Grid grid, const Uint8* keyboardState)
+{
+	character.wanderAroundRoom();
+	//store previous location
+}

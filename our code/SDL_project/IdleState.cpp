@@ -37,7 +37,7 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 		character.moveCharacter(keyboardState);
 		count = 4;
 	}
-	else if (timer > 5)
+	else if (timer > 2)
 	{
 		count = 5;
 		character.state = std::make_shared<WanderingState>();

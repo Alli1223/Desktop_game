@@ -48,6 +48,15 @@ void Character::reactToFire()
 void Character::wanderAroundRoom()
 {
 	//TODO: Check surrounding cells and then make character to "wander" in one direction until they hit a wall or change state
+	//if (isCellARoom(getX(), getY() - getSpeed()) && (getY() - getSpeed()) > 0 ) 
+	//	setY(getY() - getSpeed());
+	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800) //need to change to pass in screen dimensions
+		setY(getY() + getSpeed());
+	else if (isCellARoom(getX() - getSpeed(), getY()))
+		setX(getX() - getSpeed());
+	else if (isCellARoom(getX() + getSpeed(), getY()))
+		setX(getX() + getSpeed());
+	
 }
 
 bool Character::isCellARoom(int x, int y)
