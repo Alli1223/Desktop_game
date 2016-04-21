@@ -10,6 +10,8 @@ public:
 	
 	bool isRoom = true;  //Whether the cell is part of a room or not
 
+	bool isOxygenated = false;
+
 	int getX() { return x; }
 	int getY() { return y; }
 	int setX(int newX) { return x = newX; }

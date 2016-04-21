@@ -110,16 +110,7 @@ void SpaceGame::run()
 			}
 		}
 
-		//Gets mouse input
-		int mouse_X, mouse_Y;
-		SDL_PumpEvents();
-		if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
-		{
-			Oxygen oxygen;
-			oxygen.spawnOxygen(mouse_X, mouse_Y);
-			SDL_Log("" + mouse_X + mouse_Y);
-						
-		}
+
 		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
@@ -141,6 +132,18 @@ void SpaceGame::run()
 				{
 					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+
+				//Gets mouse input
+				Oxygen oxygen;
+				int mouse_X, mouse_Y;
+				SDL_PumpEvents();
+				if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
+				{
+					oxygen.spawnOxygen(mouse_X, mouse_Y);
+					SDL_Log( "mouse_X");
+
+				}
+
 			} //End for Y loop
 		
 			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
