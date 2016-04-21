@@ -36,7 +36,7 @@ public:
 
 	int health = 100; //Character health level, will change to use getters and setters
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
-	
+	double timer = 0;
 	//int previousX, previousY;
 
 private:
