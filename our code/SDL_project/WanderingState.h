@@ -1,7 +1,8 @@
 #pragma once
-#include "GameControlledState.h"
+#include "CharacterState.h"
+#include "PlayerControlledState.h"
 class WanderingState :
-	public GameControlledState
+	public CharacterState
 {
 public:
 	WanderingState();

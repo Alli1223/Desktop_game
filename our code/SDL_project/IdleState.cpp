@@ -30,7 +30,7 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 		character.moveCharacter(keyboardState);
 	}
 	else if (timer > END_IDLE_TIME)
-	{
+	{ // If the character is in the idle state longer than a set time it changes to the Wandering State 
 		character.state = std::make_shared<WanderingState>();
 		character.wanderAroundRoom();
 	}
