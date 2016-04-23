@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InitialisationError.h" />
     <ClInclude Include="MainCharacter.h" />

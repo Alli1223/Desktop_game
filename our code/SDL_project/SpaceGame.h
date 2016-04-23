@@ -2,6 +2,7 @@
 
 #include "Texture.h"
 #include "Grid.h"
+#include "GameConfiguration.h"
 
 
 class SpaceGame

@@ -41,7 +41,7 @@ bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector
 { //Currently checks to see if a cell is part of a room or not
 	int xCell = x / cellSize;
 	int yCell = y / cellSize;
-	bool state = grid[xCell][yCell]->isRoom; //Access violation error
+	bool state = grid[xCell][yCell]->isRoom;
 	return state;
 }
 
