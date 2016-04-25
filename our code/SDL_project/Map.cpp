@@ -64,9 +64,9 @@ Map::Map(const std::string& filename)
 void Map::LoadMap(std::string filename, Grid room)
 {
 	std::ifstream mapFile(filename);
+	std::vector<std::string> map;
 	while (!mapFile.eof())
 	{
-		std::vector<std::string> map;
 		std::string line;
 		std::getline(mapFile, line);
 		map.push_back(line);
@@ -76,7 +76,13 @@ void Map::LoadMap(std::string filename, Grid room)
 	{
 		for (int y = 0; room.grid[0].size(); y++)
 		{
-			
+			if (map[x][y]) 
+			{
+				if (map[x][y] == '#')
+				{
+					room.grid[x][y]->isRoom = false;
+				}
+			}
 		}
 	}
 }
