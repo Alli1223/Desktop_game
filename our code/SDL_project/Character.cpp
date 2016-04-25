@@ -42,11 +42,8 @@ void Character::reactToFire()
 }
 
 void Character::wanderAroundRoom()
-{//Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
-	//TODO: Make wandering more natural than just moving around the edge of the room
-
-	timer = timer + 1;
-	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 400 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
+{// Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
+	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
 	{
 		setPreviousLocation(getX(), getY());
 		setY(getY() + getSpeed());		
@@ -56,7 +53,7 @@ void Character::wanderAroundRoom()
 		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
-	else if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 100 && !checkLocation(getX(), getY() - getSpeed())) //need to change to pass in screen dimensions
+	else if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 0 + getSize() && !checkLocation(getX(), getY() - getSpeed())) //need to change to pass in screen dimensions
 	{
 		setPreviousLocation(getX(), getY());
 		setY(getY() - getSpeed());
@@ -66,7 +63,6 @@ void Character::wanderAroundRoom()
 		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
 	}
-	
 }
 
 bool Character::isCellARoom(int x, int y)
@@ -97,11 +93,10 @@ void Character::setPreviousLocation(int x, int y)
 }
 
 bool Character::checkLocation(int x, int y)
-{
+{ //Check to see if the passed in location is the same as the previous location
+	//This will be used in the wandering state to make sure the character doesn't get stuck
 	if (x == getPreviousX() && y == getPreviousY())
-	{
 		return true;
-	}
 	else
 		return false;
 }
