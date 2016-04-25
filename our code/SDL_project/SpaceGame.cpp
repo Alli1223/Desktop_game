@@ -50,6 +50,8 @@ bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector
 void SpaceGame::run()
 {
 	Grid room;
+	Oxygen oxygen;
+	Cell cell;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
 	running = true;
@@ -134,13 +136,13 @@ void SpaceGame::run()
 				}
 
 				//Gets mouse input
-				Oxygen oxygen;
+				
 				int mouse_X, mouse_Y;
 				SDL_PumpEvents();
 				if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
 				{
-					oxygen.spawnOxygen(mouse_X, mouse_Y);
-					SDL_Log( "mouse_X");
+					oxygen.spawnOxygen(mouse_X, mouse_Y, xPos, yPos, cell);
+					
 
 				}
 
