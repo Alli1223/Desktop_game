@@ -44,28 +44,28 @@ void Character::reactToFire()
 void Character::wanderAroundRoom()
 {//Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
 	//TODO: Make wandering more natural than just moving around the edge of the room
-	//Preset paths??
+
 	timer = timer + 1;
-	if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && timer < 50)
-	{//CHange to for loop
-		setY(getY() + getSpeed());
-	}
-	else if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 100 && timer < 100 && timer > 50) //need to change to pass in screen dimensions
+	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 400 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
 	{
-		setY(getY() - getSpeed());
+		setPreviousLocation(getX(), getY());
+		setY(getY() + getSpeed());		
 	}
-	else if (isCellARoom(getX() + getSpeed(), getY()) && timer < 150 && timer > 100)
+	else if (isCellARoom(getX() + getSpeed(), getY()) && (getX() + getSpeed()) < 800 - getSize() && !checkLocation(getX() + getSpeed(), getY()))
 	{
+		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
-	else if (isCellARoom(getX() - getSpeed(), getY()) && timer < 200 && timer > 150)
+	else if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 100 && !checkLocation(getX(), getY() - getSpeed())) //need to change to pass in screen dimensions
 	{
+		setPreviousLocation(getX(), getY());
+		setY(getY() - getSpeed());
+	}	
+	else if (isCellARoom(getX() - getSpeed(), getY()))
+	{
+		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
-
 	}
-		
-		//previousX = getX();
-		//previousY = getY();
 	
 }
 
@@ -88,4 +88,20 @@ int Character::getOxygenLevel(int x, int y)
 	int xCell = x / currentRoom->getCellSize();
 	int yCell = y / currentRoom->getCellSize();
 	return currentRoom->grid[xCell][yCell]->oxygenLevel;
+}
+
+void Character::setPreviousLocation(int x, int y)
+{
+	setPreviousX(x);
+	setPreviousY(y);
+}
+
+bool Character::checkLocation(int x, int y)
+{
+	if (x == getPreviousX() && y == getPreviousY())
+	{
+		return true;
+	}
+	else
+		return false;
 }

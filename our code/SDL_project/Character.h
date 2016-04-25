@@ -11,12 +11,16 @@ public:
 	//Getter methods
 	int getX() { return x; }
 	int getY() { return y; }
+	int getPreviousX() { return previousX; }
+	int getPreviousY() { return previousY; }
 	int getSize() { return size; }
 	int getSpeed() { return moveSpeed; }
 
 	//Setter methods
 	int setX(int newX) { return x = newX; }
 	int setY(int newY) { return y = newY; }
+	int setPreviousX(int newX) { return previousX = newX; }
+	int setPreviousY(int newY) { return previousY = newY; }
 	int setSpeed(int newSpeed) { return moveSpeed = newSpeed; }
 	
 	//Cell checking functions
@@ -28,6 +32,9 @@ public:
 	void moveCharacter(const Uint8* keyboardState);
 	void reactToFire();
 	void wanderAroundRoom();
+
+	void setPreviousLocation(int x, int y);
+	bool checkLocation(int x, int y);
 	
 	//Stores the characters current state 
 	std::shared_ptr<CharacterState> state;
@@ -41,6 +48,7 @@ public:
 
 private:
 	int x = 50, y = 50; //Characters intial start X and Y position
+	int previousX = 49, previousY = 49; //stores previous coordinates
 	int size = 100;  //The size of the character sprite when rendered 
 	int moveSpeed = 3; //The speed that the character intially moves at
 	// TODO: Add other speeds normal, running & oxygen deprived

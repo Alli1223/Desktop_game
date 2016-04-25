@@ -12,9 +12,12 @@ WanderingState::~WanderingState()
 
 void WanderingState::update(Character& character, Grid grid, const Uint8* keyboardState)
 {
+	
+
 	character.wanderAroundRoom();
 	//TODO: Store previous location
 	
+
 	if (character.health == 0)
 	{//When health = 0 the character enters the dead state
 		character.state = std::make_shared<DeadState>();
@@ -36,4 +39,6 @@ void WanderingState::update(Character& character, Grid grid, const Uint8* keyboa
 		character.reactToFire();
 	}
 
+
+	
 }
