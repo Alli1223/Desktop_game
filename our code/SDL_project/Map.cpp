@@ -83,6 +83,10 @@ void Map::LoadMap(std::string filename, Grid room)
 					room.grid[x][y]->isRoom = false;
 				}
 			}
+			else
+			{
+				room.grid[x][y]->isRoom = false;
+			}
 		}
 	}
 }
