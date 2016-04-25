@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Map.h"
+
 /*
  TODO:Get the map from file and loads it into the grid system
 */
-
+/*
 Map::Map(const std::string& filename)
 {
 	std::ifstream mapFile(filename);
@@ -16,7 +17,7 @@ Map::Map(const std::string& filename)
 		std::string line;
 		std::getline(mapFile, line);
 
-		//set the width to the ammount of chars in the text files row
+		//set the width to the width of the screen
 		if (line.length() > width)
 		{
 			width = line.length();
@@ -58,7 +59,31 @@ Map::Map(const std::string& filename)
 	if (map)
 		delete map;
 }
+*/
 
+void Map::LoadMap(std::string filename, Grid room)
+{
+	std::ifstream mapFile(filename);
+	while (!mapFile.eof())
+	{
+		std::vector<std::string> map;
+		std::string line;
+		std::getline(mapFile, line);
+		map.push_back(line);
+	}
+	//loop through the cells on display
+	for (int x = 0; room.grid.size(); x++)
+	{
+		for (int y = 0; room.grid[0].size(); y++)
+		{
+			
+		}
+	}
+}
+
+Map::Map()
+{
+}
 
 Map::~Map()
 {
