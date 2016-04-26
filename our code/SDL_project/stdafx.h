@@ -28,3 +28,9 @@
 #include <fstream>
 #include <string>
 #include <vector>
+
+#include <string>
+#include <iostream>
+#include <cpprest/http_client.h>
+#include <cpprest/json.h>
+#include <cpprest/filestream.h>
