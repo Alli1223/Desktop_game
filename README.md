@@ -20,9 +20,19 @@
 #Sprint 2 
 ##Good:
 * Used shared pointers
-* Kept Trello board up to date
+* Kept Trello board up to date  
+* Found and fixed bugs
+* More code commmenting/improved readabilty
+* Character collision (sort of) works
+* Coding task 2 has helped nail down components/component design
+
 ##Bad:
-* git merge conflicts  
+* Git merge conflicts 
+* Errors with error system
+* No daily scrums
+* Need to get more code done (together and seperately)
+* More communication
+
 ___
 
 #Weekly Report:
@@ -38,6 +48,8 @@ We had a problem understanding pointers, so we avoided using them. We will overc
 
 ##Week Three
 After researching shared pointers we refactored the grid class to use shared pointers of cells.
+
+public character inheritance thing
 
 
 ##Week Four
