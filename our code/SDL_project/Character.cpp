@@ -10,8 +10,24 @@ Character::~Character()
 {
 }
 
+std::vector<std::shared_ptr<Cell>> Character::getSurroundingCells()
+{// Creates a vector of the cells surrounding the character
+	std::vector<std::shared_ptr<Cell>> surroundingCells;
+	if (getY() - getSpeed() > 0)  //W
+		surroundingCells.push_back(currentRoom->grid[getX()/ currentRoom->getCellSize()][(getY() - getSpeed()) / currentRoom->getCellSize()]);
+	if (getY() + getSpeed() < 800)
+		surroundingCells.push_back(currentRoom->grid[getX() / currentRoom->getCellSize()][(getY() + getSpeed()) / currentRoom->getCellSize()]);
+	if (getX() - getSpeed() > 0)
+		surroundingCells.push_back(currentRoom->grid[(getX()- getSpeed()) / currentRoom->getCellSize()][getY() / currentRoom->getCellSize()]);
+	if (getX() + getSpeed() < 800)
+		surroundingCells.push_back(currentRoom->grid[(getX() + getSpeed()) / currentRoom->getCellSize()][getY()/ currentRoom->getCellSize()]);
+
+	return surroundingCells;
+}
+
 void Character::moveCharacter(const Uint8* keyboardState)
 {//This function should only be called if WASD is pressed, it then checks to see which one is pressed and moves the character accordingly
+ 
 	if (keyboardState[SDL_SCANCODE_W] && getY() - getSpeed() > 0)
 	{//If the W key is pressed and the character won't be moved off screen move the character
 		if (isCellARoom(getX(), getY() - getSpeed())) //need to stop it checking outside of grid because causes error
@@ -43,6 +59,16 @@ void Character::reactToFire()
 
 void Character::wanderAroundRoom()
 {// Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
+	std::vector<std::shared_ptr<Cell>> surroundingCells = getSurroundingCells();
+	for (int i = 0; i < surroundingCells.size(); i++)
+	{
+		if (!surroundingCells[i]->isRoom)
+		{
+			surroundingCells.erase(surroundingCells.begin() + i);
+		}
+	}
+	
+	/*
 	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
 	{
 		setPreviousLocation(getX(), getY());
@@ -62,7 +88,7 @@ void Character::wanderAroundRoom()
 	{
 		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
-	}
+	}*/
 }
 
 bool Character::isCellARoom(int x, int y)
@@ -87,7 +113,7 @@ int Character::getOxygenLevel(int x, int y)
 }
 
 void Character::setPreviousLocation(int x, int y)
-{
+{ //Sets the current x and y as the previous x and y
 	setPreviousX(x);
 	setPreviousY(y);
 }
