@@ -43,8 +43,8 @@ void SpaceGame::run()
 	Grid room;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
-	//mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
-	mapLoader.generateMap(room);
+	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
+	//mapLoader.generateMap(room);
 	MainCharacter characterOne;
 	characterOne.currentRoom = std::make_shared<Grid>(room);  //to get room state
 	characterOne.state = std::make_shared<IdleState>();

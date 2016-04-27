@@ -8,7 +8,7 @@ public:
 	Cell();
 	~Cell();
 	
-	bool isRoom = true;  //Whether the cell is part of a room or not
+	bool isRoom = false;  //Whether the cell is part of a room or not
 	bool onFire = false;
 	int oxygenLevel = 100;
 
