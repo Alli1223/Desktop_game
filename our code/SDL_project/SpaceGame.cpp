@@ -52,6 +52,8 @@ void SpaceGame::run()
 {
 	Grid room;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+	Map mapLoader;
+	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
 	MainCharacter characterOne;
 
 	ISSLocation location;

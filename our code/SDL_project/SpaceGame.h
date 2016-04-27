@@ -2,6 +2,7 @@
 
 #include "Texture.h"
 #include "Grid.h"
+#include "Map.h"
 #include "GameConfiguration.h"
 
 
