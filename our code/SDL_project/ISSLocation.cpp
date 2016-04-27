@@ -89,10 +89,9 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 	});
 }
 
-
 void ISSLocation::update()
 {
-	if (updateTime > previousUpdateTime)
+	if (updateTime > previousUpdateTime + 3)
 	{// Currently updates location 
 		requestJSONValueAsync().wait();
 		backgroundXPos = ((latitude / 90) * 800) + 1000; //800 = Screen height

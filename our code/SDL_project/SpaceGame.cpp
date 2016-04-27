@@ -135,11 +135,7 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
-				if (x > 1)
-				{//Just for testing
-					room.grid[x][y]->isRoom = false;
-				}
-				
+					
 				//Renders cell based on state
 				if (room.grid[x][y]->isRoom) // Detects if the cell is a room
 				{
