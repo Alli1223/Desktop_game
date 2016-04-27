@@ -12,9 +12,9 @@ Character::~Character()
 
 void Character::moveCharacter(const Uint8* keyboardState)
 {//This function should only be called if WASD is pressed, it then checks to see which one is pressed and moves the character accordingly
-	if (keyboardState[SDL_SCANCODE_W] && getY() + getSpeed() > 0)
+	if (keyboardState[SDL_SCANCODE_W] && getY() - getSpeed() > 0)
 	{//If the W key is pressed and the character won't be moved off screen move the character
-		if (isCellARoom(getX(), getY() + getSpeed())) //need to stop it checking outside of grid because causes error
+		if (isCellARoom(getX(), getY() - getSpeed())) //need to stop it checking outside of grid because causes error
 			setY(getY() - getSpeed());
 	}
 	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800) //Will change to pass in screen dimensions

@@ -87,13 +87,8 @@ void SpaceGame::run()
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				else
-				{
-					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-				}
+				//If a cell isn't part of a room don't render
 			} //End for Y loop
-		
-			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
 			
 			
 		}//End for X loop

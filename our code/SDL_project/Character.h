@@ -49,7 +49,7 @@ public:
 private:
 	int x = 50, y = 50; //Characters intial start X and Y position
 	int previousX = 49, previousY = 49; //stores previous coordinates
-	int size = 100;  //The size of the character sprite when rendered 
+	int size = 50;  //The size of the character sprite when rendered 
 	int moveSpeed = 3; //The speed that the character intially moves at
 	// TODO: Add other speeds normal, running & oxygen deprived
 };
