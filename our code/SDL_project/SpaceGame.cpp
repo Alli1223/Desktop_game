@@ -128,7 +128,7 @@ void SpaceGame::run()
 		int cellSize = room.getCellSize();
 		
 		//TODO: add function that chooses position based on ISS
-		bg.render(renderer, location.backgroundXPos, location.backgroundYPos, 800, 800); //Renders background
+		bg.render(renderer, location.backgroundXPos, location.backgroundYPos , 2000, 2000); //Renders background
 		earth.render(renderer, 400, 400, 800, 800); //Renders earth
 
 		for (int x = 0; x < room.grid.size(); x++)

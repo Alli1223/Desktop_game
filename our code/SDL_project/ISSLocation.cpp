@@ -47,7 +47,7 @@ void ISSLocation::displayJSONValue(web::json::value ISSData)
 				if (key.serialize() == (L"\"timestamp""\""))
 				{
 					std::wcout << L"timestamp found" << std::endl;
-					lastUpdateTime = value.as_integer();
+					updateTime = value.as_integer();
 				}
 				else if (key.serialize() == (L"\"longitude""\""))
 				{
@@ -100,15 +100,15 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 
 void ISSLocation::update()
 {
-	time_t currentTime = time(0);
-	if (lastUpdateTime < currentTime + 2)
+	//time_t currentTime = time(0);
+	if (updateTime > previousUpdateTime)
 	{// Currently updates location every 5 seconds 
 		//Only update when character is in idle state?
 		requestJSONValueAsync().wait();
 		//latitude +/-90
 		//longitude +/-180
-		backgroundXPos = (latitude / 90) * 800; //800 = Screen height
-		backgroundYPos = (longitude / 180) * 800; //800 = Screen width
+		backgroundXPos = ((latitude / 90) * 800) + 1000; //800 = Screen height
+		backgroundYPos = ((longitude / 180) * 800) + 1000; //800 = Screen width
 
 	}
 }
