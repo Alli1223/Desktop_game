@@ -2,6 +2,7 @@
 #include "Oxygen.h"
 #include "Cell.h"
 #include "MainCharacter.h"
+#include "Grid.h"
 
 Oxygen::Oxygen()
 {
@@ -16,15 +17,16 @@ Oxygen::~Oxygen()
 //Increases oxygen in a selected cell (only if the cell is a room)
 void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 {
+	Grid grid;
 	int oxygen_Level = cell.get_Oxygen_level();
-	if (cell.isRoom)
+	if (x >= cell.getX() - grid.getCellSize() && x <= cell_X + grid.getCellSize())
 	{
-		if (cell_X == x && cell_Y == y)
+		if (cell.isRoom)
 		{
 			if (cell.get_Oxygen_level() >= 100)
 			{
 				//Oyxgen in cell is full
-				///Set_Oxygen_Level(100);
+				Set_Oxygen_Level(100);
 				cell.isOxygenated = true;
 				cell.set_Oxygen_level(100);
 				SDL_Log("Oxygen full");
@@ -36,10 +38,12 @@ void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 			{
 				cell.isOxygenated = false;
 				oxygen_Level++;
-				//Set_Oxygen_Level(oxygen_Level);
+				Set_Oxygen_Level(oxygen_Level);
 				cell.set_Oxygen_level(oxygen_Level);
 				SDL_Log("Spawning oxygen %i", cell.get_Oxygen_level());
+
 			}
+
 		}
 	}
 }
@@ -64,5 +68,6 @@ void Oxygen::removeOxygen(int x, int y)
 	}
 
 }
+
 
 
