@@ -6,12 +6,12 @@ public:
 	~ISSLocation();
 
 
-	int currentTime;
+	int lastUpdateTime;
 	double longitude, latitude;
 	
-	void ISSLocation::DisplayJSONValue(web::json::value ISSData);
-	int update();
-	pplx::task<void> RequestJSONValueAsync();
+	void ISSLocation::displayJSONValue(web::json::value ISSData);
+	void update();
+	pplx::task<void> requestJSONValueAsync();
 	
 };
 

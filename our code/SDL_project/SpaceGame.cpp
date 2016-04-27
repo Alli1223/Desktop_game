@@ -4,12 +4,15 @@
 #include "Cell.h"
 #include "Grid.h"
 #include "MainCharacter.h"
+#include "ISSLocation.h"
 
 
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
 	roomCell("Resources\\cell_test2.png"),
-	characterTex("Resources\\char.png")
+	characterTex("Resources\\char.png"),
+	earth("Resources\\earth.png"),
+	bg("Resources\\bg.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -37,6 +40,11 @@ SpaceGame::~SpaceGame()
 	SDL_Quit();
 }
 
+void SpaceGame::updateBackground()
+{
+	time_t now = time(0);
+}
+
 bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid)
 { //Currently checks to see if a cell is part of a room or not
 	int xCell = x / cellSize;
@@ -50,6 +58,10 @@ void SpaceGame::run()
 	Grid room;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
+
+	ISSLocation location;
+	location.requestJSONValueAsync().wait(); //Runs once in the set up to get a previous update time
+
 	running = true;
 	while (running)
 	{
@@ -108,26 +120,34 @@ void SpaceGame::run()
 			}
 		}
 		
+		location.update(); //Updates ISS location and timestamp
+
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
 		int cellSize = room.getCellSize();
 		
+		//TODO: add function that chooses position based on ISS
+		bg.render(renderer, 400, 400, 800, 800); //Renders background
+		earth.render(renderer, 400, 400, 800, 800); //Renders earth
+
 		for (int x = 0; x < room.grid.size(); x++)
 		{
 			for (int y = 0; y < room.grid[x].size(); y++)
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
+				if (x > 10)
+				{//Just for testing
+					room.grid[x][y]->isRoom = false;
+				}
+				
 				//Renders cell based on state
-				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
+				if (room.grid[x][y]->isRoom) // Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				else
-				{
-					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-				}
+				// If cell isn't a room it doesn't render
 			} //End for Y loop
 		
 			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);

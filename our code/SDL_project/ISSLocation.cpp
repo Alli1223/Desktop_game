@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "ISSLocation.h"
 
+using namespace utility;                    // Common utilities like string conversions
+using namespace web;                        // Common features like URIs
+using namespace web::http;                  // Common HTTP functionality
+using namespace web::http::client;          // HTTP client features
+using namespace concurrency::streams;       // Asynchronous streams
 
 ISSLocation::ISSLocation()
 {
@@ -11,14 +16,8 @@ ISSLocation::~ISSLocation()
 {
 }
 
-using namespace utility;                    // Common utilities like string conversions
-using namespace web;                        // Common features like URIs
-using namespace web::http;                  // Common HTTP functionality
-using namespace web::http::client;          // HTTP client features
-using namespace concurrency::streams;       // Asynchronous streams
 
-
-void ISSLocation::DisplayJSONValue(web::json::value ISSData)
+void ISSLocation::displayJSONValue(web::json::value ISSData)
 {
 	if (!ISSData.is_null())
 	{
@@ -35,7 +34,7 @@ void ISSLocation::DisplayJSONValue(web::json::value ISSData)
 					//Parent is the object in this case iss_position
 					//Parent contains the latitude & longitude
 				}
-				DisplayJSONValue(value);
+				displayJSONValue(value);
 				if ((!key.is_null()) && (key.is_string()))
 				{
 					std::wcout << L"End of Parent: " << key.as_string() << std::endl;
@@ -45,11 +44,10 @@ void ISSLocation::DisplayJSONValue(web::json::value ISSData)
 			}
 			else
 			{
-
 				if (key.serialize() == (L"\"timestamp""\""))
 				{
 					std::wcout << L"timestamp found" << std::endl;
-					currentTime = value.as_integer();
+					lastUpdateTime = value.as_integer();
 				}
 				else if (key.serialize() == (L"\"longitude""\""))
 				{
@@ -69,7 +67,7 @@ void ISSLocation::DisplayJSONValue(web::json::value ISSData)
 
 
 // Retrieves a JSON value from an HTTP request.
-pplx::task<void> ISSLocation::RequestJSONValueAsync()
+pplx::task<void> ISSLocation::requestJSONValueAsync()
 {
 	http_client client(L"http://api.open-notify.org/iss-now.json");
 	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
@@ -86,7 +84,7 @@ pplx::task<void> ISSLocation::RequestJSONValueAsync()
 		{
 			const json::value& v = previousTask.get();
 			// JSON object
-			DisplayJSONValue(v);
+			displayJSONValue(v);
 			std::cout << "Success" << std::endl;
 		}
 		catch (const http_exception& e)
@@ -100,8 +98,15 @@ pplx::task<void> ISSLocation::RequestJSONValueAsync()
 }
 
 
-int ISSLocation::update()
+void ISSLocation::update()
 {
-	std::wcout << L"Calling RequestJSONValueAsync..." << std::endl;
-	RequestJSONValueAsync().wait();
+	time_t currentTime = time(0);
+	if (lastUpdateTime < currentTime + 5)
+	{// Currently updates location every 5 seconds 
+		//Only update when character is in idle state?
+		requestJSONValueAsync().wait();
+		//latitude +/-90
+		//longitude +/-180
+
+	}
 }
