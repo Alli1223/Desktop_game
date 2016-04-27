@@ -41,6 +41,18 @@ void Map::LoadMap(std::string filename, Grid room)
 	}
 }
 
+void Map::generateMap(Grid room)
+{
+	//make starting room
+	for (int x = 0; x < 3; x++)
+	{
+		for (int y = 0; y < 3; y++)
+		{
+			room.grid[x][y]->isRoom = true;
+		}
+	}
+}
+
 Map::Map()
 {
 }
