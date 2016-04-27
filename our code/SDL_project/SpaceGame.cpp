@@ -40,11 +40,6 @@ SpaceGame::~SpaceGame()
 	SDL_Quit();
 }
 
-void SpaceGame::updateBackground()
-{
-	time_t now = time(0);
-}
-
 bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid)
 { //Currently checks to see if a cell is part of a room or not
 	int xCell = x / cellSize;
@@ -61,6 +56,7 @@ void SpaceGame::run()
 
 	ISSLocation location;
 	location.requestJSONValueAsync().wait(); //Runs once in the set up to get a previous update time
+	location.update(); //Sets x and y position of background
 
 	running = true;
 	while (running)
@@ -147,17 +143,14 @@ void SpaceGame::run()
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				// If cell isn't a room it doesn't render
+				// If a cell isn't part of a room it isn't rendered
 			} //End for Y loop
 		
-			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
-			
+			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);	
 			
 		}//End for X loop
-
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		
 		
 		SDL_RenderPresent(renderer);
 	}//End while running

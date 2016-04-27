@@ -18,13 +18,13 @@ ISSLocation::~ISSLocation()
 
 
 void ISSLocation::displayJSONValue(web::json::value ISSData)
-{
+{ //Extracts infomation from the JSON value and saves it in variables 
 	if (!ISSData.is_null())
-	{
+	{ //Only runs if there is data to extract
 		for (auto iter = ISSData.as_object().cbegin(); iter != ISSData.as_object().cend(); ++iter)
 		{
-			const json::value &key = json::value::string(iter->first);
-			const json::value &value = iter->second;
+			const json::value &key = json::value::string(iter->first); //Key is the data name
+			const json::value &value = iter->second; //Value is the data itself
 
 			if (value.is_object() || value.is_array())
 			{
@@ -38,42 +38,35 @@ void ISSLocation::displayJSONValue(web::json::value ISSData)
 				if ((!key.is_null()) && (key.is_string()))
 				{
 					std::wcout << L"End of Parent: " << key.as_string() << std::endl;
-					//break; //break makes it only get the  latitude & longitude and not the message on timestamp
-					//Probably need timestamp to choose when to update data
 				}
 			}
 			else
-			{
+			{ //Saves values as variables
 				if (key.serialize() == (L"\"timestamp""\""))
 				{
-					std::wcout << L"timestamp found" << std::endl;
 					updateTime = value.as_integer();
 				}
 				else if (key.serialize() == (L"\"longitude""\""))
 				{
-					std::wcout << L"longitude found" << std::endl;
 					longitude = value.as_double();
 				}
 				else if (key.serialize() == (L"\"latitude""\""))
 				{
-					std::wcout << L"latitude found" << std::endl;
 					latitude = value.as_double();
 				}
-				std::wcout << L"Key: " << key.serialize() << L", Value: " << value.serialize() << std::endl;
 			}
 		}
 	}
 }
 
 
-// Retrieves a JSON value from an HTTP request.
 pplx::task<void> ISSLocation::requestJSONValueAsync()
-{
+{ // Sends request to open notify and if successful extracts the JSON data in to a json value 
 	http_client client(L"http://api.open-notify.org/iss-now.json");
 	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
 	{
 		if (response.status_code() == status_codes::OK)
-		{
+		{ //If connection is successful it extracts JSON
 			return response.extract_json();
 		}
 		return pplx::task_from_result(json::value());
@@ -82,10 +75,9 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 	{
 		try
 		{
-			const json::value& v = previousTask.get();
+			const json::value& issLocation = previousTask.get();
 			// JSON object
-			displayJSONValue(v);
-			std::cout << "Success" << std::endl;
+			displayJSONValue(issLocation);
 		}
 		catch (const http_exception& e)
 		{
@@ -100,13 +92,9 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 
 void ISSLocation::update()
 {
-	//time_t currentTime = time(0);
 	if (updateTime > previousUpdateTime)
-	{// Currently updates location every 5 seconds 
-		//Only update when character is in idle state?
+	{// Currently updates location 
 		requestJSONValueAsync().wait();
-		//latitude +/-90
-		//longitude +/-180
 		backgroundXPos = ((latitude / 90) * 800) + 1000; //800 = Screen height
 		backgroundYPos = ((longitude / 180) * 800) + 1000; //800 = Screen width
 
