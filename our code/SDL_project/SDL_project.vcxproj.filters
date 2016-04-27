@@ -63,9 +63,12 @@
     <ClInclude Include="Oxygen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameConfiguration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="DeadState.h">
       <Filter>Header Files\States</Filter>
-    </ClInclude>
+    </ClInclude></ClInclude>
     <ClInclude Include="CharacterState.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
@@ -86,8 +89,7 @@
     </ClInclude>
     <ClInclude Include="SubCharacter.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
+    </ClInclude>  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>

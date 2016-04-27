@@ -38,11 +38,12 @@ SpaceGame::~SpaceGame()
 	SDL_Quit();
 }
 
-
 void SpaceGame::run()
 {
 	Grid room;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+	Map mapLoader;
+	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
 	MainCharacter characterOne;
 	characterOne.currentRoom = std::make_shared<Grid>(room);  //to get room state
 	characterOne.state = std::make_shared<IdleState>();
@@ -65,7 +66,9 @@ void SpaceGame::run()
 			}
 		}//End pollevent if
 
+
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+		
 		characterOne.state->update(characterOne, room, keyboardState);
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -98,7 +101,6 @@ void SpaceGame::run()
 		//Need to render character based on state 
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		SDL_RenderPresent(renderer);
-		
 	}//End while running
 
 }
