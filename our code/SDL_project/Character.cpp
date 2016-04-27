@@ -10,21 +10,6 @@ Character::~Character()
 {
 }
 
-std::vector<std::shared_ptr<Cell>> Character::getSurroundingCells()
-{// Creates a vector of the cells surrounding the character
-	std::vector<std::shared_ptr<Cell>> surroundingCells;
-	if (getY() - getSpeed() > 0)  //W
-		surroundingCells.push_back(currentRoom->grid[getX()/ currentRoom->getCellSize()][(getY() - getSpeed()) / currentRoom->getCellSize()]);
-	if (getY() + getSpeed() < 800)
-		surroundingCells.push_back(currentRoom->grid[getX() / currentRoom->getCellSize()][(getY() + getSpeed()) / currentRoom->getCellSize()]);
-	if (getX() - getSpeed() > 0)
-		surroundingCells.push_back(currentRoom->grid[(getX()- getSpeed()) / currentRoom->getCellSize()][getY() / currentRoom->getCellSize()]);
-	if (getX() + getSpeed() < 800)
-		surroundingCells.push_back(currentRoom->grid[(getX() + getSpeed()) / currentRoom->getCellSize()][getY()/ currentRoom->getCellSize()]);
-
-	return surroundingCells;
-}
-
 void Character::moveCharacter(const Uint8* keyboardState)
 {//This function should only be called if WASD is pressed, it then checks to see which one is pressed and moves the character accordingly
  
@@ -57,6 +42,21 @@ void Character::reactToFire()
 	//Adapt wandering function to make character move 
 }
 
+
+std::vector<std::shared_ptr<Cell>> Character::getSurroundingCells()
+{// Creates a vector of the cells surrounding the character
+	std::vector<std::shared_ptr<Cell>> surroundingCells;
+	if (getY() - getSpeed() > 0)  //W
+		surroundingCells.push_back(currentRoom->grid[getX() / currentRoom->getCellSize()][(getY() - getSpeed()) / currentRoom->getCellSize()]);
+	if (getY() + getSpeed() < 800)
+		surroundingCells.push_back(currentRoom->grid[getX() / currentRoom->getCellSize()][(getY() + getSpeed()) / currentRoom->getCellSize()]);
+	if (getX() - getSpeed() > 0)
+		surroundingCells.push_back(currentRoom->grid[(getX() - getSpeed()) / currentRoom->getCellSize()][getY() / currentRoom->getCellSize()]);
+	if (getX() + getSpeed() < 800)
+		surroundingCells.push_back(currentRoom->grid[(getX() + getSpeed()) / currentRoom->getCellSize()][getY() / currentRoom->getCellSize()]);
+
+	return surroundingCells;
+}
 void Character::wanderAroundRoom()
 {// Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
 	std::vector<std::shared_ptr<Cell>> surroundingCells = getSurroundingCells();
@@ -67,8 +67,16 @@ void Character::wanderAroundRoom()
 			surroundingCells.erase(surroundingCells.begin() + i);
 		}
 	}
-	
+
+	if (surroundingCells[0]->getY() * currentRoom->getCellSize() > getY() || !checkLocation(getX(), getY() + getSpeed()))
+	{
+		setPreviousLocation(getX(), getY());
+		setY(getY() + getSpeed());
+	}
 	/*
+	else if (surroundingCells[0]->getY() * currentRoom->getCellSize() < getY())
+		setY(getY() - getSpeed());
+	
 	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
 	{
 		setPreviousLocation(getX(), getY());
