@@ -101,12 +101,14 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 void ISSLocation::update()
 {
 	time_t currentTime = time(0);
-	if (lastUpdateTime < currentTime + 5)
+	if (lastUpdateTime < currentTime + 2)
 	{// Currently updates location every 5 seconds 
 		//Only update when character is in idle state?
 		requestJSONValueAsync().wait();
 		//latitude +/-90
 		//longitude +/-180
+		backgroundXPos = (latitude / 90) * 800; //800 = Screen height
+		backgroundYPos = (longitude / 180) * 800; //800 = Screen width
 
 	}
 }
