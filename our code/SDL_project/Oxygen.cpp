@@ -19,7 +19,7 @@ void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 {
 	Grid grid;
 	int oxygen_Level = cell.get_Oxygen_level();
-	if (x >= cell.getX() - grid.getCellSize() && x <= cell.getX() + grid.getCellSize())
+	if (x >= (cell.getX() - grid.getCellSize()) && x <= cell.getX() + grid.getCellSize())
 	{
 		if (y >= cell.getY() - grid.getCellSize() && y <= cell.getY() + grid.getCellSize())
 		{
@@ -28,7 +28,7 @@ void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 				if (cell.get_Oxygen_level() >= 100)
 				{
 					//Oyxgen in cell is full
-					Set_Oxygen_Level(100);
+					cell.set_Oxygen_level(100);
 					cell.isOxygenated = true;
 					cell.set_Oxygen_level(100);
 					SDL_Log("Oxygen full");
@@ -40,7 +40,6 @@ void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 				{
 					cell.isOxygenated = false;
 					oxygen_Level++;
-					Set_Oxygen_Level(oxygen_Level);
 					cell.set_Oxygen_level(oxygen_Level);
 					SDL_Log("Spawning oxygen %i", cell.get_Oxygen_level());
 

@@ -138,12 +138,9 @@ void SpaceGame::run()
 				//Gets mouse input
 				
 				int mouse_X, mouse_Y;
-				//SDL_PumpEvents();
 				if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
 				{
 					oxygen.spawnOxygen(mouse_X, mouse_Y, xPos, yPos, cell);
-					
-
 				}
 
 			} //End for Y loop
