@@ -23,6 +23,6 @@ private:
 
 	Texture* sprite;
 	int x, y;
-	int oxygen_level = 0;
+	int oxygen_level;
 
 };

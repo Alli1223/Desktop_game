@@ -18,14 +18,15 @@ Oxygen::~Oxygen()
 void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 {
 	Grid grid;
-	int oxygen_Level = cell.get_Oxygen_level();
-	if (x >= (cell.getX() - grid.getCellSize()) && x <= cell.getX() + grid.getCellSize())
+	int oxygen_level = cell.get_Oxygen_level();
+	int local_oxygen_level = Get_Oxygen_Level();
+	if (x >= (cell_X - grid.getCellSize()) && x <= cell_X + grid.getCellSize())
 	{
-		if (y >= cell.getY() - grid.getCellSize() && y <= cell.getY() + grid.getCellSize())
+		if (y >= cell_Y - grid.getCellSize() && y <= cell_Y + grid.getCellSize())
 		{
 			if (cell.isRoom)
 			{
-				if (cell.get_Oxygen_level() >= 100)
+				if (Get_Oxygen_Level() >= 100)
 				{
 					//Oyxgen in cell is full
 					cell.set_Oxygen_level(100);
@@ -38,11 +39,17 @@ void Oxygen::spawnOxygen(int x, int y, int cell_X, int cell_Y, Cell cell)
 
 				else
 				{
+					oxygen_level++;
+					local_oxygen_level++;
+					cell.set_Oxygen_level(local_oxygen_level);
+					
+					Set_Oxygen_Level(local_oxygen_level);
 					cell.isOxygenated = false;
-					oxygen_Level++;
-					cell.set_Oxygen_level(oxygen_Level);
 					SDL_Log("Spawning oxygen %i", cell.get_Oxygen_level());
-
+				}
+				if (cell.isOxygenated)
+				{
+					
 				}
 			}
 		}
@@ -55,7 +62,7 @@ void Oxygen::removeOxygen(int x, int y)
 
 	int oxygen_Level = Get_Oxygen_Level();
 
-	if (oxygen_Level -= 0)
+	if (oxygen_Level <= 0)
 	{
 		//Oyxgen in cell is empty
 		oxygen_Level = 0;
