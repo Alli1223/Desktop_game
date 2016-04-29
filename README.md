@@ -31,8 +31,23 @@
 * Errors with error system
 * No daily scrums
 * Need to get more code done (together and seperately)
-* More communication
+* More communication  
 
+
+#Sprint 3  
+##Good:
+* Code merged into the developement branch without many conflicts
+* Level making system in place
+* Character can move around map by itself
+* Kept the trello board up to date
+* We were organised 
+* Some gameplay
+* Better communication
+
+##Bad:  
+* Character gets stuck in bottom right corners
+* Not much done in the holiday
+* No communication in holiday
 ___
 
 #Weekly Report:
