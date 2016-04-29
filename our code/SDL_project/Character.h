@@ -1,5 +1,6 @@
 #pragma once
 #include"Grid.h"
+#include"Coordinates.h"
 class CharacterState; //forward declartion I think
 
 class Character
@@ -41,13 +42,11 @@ public:
 	std::shared_ptr<CharacterState> state;
 	//Pointer to the grid being used in SpaceGame, used to check the state of a given cell.
 	std::shared_ptr<Grid> currentRoom; 
-	std::vector<std::shared_ptr<Cell>> getSurroundingCells();
-
+	std::vector<std::shared_ptr<Coordinates>> getSurroundingCells();
 
 	int health = 100; //Character health level, will change to use getters and setters
 	bool isAlive = true; //Will be used to decide whether alive or dead sprite should be used
 	double timer = 0;
-	//int previousX, previousY;
 
 private:
 	int x = 50, y = 50; //Characters intial start X and Y position

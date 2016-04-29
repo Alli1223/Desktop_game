@@ -43,39 +43,58 @@ void Character::reactToFire()
 }
 
 
-std::vector<std::shared_ptr<Cell>> Character::getSurroundingCells()
+std::vector<std::shared_ptr<Coordinates>> Character::getSurroundingCells()
 {// Creates a vector of the cells surrounding the character
-	std::vector<std::shared_ptr<Cell>> surroundingCells;
+	std::vector<std::shared_ptr<Coordinates>> surroundingCells;
 	if (getY() - getSpeed() > 0)  //W
-		surroundingCells.push_back(currentRoom->grid[getX() / currentRoom->getCellSize()][(getY() - getSpeed()) / currentRoom->getCellSize()]);
+		surroundingCells.push_back(std::make_shared<Coordinates>(getX(), getY() - getSpeed()));
 	if (getY() + getSpeed() < 800)
-		surroundingCells.push_back(currentRoom->grid[getX() / currentRoom->getCellSize()][(getY() + getSpeed()) / currentRoom->getCellSize()]);
+		surroundingCells.push_back(std::make_shared<Coordinates>(getX(), getY() + getSpeed()));
 	if (getX() - getSpeed() > 0)
-		surroundingCells.push_back(currentRoom->grid[(getX() - getSpeed()) / currentRoom->getCellSize()][getY() / currentRoom->getCellSize()]);
+		surroundingCells.push_back(std::make_shared<Coordinates>(getX() - getSpeed(), getY()));
 	if (getX() + getSpeed() < 800)
-		surroundingCells.push_back(currentRoom->grid[(getX() + getSpeed()) / currentRoom->getCellSize()][getY() / currentRoom->getCellSize()]);
+		surroundingCells.push_back(std::make_shared<Coordinates>(getX() + getSpeed(), getY()));
 
 	return surroundingCells;
 }
 void Character::wanderAroundRoom()
-{// Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
-	std::vector<std::shared_ptr<Cell>> surroundingCells = getSurroundingCells();
+{ // Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
+	auto surroundingCells = getSurroundingCells();
 	for (int i = 0; i < surroundingCells.size(); i++)
 	{
-		if (!surroundingCells[i]->isRoom)
+		if (!isCellARoom(surroundingCells[i]->getX(), surroundingCells[i]->getY()))
 		{
 			surroundingCells.erase(surroundingCells.begin() + i);
 		}
+		bool test = checkLocation(surroundingCells[i]->getX(), surroundingCells[i]->getY());
+		if (!test)
+		{
+			setPreviousLocation(getX(), getY());
+			setY(surroundingCells[i]->getY());
+			setX(surroundingCells[i]->getX());
+			break;
+		}
+		/*
+		else if (!checkLocation(surroundingCells[i]->getX() + getSpeed(), surroundingCells[i]->getY()))
+		{
+			setPreviousLocation(getX(), getY());
+			setX(getX() + getSpeed());
+		}
+		else if (!checkLocation(surroundingCells[i]->getX(), surroundingCells[i]->getY() - getSpeed())) //need to change to pass in screen dimensions
+		{
+			setPreviousLocation(getX(), getY());
+			setY(getY() - getSpeed());
+		}
+		else if (!checkLocation(surroundingCells[i]->getX() - getSpeed(), surroundingCells[i]->getY()))
+		{
+			setPreviousLocation(getX(), getY());
+			setX(getX() - getSpeed());
+		}*/
 	}
 
-	if (surroundingCells[0]->getY() * currentRoom->getCellSize() > getY() || !checkLocation(getX(), getY() + getSpeed()))
-	{
-		setPreviousLocation(getX(), getY());
-		setY(getY() + getSpeed());
-	}
+	
+
 	/*
-	else if (surroundingCells[0]->getY() * currentRoom->getCellSize() < getY())
-		setY(getY() - getSpeed());
 	
 	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
 	{
