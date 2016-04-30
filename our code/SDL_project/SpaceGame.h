@@ -27,6 +27,7 @@ private:
 	Texture notRoomCell;
 	Texture roomCell;
 	Texture characterTex;
+	Texture doorTexture;
 
 	bool running;
 
