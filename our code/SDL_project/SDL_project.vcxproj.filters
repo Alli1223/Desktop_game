@@ -1,30 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="CharacterState.cpp" />
-    <ClCompile Include="DeadState.cpp" />
-    <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="IdleState.cpp" />
-    <ClCompile Include="InitialisationError.cpp" />
-    <ClCompile Include="LowOxygenState.cpp" />
-    <ClCompile Include="MainCharacter.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="OnFire.cpp" />
-    <ClCompile Include="Oxygen.cpp" />
-    <ClCompile Include="PlayerControlledState.cpp" />
-    <ClCompile Include="SDL_project.cpp" />
-    <ClCompile Include="SpaceGame.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="SubCharacter.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="WanderingState.cpp" />
-    <ClCompile Include="Coordinates.cpp" />
+    <ClCompile Include="Coordinates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitialisationError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LowOxygenState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OnFire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Oxygen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerControlledState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL_project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Cell.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -82,7 +120,15 @@
     <ClInclude Include="WanderingState.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Coordinates.h" />
+    <ClInclude Include="Coordinates.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />
@@ -97,6 +143,9 @@
   <ItemGroup>
     <Filter Include="Headers">
       <UniqueIdentifier>{85d2a310-be25-46aa-88a6-272aa5fe861c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e1050c3b-6661-4e0f-ad9a-f78f73c03ba3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
