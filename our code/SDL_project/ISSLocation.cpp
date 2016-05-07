@@ -91,11 +91,13 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 
 void ISSLocation::update()
 {
-	if (updateTime > previousUpdateTime + 3)
-	{// Currently updates location 
+	if (updateTime > previousUpdateTime + 30)
+	{// Currently updates location
+		previousUpdateTime = updateTime;
 		requestJSONValueAsync().wait();
-		backgroundXPos = ((latitude / 90) * 800) + 1000; //800 = Screen height
-		backgroundYPos = ((longitude / 180) * 800) + 1000; //800 = Screen width
+		backgroundXPos = ((latitude / 90) * windowHeight) + 1000;
+		backgroundYPos = ((longitude / 180) * windowWidth) + 1000;
 
 	}
+	updateTime = updateTime + 1;
 }
