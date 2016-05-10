@@ -37,3 +37,8 @@ void Texture::render(SDL_Renderer* renderer, int x, int y, int width, int height
 	dest.h = height;
 	SDL_RenderCopy(renderer, texture, nullptr, &dest);
 }
+
+void Texture::addTransparency(int oxygenLevel)
+{
+	SDL_SetTextureAlphaMod(texture, oxygenLevel);
+}
