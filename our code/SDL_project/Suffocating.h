@@ -3,12 +3,12 @@
 #include "DeadState.h"
 #include "IdleState.h"
 
-class LowOxygenState :
+class Suffocating :
 	public CharacterState
 {
 public:
-	LowOxygenState();
-	~LowOxygenState();
+	Suffocating();
+	~Suffocating();
 
 	void update(Character& character, Grid grid);
 };

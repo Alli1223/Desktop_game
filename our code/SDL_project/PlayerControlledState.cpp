@@ -27,7 +27,7 @@ void PlayerControlledState::update(Character& character, Grid grid, const Uint8*
 	}
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
 	{
-		character.state = std::make_shared<LowOxygenState>();
+		character.state = std::make_shared<Suffocating>();
 		character.setSpeed(1);
 	}
 	else if (character.isCellOnFire(character.getX(), character.getY()))

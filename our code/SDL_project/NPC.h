@@ -1,12 +1,12 @@
 #pragma once
 #include "Character.h"
-class SubCharacter :
+class NPC :
 	public Character
 {
 public:
 	//Another version of characters that isn't controlled by the player....
-	SubCharacter();
-	~SubCharacter();
+	NPC();
+	~NPC();
 
 	//TODO:
 	// -Pointer to instance of a MainCharacter 

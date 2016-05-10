@@ -2,7 +2,7 @@
 #include "CharacterState.h"
 #include "IdleState.h"
 #include "DeadState.h"
-#include "LowOxygenState.h"
+#include "Suffocating.h"
 #include"OnFire.h"
 
 class PlayerControlledState :

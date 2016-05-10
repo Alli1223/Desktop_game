@@ -21,7 +21,7 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 	}
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
 	{//If the oxygen goes beneath a certain level the character slows down
-		character.state = std::make_shared<LowOxygenState>();
+		character.state = std::make_shared<Suffocating>();
 		character.setSpeed(1); //Change to have a low oxygen speed
 	}
 	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])

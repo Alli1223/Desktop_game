@@ -2,7 +2,7 @@
 #include"CharacterState.h"
 #include"Grid.h"
 #include "DeadState.h"
-#include "LowOxygenState.h"
+#include "Suffocating.h"
 #include"PlayerControlledState.h"
 #include"WanderingState.h"
 

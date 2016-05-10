@@ -1,17 +1,17 @@
 #include "stdafx.h"
-#include "LowOxygenState.h"
+#include "Suffocating.h"
 
 
-LowOxygenState::LowOxygenState()
+Suffocating::Suffocating()
 {
 }
 
 
-LowOxygenState::~LowOxygenState()
+Suffocating::~Suffocating()
 {
 }
 
-void LowOxygenState::update(Character& character, Grid grid)
+void Suffocating::update(Character& character, Grid grid)
 {
 	character.setSpeed(1);  // TODO: Change to a variable and use framerate
 	if (character.getOxygenLevel(character.getX(), character.getY()) > 50)
