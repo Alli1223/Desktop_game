@@ -9,6 +9,10 @@ public:
 	~Cell();
 	
 	bool isRoom = true;  //Whether the cell is part of a room or not
+	bool isDoor = false;
+	bool onFire = false;
+	int oxygenLevel = 100;
+
 
 	bool isOxygenated = false;
 	int get_Oxygen_level() { return oxygen_level; }

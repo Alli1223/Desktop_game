@@ -238,3 +238,4 @@ _Pvt_Extensions
 # Force the entire SDL distribution to be added to the repository
 !**/SDL2*/**
 /SDL DLL
+/SDL
