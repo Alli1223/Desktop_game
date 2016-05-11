@@ -43,7 +43,7 @@ bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector
 { //Currently checks to see if a cell is part of a room or not
 	int xCell = x / cellSize;
 	int yCell = y / cellSize;
-	bool state = grid[xCell][yCell]->isRoom; //Access violation error
+	bool state = grid[xCell][yCell]->isRoom;
 	return state;
 }
 
@@ -51,6 +51,7 @@ void SpaceGame::run()
 {
 	Grid room;
 	Oxygen oxygen;
+
 	
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
@@ -122,7 +123,7 @@ void SpaceGame::run()
 		int mouse_X, mouse_Y;
 		if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
-			oxygen.spawnOxygen(mouse_X, mouse_Y, cellSize, room);
+			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
 
 		

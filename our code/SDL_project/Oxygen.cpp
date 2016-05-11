@@ -14,13 +14,13 @@ Oxygen::~Oxygen()
 }
 
 // Increases oxygen in a selected cell (only if the cell is a room)
-void Oxygen::spawnOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
+void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 {
 	int cellX = mouseX / cellSize;
 	int cellY = mouseY / cellSize;
 
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
-	if (oxygenLevel < 100)
+	if (grid.grid[cellX][cellY]->isRoom && oxygenLevel < 100)
 	{
 		oxygenLevel = oxygenLevel + 2;
 		grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
@@ -42,9 +42,16 @@ std::vector<std::shared_ptr<Cell>> Oxygen::getNeighbouringCells(int cellSize)
 }
 
 
-void Oxygen::update()
+void Oxygen::update(int cellSize)
 {
-
+	std::vector<std::shared_ptr<Cell>> neighbourCells = getNeighbouringCells(cellSize);
+	for (int i=0; i > neighbourCells.size(); i++)
+	{
+		if (neighbourCells[i]->getOxygenLevel() > neighbourCells[i+1]->getOxygenLevel())
+		{
+			neighbourCells[i + 1]->setOxygenLevel(neighbourCells[i + 1]->getOxygenLevel()+100);
+		}
+	}
 
 }
 	//int local_oxygen_level = Get_Oxygen_Level();

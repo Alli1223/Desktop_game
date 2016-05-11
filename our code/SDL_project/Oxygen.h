@@ -2,8 +2,6 @@
 #include "Grid.h"
 #include "Cell.h"
 
-
-
 class Oxygen
 {
 public:
@@ -12,9 +10,9 @@ public:
 	
 	std::vector<std::shared_ptr<Cell>> getNeighbouringCells(int cellSize);
 
-	void update();
+	void update(int cellSize);
 
-	void spawnOxygen(int cellX, int cellY, int cellSize, Grid grid);
+	void addOxygen(int cellX, int cellY, int cellSize, Grid grid);
 	//void removeOxygen(int x, int y);
 	int cellX, cellY;
 };
