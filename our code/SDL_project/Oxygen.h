@@ -1,5 +1,6 @@
 #pragma once
 #include "Grid.h"
+#include "Coordinates.h"
 
 
 
@@ -8,14 +9,12 @@ class Oxygen
 public:
 	Oxygen();
 	~Oxygen();
+	
+	std::vector<std::shared_ptr<Coordinates>> getSurroundingCells(int cellSize);
 
-	int Get_Oxygen_Level() { return Oxygen_Level; }
-	int Set_Oxygen_Level(int new_Oxygen_Level) { return Oxygen_Level = new_Oxygen_Level; }
+	void update();
 
 	void spawnOxygen(int cellX, int cellY, int cellSize, Grid grid);
 	//void removeOxygen(int x, int y);
-
-private:
-	int Oxygen_Level = 0;
-	
+	int cellX, cellY;
 };

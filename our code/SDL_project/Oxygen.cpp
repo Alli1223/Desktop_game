@@ -28,8 +28,25 @@ void Oxygen::spawnOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 	}	
 }
 
+std::vector<std::shared_ptr<Coordinates>> Oxygen::getSurroundingCells(int cellSize)
+{// Creates a vector of the possible directions that the character could move in
+	std::vector<std::shared_ptr<Coordinates>> surroundingCells;
+	if (cellX - cellSize)  //up
+		surroundingCells.push_back(std::make_shared<Coordinates>(cellX, cellY - cellSize));
+	if (cellY + cellSize < 800) //down
+		surroundingCells.push_back(std::make_shared<Coordinates>(cellX, cellY + cellSize));
+	if (cellX - cellSize > 0)
+		surroundingCells.push_back(std::make_shared<Coordinates>(cellX - cellSize, cellY));
+	if (cellY + cellSize < 800)
+		surroundingCells.push_back(std::make_shared<Coordinates>(cellX + cellSize, cellY));
+	return surroundingCells;
+}
 
 
+void Oxygen::update()
+{
+
+}
 	//int local_oxygen_level = Get_Oxygen_Level();
 
 	/*

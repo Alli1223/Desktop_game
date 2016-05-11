@@ -51,7 +51,7 @@ void SpaceGame::run()
 {
 	Grid room;
 	Oxygen oxygen;
-	Cell cell;
+	
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	MainCharacter characterOne;
 	running = true;
