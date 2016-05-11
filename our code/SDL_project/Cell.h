@@ -13,6 +13,7 @@ public:
 	bool isDoor = false;
 	int oxygenLevel = 100;
 
+
 	int getX() { return x; }
 	int getY() { return y; }
 	int setX(int newX) { return x = newX; }

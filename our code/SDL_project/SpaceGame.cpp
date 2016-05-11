@@ -10,7 +10,8 @@
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
 	roomCell("Resources\\cell_test2.png"),
-	characterTex("Resources\\char.png")
+	characterTex("Resources\\char.png"),
+	doorTexture("Resources\\door_sprite.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -87,6 +88,10 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				else if (room.grid[x][y]->isDoor)//Detects if the cell is a door
+				{
+					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				//Doesn't render a cell if it isn't part of a room
 			} //End for Y loop
