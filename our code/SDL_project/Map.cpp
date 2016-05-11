@@ -45,16 +45,63 @@ void Map::LoadMap(std::string filename, Grid room)
 	}
 }
 
-void Map::generateMap(Grid room)
+int Map::random(int smallestValue, int largestValue)
 {
-	//make starting room
-	for (int x = 0; x < 3; x++)
+	std::srand(time(nullptr));
+	return (rand() % (largestValue - smallestValue)) + smallestValue;
+}
+
+void Map::generateMap(Grid level)
+{
+	std::vector<std::vector<std::vector<std::shared_ptr<Cell>>>> roomVector;
+	std::vector<std::vector<std::shared_ptr<Cell>>> room;
+	//Clear a starting room(room 0)
+	for (int x = 0; x < 4; x++)
 	{
-		for (int y = 0; y < 3; y++)
+		std::vector<std::shared_ptr<Cell>> column;
+		for (int y = 0; y < 4; y++)
 		{
-			room.grid[x][y]->isRoom = true;
+			level.grid[x][y]->isRoom = true;
+			column.push_back(level.grid[x][y]);
 		}
+		room.push_back(column);
 	}
+	roomVector.push_back(room);
+	int direction = random(0, 4);
+	if (direction == 0)																//north
+	{
+		if (roomVector[0][0][0]->getY() - 1 > 0)
+		{
+			int yOfDoor = roomVector[0][0][0]->getY() - 1;
+			int xStart = roomVector[0][0][0]->getX();
+			int halfRoomSize = roomVector[0].size() / 2;
+			int xOfDoor = xStart + halfRoomSize;
+			if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
+			{
+				level.grid[xOfDoor][yOfDoor]->isRoom = true;
+				level.grid[xOfDoor][yOfDoor]->isDoor = true;
+			}
+		}
+
+	}
+	if (direction == 1)																//east
+	{
+		if (roomVector[0][0][0]->getX() + 1 < level.grid.size())
+		{
+			int xSize = roomVector[0].size();
+			int xOfDoor = roomVector[0][0][0]->getX() + xSize;
+			int yStart = roomVector[0][0][0]->getY();
+			int halfRoomSize = roomVector[0][0].size() / 2;
+			int yOfDoor = yStart + halfRoomSize;
+			if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
+			{
+				level.grid[xOfDoor][yOfDoor]->isRoom = true;
+				level.grid[xOfDoor][yOfDoor]->isDoor = true;
+			}
+		}
+
+	}
+
 }
 
 Map::Map()

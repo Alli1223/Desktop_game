@@ -10,6 +10,7 @@ public:
 	
 	bool isRoom = false;  //Whether the cell is part of a room or not
 	bool onFire = false;
+	bool isDoor = false;
 	int oxygenLevel = 100;
 
 	int getX() { return x; }
@@ -20,6 +21,6 @@ public:
 private:
 
 	Texture* sprite;
-	int x, y;
+	int x = 0, y = 0;
 
 };
