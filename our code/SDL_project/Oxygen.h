@@ -1,6 +1,6 @@
 #pragma once
 #include "Grid.h"
-#include "Coordinates.h"
+#include "Cell.h"
 
 
 
@@ -10,7 +10,7 @@ public:
 	Oxygen();
 	~Oxygen();
 	
-	std::vector<std::shared_ptr<Coordinates>> getSurroundingCells(int cellSize);
+	std::vector<std::shared_ptr<Cell>> getNeighbouringCells(int cellSize);
 
 	void update();
 
