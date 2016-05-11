@@ -2,8 +2,6 @@
 
 #include "Texture.h"
 #include "Grid.h"
-#include "Map.h"
-#include "GameConfiguration.h"
 
 
 class SpaceGame
@@ -27,7 +25,6 @@ private:
 	Texture notRoomCell;
 	Texture roomCell;
 	Texture characterTex;
-	Texture doorTexture;
 
 	bool running;
 

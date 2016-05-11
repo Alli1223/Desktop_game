@@ -8,7 +8,6 @@ public:
 	SDL_Texture* getTexture() { return texture; }
 
 	void render(SDL_Renderer* renderer, int x, int y, int width, int height);
-	void addTransparency(int oxygenLevel);
 
 private:
 	std::string fileName;

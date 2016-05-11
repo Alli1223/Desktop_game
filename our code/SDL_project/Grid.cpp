@@ -21,7 +21,7 @@ void Grid::makeGrid(int Window_Width, int Window_Height)
 			Cell cell;
 			cell.setX(x);
 			cell.setY(y);
-			cell.get_Oxygen_level();
+			cell.getOxygenLevel();
 			auto sharedCell = std::make_shared<Cell> (cell);
 			grid[x].push_back(sharedCell);
 			

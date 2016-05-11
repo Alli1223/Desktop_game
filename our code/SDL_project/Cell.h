@@ -9,14 +9,10 @@ public:
 	~Cell();
 	
 	bool isRoom = true;  //Whether the cell is part of a room or not
-	bool isDoor = false;
-	bool onFire = false;
-	int oxygenLevel = 100;
-
 
 	bool isOxygenated = false;
-	int get_Oxygen_level() { return oxygen_level; }
-	int set_Oxygen_level(int new_oxygen_level) { return oxygen_level = new_oxygen_level; }
+	int getOxygenLevel() { return oxygenLevel; }
+	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
 
 	int getX() { return x; }
 	int getY() { return y; }
@@ -27,6 +23,6 @@ private:
 
 	Texture* sprite;
 	int x, y;
-	int oxygen_level;
+	int oxygenLevel = 0;
 
 };
