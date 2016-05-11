@@ -96,6 +96,7 @@ We now have a class that can read a map in from a text file and create a grid th
 We merged a few branches in development and then master this week. There were a few merge conflicts but they were fixed with tortoise git. We've had to drop a few features because there's not much time left now. The priorities for the next sprint are to get the oxygen and level generation working, having more than one character and then a general tidy up of the code.
 
 ##Week Seven
+Not much work was done on the game this week as everyone was focused on their essays.
 
 ##Week Eight
 
