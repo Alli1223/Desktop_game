@@ -11,12 +11,12 @@ Suffocating::~Suffocating()
 {
 }
 
-void Suffocating::update(Character& character, Grid grid)
+void Suffocating::update(Character& character)
 {
-	character.setSpeed(1);  // TODO: Change to a variable and use framerate
-	if (character.getOxygenLevel(character.getX(), character.getY()) > 50)
-	{
+	character.setSpeed(character.suffocatingSpeed);
+	if (character.getOxygenLevel(character.getX(), character.getY()) > 70)
+	{ // If the oxygen level gets high enough it switches back to idle state
 		character.state = std::make_shared<IdleState>();
-		character.setSpeed(2);
+		character.setSpeed(character.walkSpeed);
 	}
 }

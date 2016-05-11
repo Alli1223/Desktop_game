@@ -129,6 +129,9 @@
     <ClInclude Include="Suffocating.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterState.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />

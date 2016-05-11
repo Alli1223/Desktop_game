@@ -82,7 +82,6 @@ void Character::wanderAroundRoom()
 		}
 
 	}*/
-
 	
 
 	//TODO: Change to pass in window dimensions
