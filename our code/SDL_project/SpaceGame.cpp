@@ -12,7 +12,8 @@ SpaceGame::SpaceGame()
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
-	oxygen("Resources\\oxygen.png")
+	oxygen("Resources\\oxygen.png"),
+	fire("Resources\\fire.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -90,7 +91,8 @@ void SpaceGame::run()
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygen.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygen.addTransparency(room.grid[x][y]->oxygenLevel);
-					
+					if (room.grid[x][y]->onFire)
+						fire.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
 				{
