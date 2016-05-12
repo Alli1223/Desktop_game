@@ -4,15 +4,15 @@
 #include "Cell.h"
 #include "Grid.h"
 #include "MainCharacter.h"
-#include "IdleState.h"
+#include "Oxygen.h"
+#include "PlayerEventHandler.h"
 
 
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
-	doorTexture("Resources\\door_sprite.png")
-{
+	doorTexture("Resources\\door_sprite.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -39,16 +39,22 @@ SpaceGame::~SpaceGame()
 	SDL_Quit();
 }
 
+bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid)
+{ //Currently checks to see if a cell is part of a room or not
+	int xCell = x / cellSize;
+	int yCell = y / cellSize;
+	bool state = grid[xCell][yCell]->isRoom;
+	return state;
+}
+
 void SpaceGame::run()
 {
 	Grid room;
-	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
-	Map mapLoader;
-	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
-	MainCharacter characterOne;
-	characterOne.currentRoom = std::make_shared<Grid>(room);  //to get room state
-	characterOne.state = std::make_shared<IdleState>();
+	Oxygen oxygen;
 
+	
+	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+	MainCharacter characterOne;
 	running = true;
 	while (running)
 	{
@@ -67,15 +73,65 @@ void SpaceGame::run()
 			}
 		}//End pollevent if
 
-
+		//checks keyboard state then updates character
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-		
-		characterOne.state->update(characterOne, room, keyboardState);
+		bool roomState;
+		// Checks keyboard state and deicdes whether the character can move in that direction
+		if (keyboardState[SDL_SCANCODE_UP] || keyboardState[SDL_SCANCODE_W])
+		{
+			roomState = getCellState(characterOne.getX(), characterOne.getY() + characterOne.getSpeed(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getY() + characterOne.getSpeed() > 0) //Only lets character move if the next cell is a room and is on screen
+			{
+				characterOne.update("up");
+				//updates chracter position depending on direction
+			}
+		}
+			
+		else if (keyboardState[SDL_SCANCODE_DOWN] || keyboardState[SDL_SCANCODE_S])
+		{
 
+			roomState = getCellState(characterOne.getX(), characterOne.getY() - characterOne.getSpeed(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getY() - characterOne.getSpeed() < WINDOW_HEIGHT)
+			{
+				characterOne.update("down");
+			}
+		}
+		else if (keyboardState[SDL_SCANCODE_LEFT] || keyboardState[SDL_SCANCODE_A])
+		{
+			roomState = getCellState(characterOne.getX() - characterOne.getSpeed(), characterOne.getY(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getX() - characterOne.getSpeed() > 0)
+			{
+				characterOne.update("left");
+			}
+		}
+		else if (keyboardState[SDL_SCANCODE_RIGHT] || keyboardState[SDL_SCANCODE_D])  
+		{//Change from else if to if for diagonal movement
+			roomState = getCellState(characterOne.getX() + characterOne.getSpeed(), characterOne.getY(), characterOne.getSize(), room.grid);
+			if (roomState == true && characterOne.getX() + characterOne.getSpeed() < WINDOW_WIDTH)
+			{
+				characterOne.update("right");
+			}
+		}
+
+
+		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
 		int cellSize = room.getCellSize();
+
+		int mouse_X, mouse_Y;
+		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		{
+			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
+		
+		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+		{
+			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
+
+		
 		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
@@ -87,21 +143,31 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-					roomCell.addTransparency(room.grid[x][y]->oxygenLevel);
 				}
-				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
+				else
 				{
-					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				//Doesn't render a cell if it isn't part of a room
+				if (room.grid[x][y]->getOxygenLevel() == 100)
+				{
+					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				else if (room.grid[x][y]->getOxygenLevel() == 0)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
 
 			} //End for Y loop
+		
+			//cellSprite.render(renderer, room.grid[i].getX() * cellSize + cellSize / 2, room.grid[i].getY() * cellSize + cellSize / 2, cellSize, cellSize);
+			
 			
 		}//End for X loop
 
-		//Need to render character based on state 
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		
+		
 		SDL_RenderPresent(renderer);
 	}//End while running
 
