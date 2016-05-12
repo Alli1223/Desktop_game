@@ -49,7 +49,7 @@ public:
 	std::vector<std::shared_ptr<Cell>> Character::checkNeighbourCells();
 
 	//Character health level, will change to use getters and setters
-	int health = 100;
+	double health = 100;
 	bool isAlive = true; 
 	// Timer is used to count how long the character has been in the idle state
 	double timer = 0;

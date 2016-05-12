@@ -12,7 +12,7 @@ public:
 	bool isRoom = true;  //Whether the cell is part of a room or not
 	bool isDoor = false;
 	bool onFire = false;
-	int oxygenLevel = 100;
+	int oxygenLevel = 20;
 
 
 	int getX() { return x; }

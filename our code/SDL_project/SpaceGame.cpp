@@ -9,12 +9,17 @@
 
 
 SpaceGame::SpaceGame()
-	: notRoomCell("Resources\\cell_test.png"), 
+	: notRoomCell("Resources\\cell_test.png"),
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
-	fire("Resources\\fire.png"){
+	fire("Resources\\fire.png"),
+	healthBar("Resources\\health.png"),
+	healthText("Resources\\healthText.png"),
+	oxygenBar("Resources\\oxygenBar.png"),
+	oxygenText("Resources\\oxygenText.png")
+{
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -101,6 +106,11 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
+				if (y > 6)
+				{
+					room.grid[x][y]->onFire = true;
+				}
+
 				//Renders cell based on state
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
@@ -127,8 +137,10 @@ void SpaceGame::run()
 		//Need to render character based on state 
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		
-		
+		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
+		healthText.render(renderer, 750, 25, 73, 22);
+		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
+		oxygenText.render(renderer, 750, 50, 73, 22);
 		SDL_RenderPresent(renderer);
 	}//End while running
 
