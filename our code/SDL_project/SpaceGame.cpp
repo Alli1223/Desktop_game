@@ -47,6 +47,14 @@ bool SpaceGame::getCellState(int x, int y, int cellSize, std::vector<std::vector
 	return state;
 }
 
+int SpaceGame::getOxygenLevel(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid)
+{
+	int xCell = x / cellSize;
+	int yCell = y / cellSize;
+	int OxygenLevel = grid[xCell][yCell]->get_Oxygen_level();
+	return OxygenLevel;
+}
+
 void SpaceGame::run()
 {
 	Grid room;
@@ -129,19 +137,25 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+
+
+					//Gets mouse input
+
+					int mouse_X, mouse_Y;
+					if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
+					{
+						int OxygenLevel = getOxygenLevel(xPos, yPos, cellSize, room.grid);
+						oxygen.spawnOxygen(mouse_X, mouse_Y, xPos, yPos, OxygenLevel);
+					}
+
+
 				}
 				else
 				{
 					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 
-				//Gets mouse input
 				
-				int mouse_X, mouse_Y;
-				if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
-				{
-					oxygen.spawnOxygen(mouse_X, mouse_Y, xPos, yPos, cell);
-				}
 
 			} //End for Y loop
 		
