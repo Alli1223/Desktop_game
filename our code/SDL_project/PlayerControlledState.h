@@ -2,7 +2,7 @@
 #include "CharacterState.h"
 #include "IdleState.h"
 #include "DeadState.h"
-#include "LowOxygenState.h"
+#include "Suffocating.h"
 #include"OnFire.h"
 
 class PlayerControlledState :
@@ -13,6 +13,6 @@ public:
 	PlayerControlledState();
 	~PlayerControlledState();
 
-	void update(Character& character, Grid grid, const Uint8* keyboardState);
+	void update(Character& character, const Uint8* keyboardState);
 };
 

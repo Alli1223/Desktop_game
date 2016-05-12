@@ -8,6 +8,6 @@ public:
 	WanderingState();
 	~WanderingState();
 
-	void update(Character& character, Grid grid, const Uint8* keyboardState);
+	void update(Character& character, const Uint8* keyboardState);
 };
 
