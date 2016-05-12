@@ -9,8 +9,9 @@
 
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
-	roomCell("Resources\\cell_test2.png"),
-	characterTex("Resources\\char.png")
+	roomCell("Resources\\Room_Cell1.png"),
+	characterTex("Resources\\crew2.png"),
+	doorTexture("Resources\\door_sprite.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -45,7 +46,9 @@ void SpaceGame::run()
 	Map mapLoader;
 	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
 	MainCharacter characterOne;
-	characterOne.currentRoom = std::make_shared<Grid>(room);  //to get room state
+	//Character needs a pointer to the room to get the state
+	characterOne.currentRoom = std::make_shared<Grid>(room);
+	//Character starts in Idle state
 	characterOne.state = std::make_shared<IdleState>();
 
 	running = true;
@@ -66,11 +69,12 @@ void SpaceGame::run()
 			}
 		}//End pollevent if
 
-
+		// Checks the keyboard for input
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-		
+		// Checks and updates the character state
 		characterOne.state->update(characterOne, keyboardState);
-
+		
+		// Rendering process:
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
@@ -86,13 +90,20 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					roomCell.addTransparency(room.grid[x][y]->oxygenLevel);
 				}
-				//If a cell isn't part of a room don't render
+				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
+				{
+					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				//Doesn't render a cell if it isn't part of a room
+
 			} //End for Y loop
 			
 		}//End for X loop
 
 		//Need to render character based on state 
+		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		SDL_RenderPresent(renderer);
 	}//End while running
