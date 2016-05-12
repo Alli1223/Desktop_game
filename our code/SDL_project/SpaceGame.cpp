@@ -9,8 +9,8 @@
 
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
-	roomCell("Resources\\cell_test2.png"),
-	characterTex("Resources\\char.png"),
+	roomCell("Resources\\Room_Cell1.png"),
+	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
