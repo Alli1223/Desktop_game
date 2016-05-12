@@ -34,7 +34,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 void Character::reactToFire()
 {// This function will make the character run in the opposite direction to where the fire is
 	health--; //loses health
-	std::vector<std::shared_ptr<Cell>> neighbourCells = checkNeighbourCells();
+	/*std::vector<std::shared_ptr<Cell>> neighbourCells = checkNeighbourCells();
 	int cellSize = currentRoom->getCellSize();
 	for (int i = 0; i < neighbourCells.size(); i++)
 	{
@@ -51,7 +51,7 @@ void Character::reactToFire()
 			else if (yPos < getY())
 				setY(getY() + runSpeed);
 		}
-	}
+	}*/
 }
 
 std::vector<std::shared_ptr<Cell>> Character::getNeighbourCells()

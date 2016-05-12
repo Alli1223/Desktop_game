@@ -5,14 +5,16 @@
 #include "Grid.h"
 #include "MainCharacter.h"
 #include "IdleState.h"
+#include "Oxygen.h"
 
 
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
-	doorTexture("Resources\\door_sprite.png")
-{
+	doorTexture("Resources\\door_sprite.png"),
+	oxygenTex("Resources\\oxygen.png"),
+	fire("Resources\\fire.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -42,6 +44,7 @@ SpaceGame::~SpaceGame()
 void SpaceGame::run()
 {
 	Grid room;
+	Oxygen oxygen;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
 	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
@@ -79,6 +82,18 @@ void SpaceGame::run()
 		SDL_RenderClear(renderer);
 
 		int cellSize = room.getCellSize();
+
+		//Spawns oxygen
+		int mouse_X, mouse_Y;
+		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		{
+			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
+
+		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+		{
+			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
 		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
@@ -90,14 +105,21 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-					roomCell.addTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.addTransparency(room.grid[x][y]->oxygenLevel);
+					if (room.grid[x][y]->onFire)
+						fire.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.addTransparency(room.grid[x][y]->oxygenLevel);
 				}
+
 				//Doesn't render a cell if it isn't part of a room
 
+	
 			} //End for Y loop
 			
 		}//End for X loop
@@ -105,6 +127,8 @@ void SpaceGame::run()
 		//Need to render character based on state 
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		
+		
 		SDL_RenderPresent(renderer);
 	}//End while running
 

@@ -20,6 +20,10 @@ public:
 	int setX(int newX) { return x = newX; }
 	int setY(int newY) { return y = newY; }
 
+	bool isOxygenated = false;
+	int getOxygenLevel() { return oxygenLevel; }
+	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
+
 private:
 
 	Texture* sprite;
