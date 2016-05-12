@@ -137,10 +137,13 @@ void SpaceGame::run()
 		//Need to render character based on state 
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		
+		//Renders the health and oxygen bar
 		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
 		healthText.render(renderer, 750, 25, 73, 22);
 		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
 		oxygenText.render(renderer, 750, 50, 73, 22);
+		
 		SDL_RenderPresent(renderer);
 	}//End while running
 

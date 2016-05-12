@@ -41,7 +41,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 
 void Character::reactToFire()
 {// This function will make the character run in the opposite direction to where the fire is
-	health--; //loses health
+	health = health - 0.1; //loses health
 	setX(previousX);
 	setY(previousY);
 }
@@ -78,22 +78,22 @@ void Character::wanderAroundRoom()
 	
 
 	//TODO: Change to pass in window dimensions
-	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
+	if (isCellARoom(getX(), getY() + getSpeed())&& !isCellADoor(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
 	{
 		setPreviousLocation(getX(), getY());
 		setY(getY() + getSpeed());		
 	}
-	else if (isCellARoom(getX() + getSpeed(), getY()) && (getX() + getSpeed()) < 800 - getSize() && !checkLocation(getX() + getSpeed(), getY()))
+	else if (isCellARoom(getX() + getSpeed(), getY()) && !isCellADoor(getX() + getSpeed(), getY()) && (getX() + getSpeed()) < 800 - getSize() && !checkLocation(getX() + getSpeed(), getY()))
 	{
 		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
-	else if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 0 + getSize() && !checkLocation(getX(), getY() - getSpeed())) 
+	else if (isCellARoom(getX(), getY() - getSpeed()) && !isCellADoor(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 0 + getSize() && !checkLocation(getX(), getY() - getSpeed()))
 	{
 		setPreviousLocation(getX(), getY());
 		setY(getY() - getSpeed());
 	}	
-	else if (isCellARoom(getX() - getSpeed(), getY()))
+	else if (isCellARoom(getX() - getSpeed(), getY()) && !isCellADoor(getX() - getSpeed(), getY()))
 	{
 		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
@@ -105,6 +105,13 @@ bool Character::isCellARoom(int x, int y)
 	int xCell = x / currentRoom->getCellSize();
 	int yCell = y / currentRoom->getCellSize();
 	return currentRoom->grid[xCell][yCell]->isRoom;
+}
+
+bool Character::isCellADoor(int x, int y)
+{// Checks to see if a cell is a room
+	int xCell = x / currentRoom->getCellSize();
+	int yCell = y / currentRoom->getCellSize();
+	return currentRoom->grid[xCell][yCell]->isDoor;
 }
 
 bool Character::isCellOnFire(int x, int y)

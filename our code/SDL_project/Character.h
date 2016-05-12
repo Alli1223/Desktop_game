@@ -26,6 +26,7 @@ public:
 	
 	//Cell checking functions
 	bool isCellARoom(int x, int y);
+	bool isCellADoor(int x, int y);
 	bool isCellOnFire(int x, int y);
 	int getOxygenLevel(int x, int y);
 	// Sets the current X and Y value as the previousX and previousY value
