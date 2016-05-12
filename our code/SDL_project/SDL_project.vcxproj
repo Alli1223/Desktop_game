@@ -159,7 +159,6 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="CharacterState.h" />
     <ClInclude Include="Coordinates.h" />
     <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="DeadState.h" />

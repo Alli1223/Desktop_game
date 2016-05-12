@@ -10,6 +10,6 @@ public:
 	Suffocating();
 	~Suffocating();
 
-	void update(Character& character);
+	void update(Character& character, Grid grid);
 };
 
