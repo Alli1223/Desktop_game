@@ -121,9 +121,14 @@ void SpaceGame::run()
 		int cellSize = room.getCellSize();
 
 		int mouse_X, mouse_Y;
-		if (SDL_GetMouseState(&mouse_X, &mouse_Y) && SDL_BUTTON(SDL_BUTTON_LEFT))
+		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
 			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
+		
+		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+		{
+			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
 
 		
@@ -146,6 +151,10 @@ void SpaceGame::run()
 				if (room.grid[x][y]->getOxygenLevel() == 100)
 				{
 					notRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				else if (room.grid[x][y]->getOxygenLevel() == 0)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 
 			} //End for Y loop

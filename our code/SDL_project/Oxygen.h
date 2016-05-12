@@ -12,7 +12,8 @@ public:
 
 	void update(int cellSize);
 
-	void addOxygen(int cellX, int cellY, int cellSize, Grid grid);
-	//void removeOxygen(int x, int y);
+	void addOxygen(int mouseX, int mouseY, int cellSize, Grid grid);
+	void removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid);
+
 	int cellX, cellY;
 };
