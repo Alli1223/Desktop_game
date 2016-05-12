@@ -26,9 +26,7 @@ private:
 	Texture roomCell;
 	Texture characterTex;
 	Texture doorTexture;
-	Texture oxygen;
-	Texture fire;
-	bool running;
+	Texture fire;	bool running;
 
 };
 
