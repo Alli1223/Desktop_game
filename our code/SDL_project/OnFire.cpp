@@ -13,8 +13,7 @@ OnFire::~OnFire()
 void OnFire::update(Character& character, const Uint8* keyboardState)
 {
 	character.reactToFire();
-	//TODO: make sure character doesn't keep bumping into fire from wandering state
-
+	
 	if (character.health == 0)
 	{//When health = 0 the character enters the dead state
 		character.state = std::make_shared<DeadState>();
@@ -30,10 +29,10 @@ void OnFire::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<PlayerControlledState>();
 		character.moveCharacter(keyboardState);
 	}
-	else if (!character.isCellOnFire(character.getX(), character.getY()))
+	/*else if (!character.isCellOnFire(character.getX(), character.getY()))
 	{
 		character.state = std::make_shared<IdleState>();
-	}
+	}*/
 
 
 }

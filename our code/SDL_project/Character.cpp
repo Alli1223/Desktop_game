@@ -11,11 +11,10 @@ Character::~Character()
 }
 
 void Character::moveCharacter(const Uint8* keyboardState)
-{//This function should only be called if WASD is pressed, it then checks to see which one is pressed and moves the character accordingly
-	//TODO: Stop parts of the character from going outside the room
- 
+{// This function should only be called if WASD is pressed, it then checks to see which one is pressed and moves the character accordingly
+	 
 	if (keyboardState[SDL_SCANCODE_W] && getY() - getSpeed() > 0 && isCellARoom(getX(), getY() - getSpeed()))
-	{//If the W key is pressed and the character won't be moved off screen move the character
+	{ // If the W key is pressed and the character won't be moved off screen move the character
 		setY(getY() - getSpeed());
 	}
 	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800 && isCellARoom(getX(), getY() + getSpeed())) //Will change to pass in screen dimensions
@@ -34,25 +33,25 @@ void Character::moveCharacter(const Uint8* keyboardState)
 
 void Character::reactToFire()
 {// This function will make the character run in the opposite direction to where the fire is
-	health = health - 1;
-	/*std::vector<std::shared_ptr<Cell>> neighbourCells = checkNeighbourCells();
+	health--; //loses health
+	std::vector<std::shared_ptr<Cell>> neighbourCells = checkNeighbourCells();
 	int cellSize = currentRoom->getCellSize();
 	for (int i = 0; i < neighbourCells.size(); i++)
 	{
-	int xPos = neighbourCells[i]->getX() / cellSize;
-	int yPos = neighbourCells[i]->getY() / cellSize;
-	if (currentRoom->grid[xPos][yPos]->onFire)
-	{
-	if (xPos > getX())
-	setX(getX() - runSpeed);
-	else if (xPos < getX())
-	setX(getX() + runSpeed);
-	if (yPos > getY())
-	setY(getY() - runSpeed);
-	else if (yPos < getY())
-	setY(getY() + runSpeed);
+		int xPos = neighbourCells[i]->getX() / cellSize;
+		int yPos = neighbourCells[i]->getY() / cellSize;
+		if (isCellOnFire(xPos, yPos))
+		{
+			if (xPos > getX())
+				setX(getX() - runSpeed);
+			else if (xPos < getX())
+				setX(getX() + runSpeed);
+			if (yPos > getY())
+				setY(getY() - runSpeed);
+			else if (yPos < getY())
+				setY(getY() + runSpeed);
+		}
 	}
-	}*/
 }
 
 std::vector<std::shared_ptr<Cell>> Character::getNeighbourCells()
