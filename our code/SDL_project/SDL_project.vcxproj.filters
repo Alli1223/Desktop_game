@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Cell.cpp">
+    <ClCompile Include="Coordinates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp">
+    <ClCompile Include="Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InitialisationError.cpp">
@@ -19,10 +19,13 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="SpaceGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="Grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SDL_project.cpp">
@@ -31,10 +34,10 @@
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>
-    <ClCompile Include="MainCharacter.cpp">
+    <ClCompile Include="NPC.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>
-    <ClCompile Include="SubCharacter.cpp">
+    <ClCompile Include="MainCharacter.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>
     <ClCompile Include="CharacterState.cpp">
@@ -46,7 +49,7 @@
     <ClCompile Include="IdleState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="LowOxygenState.cpp">
+    <ClCompile Include="Suffocating.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="OnFire.cpp">
@@ -60,69 +63,71 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SDL_project.h" />
     <ClInclude Include="Cell.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="GameConfiguration.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="InitialisationError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Oxygen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_project.h">
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="SpaceGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterState.h">
-      <Filter>Header Files\States</Filter>
+    <ClInclude Include="Coordinates.h">
+      <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="DeadState.h">
-      <Filter>Header Files\States</Filter>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="IdleState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="LowOxygenState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerControlledState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="WanderingState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="OnFire.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="SubCharacter.h">
-      <Filter>Header Files\Character classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MainCharacter.h">
-      <Filter>Header Files\Character classes</Filter>
+    <ClInclude Include="Grid.h">
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Header Files\Character classes</Filter>
+      <Filter>Headers\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCharacter.h">
+      <Filter>Headers\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Headers\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderingState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControlledState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="OnFire.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Suffocating.h">
+      <Filter>Headers\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -136,23 +141,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{46785320-0c6f-42e4-be50-5c2b620c52b2}</UniqueIdentifier>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{85d2a310-be25-46aa-88a6-272aa5fe861c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{8b40973f-ac10-494f-a962-082fa5d94da2}</UniqueIdentifier>
+      <UniqueIdentifier>{e1050c3b-6661-4e0f-ad9a-f78f73c03ba3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\States">
-      <UniqueIdentifier>{8682df16-b454-47df-91ba-a9fba947fb63}</UniqueIdentifier>
+    <Filter Include="Headers\Character Classes">
+      <UniqueIdentifier>{0072aba4-18bc-42ba-8ec0-c5d7603daa9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Character classes">
-      <UniqueIdentifier>{76e8a869-c0fe-40af-8cad-ef364b477914}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\States">
-      <UniqueIdentifier>{503e3c11-fcc0-45c1-983a-2d3cea0b90b2}</UniqueIdentifier>
+    <Filter Include="Headers\States">
+      <UniqueIdentifier>{a193ebfb-e89c-4284-aea5-7f8082c325be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Character classes">
-      <UniqueIdentifier>{2feee95f-f8e8-48ec-9d40-b074996e0cc9}</UniqueIdentifier>
+      <UniqueIdentifier>{b01eded0-b789-4e14-afee-baa8dc6f46dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{0472703c-3d4f-499d-b006-349b9381dc66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ IdleState::~IdleState()
 {
 }
 
-void IdleState::update(Character& character, Grid grid, const Uint8* keyboardState)
+void IdleState::update(Character& character, const Uint8* keyboardState)
 {
 	//Idle state is for the start and the a for when the character has just stopped being controlled by the player
 	timer = timer + (1 / FRAME_RATE); 
@@ -21,7 +21,7 @@ void IdleState::update(Character& character, Grid grid, const Uint8* keyboardSta
 	}
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
 	{//If the oxygen goes beneath a certain level the character slows down
-		character.state = std::make_shared<LowOxygenState>();
+		character.state = std::make_shared<Suffocating>();
 		character.setSpeed(1); //Change to have a low oxygen speed
 	}
 	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
