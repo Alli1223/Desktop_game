@@ -49,23 +49,45 @@ int Map::random(int smallestValue, int largestValue)
 	return (rand() % (largestValue - smallestValue)) + smallestValue;
 }
 
-bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char direction) //Direction n = north, e = east, s = south, w = west.
+int roundToNearestWhole(double number) 
 {
-	if (direction == 'n' || 's')
+	if (number + 0.5 >= int(number) + 1)
 	{
-		int topLeftX = entranceX - size / 2;
+		return int(number) + 1;
+	}
+	else
+	{
+		return int(number);
+	}
+}
+
+bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char direction)  //Direction n = north, e = east, s = south, w = west.
+{
+	std::vector<std::vector<std::shared_ptr<Cell>>> room;
+	double topLeftX;
+	double topLeftY;
+	if (direction == 'n')
+	{
+		topLeftX = roundToNearestWhole(entranceX - size / 2);
+		topLeftY = entranceY - size - 1;
+	}
+	else if (direction == 's')
+	{
+		topLeftX = roundToNearestWhole(entranceX - size / 2);
+		topLeftY = entranceY + 1;
 	}
 
-		for (int x = BF_TOPLEFT; x < entranceX + size; x++)
+
+		for (int x = topLeftX; x < topLeftX + size; x++)
 		{
-			if (x < 0 || y > level.grid[0].size())																	   //Detects if the room goes out the level horizontally
+			if (x < 0 || x > level.grid.size())   										    //Detects if the room goes out the level horizontally
 			{
 				return false;
 			}
 			std::vector<std::shared_ptr<Cell>> column;
-			for (int y = 0; y < 4; y++)
+			for (int y = topLeftY; y < topLeftY + size; y++)
 			{
-				if (y < 0 || y > level.grid[0].size())																   //Detects if the room goes out the level vertically
+				if (y < 0 || y > level.grid[0].size())								//Detects if the room goes out the level vertically
 				{
 					return false;
 				}
@@ -81,18 +103,11 @@ bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char 
 void Map::generateMap(Grid level)
 {
 	//Clear a starting room(room 0)
-	for (int x = 0; x < 4; x++)
-	{
-		std::vector<std::shared_ptr<Cell>> column;
-		for (int y = 0; y < 4; y++)
-		{
-			level.grid[x][y]->isRoom = true;
-			column.push_back(level.grid[x][y]);
-		}
-		room.push_back(column);
-	}
-	roomVector.push_back(room);
-	int direction = random(0, 4);
+	//generateRoom(level, 5, 2, -1, 's');
+
+	generateRoom(level, 5, 2, 6, 'n');
+
+	int direction = 1;// random(0, 4);
 	if (direction == 0)																//north
 	{
 		if (roomVector[0][0][0]->getY() - 1 > 0)
