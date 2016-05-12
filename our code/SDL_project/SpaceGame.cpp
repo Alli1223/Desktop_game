@@ -82,6 +82,7 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
+				//room.grid[x][y]->oxygenLevel = 45;
 				//Renders cell based on state
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
