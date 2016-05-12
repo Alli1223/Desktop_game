@@ -13,7 +13,7 @@ SpaceGame::SpaceGame()
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
-	oxygen("Resources\\oxygen.png"),
+	oxygenTex("Resources\\oxygen.png"),
 	fire("Resources\\fire.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -102,27 +102,18 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygen.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygen.addTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.addTransparency(room.grid[x][y]->oxygenLevel);
 					if (room.grid[x][y]->onFire)
 						fire.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygen.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygen.addTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.addTransparency(room.grid[x][y]->oxygenLevel);
 				}
 
-				//Changes the cell state depending on whether it has oxygen
-				if (room.grid[x][y]->getOxygenLevel() == 100 && room.grid[x][y]->isRoom)
-				{
-					oxygenRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-				}
-				else if (room.grid[x][y]->getOxygenLevel() == 0)
-				{
-					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-				}
 				//Doesn't render a cell if it isn't part of a room
 
 	
