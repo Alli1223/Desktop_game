@@ -13,8 +13,8 @@ SpaceGame::SpaceGame()
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
-	oxygenRoomCell("Resources\\RoomCell_Oxygen.png")
-{
+	oxygen("Resources\\oxygen.png"),
+	fire("Resources\\fire.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -102,11 +102,15 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-					roomCell.addTransparency(room.grid[x][y]->oxygenLevel);
+					oxygen.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygen.addTransparency(room.grid[x][y]->oxygenLevel);
+					
 				}
 				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygen.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygen.addTransparency(room.grid[x][y]->oxygenLevel);
 				}
 
 				//Changes the cell state depending on whether it has oxygen
@@ -120,6 +124,7 @@ void SpaceGame::run()
 				}
 				//Doesn't render a cell if it isn't part of a room
 
+	
 			} //End for Y loop
 			
 		}//End for X loop
@@ -127,6 +132,8 @@ void SpaceGame::run()
 		//Need to render character based on state 
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		
+		
 		SDL_RenderPresent(renderer);
 	}//End while running
 
