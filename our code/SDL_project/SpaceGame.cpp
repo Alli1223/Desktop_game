@@ -5,13 +5,15 @@
 #include "Grid.h"
 #include "MainCharacter.h"
 #include "IdleState.h"
+#include "Oxygen.h"
 
 
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"), 
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
-	doorTexture("Resources\\door_sprite.png")
+	doorTexture("Resources\\door_sprite.png"),
+	oxygenRoomCell("Resources\\RoomCell_Oxygen.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -42,6 +44,7 @@ SpaceGame::~SpaceGame()
 void SpaceGame::run()
 {
 	Grid room;
+	Oxygen oxygen;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
 	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
@@ -76,6 +79,18 @@ void SpaceGame::run()
 		SDL_RenderClear(renderer);
 
 		int cellSize = room.getCellSize();
+
+		//Spawns oxygen
+		int mouse_X, mouse_Y;
+		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		{
+			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
+
+		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+		{
+			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+		}
 		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
@@ -92,6 +107,16 @@ void SpaceGame::run()
 				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+
+				//Changes the cell state depending on whether it has oxygen
+				if (room.grid[x][y]->getOxygenLevel() == 100 && room.grid[x][y]->isRoom)
+				{
+					oxygenRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				else if (room.grid[x][y]->getOxygenLevel() == 0)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				//Doesn't render a cell if it isn't part of a room
 

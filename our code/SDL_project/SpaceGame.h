@@ -28,6 +28,7 @@ private:
 	Texture roomCell;
 	Texture characterTex;
 	Texture doorTexture;
+	Texture oxygenRoomCell;
 
 	bool running;
 
