@@ -106,7 +106,8 @@ void SpaceGame::run()
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.addTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+
 					if (room.grid[x][y]->onFire)
 						fire.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
@@ -114,9 +115,9 @@ void SpaceGame::run()
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.addTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 				}
-
+				
 				//Doesn't render a cell if it isn't part of a room
 
 	
