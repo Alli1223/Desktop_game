@@ -49,10 +49,37 @@ int Map::random(int smallestValue, int largestValue)
 	return (rand() % (largestValue - smallestValue)) + smallestValue;
 }
 
+bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char direction) //Direction n = north, e = east, s = south, w = west.
+{
+	if (direction == 'n' || 's')
+	{
+		int topLeftX = entranceX - size / 2;
+	}
+
+		for (int x = BF_TOPLEFT; x < entranceX + size; x++)
+		{
+			if (x < 0 || y > level.grid[0].size())																	   //Detects if the room goes out the level horizontally
+			{
+				return false;
+			}
+			std::vector<std::shared_ptr<Cell>> column;
+			for (int y = 0; y < 4; y++)
+			{
+				if (y < 0 || y > level.grid[0].size())																   //Detects if the room goes out the level vertically
+				{
+					return false;
+				}
+				level.grid[x][y]->isRoom = true;
+				column.push_back(level.grid[x][y]);
+			}
+			room.push_back(column);
+		}
+		roomVector.push_back(room);
+		return true;
+}
+
 void Map::generateMap(Grid level)
 {
-	std::vector<std::vector<std::vector<std::shared_ptr<Cell>>>> roomVector;
-	std::vector<std::vector<std::shared_ptr<Cell>>> room;
 	//Clear a starting room(room 0)
 	for (int x = 0; x < 4; x++)
 	{
