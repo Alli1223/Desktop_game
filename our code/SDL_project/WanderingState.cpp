@@ -24,7 +24,7 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
 	{//If the oxygen goes beneath a certain level the character slows down
 		character.state = std::make_shared<Suffocating>();
-		character.setSpeed(1); //Change to have a low oxygen speed
+		character.setSpeed(character.suffocatingSpeed); //Change to have a low oxygen speed
 	}
 	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
 	{//If the user presses WASD the character will move accordingly
@@ -35,6 +35,7 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 	{//If a cell is on fire the character will move away
 		character.state = std::make_shared<OnFire>();
 		character.reactToFire();
+		character.setSpeed(character.runSpeed);
 	}
 
 

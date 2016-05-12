@@ -6,6 +6,7 @@ class Cell
 {
 public:
 	Cell();
+	Cell(int x, int y);
 	~Cell();
 	
 	bool isRoom = true;  //Whether the cell is part of a room or not
