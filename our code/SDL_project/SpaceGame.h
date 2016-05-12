@@ -12,8 +12,6 @@ public:
 	SpaceGame();
 	~SpaceGame();
 
-	bool getCellState(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid);
-
 	void run();
 
 	
@@ -28,6 +26,8 @@ private:
 	Texture roomCell;
 	Texture characterTex;
 	Texture doorTexture;
+	Texture oxygen;
+	Texture fire;
 
 	bool running;
 
