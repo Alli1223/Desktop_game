@@ -12,8 +12,7 @@ SpaceGame::SpaceGame()
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
-	oxygen("Resources\\oxygen.png"),
-	fire("Resources\\fire.png")
+	oxygen("Resources\\oxygen.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{

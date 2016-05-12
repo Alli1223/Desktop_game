@@ -27,8 +27,7 @@ private:
 	Texture characterTex;
 	Texture doorTexture;
 	Texture oxygen;
-	Texture fire;
-
+	
 	bool running;
 
 };
