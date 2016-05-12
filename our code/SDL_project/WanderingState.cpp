@@ -10,7 +10,7 @@ WanderingState::~WanderingState()
 {
 }
 
-void WanderingState::update(Character& character, Grid grid, const Uint8* keyboardState)
+void WanderingState::update(Character& character, const Uint8* keyboardState)
 {
 	
 

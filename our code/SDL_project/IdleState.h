@@ -13,7 +13,7 @@ public:
 	IdleState();
 	~IdleState();
 
-	void update(Character& character, Grid grid, const Uint8* keyboardState);
+	void update(Character& character, const Uint8* keyboardState);
 	
 	double timer = 0; //used to check how long the character has been in the idle state
 	

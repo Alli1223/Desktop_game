@@ -9,7 +9,7 @@ IdleState::~IdleState()
 {
 }
 
-void IdleState::update(Character& character, Grid grid, const Uint8* keyboardState)
+void IdleState::update(Character& character, const Uint8* keyboardState)
 {
 	//Idle state is for the start and the a for when the character has just stopped being controlled by the player
 	timer = timer + (1 / FRAME_RATE); 

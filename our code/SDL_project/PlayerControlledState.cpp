@@ -11,7 +11,7 @@ PlayerControlledState::~PlayerControlledState()
 {
 }
 
-void PlayerControlledState::update(Character& character, Grid grid, const Uint8* keyboardState)
+void PlayerControlledState::update(Character& character, const Uint8* keyboardState)
 {
 	character.moveCharacter(keyboardState);
 

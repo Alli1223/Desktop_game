@@ -10,6 +10,6 @@ public:
 	Suffocating();
 	~Suffocating();
 
-	void update(Character& character, Grid grid);
+	void update(Character& character, const Uint8* keyboardState);
 };
 
