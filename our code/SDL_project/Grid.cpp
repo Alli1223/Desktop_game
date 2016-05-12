@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Grid.h"
-#include "Oxygen.h"
 
 
 //Populates a 2 dimentional vector with pointers to cells
@@ -21,10 +20,8 @@ void Grid::makeGrid(int Window_Width, int Window_Height)
 			Cell cell;
 			cell.setX(x);
 			cell.setY(y);
-			cell.getOxygenLevel();
 			auto sharedCell = std::make_shared<Cell> (cell);
 			grid[x].push_back(sharedCell);
-			
 		}
 	}
 }

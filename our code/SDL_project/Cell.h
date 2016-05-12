@@ -6,14 +6,13 @@ class Cell
 {
 public:
 	Cell();
-	Cell(int x, int y);
 	~Cell();
 	
 	bool isRoom = true;  //Whether the cell is part of a room or not
+	bool isDoor = false;
+	bool onFire = false;
+	int oxygenLevel = 100;
 
-	bool isOxygenated = false;
-	int getOxygenLevel() { return oxygenLevel; }
-	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
 
 	int getX() { return x; }
 	int getY() { return y; }
@@ -24,6 +23,5 @@ private:
 
 	Texture* sprite;
 	int x, y;
-	int oxygenLevel = 0;
 
 };
