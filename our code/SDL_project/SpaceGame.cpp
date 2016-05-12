@@ -60,6 +60,7 @@ void SpaceGame::run()
 	characterOne.state = std::make_shared<IdleState>();
 
 	running = true;
+
 	while (running)
 	{
 		// Handle events
@@ -106,11 +107,7 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
-				if (y > 6)
-				{
-					room.grid[x][y]->onFire = true;
-				}
-
+				
 				//Renders cell based on state
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
@@ -128,13 +125,19 @@ void SpaceGame::run()
 				}
 
 				//Doesn't render a cell if it isn't part of a room
-
 	
 			} //End for Y loop
 			
 		}//End for X loop
 
-		//Need to render character based on state 
+		if (characterOne.isAlive)
+		{
+			characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}			
+		else //change to render dead sprite
+		{
+			notRoomCell.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
