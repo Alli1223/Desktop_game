@@ -51,8 +51,15 @@
 
 #Sprint 4
 ##Good:
+* Oxygen working
+* PCG starting to work
+* Trello board up to date 
+* Playable game 
+* Communicated more
 
 ##Bad:
+* Merge conflicts
+* Cut a lot of features
 ___
 
 #Weekly Report:
@@ -99,5 +106,8 @@ We merged a few branches in development and then master this week. There were a 
 Not much work was done on the game this week as everyone was focused on their essays.
 
 ##Week Eight
+The oxygen mechanic is now mostly working though there was a bug with it adding oxygen where it would add to the cell below where you clicked. There is also an issue where the character gets stuck walking back and forth when wandering, this will be fixed using a randomly selected direction.
+There was a problem with generating rooms from rooms that was resolved during programming practise.
+
 
 
