@@ -45,47 +45,52 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 		grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 
 		//spread to neighbouring cells
-		update(cellSize, cellX, cellY, grid);
+		update(cellSize, oxygenLevel, grid);
 		if (oxygenLevel <= 0)
 		{
 			oxygenLevel = 0;
 			grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 		}
-		
 	}
 }
 
 
+//void 
 
-
-void Oxygen::update(int cellSize, int cellX, int cellY, Grid grid)
+void Oxygen::update(int cellSize, int oxygenLevel, Grid grid)
 {
-	std::vector<std::shared_ptr<Cell>> neighbourCells = getNeighbouringCells(cellX, cellY, cellSize);
-	for (int i = 0; i < neighbourCells.size(); i++)
-	{
-		//int neighbourcell = neighbourCells[i + 1]->getOxygenLevel();
-		if (neighbourCells[i]->getX() > cellX)
-		{
-			neighbourCells[i]->setOxygenLevel(0);
-		}
-		else if (neighbourCells[i]->getY() > cellY)
-		{
-			neighbourCells[i]->setOxygenLevel(0);
-		}
-	}
+	disperseOxygen(cellSize);
+	grid.grid[cellX][cellY]->getOxygenLevel();
 }
 
-std::vector<std::shared_ptr<Cell>> Oxygen::getNeighbouringCells(int cellX, int cellY, int cellSize)
+std::vector<std::shared_ptr<Cell>> Oxygen::getNeighbouringCells(int cellSize)
 {// Creates a vector of the possible directions that the character could move in
 
 	std::vector<std::shared_ptr<Cell>> surroundingCells;
-	if (cellY - cellSize)  //up
+	if (cellY - cellSize < 0)  //up
 		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX, cellY - cellSize)));
-	if (cellY + cellSize) //down
+	if (cellY + cellSize < 800) //down
 		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX, cellY + cellSize)));
-	if (cellX - cellSize) //right
+	if (cellX - cellSize < 0) //left
 		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX - cellSize, cellY)));
-	if (cellX + cellSize) //left
+	if (cellX + cellSize < 800) //left
 		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX + cellSize, cellY)));
 	return surroundingCells;
+}
+
+void Oxygen::disperseOxygen(int cellSize)
+{
+	std::vector<std::shared_ptr<Cell>> neighbourCells = getNeighbouringCells(cellSize);
+	for (int i = 0; i < neighbourCells.size(); i++)
+	{
+		//int neighbourcell = neighbourCells[i + 1]->getOxygenLevel();
+		if (neighbourCells[i]->getOxygenLevel() <= 0)
+		{
+			neighbourCells[i + 1]->setOxygenLevel(0); //neighbourCells[i + 1]->getOxygenLevel() - 10
+		}
+		else if (neighbourCells[i]->getOxygenLevel() >= 1)
+		{
+			neighbourCells[i]->setOxygenLevel(0);
+		}
+	}
 }
