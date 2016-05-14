@@ -2,7 +2,7 @@
 #include "Coordinates.h"
 
 
-Coordinates::Coordinates(int x, int y)
+Coordinates::Coordinates(int x,int y)
 {
 	setX(x);
 	setY(y);
