@@ -47,7 +47,8 @@ void SpaceGame::run()
 	Oxygen oxygen;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
-	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
+	//mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
+	mapLoader.generateMap(room);
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Grid>(room);

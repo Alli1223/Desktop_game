@@ -9,9 +9,9 @@ public:
 	Cell(int x, int y);
 	~Cell();
 	
-	bool isRoom = true;  //Whether the cell is part of a room or not
-	bool isDoor = false;
+	bool isRoom = false;  //Whether the cell is part of a room or not
 	bool onFire = false;
+	bool isDoor = false;
 	int oxygenLevel = 100;
 
 
@@ -27,6 +27,6 @@ public:
 private:
 
 	Texture* sprite;
-	int x, y;
+	int x = 0, y = 0;
 
 };
