@@ -91,35 +91,45 @@ bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char 
 
 	for (int x = topLeftX; x < topLeftX + size; x++)
 	{
-			if (x < 0 || x >= level.grid.size())   									//Detects if the room goes out the level horizontally
+		if (x < 0 || x >= level.grid.size())   									//Detects if the room goes out the level horizontally
+		{
+			return false;
+		}
+		std::vector<std::shared_ptr<Cell>> column;
+		for (int y = topLeftY; y < topLeftY + size; y++)
+		{
+			if (y < 0 || y >= level.grid[0].size())								//Detects if the room goes out the level vertically
 			{
 				return false;
 			}
-			std::vector<std::shared_ptr<Cell>> column;
-			for (int y = topLeftY; y < topLeftY + size; y++)
+			if (level.grid[x][y]->isRoom == true)
 			{
-				if (y < 0 || y >= level.grid[0].size())								//Detects if the room goes out the level vertically
-				{
-					return false;
-				}
-				if (level.grid[x][y]->isRoom == true)
-				{
-					return false;
-				}
-				column.push_back(level.grid[x][y]);
+				return false;
 			}
-			room.push_back(column);
+			column.push_back(level.grid[x][y]);
 		}
-		
-		for (int x = 0; x < room.size(); x++)										//Gives all the cells in the room it's properties
+		room.push_back(column);
+	}
+	int oxygenLevel;
+	if (roomVector.empty()) 
+	{
+		oxygenLevel = 100;
+	}
+	else
+	{
+		oxygenLevel = random(0, 100);
+	}
+
+	for (int x = 0; x < room.size(); x++)										//Gives all the cells in the room it's properties
+	{
+		for (int y = 0; y < room[0].size(); y++)
 		{
-			for (int y = 0; y < room[0].size(); y++)
-			{
-				room[x][y]->isRoom = true;
-			}
+			room[x][y]->oxygenLevel = oxygenLevel;
+			room[x][y]->isRoom = true;
 		}
-		roomVector.push_back(room);
-		return true;
+	}
+	roomVector.push_back(room);
+	return true;
 }
 
 void Map::generateMap(Grid level)
@@ -127,7 +137,7 @@ void Map::generateMap(Grid level)
 	std::srand(time(nullptr));
 	//Clear a starting room(room 0)
 
-	generateRoom(level, 3, 2, -1, 's');
+	generateRoom(level, 3, 1, -1, 's');
 	bool thereIsSpace = true;
 	int roomBase = 0;
 
