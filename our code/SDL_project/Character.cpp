@@ -50,7 +50,7 @@ int Character::getRandomNumber(int smallestValue, int largestValue)
 
 void Character::wanderAroundRoom()
 { // Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
-	
+	direction = getRandomNumber(0, 4);
 	if (direction == 0 && getY() + getSpeed() < 800 - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
 	{//Up
 		setPreviousLocation(getX(), getY());
@@ -66,7 +66,7 @@ void Character::wanderAroundRoom()
 		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
-	else if (direction == 3 && (getY() + getSpeed()) < 800 && canWanderInRoom(getX() - getSpeed(), getY()))
+	else if (direction == 3 && (getX() - getSpeed()) > 0 && canWanderInRoom(getX() - getSpeed(), getY()))
 	{//Left
 		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
@@ -93,7 +93,7 @@ bool Character::isCellADoor(int x, int y)
 
 bool Character::canWanderInRoom(int x, int y)
 { //Character can only wander around a room and can't go through door
-	if (isCellARoom(x, y) && !isCellADoor(x, y) && !checkLocation(x, y))
+	if (isCellARoom(x, y) && !isCellADoor(x, y) /*&& !checkLocation(x, y)*/)
 	{
 		return true;
 	}
