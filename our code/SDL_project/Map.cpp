@@ -91,14 +91,14 @@ bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char 
 
 	for (int x = topLeftX; x < topLeftX + size; x++)
 	{
-			if (x < 0 || x > level.grid.size())   									//Detects if the room goes out the level horizontally
+			if (x < 0 || x >= level.grid.size())   									//Detects if the room goes out the level horizontally
 			{
 				return false;
 			}
 			std::vector<std::shared_ptr<Cell>> column;
 			for (int y = topLeftY; y < topLeftY + size; y++)
 			{
-				if (y < 0 || y > level.grid[0].size())								//Detects if the room goes out the level vertically
+				if (y < 0 || y >= level.grid[0].size())								//Detects if the room goes out the level vertically
 				{
 					return false;
 				}
@@ -124,7 +124,7 @@ bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char 
 
 void Map::generateMap(Grid level)
 {
-	//std::srand(time(nullptr));
+	std::srand(time(nullptr));
 	//Clear a starting room(room 0)
 
 	generateRoom(level, 3, 2, -1, 's');
@@ -150,7 +150,7 @@ void Map::generateMap(Grid level)
 		std::random_shuffle(randomSizes.begin(), randomSizes.end());
 		std::random_shuffle(randomDirections.begin(), randomDirections.end());
 
-		for (int sizeIterator = 0; sizeIterator < randomSizes.size(); sizeIterator++)		//loop that trys all sizes																//loop for adding a room
+		for (int sizeIterator = 0; sizeIterator < randomSizes.size(); sizeIterator++)			//loop that trys all sizes																//loop for adding a room
 		{
 			int size = randomSizes[sizeIterator];
 
@@ -161,74 +161,110 @@ void Map::generateMap(Grid level)
 
 				if (direction == 0)																//north
 				{
-					if (roomVector[roomBase][0][0]->getY() - 1 > 0)
+					int north = roomVector[roomBase][0][0]->getY();
+					if (north > 0)
 					{
+						bool safe = true;
 						int yOfDoor = roomVector[roomBase][0][0]->getY() - 1;
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
+						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
 						{
-							if (generateRoom(level, size, xOfDoor, yOfDoor, 'n'))
+							safe = false;
+						}
+						if (safe)
+						{
+							if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
 							{
-								level.grid[xOfDoor][yOfDoor]->isRoom = true;
-								level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								if (generateRoom(level, size, xOfDoor, yOfDoor, 'n'))
+								{
+									level.grid[xOfDoor][yOfDoor]->isRoom = true;
+									level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								}
 							}
 						}
 					}
 				}
 				else if (direction == 1)														//east
 				{
-					if (roomVector[roomBase][0][0]->getX() + 1 < level.grid.size())
-					{
+					int east = roomVector[roomBase][0][0]->getY();
+					if (east < level.grid.size())
+					{	
+						bool safe = true;
 						int xSize = roomVector[roomBase].size();
 						int xOfDoor = roomVector[roomBase][0][0]->getX() + xSize;
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
+						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
 						{
-							if (generateRoom(level, size, xOfDoor, yOfDoor, 'e'))
+							safe = false;
+						}
+						if (safe)
+						{
+							if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
 							{
-								level.grid[xOfDoor][yOfDoor]->isRoom = true;
-								level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								if (generateRoom(level, size, xOfDoor, yOfDoor, 'e'))
+								{
+									level.grid[xOfDoor][yOfDoor]->isRoom = true;
+									level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								}
 							}
 						}
 					}
 				}
 				else if (direction == 2)														//south
 				{
-					if (roomVector[roomBase][0].size() + roomVector[roomBase][0][0]->getY() + 1 < level.grid[0].size())
+					int south = roomVector[roomBase][0].size() + roomVector[roomBase][0][0]->getY() + 1;
+					if (south < level.grid[0].size())
 					{
+						bool safe = true;
 						int yOfDoor = roomVector[roomBase][0].size() + roomVector[roomBase][0][0]->getY();
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
+						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
 						{
-							if (generateRoom(level, size, xOfDoor, yOfDoor, 's'))
+							safe = false;
+						}
+						if (safe)
+						{
+							if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
 							{
-								level.grid[xOfDoor][yOfDoor]->isRoom = true;
-								level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								if (generateRoom(level, size, xOfDoor, yOfDoor, 's'))
+								{
+									level.grid[xOfDoor][yOfDoor]->isRoom = true;
+									level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								}
 							}
 						}
 					}
 				}
 				else																			//west
 				{
-					if (roomVector[roomBase].size() + roomVector[roomBase][0][0]->getX() + 1 < level.grid.size())
+					int west = roomVector[roomBase].size() + roomVector[roomBase][0][0]->getX() + 1;
+					if (west < level.grid.size())
 					{
+						bool safe = true;
 						int xSize = roomVector[roomBase].size();
 						int xOfDoor = roomVector[roomBase][0][0]->getX() - 1;
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
+						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
 						{
-							if (generateRoom(level, size, xOfDoor, yOfDoor, 'w'))
+							safe = false;
+						}
+						if (safe)
+						{
+							if (level.grid[xOfDoor][yOfDoor]->isRoom == false)
 							{
-								level.grid[xOfDoor][yOfDoor]->isRoom = true;
-								level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								if (generateRoom(level, size, xOfDoor, yOfDoor, 'w'))
+								{
+									level.grid[xOfDoor][yOfDoor]->isRoom = true;
+									level.grid[xOfDoor][yOfDoor]->isDoor = true;
+								}
 							}
 						}
 					}
@@ -236,7 +272,7 @@ void Map::generateMap(Grid level)
 			}
 		}
 		roomBase++;
-		if (roomBase > roomVector.size())
+		if (roomBase  >= roomVector.size())
 		{
 			thereIsSpace = false;
 		}
