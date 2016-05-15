@@ -42,29 +42,38 @@ void Character::reactToFire()
 	setY(previousY);
 }
 
+int Character::getRandomNumber(int smallestValue, int largestValue)
+{
+	std::srand(time(nullptr));
+	return (rand() % (largestValue - smallestValue)) + smallestValue;
+}
 
 void Character::wanderAroundRoom()
 { // Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
-
- 	if (isCellARoom(getX(), getY() + getSpeed())&& !isCellADoor(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
-	{
+	
+	if (direction == 0 && getY() + getSpeed() < 800 - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
+	{//Up
 		setPreviousLocation(getX(), getY());
 		setY(getY() + getSpeed());		
 	}
-	else if (isCellARoom(getX() + getSpeed(), getY()) && !isCellADoor(getX() + getSpeed(), getY()) && (getX() + getSpeed()) < 800 - getSize() && !checkLocation(getX() + getSpeed(), getY()))
-	{
+	else if (direction == 1 && (getY() + getSpeed()) > 0 + getSize() && canWanderInRoom(getX(), getY() - getSpeed()))
+	{//Down
+		setPreviousLocation(getX(), getY());
+		setY(getY() - getSpeed());
+	}
+	else if (direction == 2 && (getX() + getSpeed()) < 800 - getSize() && canWanderInRoom(getX() + getSpeed(), getY()))
+	{//Right
 		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
-	else if (isCellARoom(getX(), getY() - getSpeed()) && !isCellADoor(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 0 + getSize() && !checkLocation(getX(), getY() - getSpeed()))
-	{
-		setPreviousLocation(getX(), getY());
-		setY(getY() - getSpeed());
-	}	
-	else if (isCellARoom(getX() - getSpeed(), getY()) && !isCellADoor(getX() - getSpeed(), getY()))
-	{
+	else if (direction == 3 && (getY() + getSpeed()) < 800 && canWanderInRoom(getX() - getSpeed(), getY()))
+	{//Left
 		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
+	}
+	else
+	{
+		direction = getRandomNumber(0, 4);
 	}
 }
 
@@ -80,6 +89,16 @@ bool Character::isCellADoor(int x, int y)
 	int xCell = x / currentRoom->getCellSize();
 	int yCell = y / currentRoom->getCellSize();
 	return currentRoom->grid[xCell][yCell]->isDoor;
+}
+
+bool Character::canWanderInRoom(int x, int y)
+{ //Character can only wander around a room and can't go through door
+	if (isCellARoom(x, y) && !isCellADoor(x, y) && !checkLocation(x, y))
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 bool Character::isCellOnFire(int x, int y)

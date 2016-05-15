@@ -1,6 +1,8 @@
 #pragma once
 #include"Grid.h"
 #include"Cell.h"
+#include <cstdlib>
+#include <ctime>
 class CharacterState; //forward declartion I think
 
 class Character
@@ -27,12 +29,16 @@ public:
 	//Cell checking functions
 	bool isCellARoom(int x, int y);
 	bool isCellADoor(int x, int y);
+	bool canWanderInRoom(int x, int y);
 	bool isCellOnFire(int x, int y);
 	int getOxygenLevel(int x, int y);
 	// Sets the current X and Y value as the previousX and previousY value
 	void setPreviousLocation(int x, int y);
 	// Checks if the next move will put the character back to where they were before the last update
 	bool checkLocation(int x, int y);
+
+	int getRandomNumber(int smallestValue, int largestValue);
+	int direction = 1;
 
 	
 	// Moves the character depending on the player's input

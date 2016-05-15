@@ -12,8 +12,6 @@ WanderingState::~WanderingState()
 
 void WanderingState::update(Character& character, const Uint8* keyboardState)
 {
-	
-
 	character.wanderAroundRoom();	
 
 	if (character.health == 0)
