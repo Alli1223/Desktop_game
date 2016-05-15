@@ -33,7 +33,7 @@ void Map::LoadMap(std::string filename, Grid room)
 				else if (map[x][y] == 'D')
 				{
 					room.grid[x][y]->isDoor = true;
-					room.grid[x][y]->isRoom = false;
+					room.grid[x][y]->isRoom = true;
 				}
 			}
 			//closes off smaller levels

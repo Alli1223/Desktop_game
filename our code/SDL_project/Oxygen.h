@@ -1,14 +1,19 @@
 #pragma once
+#include "Grid.h"
+#include "Cell.h"
+
 class Oxygen
 {
 public:
 	Oxygen();
 	~Oxygen();
 
-	int Get_Oxygen_Level() { return Oxygen_Level; }
-	void spawnOxygen();
+	std::vector<std::shared_ptr<Cell>> getNeighbouringCells(int cellX, int cellY, int cellSize);
 
-private:
-	int Oxygen_Level = 0;
-	
+	void update(int cellSize, int cellX, int cellY, Grid grid);
+
+	void addOxygen(int mouseX, int mouseY, int cellSize, Grid grid);
+	void removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid);
+
+	int cellX, cellY;
 };
