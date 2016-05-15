@@ -1,6 +1,7 @@
 #pragma once
 #include "grid.h"
 
+#include <algorithm>
 #include <cstdlib>
 #include <ctime>
 
