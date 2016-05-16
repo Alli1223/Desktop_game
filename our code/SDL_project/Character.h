@@ -30,7 +30,6 @@ public:
 	bool isCellARoom(int x, int y);
 	bool isCellADoor(int x, int y);
 	bool canWanderInRoom(int x, int y);
-	bool isCellOnFire(int x, int y);
 	int getOxygenLevel(int x, int y);
 	// Sets the current X and Y value as the previousX and previousY value
 	void setPreviousLocation(int x, int y);
@@ -43,8 +42,6 @@ public:
 	
 	// Moves the character depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
-	// Makes the chacacter move away from fire
-	void reactToFire();
 	// If the user doesn't input a move for a given time the character will wander around
 	void wanderAroundRoom();
 	

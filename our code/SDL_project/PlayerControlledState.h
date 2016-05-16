@@ -3,7 +3,6 @@
 #include "IdleState.h"
 #include "DeadState.h"
 #include "Suffocating.h"
-#include"OnFire.h"
 
 class PlayerControlledState :
 	public CharacterState

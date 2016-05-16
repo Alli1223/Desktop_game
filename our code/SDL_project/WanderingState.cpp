@@ -30,10 +30,4 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<PlayerControlledState>();
 		character.moveCharacter(keyboardState);
 	}
-	else if (character.isCellOnFire(character.getX(), character.getY()))
-	{//If a cell is on fire the character will move away
-		character.state = std::make_shared<OnFire>();
-		character.reactToFire();
-		character.setSpeed(character.runSpeed);
-	}
 }

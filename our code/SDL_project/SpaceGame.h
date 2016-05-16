@@ -26,7 +26,6 @@ private:
 	Texture roomCell;
 	Texture characterTex;
 	Texture doorTexture;
-	Texture fire;
 	Texture oxygenTex;
 	Texture healthBar;
 	Texture healthText;
