@@ -13,7 +13,7 @@ Oxygen::~Oxygen()
 
 }
 
-// Increases oxygen in a selected cell (only if the cell is a room)
+//Increases oxygen in a selected cell (only if the cell is a room)
 void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 {
 	int cellX = mouseX / cellSize;
@@ -22,7 +22,7 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 	if (grid.grid[cellX][cellY]->isRoom && oxygenLevel < 100)
 	{
-		oxygenLevel = oxygenLevel + 2;
+		oxygenLevel = oxygenLevel + 4;
 		grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 	}
 	else if (grid.grid[cellX][cellY]->getOxygenLevel() >= 100)
@@ -31,7 +31,7 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 	}
 }
 
-//Decreases oxygen in a selected cell (only if the cell is a room)
+//Decreases oxygen in a selected cell
 void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 {
 	int cellX = mouseX / cellSize;
@@ -40,27 +40,61 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 	if (oxygenLevel <= 100)
 	{
-		oxygenLevel = oxygenLevel - 2;
+		oxygenLevel = oxygenLevel - 4;
 		grid.grid[cellX][cellY]->isOxygenated = false;
 		grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 
 		//spread to neighbouring cells
-		update(cellSize, oxygenLevel, grid);
+		//disperseOxygen(cellSize, oxygenLevel);
+		//update(cellSize, grid);
+
+		//make sure the oxygen cant go below zero
 		if (oxygenLevel <= 0)
 		{
-			oxygenLevel = 0;
-			grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
+			grid.grid[cellX][cellY]->setOxygenLevel(0);
 		}
 	}
 }
 
-
-//void 
-
-void Oxygen::update(int cellSize, int oxygenLevel, Grid grid)
+void Oxygen::update(int cellSize, Grid grid)
 {
-	disperseOxygen(cellSize);
-	grid.grid[cellX][cellY]->getOxygenLevel();
+
+	for (int i = 0; i < 16; i++)
+	{
+		cellX = grid.grid[i][i]->getX();
+		for (int i = 0; i < 16; i++)
+		{
+			cellY = grid.grid[i][i]->getY();
+			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
+
+
+			//Loops through the rooms
+			if (grid.grid[cellX][cellY]->isRoom)
+			{
+				//right
+				if (oxygenLevel <= grid.grid[cellX + 1][cellY]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel <= 100)
+				{
+					grid.grid[cellX + 1][cellY]->setOxygenLevel(grid.grid[cellX + 1][cellY]->getOxygenLevel() - 1);
+				}
+				//down
+				else if (oxygenLevel >= grid.grid[cellX][cellY + 1]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel <= 100)
+				{
+					grid.grid[cellX][cellY + 1]->setOxygenLevel(grid.grid[cellX][cellY + 1]->getOxygenLevel() - 1);
+				}
+				//center
+				else if (grid.grid[cellX][cellY]->getOxygenLevel() >= oxygenLevel && oxygenLevel <= 100 && oxygenLevel <= 100)
+				{
+					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
+				}
+				//left
+				else if (grid.grid[cellX - 1][cellY]->getOxygenLevel() <= oxygenLevel && oxygenLevel <= 100 && oxygenLevel <= 100)
+				{
+					grid.grid[cellX - 1][cellY]->setOxygenLevel(oxygenLevel + 1);
+				}
+				
+			}
+		}
+	}
 }
 
 std::vector<std::shared_ptr<Cell>> Oxygen::getNeighbouringCells(int cellSize)
@@ -78,19 +112,18 @@ std::vector<std::shared_ptr<Cell>> Oxygen::getNeighbouringCells(int cellSize)
 	return surroundingCells;
 }
 
-void Oxygen::disperseOxygen(int cellSize)
+void Oxygen::disperseOxygen(int cellSize, int oxygenLevel)
 {
 	std::vector<std::shared_ptr<Cell>> neighbourCells = getNeighbouringCells(cellSize);
 	for (int i = 0; i < neighbourCells.size(); i++)
 	{
-		//int neighbourcell = neighbourCells[i + 1]->getOxygenLevel();
-		if (neighbourCells[i]->getOxygenLevel() <= 0)
+		if (neighbourCells[i]->getOxygenLevel() >= neighbourCells[i + 1]->getOxygenLevel())
 		{
-			neighbourCells[i + 1]->setOxygenLevel(0); //neighbourCells[i + 1]->getOxygenLevel() - 10
+			neighbourCells[i]->setOxygenLevel(oxygenLevel - 1);
 		}
-		else if (neighbourCells[i]->getOxygenLevel() >= 1)
+		else if (neighbourCells[i]->getOxygenLevel() < oxygenLevel)
 		{
-			neighbourCells[i]->setOxygenLevel(0);
+			neighbourCells[i]->setOxygenLevel(oxygenLevel + 1);
 		}
 	}
 }

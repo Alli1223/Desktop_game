@@ -9,9 +9,9 @@ public:
 	~Oxygen();
 
 	std::vector<std::shared_ptr<Cell>> getNeighbouringCells(int cellSize);
-	void disperseOxygen(int cellSize);
+	void disperseOxygen(int cellSize, int oxygenLevel);
 
-	void update(int cellSize, int oxygenLevel, Grid grid);
+	void update(int cellSize, Grid grid);
 
 	void addOxygen(int mouseX, int mouseY, int cellSize, Grid grid);
 	void removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid);
