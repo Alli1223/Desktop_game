@@ -6,6 +6,8 @@ Cell::Cell()
 	: sprite(sprite)
 {
 }
+
+// 
 Cell::Cell(int x, int y)
 {
 	setX(x);

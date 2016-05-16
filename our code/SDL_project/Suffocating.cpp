@@ -12,8 +12,12 @@ Suffocating::~Suffocating()
 
 void Suffocating::update(Character& character, const Uint8* keyboardState)
 {
+	if (!character.isAlive)
+	{
+		
+	}	
 	// If oxygenLevel is below the dangeroursOxygenLevel the character loses health 
-	if (character.getOxygenLevel(character.getX(), character.getY()) < dangeroursOxygenLevel)
+	else if (character.getOxygenLevel(character.getX(), character.getY()) < dangeroursOxygenLevel)
 	{
 		character.health = character.health - 0.1;
 	}
