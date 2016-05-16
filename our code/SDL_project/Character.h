@@ -1,8 +1,6 @@
 #pragma once
-#include"Grid.h"
-#include"Cell.h"
-#include <cstdlib>
-#include <ctime>
+#include"Level.h"
+
 class CharacterState; //forward declartion I think
 
 class Character
@@ -23,7 +21,7 @@ public:
 	int setSpeed(int newSpeed) { return speed = newSpeed; }
 	
 	//Pointer to the grid being used in SpaceGame
-	std::shared_ptr<Grid> currentRoom;
+	std::shared_ptr<Level> currentRoom;
 
 	//Cell checking functions
 	bool isCellARoom(int x, int y);

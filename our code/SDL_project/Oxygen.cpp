@@ -2,7 +2,7 @@
 #include "Oxygen.h"
 #include "Cell.h"
 #include "MainCharacter.h"
-#include "Grid.h"
+#include "Level.h"
 
 Oxygen::Oxygen()
 {
@@ -14,7 +14,7 @@ Oxygen::~Oxygen()
 }
 
 // Increases oxygen in a selected cell (only if the cell is a room)
-void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
+void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 {
 	int cellX = mouseX / cellSize;
 	int cellY = mouseY / cellSize;
@@ -32,7 +32,7 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 }
 
 //Decreases oxygen in a selected cell (only if the cell is a room)
-void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
+void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 {
 	int cellX = mouseX / cellSize;
 	int cellY = mouseY / cellSize;
@@ -58,7 +58,7 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Grid grid)
 
 
 
-void Oxygen::update(int cellSize, int cellX, int cellY, Grid grid)
+void Oxygen::update(int cellSize, int cellX, int cellY, Level grid)
 {
 	std::vector<std::shared_ptr<Cell>> neighbourCells = getNeighbouringCells(cellX, cellY, cellSize);
 	for (int i = 0; i < neighbourCells.size(); i++)

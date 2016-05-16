@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "Grid.h"
+#include "Level.h"
 
 class MainCharacter: public Character
 { //The main version of character that user controllers

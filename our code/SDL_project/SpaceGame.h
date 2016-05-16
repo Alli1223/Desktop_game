@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Texture.h"
-#include "Grid.h"
+#include "Level.h"
 #include "Map.h"
 #include "GameConfiguration.h"
 

@@ -1,9 +1,7 @@
 #pragma once
-#include "grid.h"
+#include "Level.h"
 
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
+
 
 class Map
 {
@@ -13,18 +11,18 @@ public:
 
 	int random(int smallestValue, int largestValue);
 
-	void LoadMap(std::string filename, Grid room);
+	void LoadMap(std::string filename, Level room);
 	
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
 
-	void generateMap(Grid level);
+	void generateMap(Level level);
 
 private:
 
 	std::vector<std::vector<std::vector<std::shared_ptr<Cell>>>> roomVector;
 
-	bool generateRoom(Grid level, int size, int entranceX, int entranceY, char direction); //Direction n = north, e = east, s = south, w = west.
+	bool generateRoom(Level level, int size, int entranceX, int entranceY, char direction); //Direction n = north, e = east, s = south, w = west.
 	
 	//For a 800px X 800px window size there are 16 cols X 16 rows
 	Map* map;

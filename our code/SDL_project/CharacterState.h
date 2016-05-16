@@ -1,6 +1,6 @@
 #pragma once
 #include"Character.h"
-#include"Grid.h"
+#include"Level.h"
 
 
 class CharacterState

@@ -1,12 +1,12 @@
 #pragma once
 #include "Cell.h"
-#include<vector>
 
-class Grid
+
+class Level
 {
 public:
-	Grid();
-	~Grid();
+	Level();
+	~Level();
 
 	int getCellSize() { return cellSize; }
 
