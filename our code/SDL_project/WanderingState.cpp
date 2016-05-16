@@ -18,7 +18,6 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 	if (character.health == 0)
 	{
 		character.state = std::make_shared<DeadState>();
-		character.isAlive = false;
 	}
 	// If the oxygen goes beneath 50 the character speed reduces
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)

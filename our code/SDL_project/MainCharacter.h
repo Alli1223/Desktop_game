@@ -3,9 +3,9 @@
 #include "Character.h"
 #include "Level.h"
 
+//The main version of character that is controled by the user
 class MainCharacter: public Character
-{ //The main version of character that user controllers
-	//Should only be one instance of this class ??
+{ 
 public:
 	MainCharacter();
 	~MainCharacter();
