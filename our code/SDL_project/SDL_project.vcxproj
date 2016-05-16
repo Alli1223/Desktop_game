@@ -168,7 +168,6 @@
     <ClInclude Include="Suffocating.h" />
     <ClInclude Include="MainCharacter.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="OnFire.h" />
     <ClInclude Include="Oxygen.h" />
     <ClInclude Include="PlayerControlledState.h" />
     <ClInclude Include="Resource.h" />
@@ -192,7 +191,6 @@
     <ClCompile Include="Suffocating.cpp" />
     <ClCompile Include="MainCharacter.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="OnFire.cpp" />
     <ClCompile Include="Oxygen.cpp" />
     <ClCompile Include="PlayerControlledState.cpp" />
     <ClCompile Include="SDL_project.cpp" />

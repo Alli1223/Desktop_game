@@ -17,7 +17,7 @@ void Suffocating::update(Character& character, const Uint8* keyboardState)
 		character.health = character.health - 0.1;
 	}
 	
-	else if (character.getOxygenLevel(character.getX(), character.getY()) > 80)
+	else if (character.getOxygenLevel(character.getX(), character.getY()) > 60)
 	{
 		character.state = std::make_shared<IdleState>();
 		character.setSpeed(character.walkSpeed);
@@ -27,4 +27,5 @@ void Suffocating::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<PlayerControlledState>();
 		character.moveCharacter(keyboardState);
 	}
+
 }
