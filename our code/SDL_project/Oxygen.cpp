@@ -72,24 +72,43 @@ void Oxygen::update(int cellSize, Grid grid)
 			if (grid.grid[cellX][cellY]->isRoom)
 			{
 				//right
-				if (oxygenLevel <= grid.grid[cellX + 1][cellY]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel <= 100)
+				if (oxygenLevel >= grid.grid[cellX + 1][cellY]->getOxygenLevel() && oxygenLevel >= 1 && oxygenLevel < 100)
 				{
 					grid.grid[cellX + 1][cellY]->setOxygenLevel(grid.grid[cellX + 1][cellY]->getOxygenLevel() - 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX +1][cellY]->getOxygenLevel());
+				}
+
+				else if (oxygenLevel <= grid.grid[cellX + 1][cellY]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel < 100)
+				{
+					grid.grid[cellX + 1][cellY]->setOxygenLevel(grid.grid[cellX + 1][cellY]->getOxygenLevel() + 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY]->getOxygenLevel());
 				}
 				//down
 				else if (oxygenLevel >= grid.grid[cellX][cellY + 1]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel <= 100)
 				{
 					grid.grid[cellX][cellY + 1]->setOxygenLevel(grid.grid[cellX][cellY + 1]->getOxygenLevel() - 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY + 1]->getOxygenLevel());
+				}
+				else if (oxygenLevel <= grid.grid[cellX][cellY + 1]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel < 100)
+				{
+					grid.grid[cellX][cellY + 1]->setOxygenLevel(grid.grid[cellX][cellY + 1]->getOxygenLevel() + 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY + 1]->getOxygenLevel() - 1);
 				}
 				//center
-				else if (grid.grid[cellX][cellY]->getOxygenLevel() >= oxygenLevel && oxygenLevel <= 100 && oxygenLevel <= 100)
+				else if (grid.grid[cellX][cellY]->getOxygenLevel() <= oxygenLevel && oxygenLevel < 100 && oxygenLevel >= 0)
 				{
-					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY]->getOxygenLevel() + 1);
 				}
 				//left
-				else if (grid.grid[cellX - 1][cellY]->getOxygenLevel() <= oxygenLevel && oxygenLevel <= 100 && oxygenLevel <= 100)
+				else if (grid.grid[cellX - 1][cellY]->getOxygenLevel() >= oxygenLevel && oxygenLevel < 100 && oxygenLevel >= 0)
 				{
-					grid.grid[cellX - 1][cellY]->setOxygenLevel(oxygenLevel + 1);
+					grid.grid[cellX - 1][cellY]->setOxygenLevel(grid.grid[cellX - 1][cellY]->getOxygenLevel() + 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY]->getOxygenLevel() - 1);
+				}
+				else if (grid.grid[cellX - 1][cellY]->getOxygenLevel() <= oxygenLevel && oxygenLevel < 100 && oxygenLevel >= 0)
+				{
+					grid.grid[cellX - 1][cellY]->setOxygenLevel(grid.grid[cellX - 1][cellY]->getOxygenLevel() - 1);
+					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY]->getOxygenLevel() + 1);
 				}
 				
 			}
