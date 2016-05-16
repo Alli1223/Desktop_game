@@ -30,8 +30,6 @@ public:
 	bool canWanderInRoom(int x, int y);
 	int getOxygenLevel(int x, int y);
 
-	// Chooses a random number between a given range
-	int getRandomNumber(int smallestValue, int largestValue);
 	// Moves the character depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
 	// If the user doesn't input a move for a given time the character will wander around

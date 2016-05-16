@@ -32,17 +32,9 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	}
 }
 
-// Gets a random number from between a given range
-int Character::getRandomNumber(int smallestValue, int largestValue)
-{
-	std::srand(time(nullptr));
-	return (rand() % (largestValue - smallestValue)) + smallestValue;
-}
-
 // If the player doesn't move the character it will start to move around the room in randomly selected directions
 void Character::wanderAroundRoom()
 { 
-	direction = getRandomNumber(0, 4);
 	if (direction == 0 && getY() + getSpeed() < 800 - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
 	{//Up
 		setY(getY() + getSpeed());		
@@ -62,7 +54,7 @@ void Character::wanderAroundRoom()
 	//If the character can't move in the current direction it randomly selects a new one
 	else
 	{
-		direction = getRandomNumber(0, 4);
+		direction = rand() % 4;
 	}
 }
 
