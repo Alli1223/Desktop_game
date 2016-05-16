@@ -1,6 +1,8 @@
 #pragma once
 #include "CharacterState.h"
 #include "PlayerControlledState.h"
+
+// The character will randomly move around the room without player input
 class WanderingState :
 	public CharacterState
 {

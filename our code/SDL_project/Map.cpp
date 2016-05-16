@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "Map.h"
 
-#include <iostream>
 
-void Map::LoadMap(std::string filename, Grid room)
+void Map::LoadMap(std::string filename, Level room)
 //(filename, grid to load into) loads map from text file into grid
 {
 	//loop through the file
@@ -63,7 +62,7 @@ int roundToNearestWhole(double number)
 	}
 }
 
-bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char direction)  //Direction n = north, e = east, s = south, w = west.
+bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char direction)  //Direction n = north, e = east, s = south, w = west.
 {
 	std::vector<std::vector<std::shared_ptr<Cell>>> room;
 	double topLeftX;
@@ -132,7 +131,7 @@ bool Map::generateRoom(Grid level, int size, int entranceX, int entranceY, char 
 	return true;
 }
 
-void Map::generateMap(Grid level)
+void Map::generateMap(Level level)
 {
 	std::srand(time(nullptr));
 	//Clear a starting room(room 0)

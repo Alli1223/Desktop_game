@@ -2,7 +2,7 @@
 #include "SpaceGame.h"
 #include "InitialisationError.h"
 #include "Cell.h"
-#include "Grid.h"
+#include "Level.h"
 #include "MainCharacter.h"
 #include "IdleState.h"
 #include "Oxygen.h"
@@ -46,7 +46,7 @@ SpaceGame::~SpaceGame()
 
 void SpaceGame::run()
 {
-	Grid room;
+	Level room;
 	Oxygen oxygen;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
@@ -54,7 +54,7 @@ void SpaceGame::run()
 	mapLoader.generateMap(room);
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
-	characterOne.currentRoom = std::make_shared<Grid>(room);
+	characterOne.currentRoom = std::make_shared<Level>(room);
 	//Character starts in Idle state
 	characterOne.state = std::make_shared<IdleState>();
 

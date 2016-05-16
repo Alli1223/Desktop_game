@@ -4,6 +4,7 @@
 #include "DeadState.h"
 #include "Suffocating.h"
 
+// The character moves based on the keyboard input 
 class PlayerControlledState :
 	public CharacterState
 {

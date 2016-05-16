@@ -12,20 +12,21 @@ Suffocating::~Suffocating()
 
 void Suffocating::update(Character& character, const Uint8* keyboardState)
 {
-	if (character.getOxygenLevel(character.getX(), character.getY()) < 40)
-	{ // If oxygen is too low the character loses health
+	// If oxygenLevel is below the dangeroursOxygenLevel the character loses health 
+	if (character.getOxygenLevel(character.getX(), character.getY()) < dangeroursOxygenLevel)
+	{
 		character.health = character.health - 0.1;
 	}
-	
-	else if (character.getOxygenLevel(character.getX(), character.getY()) > 60)
+	// If the oxygenLevel reaches acceptableOxygenLevel the character changes to the Idle state and speeds up again 
+	else if (character.getOxygenLevel(character.getX(), character.getY()) > acceptableOxygenLevel)
 	{
 		character.state = std::make_shared<IdleState>();
 		character.setSpeed(character.walkSpeed);
 	}
-	if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D] && character.getOxygenLevel(character.getX(), character.getY()) > 10)
-	{// Character can still move but if oxygen is below 0 they can't move
+	// The character can still move in the Suffocating state but speed is reduced
+	if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
+	{
 		character.state = std::make_shared<PlayerControlledState>();
 		character.moveCharacter(keyboardState);
 	}
-
 }
