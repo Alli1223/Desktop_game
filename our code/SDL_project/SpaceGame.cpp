@@ -7,7 +7,6 @@
 #include "IdleState.h"
 #include "Oxygen.h"
 
-
 SpaceGame::SpaceGame()
 	: notRoomCell("Resources\\cell_test.png"),
 	roomCell("Resources\\Room_Cell1.png"),
@@ -145,10 +144,10 @@ void SpaceGame::run()
 		
 		//Renders the health and oxygen bar
 		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
-		healthBar.addTransparency(100);
+ 		healthBar.alterTransparency(100);
 		healthText.render(renderer, 750, 25, 73, 22);
 		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
-		oxygenBar.addTransparency(100);
+		oxygenBar.alterTransparency(100);
 		oxygenText.render(renderer, 750, 50, 73, 22);
 		
 		SDL_RenderPresent(renderer);
