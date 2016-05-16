@@ -5,7 +5,6 @@ Suffocating::Suffocating()
 {
 }
 
-
 Suffocating::~Suffocating()
 {
 }
@@ -14,7 +13,7 @@ void Suffocating::update(Character& character, const Uint8* keyboardState)
 {
 	if (!character.isAlive)
 	{
-		
+		character.state = std::make_shared<DeadState>();
 	}	
 	// If oxygenLevel is below the dangeroursOxygenLevel the character loses health 
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < dangeroursOxygenLevel)

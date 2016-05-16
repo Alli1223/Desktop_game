@@ -8,8 +8,7 @@
 #include "Oxygen.h"
 
 SpaceGame::SpaceGame()
-	: notRoomCell("Resources\\cell_test.png"),
-	roomCell("Resources\\Room_Cell1.png"),
+	: roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
@@ -88,7 +87,7 @@ void SpaceGame::run()
 
 		int cellSize = room.getCellSize();
 
-		//Spawns oxygen
+		// Adds and removes oxygen based on mouse click
 		int mouse_X, mouse_Y;
 		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
@@ -107,14 +106,15 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
 				
-				//Renders cell based on state
-				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
+				// Checks if the cell is a room
+				if (room.grid[x][y]->isRoom)
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 				}
-				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
+				// Checks if the cell is a door
+				if (room.grid[x][y]->isDoor)
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
@@ -131,16 +131,12 @@ void SpaceGame::run()
 		{
 			characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		}			
-		else //change to render dead sprite
-		{
-			notRoomCell.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		}
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
 		//Renders the health and oxygen bar
 		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
- 		healthBar.alterTransparency(100);
+ 		healthBar.alterTransparency(150);
 		healthText.render(renderer, 750, 25, 73, 22);
 		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
 		oxygenBar.alterTransparency(100);

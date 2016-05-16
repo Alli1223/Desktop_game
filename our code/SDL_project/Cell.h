@@ -9,23 +9,23 @@ public:
 	Cell(int x, int y);
 	~Cell();
 	
-	bool isRoom = false;  //Whether the cell is part of a room or not
+	// Getter functions
+	int getX() { return x; }
+	int getY() { return y; }
+	int getOxygenLevel() { return oxygenLevel; }
+	
+	//Setter functions
+	int setX(int newX) { return x = newX; }
+	int setY(int newY) { return y = newY; }
+	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
+
+	bool isOxygenated = false;
+	bool isRoom = false;
 	bool isDoor = false;
 	int oxygenLevel = 100;
 
-
-	int getX() { return x; }
-	int getY() { return y; }
-	int setX(int newX) { return x = newX; }
-	int setY(int newY) { return y = newY; }
-
-	bool isOxygenated = false;
-	int getOxygenLevel() { return oxygenLevel; }
-	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
-
 private:
 
-	Texture* sprite;
 	int x = 0, y = 0;
 
 };

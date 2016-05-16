@@ -13,6 +13,6 @@ public:
 
 	void update(Character& character, const Uint8* keyboardState);
 
-	int acceptableOxygenLevel = 80, dangeroursOxygenLevel = 20;
+	int acceptableOxygenLevel = 50, dangeroursOxygenLevel = 20;
 };
 
