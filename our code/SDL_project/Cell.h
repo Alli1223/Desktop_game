@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Texture.h"
 
 class Cell
@@ -14,7 +13,7 @@ public:
 	int getY() { return y; }
 	int getOxygenLevel() { return oxygenLevel; }
 	
-	//Setter functions
+	// Setter functions
 	int setX(int newX) { return x = newX; }
 	int setY(int newY) { return y = newY; }
 	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
@@ -25,7 +24,5 @@ public:
 	int oxygenLevel = 100;
 
 private:
-
 	int x = 0, y = 0;
-
 };

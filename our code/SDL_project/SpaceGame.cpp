@@ -21,13 +21,11 @@ SpaceGame::SpaceGame()
 	{
 		throw InitialisationError("SDL_Init failed");
 	}
-
 	window = SDL_CreateWindow("COMP150 Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
 		throw InitialisationError("SDL_CreateWindow failed");
 	}
-
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr)
 	{
@@ -45,12 +43,14 @@ SpaceGame::~SpaceGame()
 
 void SpaceGame::run()
 {
+	// Level generation
 	Level room;
-	Oxygen oxygen;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
-	//mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
 	mapLoader.generateMap(room);
+	
+	Oxygen oxygen;
+	
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
@@ -111,19 +111,31 @@ void SpaceGame::run()
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.alterTransparency((100 - room.grid[x][y]->oxygenLevel) * 2);
+					if (room.grid[x][y]->oxygenLevel == 0)
+					{
+						oxygenTex.alterTransparency(256);
+					}
+					else
+					{
+						oxygenTex.alterTransparency(100 - room.grid[x][y]->oxygenLevel);
+					}
 				}
 				// Checks if the cell is a door
 				if (room.grid[x][y]->isDoor)
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.alterTransparency((100 - room.grid[x][y]->oxygenLevel) * 2);
+					if (room.grid[x][y]->oxygenLevel == 0)
+					{
+						oxygenTex.alterTransparency(256);
+					}
+					else
+					{
+						oxygenTex.alterTransparency(100 - room.grid[x][y]->oxygenLevel);
+					}
 				}
 				// Does not render a cell if it isn't part of a room
-	
 			} //End for Y loop
-			
 		}//End for X loop
 
 		if (characterOne.isAlive)
@@ -133,15 +145,14 @@ void SpaceGame::run()
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
-		//Renders the health and oxygen bar
+		// Renders the health and oxygen bar
 		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
  		healthBar.alterTransparency(150);
 		healthText.render(renderer, 750, 25, 73, 22);
 		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
-		oxygenBar.alterTransparency(100);
+		oxygenBar.alterTransparency(150);
 		oxygenText.render(renderer, 750, 50, 73, 22);
 		
 		SDL_RenderPresent(renderer);
-	}//End while running
-
+	}// End while running
 }

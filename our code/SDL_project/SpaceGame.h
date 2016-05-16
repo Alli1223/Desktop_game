@@ -11,7 +11,8 @@ public:
 	~SpaceGame();
 
 	void run();
-		
+	
+	// Window size
 	static const int WINDOW_WIDTH = 800;
 	static const int WINDOW_HEIGHT = 800;
 
@@ -30,6 +31,5 @@ private:
 	Texture oxygenText;
 
 	bool running;
-
 };
 
