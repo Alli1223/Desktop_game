@@ -15,125 +15,65 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	 
 	if (keyboardState[SDL_SCANCODE_W] && getY() - getSpeed() > 0 && isCellARoom(getX(), getY() - getSpeed()))
 	{ // If the W key is pressed and the character won't be moved off screen move the character
+		setPreviousLocation(getX(), getY());
 		setY(getY() - getSpeed());
 	}
 	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800 && isCellARoom(getX(), getY() + getSpeed())) //Will change to pass in screen dimensions
 	{
+		setPreviousLocation(getX(), getY());
 		setY(getY() + getSpeed());
 	}
 	else if (keyboardState[SDL_SCANCODE_A] && getX() + getSpeed() > 0 && isCellARoom(getX() - getSpeed(), getY()))
 	{
+		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
 	}
 	else if (keyboardState[SDL_SCANCODE_D] && getX() + getSpeed() < 800 && isCellARoom(getX() + getSpeed(), getY()))
 	{
+		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
 }
 
 void Character::reactToFire()
-{// This function will make the character run in the opposite direction to where the fire is
-	health--; //loses health
-	/*std::vector<std::shared_ptr<Cell>> neighbourCells = checkNeighbourCells();
-	int cellSize = currentRoom->getCellSize();
-	for (int i = 0; i < neighbourCells.size(); i++)
-	{
-		int xPos = neighbourCells[i]->getX() / cellSize;
-		int yPos = neighbourCells[i]->getY() / cellSize;
-		if (isCellOnFire(xPos, yPos))
-		{
-			if (xPos > getX())
-				setX(getX() - runSpeed);
-			else if (xPos < getX())
-				setX(getX() + runSpeed);
-			if (yPos > getY())
-				setY(getY() - runSpeed);
-			else if (yPos < getY())
-				setY(getY() + runSpeed);
-		}
-	}*/
+{// This function will make the character jump back away from fire
+	health = health - 0.1; //loses health
+	setX(previousX);
+	setY(previousY);
 }
 
-std::vector<std::shared_ptr<Cell>> Character::getNeighbourCells()
-{// Creates a vector of the possible directions that the character could move in
-	std::vector<std::shared_ptr<Cell>> surroundingCells;
-	if (getY() - getSpeed() > 0)  //W
-		surroundingCells.push_back(std::make_shared<Cell>(getX(), getY() - getSpeed()));
-	if (getY() + getSpeed() < 800) //S
-		surroundingCells.push_back(std::make_shared<Cell>(getX(), getY() + getSpeed()));
-	if (getX() - getSpeed() > 0)
-		surroundingCells.push_back(std::make_shared<Cell>(getX() - getSpeed(), getY()));
-	if (getX() + getSpeed() < 800)
-		surroundingCells.push_back(std::make_shared<Cell>(getX() + getSpeed(), getY()));
-
-	return surroundingCells;
-}
-
-
-std::vector<std::shared_ptr<Cell>> Character::checkNeighbourCells()
+int Character::getRandomNumber(int smallestValue, int largestValue)
 {
-	std::vector<std::shared_ptr<Cell>> surroundingCells = getNeighbourCells();
-	for (int i = 0; i < surroundingCells.size(); i++)
-	{
-		if (!isCellARoom(surroundingCells[i]->getX(), surroundingCells[i]->getY()))
-		{
-			surroundingCells.erase(surroundingCells.begin() + i);
-		}
-	}
-	return surroundingCells;
+	std::srand(time(nullptr));
+	return (rand() % (largestValue - smallestValue)) + smallestValue;
 }
-
 
 void Character::wanderAroundRoom()
 { // Makes the character move around the room on it's own it the player doesn't direct it for a certain amount of time
-
-  /* In progress gets surronding cells before deciding on a path
-    auto surroundingCells = getSurroundingCells();
-	for (int i = 0; i < surroundingCells.size(); i++)
-	{
-		if (!isCellARoom(surroundingCells[i]->getX(), surroundingCells[i]->getY()))
-		{
-			surroundingCells.erase(surroundingCells.begin() + i);
-		}
-		bool test = checkLocation(surroundingCells[i]->getX(), surroundingCells[i]->getY());
-		if (!test)
-		{
-			setPreviousLocation(getX(), getY());
-			setY(surroundingCells[i]->getY());
-			setX(surroundingCells[i]->getX());
-			break;
-		}
-		
-		else if (!checkLocation(surroundingCells[i]->getX() + getSpeed(), surroundingCells[i]->getY()))
-		{
-			setPreviousLocation(getX(), getY());
-			setX(getX() + getSpeed());
-		}
-
-	}*/
-
-	
-
-	//TODO: Change to pass in window dimensions
-	if (isCellARoom(getX(), getY() + getSpeed()) && (getY() + getSpeed()) < 800 - getSize() && !checkLocation(getX(), getY() + getSpeed()))
-	{
+	direction = getRandomNumber(0, 4);
+	if (direction == 0 && getY() + getSpeed() < 800 - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
+	{//Up
 		setPreviousLocation(getX(), getY());
 		setY(getY() + getSpeed());		
 	}
-	else if (isCellARoom(getX() + getSpeed(), getY()) && (getX() + getSpeed()) < 800 - getSize() && !checkLocation(getX() + getSpeed(), getY()))
-	{
+	else if (direction == 1 && (getY() + getSpeed()) > 0 + getSize() && canWanderInRoom(getX(), getY() - getSpeed()))
+	{//Down
+		setPreviousLocation(getX(), getY());
+		setY(getY() - getSpeed());
+	}
+	else if (direction == 2 && (getX() + getSpeed()) < 800 - getSize() && canWanderInRoom(getX() + getSpeed(), getY()))
+	{//Right
 		setPreviousLocation(getX(), getY());
 		setX(getX() + getSpeed());
 	}
-	else if (isCellARoom(getX(), getY() - getSpeed()) && (getY() + getSpeed()) > 0 + getSize() && !checkLocation(getX(), getY() - getSpeed())) 
-	{
-		setPreviousLocation(getX(), getY());
-		setY(getY() - getSpeed());
-	}	
-	else if (isCellARoom(getX() - getSpeed(), getY()))
-	{
+	else if (direction == 3 && (getX() - getSpeed()) > 0 && canWanderInRoom(getX() - getSpeed(), getY()))
+	{//Left
 		setPreviousLocation(getX(), getY());
 		setX(getX() - getSpeed());
+	}
+	else
+	{
+		direction = getRandomNumber(0, 4);
 	}
 }
 
@@ -142,6 +82,23 @@ bool Character::isCellARoom(int x, int y)
 	int xCell = x / currentRoom->getCellSize();
 	int yCell = y / currentRoom->getCellSize();
 	return currentRoom->grid[xCell][yCell]->isRoom;
+}
+
+bool Character::isCellADoor(int x, int y)
+{// Checks to see if a cell is a room
+	int xCell = x / currentRoom->getCellSize();
+	int yCell = y / currentRoom->getCellSize();
+	return currentRoom->grid[xCell][yCell]->isDoor;
+}
+
+bool Character::canWanderInRoom(int x, int y)
+{ //Character can only wander around a room and can't go through door
+	if (isCellARoom(x, y) && !isCellADoor(x, y) /*&& !checkLocation(x, y)*/)
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 bool Character::isCellOnFire(int x, int y)
@@ -166,7 +123,7 @@ void Character::setPreviousLocation(int x, int y)
 
 bool Character::checkLocation(int x, int y)
 { //Check to see if the passed in location is the same as the previous location
-	//This will be used in the wandering state to make sure the character doesn't get stuck
+//This will be used in the wandering state to make sure the character doesn't get stuck jumping backwards and forwards
 	if (x == getPreviousX() && y == getPreviousY())
 		return true;
 	else

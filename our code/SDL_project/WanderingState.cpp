@@ -12,8 +12,6 @@ WanderingState::~WanderingState()
 
 void WanderingState::update(Character& character, const Uint8* keyboardState)
 {
-	
-
 	character.wanderAroundRoom();	
 
 	if (character.health == 0)
@@ -38,7 +36,4 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 		character.reactToFire();
 		character.setSpeed(character.runSpeed);
 	}
-
-
-	
 }

@@ -7,14 +7,18 @@
 #include "IdleState.h"
 #include "Oxygen.h"
 
-
 SpaceGame::SpaceGame()
-	: notRoomCell("Resources\\cell_test.png"), 
+	: notRoomCell("Resources\\cell_test.png"),
 	roomCell("Resources\\Room_Cell1.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
-	fire("Resources\\fire.png"){
+	fire("Resources\\fire.png"),
+	healthBar("Resources\\health.png"),
+	healthText("Resources\\healthText.png"),
+	oxygenBar("Resources\\oxygenBar.png"),
+	oxygenText("Resources\\oxygenText.png")
+{
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -56,6 +60,7 @@ void SpaceGame::run()
 	characterOne.state = std::make_shared<IdleState>();
 
 	running = true;
+
 	while (running)
 	{
 		// Handle events
@@ -102,6 +107,7 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
+				
 				//Renders cell based on state
 				if (room.grid[x][y]->isRoom)//Detects if the cell is a room
 				{
@@ -120,16 +126,29 @@ void SpaceGame::run()
 				}
 				
 				//Doesn't render a cell if it isn't part of a room
-
 	
 			} //End for Y loop
 			
 		}//End for X loop
 
-		//Need to render character based on state 
+		if (characterOne.isAlive)
+		{
+			characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}			
+		else //change to render dead sprite
+		{
+			notRoomCell.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
+		//Renders the health and oxygen bar
+		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
+ 		healthBar.alterTransparency(100);
+		healthText.render(renderer, 750, 25, 73, 22);
+		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
+		oxygenBar.alterTransparency(100);
+		oxygenText.render(renderer, 750, 50, 73, 22);
 		
 		SDL_RenderPresent(renderer);
 	}//End while running

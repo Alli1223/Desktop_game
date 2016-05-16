@@ -28,6 +28,11 @@ private:
 	Texture doorTexture;
 	Texture fire;
 	Texture oxygenTex;
+	Texture healthBar;
+	Texture healthText;
+	Texture oxygenBar;
+	Texture oxygenText;
+
 	bool running;
 
 };
