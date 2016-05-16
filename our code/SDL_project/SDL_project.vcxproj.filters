@@ -34,9 +34,6 @@
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>
-    <ClCompile Include="NPC.cpp">
-      <Filter>Source Files\Character classes</Filter>
-    </ClCompile>
     <ClCompile Include="MainCharacter.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>

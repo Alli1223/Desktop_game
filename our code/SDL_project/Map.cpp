@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Map.h"
 
-#include <iostream>
 
 void Map::LoadMap(std::string filename, Grid room)
 //(filename, grid to load into) loads map from text file into grid
