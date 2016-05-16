@@ -35,13 +35,6 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	}
 }
 
-void Character::reactToFire()
-{// This function will make the character jump back away from fire
-	health = health - 0.1; //loses health
-	setX(previousX);
-	setY(previousY);
-}
-
 int Character::getRandomNumber(int smallestValue, int largestValue)
 {
 	std::srand(time(nullptr));
@@ -99,13 +92,6 @@ bool Character::canWanderInRoom(int x, int y)
 	}
 	else
 		return false;
-}
-
-bool Character::isCellOnFire(int x, int y)
-{// Checks to see if a cell is on fire
-	int xCell = x / currentRoom->getCellSize();
-	int yCell = y / currentRoom->getCellSize();
-	return currentRoom->grid[xCell][yCell]->onFire;
 }
 
 int Character::getOxygenLevel(int x, int y)

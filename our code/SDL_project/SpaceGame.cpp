@@ -13,7 +13,6 @@ SpaceGame::SpaceGame()
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
-	fire("Resources\\fire.png"),
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
 	oxygenBar("Resources\\oxygenBar.png"),
@@ -114,9 +113,6 @@ void SpaceGame::run()
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
-
-					if (room.grid[x][y]->onFire)
-						fire.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				if (room.grid[x][y]->isDoor)//Detects if the cell is a door
 				{
