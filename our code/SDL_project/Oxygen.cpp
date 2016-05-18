@@ -86,7 +86,6 @@ void Oxygen::update(int cellSize, Grid grid)
 
 					//decrease the lefts cell oxygen level
 					grid.grid[cellX + 1][cellY]->setOxygenLevel(oxygenLevel - 1);
-					
 				}
 
 				//if oxygen level is greater than the cell to the right
@@ -102,7 +101,7 @@ void Oxygen::update(int cellSize, Grid grid)
 				
 
 				//if oxygen level is less than the cell to the left
-				else if (grid.grid[cellX + 1][cellY]->getOxygenLevel() < grid.grid[cellX - 1][cellY]->getOxygenLevel())
+				else if (cellX -1 >= 0 && grid.grid[cellX + 1][cellY]->getOxygenLevel() < grid.grid[cellX - 1][cellY]->getOxygenLevel())
 				{
 					//increase the oxygen level
 					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
@@ -113,7 +112,7 @@ void Oxygen::update(int cellSize, Grid grid)
 				}
 
 				//if oxygen level is greater than the cell to the left
-				else if (grid.grid[cellX][cellY]->getOxygenLevel() > grid.grid[cellX - 1][cellY]->getOxygenLevel())
+				else if (cellX - 1 >= 0 && grid.grid[cellX][cellY]->getOxygenLevel() > grid.grid[cellX - 1][cellY]->getOxygenLevel())
 				{
 					//decrease the oxygen level
 					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
@@ -152,54 +151,31 @@ void Oxygen::update(int cellSize, Grid grid)
 					grid.grid[cellX][cellY + 1]->setOxygenLevel(oxygenLevel + 1);
 				}
 
-				/*
-				//if the oxygen level is the same as the cell to the right
-				else if (oxygenLevel == grid.grid[cellX + 1][cellY]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel <= 100)
+				//if oxygen level is less than the cell above
+				else if (cellY - 1 >= 0 && grid.grid[cellX][cellY]->getOxygenLevel() <= grid.grid[cellX][cellY - 1]->getOxygenLevel())
 				{
-					
-					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY]->getOxygenLevel());
-				}
-				else if (oxygenLevel <= grid.grid[cellX][cellY + 1]->getOxygenLevel() && oxygenLevel >= 0 && oxygenLevel <= 100)
-				{
+					//increase the oxygen level
+					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
 
-					grid.grid[cellX][cellY]->setOxygenLevel(grid.grid[cellX][cellY + 1]->getOxygenLevel());
+					//decrease the cell belows oxygen level
+					grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel - 1);
 				}
-				*/
+
+				//if oxygen level is greater than the cell above
+				else if (cellY - 1 >= 0 && grid.grid[cellX][cellY]->getOxygenLevel() >= grid.grid[cellX][cellY - 1]->getOxygenLevel())
+				{
+					//decrease the oxygen level
+					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
+
+					//increase the ceel aboves oxygen level
+					grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel + 1);
+				}
+
+				
 
 				
 				
 			}
-		}
-	}
-}
-
-std::vector<std::shared_ptr<Cell>> Oxygen::getNeighbouringCells(int cellSize)
-{// Creates a vector of the possible directions that the character could move in
-
-	std::vector<std::shared_ptr<Cell>> surroundingCells;
-	if (cellY - cellSize < 0)  //up
-		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX, cellY - cellSize)));
-	if (cellY + cellSize < 800) //down
-		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX, cellY + cellSize)));
-	if (cellX - cellSize < 0) //left
-		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX - cellSize, cellY)));
-	if (cellX + cellSize < 800) //left
-		surroundingCells.push_back(std::make_shared<Cell>(Cell(cellX + cellSize, cellY)));
-	return surroundingCells;
-}
-
-void Oxygen::disperseOxygen(int cellSize, int oxygenLevel)
-{
-	std::vector<std::shared_ptr<Cell>> neighbourCells = getNeighbouringCells(cellSize);
-	for (int i = 0; i < neighbourCells.size(); i++)
-	{
-		if (neighbourCells[i]->getOxygenLevel() >= neighbourCells[i + 1]->getOxygenLevel())
-		{
-			neighbourCells[i]->setOxygenLevel(oxygenLevel - 1);
-		}
-		else if (neighbourCells[i]->getOxygenLevel() < oxygenLevel)
-		{
-			neighbourCells[i]->setOxygenLevel(oxygenLevel + 1);
 		}
 	}
 }
