@@ -3,6 +3,7 @@
 #include "Cell.h"
 #include "MainCharacter.h"
 #include "Level.h"
+#include "Map.h"
 
 
 Oxygen::Oxygen()
@@ -56,11 +57,11 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 
 void Oxygen::update(int cellSize, Level grid)
 {
-	//CHANGE 16 TO A VARIABLE NUMBER
-	for (int i = 0; i < 16; i++)
+	Map map;
+	for (int i = 0; i < map.getWidth() / cellSize; i++)
 	{
 		cellX = grid.grid[i][i]->getX();
-		for (int i = 0; i < 16; i++)
+		for (int i = 0; i < map.getHeight() / cellSize; i++)
 		{
 			cellY = grid.grid[i][i]->getY();
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
@@ -78,7 +79,6 @@ void Oxygen::update(int cellSize, Level grid)
 				{
 					oxygenLevel == 0;
 				}
-
 
 				//if oxygen level is less than the cell to the right
 				else if (grid.grid[cellX][cellY]->getOxygenLevel() < grid.grid[cellX + 1][cellY]->getOxygenLevel())
@@ -172,6 +172,9 @@ void Oxygen::update(int cellSize, Level grid)
 					//increase the ceel aboves oxygen level
 					grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel + 1);
 				}
+
+
+
 
 
 			}
