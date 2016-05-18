@@ -2,6 +2,7 @@
 #include "Oxygen.h"
 #include "Cell.h"
 #include "MainCharacter.h"
+#include "Level.h"
 
 
 Oxygen::Oxygen()
@@ -53,7 +54,7 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 	}
 }
 
-void Oxygen::update(int cellSize, Grid grid)
+void Oxygen::update(int cellSize, Level grid)
 {
 	//CHANGE 16 TO A VARIABLE NUMBER
 	for (int i = 0; i < 16; i++)
@@ -68,7 +69,7 @@ void Oxygen::update(int cellSize, Grid grid)
 			//Loops through the rooms
 			if (grid.grid[cellX][cellY]->isRoom)
 			{
-				
+
 				if (oxygenLevel == 100)
 				{
 					oxygenLevel == 100;
@@ -99,17 +100,17 @@ void Oxygen::update(int cellSize, Grid grid)
 					grid.grid[cellX + 1][cellY]->setOxygenLevel(oxygenLevel + 1);
 				}
 
-				
+
 
 				//if oxygen level is less than the cell to the left
-				else if (cellX -1 >= 0 && grid.grid[cellX + 1][cellY]->getOxygenLevel() < grid.grid[cellX - 1][cellY]->getOxygenLevel())
+				else if (cellX - 1 >= 0 && grid.grid[cellX + 1][cellY]->getOxygenLevel() < grid.grid[cellX - 1][cellY]->getOxygenLevel())
 				{
 					//increase the oxygen level
 					grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
 
 					//decrease the lefts cell oxygen level
 					grid.grid[cellX - 1][cellY]->setOxygenLevel(oxygenLevel - 1);
-					
+
 				}
 
 				//if oxygen level is greater than the cell to the left
@@ -172,10 +173,8 @@ void Oxygen::update(int cellSize, Grid grid)
 					grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel + 1);
 				}
 
-				
 
-				
-				
-			}		}
+			}
+		}
 	}
 }
