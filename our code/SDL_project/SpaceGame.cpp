@@ -98,6 +98,7 @@ void SpaceGame::run()
 		{
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
+		oxygen.update(cellSize, room);
 		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
