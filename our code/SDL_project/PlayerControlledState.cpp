@@ -32,6 +32,7 @@ void PlayerControlledState::update(Character& character, const Uint8* keyboardSt
 		character.state = std::make_shared<SuffocatingState>();
 		character.setSpeed(character.suffocatingSpeed);
 	}
+	// If the character has reached the goal the game ends
 	if (character.reachedGoal(character.getX(), character.getY()))
 	{
 		character.state = std::make_shared<ReachedGoalState>();

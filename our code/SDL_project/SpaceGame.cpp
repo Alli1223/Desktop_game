@@ -140,29 +140,43 @@ void SpaceGame::run()
 			} //End for Y loop
 		}//End for X loop
 
+		 // Renders the health and oxygen bar
+		healthBar.render(renderer, WINDOW_WIDTH, 25, characterOne.health * 10, 25);
+		healthBar.alterTransparency(150);
+		healthText.render(renderer, 750, 25, 73, 22);
+		oxygenBar.render(renderer, WINDOW_WIDTH, 50, oxygen.getOxygenReserves() / 2, 25);
+		oxygenBar.alterTransparency(150);
+		oxygenText.render(renderer, 750, 50, 73, 22);
+
+		 // If the character has died the game over screen is displayed
 		if (!characterOne.isAlive)
 		{
+			// Fades in a red background
 			if (timer < 255)
 			{				
 				timer++;
 				gameOver.alterTransparency(timer);
 				gameOver.render(renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
+			// Displays text
 			else
 			{
 				gameOver.alterTransparency(255);
 				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				gameOverText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
-		}			
+		}
+		// If the character has reached the end the You Won screen is displayed
 		if (characterOne.hasWon)
 		{
+			// Fades in a blue background
 			if (timer < 255)
 			{
 				timer++;
 				winTexture.alterTransparency(timer);
 				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
+			// Displays text
 			else
 			{
 				winTexture.alterTransparency(255);
@@ -172,14 +186,6 @@ void SpaceGame::run()
 			}
 		}
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		
-		// Renders the health and oxygen bar
-		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
- 		healthBar.alterTransparency(150);
-		healthText.render(renderer, 750, 25, 73, 22);
-		oxygenBar.render(renderer, WINDOW_WIDTH, 50, oxygen.getOxygenReserves() /2, 25);
-		oxygenBar.alterTransparency(150);
-		oxygenText.render(renderer, 750, 50, 73, 22);
 		
 		SDL_RenderPresent(renderer);
 	}// End while running

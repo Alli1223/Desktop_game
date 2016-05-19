@@ -1,6 +1,10 @@
 #pragma once
 #include "CharacterState.h"
 //! The character enters this class once they have reached the end goal
+/*!
+This class triggers the You Won screen and doesn't let the character move. 
+Once the character has entered this state it can't leave it.
+*/
 
 class ReachedGoalState :
 	public CharacterState

@@ -18,7 +18,7 @@ public:
 	//! Used to time how long the character has been in a state
 	double timer = 0;
 	//! Maxmimum time that the character should be in the Idle state
-	int END_IDLE_TIME = 2;
+	int END_IDLE_TIME = 4;
 
 	//! The update function that checks and updates the character state.
 	/*!
