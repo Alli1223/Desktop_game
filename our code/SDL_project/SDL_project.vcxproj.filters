@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Coordinates.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,16 +22,10 @@
     <ClCompile Include="SpaceGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SDL_project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Character classes</Filter>
-    </ClCompile>
-    <ClCompile Include="NPC.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>
     <ClCompile Include="MainCharacter.cpp">
@@ -49,24 +40,24 @@
     <ClCompile Include="IdleState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="Suffocating.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="OnFire.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerControlledState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="WanderingState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SuffocatingState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ReachedGoalState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="GameConfiguration.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="InitialisationError.h">
@@ -93,13 +84,7 @@
     <ClInclude Include="Texture.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Coordinates.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -108,16 +93,10 @@
     <ClInclude Include="MainCharacter.h">
       <Filter>Headers\Character Classes</Filter>
     </ClInclude>
-    <ClInclude Include="NPC.h">
-      <Filter>Headers\Character Classes</Filter>
-    </ClInclude>
     <ClInclude Include="WanderingState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
     <ClInclude Include="PlayerControlledState.h">
-      <Filter>Headers\States</Filter>
-    </ClInclude>
-    <ClInclude Include="OnFire.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
     <ClInclude Include="IdleState.h">
@@ -126,7 +105,16 @@
     <ClInclude Include="DeadState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
-    <ClInclude Include="Suffocating.h">
+    <ClInclude Include="CharacterState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SuffocatingState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ReachedGoalState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
   </ItemGroup>

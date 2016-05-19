@@ -1,21 +1,20 @@
 #pragma once
 #include "CharacterState.h"
-#include "IdleState.h"
 #include "DeadState.h"
-#include "SuffocatingState.h"
-//! The PlayerControlledState is for when the user is pressing WASD to move the character
+#include "IdleState.h"
+//! The suffocating class is for when the character is on a cell with a low oxygen level
 /*!
-This class checks for keyboard input and updates the character's X and Y depending on what key was pressed
+This class alters the characters speed and health depending on the oxygen level of the cell it's currently on 
 */
-class PlayerControlledState :
+
+class SuffocatingState :
 	public CharacterState
 {
-	
 public:
 	//! A constructor
-	PlayerControlledState();
+	SuffocatingState();
 	//! A destructor
-	~PlayerControlledState();
+	~SuffocatingState();
 	//! The update function that checks and updates the character state.
 	/*!
 	Runs on every frame of the game to check the level and update the character state.
@@ -23,5 +22,7 @@ public:
 	pressed the keyboard since the last update
 	*/
 	void update(Character& character, const Uint8* keyboardState);
+	//! Decreases the character's health
+	void decreaseHealth(Character& character);
 };
 
