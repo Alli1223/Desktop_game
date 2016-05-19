@@ -26,10 +26,10 @@ public:
 	//! Setter for setting the oxygen reserve level
 	int setOxygenReserves(int newOxygenReserveLevel) { return oxygenReserves = newOxygenReserveLevel; }
 
-	//! Initialising cellX and cellY
+	//! Initialising cellX and cellY for cell loop
 	int cellX, cellY;
 private:
 
-	//! Ammount of oxygen reserve
+	//! To store oxygen reserve that user can place
 	int oxygenReserves = 2000;
 };
