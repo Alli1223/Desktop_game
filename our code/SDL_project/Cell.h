@@ -37,6 +37,8 @@ public:
 	bool isRoom = false;
 	//! Whether the cell is a door
 	bool isDoor = false;
+	//! Represents the goal for the player
+	bool isGoal = false;
 	//! The oxygenLevel of the cell
 	int oxygenLevel = 100;
 

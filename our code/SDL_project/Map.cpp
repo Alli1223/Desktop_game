@@ -127,7 +127,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 	}
 	else
 	{
-		oxygenLevel = random(0, 50);
+		oxygenLevel = 0;
 	}
 
 	//Gives all the cells in the room it's properties
@@ -158,7 +158,6 @@ void Map::generateMap(Level level)
 	randomSizes.push_back(2);
 	randomSizes.push_back(3);
 	randomSizes.push_back(4);
-	randomSizes.push_back(5);
 
 	//Makes a list of sizes to make sure that all sizes are attempted
 	std::vector<int> randomDirections;
