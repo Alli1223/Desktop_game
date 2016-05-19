@@ -18,7 +18,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	{ 
 		setY(getY() - getSpeed());
 	}
-	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < 800 && isCellARoom(getX(), getY() + getSpeed())) 
+	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed())) 
 	{
 		setY(getY() + getSpeed());
 	}
@@ -26,7 +26,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	{
 		setX(getX() - getSpeed());
 	}
-	else if (keyboardState[SDL_SCANCODE_D] && getX() + getSpeed() < 800 && isCellARoom(getX() + getSpeed(), getY()))
+	else if (keyboardState[SDL_SCANCODE_D] && getX() + getSpeed() < windowWidth && isCellARoom(getX() + getSpeed(), getY()))
 	{
 		setX(getX() + getSpeed());
 	}
@@ -35,7 +35,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 // If the player doesn't move the character it will start to move around the room in randomly selected directions
 void Character::wanderAroundRoom()
 { 
-	if (direction == 0 && getY() + getSpeed() < 800 - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
+	if (direction == 0 && getY() + getSpeed() < windowHeight - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
 	{//Up
 		setY(getY() + getSpeed());		
 	}
@@ -43,7 +43,7 @@ void Character::wanderAroundRoom()
 	{//Down
 		setY(getY() - getSpeed());
 	}
-	else if (direction == 2 && (getX() + getSpeed()) < 800 - getSize() && canWanderInRoom(getX() + getSpeed(), getY()))
+	else if (direction == 2 && (getX() + getSpeed()) < windowWidth - getSize() && canWanderInRoom(getX() + getSpeed(), getY()))
 	{//Right
 		setX(getX() + getSpeed());
 	}

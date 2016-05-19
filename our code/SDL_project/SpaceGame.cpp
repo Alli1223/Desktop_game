@@ -56,6 +56,8 @@ void SpaceGame::run()
 	characterOne.currentRoom = std::make_shared<Level>(room);
 	//Character starts in Idle state
 	characterOne.state = std::make_shared<IdleState>();
+	characterOne.windowHeight = WINDOW_HEIGHT;
+	characterOne.windowWidth= WINDOW_WIDTH;
 
 	running = true;
 
