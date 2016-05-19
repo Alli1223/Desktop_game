@@ -48,9 +48,10 @@ private:
 	Texture oxygenBar;
 	//! Label for oxygen level
 	Texture oxygenText;
+	//! This will display when the player fails to win	
 	Texture gameOver;
-	//! For the goal sprite
-	Texture goalTexture;
+	//! Is the texture for the goal	
+	Texture goalTexture;	
 	//! Whether the game is running or not
 	bool running;
 };
