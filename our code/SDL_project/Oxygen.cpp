@@ -18,8 +18,11 @@ Oxygen::~Oxygen()
 //Increases oxygen in a selected cell (only if the cell is a room)
 void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 {
+	//get the cell of where the mouse was clicked
 	int cellX = mouseX / cellSize;
 	int cellY = mouseY / cellSize;
+
+
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 	if (cellY -1 >= 0)
 	{
@@ -38,24 +41,25 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 //Decreases oxygen in a selected cell
 void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 {
+	//get the cell of where the mouse was clicked
 	int cellX = mouseX / cellSize;
-
 	int cellY = mouseY / cellSize;
 
-
+	//set oxygen level to the current cells oxygen level
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 
+	//lower the value of oxygen level
 	if (oxygenLevel <= 100)
 	{
 		oxygenLevel--;
-
 		grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 
-		// make sure the oxygen cant go below zero
+		//oxygen won't go over the min value
 		if (oxygenLevel <= 0)
 		{
 			grid.grid[cellX][cellY]->setOxygenLevel(0);
 		}
+		//oxygen won't go over the max value
 		else if (oxygenLevel >= 100)
 		{
 			oxygenLevel = 100;
@@ -64,6 +68,7 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 
 }
 
+//Loops through the cells to balance out the oxygen values
 void Oxygen::update(int cellSize, Level grid)
 {
 	for (int x = 0; x < grid.grid.size() - 1; x++)
