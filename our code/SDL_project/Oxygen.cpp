@@ -22,7 +22,6 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 	int cellX = mouseX / cellSize;
 	int cellY = mouseY / cellSize;
 
-
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 	if (cellY -1 >= 0)
 	{

@@ -52,6 +52,10 @@ private:
 	Texture gameOver;
 	//!will display over the background when the player fails to win
 	Texture gameOverText;
+	//! Is the texture for the win background
+	Texture winTexture;
+	//! Is the texture for the win text
+	Texture winText;
 	//! Is the texture for the goal
 	Texture goalTexture;
 	//! Whether the game is running or not

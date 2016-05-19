@@ -305,6 +305,8 @@ void Map::generateMap(Level level)
 			thereIsSpace = false;
 			//Places Goal in last room generated
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isGoal = true;
+			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isDoor = true;
+			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->oxygenLevel = 100;
 		}
 	}
 }

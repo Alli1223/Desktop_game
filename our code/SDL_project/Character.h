@@ -46,6 +46,8 @@ public:
 	bool canWanderInRoom(int x, int y);
 	//! Gets the oxygen level of a given room
 	int getOxygenLevel(int x, int y);
+	//! Checks whether the player has won
+	bool hasWon();
 
 	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);

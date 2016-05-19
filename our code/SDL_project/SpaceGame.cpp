@@ -14,6 +14,8 @@ SpaceGame::SpaceGame()
 	oxygenTex("Resources\\oxygen.png"),
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
+	winTexture("Resources\\oxygenBar.png"),
+	winText("Resources\\you_win.png"),
 	oxygenBar("Resources\\oxygenBar.png"),
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
@@ -152,9 +154,23 @@ void SpaceGame::run()
 				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				gameOverText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
-
 		}			
-		
+		if (characterOne.hasWon())
+		{
+			if (timer < 255)
+			{
+				timer++;
+				winTexture.alterTransparency(timer);
+				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+			}
+			else
+			{
+				winTexture.alterTransparency(255);
+				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				winText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				
+			}
+		}
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
 		// Renders the health and oxygen bar

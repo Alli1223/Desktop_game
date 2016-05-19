@@ -93,3 +93,11 @@ int Character::getOxygenLevel(int x, int y)
 	return currentRoom->grid[xCell][yCell]->oxygenLevel;
 }
 
+bool Character::hasWon()
+{
+	x = getX();
+	y = getY();
+	int xCell = x / currentRoom->getCellSize();
+	int yCell = y / currentRoom->getCellSize();
+	return currentRoom->grid[xCell][yCell]->isGoal;
+}
