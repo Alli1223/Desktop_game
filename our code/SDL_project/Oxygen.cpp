@@ -36,11 +36,9 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 {
 	int cellX = mouseX / cellSize;
-<<<<<<< .mine
+
 	int cellY = mouseY / cellSize -1;
-=======
-	int cellY = mouseY / cellSize - 1;
->>>>>>> .theirs
+
 
 	int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 	if (oxygenLevel <= 100)
@@ -63,10 +61,10 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 
 void Oxygen::update(int cellSize, Level grid)
 {
-	for (int x = 1; x < grid.grid.size(); x++)
+	for (int x = 0; x < grid.grid.size() - 1; x++)
 	{
 		cellX = grid.grid[x][x]->getX();
-		for (int y = 1; y < grid.grid.size(); y++)
+		for (int y = 0; y < grid.grid.size() - 1; y++)
 		{
 			cellY = grid.grid[y][y]->getY();
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
