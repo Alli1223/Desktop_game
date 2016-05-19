@@ -17,6 +17,7 @@ SpaceGame::SpaceGame()
 	oxygenBar("Resources\\oxygenBar.png"),
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
+	gameOverText("Resources\\game_over.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -149,7 +150,7 @@ void SpaceGame::run()
 			{
 				gameOver.alterTransparency(255);
 				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
-				healthText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				gameOverText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
 
 		}			

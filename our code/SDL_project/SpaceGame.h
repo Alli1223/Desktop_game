@@ -50,8 +50,10 @@ private:
 	Texture oxygenText;
 	//! This will display when the player fails to win	
 	Texture gameOver;
-	//! Is the texture for the goal	
-	Texture goalTexture;	
+	//!will display over the background when the player fails to win
+	Texture gameOverText;
+	//! Is the texture for the goal
+	Texture goalTexture;
 	//! Whether the game is running or not
 	bool running;
 };
