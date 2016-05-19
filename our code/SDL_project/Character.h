@@ -69,6 +69,8 @@ public:
 	double timer = 0;
 	//! Integers for the different movement speeds
 	int suffocatingSpeed = 1, wanderSpeed = 2, walkSpeed = 3, runSpeed = 3;
+	//! The three oxygen levels that are used to change alter Character's state
+	int lowOxygenThershold = 40, acceptableOxygenLevel = 50, dangeroursOxygenLevel = 20;
 	//! Window size decided by SpaceGame window size
 	int windowWidth = 800, windowHeight = 800;
 

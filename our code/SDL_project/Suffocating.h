@@ -15,8 +15,6 @@ public:
 	Suffocating();
 	//! A destructor
 	~Suffocating();
-	//! The two oxygen levels that are used to change alter Character's state
-	int acceptableOxygenLevel = 50, dangeroursOxygenLevel = 20;
 	//! The update function that checks and updates the character state.
 	/*!
 	Runs on every frame of the game to check the level and update the character state.
@@ -24,5 +22,7 @@ public:
 	pressed the keyboard since the last update
 	*/
 	void update(Character& character, const Uint8* keyboardState);
+
+	void removeHealth(Character& character);
 };
 
