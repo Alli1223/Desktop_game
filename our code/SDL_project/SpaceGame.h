@@ -48,7 +48,7 @@ private:
 	Texture oxygenBar;
 	//! Label for oxygen level
 	Texture oxygenText;
-	//! This will display when the player fails to win
+	//! This will display when the player fails to win	
 	Texture gameOver;
 	//!will display over the background when the player fails to win
 	Texture gameOverText;
