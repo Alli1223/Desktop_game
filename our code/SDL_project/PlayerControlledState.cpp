@@ -29,7 +29,7 @@ void PlayerControlledState::update(Character& character, const Uint8* keyboardSt
 	// Character enters suffocating state if the oxygenLevel is too low
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < character.lowOxygenThershold)
 	{
-		character.state = std::make_shared<Suffocating>();
+		character.state = std::make_shared<SuffocatingState>();
 		character.setSpeed(character.suffocatingSpeed);
 	}
 }

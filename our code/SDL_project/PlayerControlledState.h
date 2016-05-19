@@ -2,7 +2,7 @@
 #include "CharacterState.h"
 #include "IdleState.h"
 #include "DeadState.h"
-#include "Suffocating.h"
+#include "SuffocatingState.h"
 //! The PlayerControlledState is for when the user is pressing WASD to move the character
 /*!
 This class checks for keyboard input and updates the character's X and Y depending on what key was pressed

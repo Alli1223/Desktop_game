@@ -1,15 +1,15 @@
 #include "stdafx.h"
-#include "Suffocating.h"
+#include "SuffocatingState.h"
 
-Suffocating::Suffocating()
+SuffocatingState::SuffocatingState()
 {
 }
 
-Suffocating::~Suffocating()
+SuffocatingState::~SuffocatingState()
 {
 }
 
-void Suffocating::update(Character& character, const Uint8* keyboardState)
+void SuffocatingState::update(Character& character, const Uint8* keyboardState)
 {
 	// If character runs out of health they die
 	if (character.health <= 0)
@@ -35,7 +35,7 @@ void Suffocating::update(Character& character, const Uint8* keyboardState)
 	}
 }
 
-void Suffocating::decreaseHealth(Character& character)
+void SuffocatingState::decreaseHealth(Character& character)
 {
 		character.health = character.health - 0.4;
 }

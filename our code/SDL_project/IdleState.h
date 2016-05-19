@@ -1,7 +1,7 @@
 #pragma once
 #include"CharacterState.h"
 #include "DeadState.h"
-#include "Suffocating.h"
+#include "SuffocatingState.h"
 #include"PlayerControlledState.h"
 #include"WanderingState.h"
 

@@ -24,7 +24,7 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 	// If the oxygenLevel in a cell is beneath 50 the character changes to the Suffocating state
 	else if (character.getOxygenLevel(character.getX(), character.getY()) < character.lowOxygenThershold)
 	{
-		character.state = std::make_shared<Suffocating>();
+		character.state = std::make_shared<SuffocatingState>();
 		// Character move speed is reduced 
 		character.setSpeed(character.suffocatingSpeed); 
 	}

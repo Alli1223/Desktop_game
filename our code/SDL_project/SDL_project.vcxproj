@@ -164,7 +164,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InitialisationError.h" />
-    <ClInclude Include="Suffocating.h" />
+    <ClInclude Include="SuffocatingState.h" />
     <ClInclude Include="MainCharacter.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Oxygen.h" />
@@ -185,7 +185,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InitialisationError.cpp" />
-    <ClCompile Include="Suffocating.cpp" />
+    <ClCompile Include="SuffocatingState.cpp" />
     <ClCompile Include="MainCharacter.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Oxygen.cpp" />

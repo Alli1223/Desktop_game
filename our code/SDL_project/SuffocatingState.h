@@ -7,14 +7,14 @@
 This class alters the characters speed and health depending on the oxygen level of the cell it's currently on 
 */
 
-class Suffocating :
+class SuffocatingState :
 	public CharacterState
 {
 public:
 	//! A constructor
-	Suffocating();
+	SuffocatingState();
 	//! A destructor
-	~Suffocating();
+	~SuffocatingState();
 	//! The update function that checks and updates the character state.
 	/*!
 	Runs on every frame of the game to check the level and update the character state.
