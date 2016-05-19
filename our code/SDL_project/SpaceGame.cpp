@@ -110,7 +110,7 @@ void SpaceGame::run()
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
 				{
-					oxygenTex.alterTransparency(100 - room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 
@@ -118,16 +118,9 @@ void SpaceGame::run()
 				// Checks if the cell is a door
 				if (room.grid[x][y]->isDoor)
 				{
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					if (room.grid[x][y]->oxygenLevel == 0)
-					{
-						oxygenTex.alterTransparency(256);
-					}
-					else
-					{
-						oxygenTex.alterTransparency(100 - room.grid[x][y]->oxygenLevel);
-					}
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

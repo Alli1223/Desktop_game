@@ -33,8 +33,6 @@ public:
 	//! Sets the Cell's oxygenLevel
 	int setOxygenLevel(int newOxygenLevel) { return oxygenLevel = newOxygenLevel; }
 
-	//! Whether a room is oxygenated or not
-	bool isOxygenated = false;
 	//! Whether the cell is part of a roomm
 	bool isRoom = false;
 	//! Whether the cell is a door
