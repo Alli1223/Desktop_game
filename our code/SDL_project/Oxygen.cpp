@@ -57,8 +57,10 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 
 void Oxygen::update(int cellSize, Level grid)
 {
+	for (int i = 0; i < grid.grid.size() - 1; i++)
 	{
 		cellX = grid.grid[i][i]->getX();
+		for (int i = 0; i < grid.grid.size() - 1; i++)
 		{
 			cellY = grid.grid[i][i]->getY();
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
