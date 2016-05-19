@@ -48,7 +48,6 @@ private:
 	Texture oxygenBar;
 	//! Label for oxygen level
 	Texture oxygenText;
-	//! Game over screen
 	Texture gameOver;
 	//! For the goal sprite
 	Texture goalTexture;
