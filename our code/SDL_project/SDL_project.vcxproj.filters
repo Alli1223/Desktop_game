@@ -57,9 +57,6 @@
     <ClInclude Include="Cell.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="GameConfiguration.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="InitialisationError.h">
       <Filter>Headers</Filter>
     </ClInclude>
