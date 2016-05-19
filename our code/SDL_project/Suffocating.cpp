@@ -11,6 +11,7 @@ Suffocating::~Suffocating()
 
 void Suffocating::update(Character& character, const Uint8* keyboardState)
 {
+	// If character runs out of health they die
 	if (character.health <= 0)
 	{
 		character.state = std::make_shared<DeadState>();
@@ -25,15 +26,16 @@ void Suffocating::update(Character& character, const Uint8* keyboardState)
 	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
 	{
 		character.moveCharacter(keyboardState);
-		removeHealth(character);
+		decreaseHealth(character);
 	}
+	// Character loses health while in the sifficating state
 	else
 	{
-		removeHealth(character);
+		decreaseHealth(character);
 	}
 }
 
-void Suffocating::removeHealth(Character& character)
+void Suffocating::decreaseHealth(Character& character)
 {
 		character.health = character.health - 0.4;
 }

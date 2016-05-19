@@ -15,7 +15,8 @@ SpaceGame::SpaceGame()
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
 	oxygenBar("Resources\\oxygenBar.png"),
-	oxygenText("Resources\\oxygenText.png")
+	oxygenText("Resources\\oxygenText.png"),
+	gameOver("Resources\\health.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -60,6 +61,7 @@ void SpaceGame::run()
 	characterOne.windowWidth= WINDOW_WIDTH;
 
 	running = true;
+	double timer = 0;
 
 	while (running)
 	{
@@ -127,9 +129,21 @@ void SpaceGame::run()
 			} //End for Y loop
 		}//End for X loop
 
-		if (characterOne.isAlive)
+		if (!characterOne.isAlive)
 		{
-			characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+			if (timer < 255)
+			{				
+				timer++;
+				gameOver.alterTransparency(timer);
+				gameOver.render(renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, WINDOW_WIDTH, WINDOW_HEIGHT);
+			}
+			else
+			{
+				gameOver.alterTransparency(255);
+				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				healthText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+			}
+
 		}			
 		
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());

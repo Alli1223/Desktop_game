@@ -22,7 +22,7 @@ public:
 	pressed the keyboard since the last update
 	*/
 	void update(Character& character, const Uint8* keyboardState);
-
-	void removeHealth(Character& character);
+	//! Decreases the character's health
+	void decreaseHealth(Character& character);
 };
 
