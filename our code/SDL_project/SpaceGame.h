@@ -22,11 +22,13 @@ public:
 	static const int WINDOW_WIDTH = 800;
 	//! The window height
 	static const int WINDOW_HEIGHT = 800;
+	//! Coordinates of the mouse 
+	int mouse_X, mouse_Y;
 
 private:
-	// Pointer to the window that the game will be rendered in
+	//! Pointer to the window that the game will be rendered in
 	SDL_Window* window;
-	// Pointer to the renderer
+	//" Pointer to the renderer
 	SDL_Renderer* renderer;
 
 	// Textures for game objects

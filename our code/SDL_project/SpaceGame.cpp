@@ -88,7 +88,6 @@ void SpaceGame::run()
 		int cellSize = room.getCellSize();
 
 		// Adds and removes oxygen based on mouse click
-		int mouse_X, mouse_Y;
 		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
 			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
