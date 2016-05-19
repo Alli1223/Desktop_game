@@ -15,9 +15,9 @@ SpaceGame::SpaceGame()
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
 	oxygenBar("Resources\\oxygenBar.png"),
-	oxygenText("Resources\\oxygenText.png"),
+	oxygenText("Resources\\oxygenText.png")
 	gameOver("Resources\\health.png")
-{
+	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -124,6 +124,14 @@ void SpaceGame::run()
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				//Checks if the cell has the goal on it.
+				if (room.grid[x][y]->isGoal)
+				{
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

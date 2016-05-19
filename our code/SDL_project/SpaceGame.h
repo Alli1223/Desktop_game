@@ -48,9 +48,8 @@ private:
 	Texture oxygenBar;
 	//! Label for oxygen level
 	Texture oxygenText;
-	//! 
 	Texture gameOver;
-
+	Texture goalTexture
 	//! Whether the game is running or not
 	bool running;
 };
