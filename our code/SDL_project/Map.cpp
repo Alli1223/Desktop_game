@@ -303,6 +303,8 @@ void Map::generateMap(Level level)
 		if (roomBase  >= roomVector.size())
 		{
 			thereIsSpace = false;
+			//Places Goal in last room generated
+			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isGoal = true;
 		}
 	}
 }
