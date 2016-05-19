@@ -42,4 +42,8 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 		// Character will move in a randomly selected direction
 		character.wanderAroundRoom();
 	}
+	if (character.reachedGoal(character.getX(), character.getY()))
+	{
+		character.state = std::make_shared<ReachedGoalState>();
+	}
 }

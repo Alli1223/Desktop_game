@@ -33,5 +33,9 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<PlayerControlledState>();
 		character.moveCharacter(keyboardState);
 	}
+	if (character.reachedGoal(character.getX(), character.getY()))
+	{
+		character.state = std::make_shared<ReachedGoalState>();
+	}
 	character.setSpeed(character.walkSpeed);
 }

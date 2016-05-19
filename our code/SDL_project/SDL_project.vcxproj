@@ -164,6 +164,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InitialisationError.h" />
+    <ClInclude Include="ReachedGoalState.h" />
     <ClInclude Include="SuffocatingState.h" />
     <ClInclude Include="MainCharacter.h" />
     <ClInclude Include="Map.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InitialisationError.cpp" />
+    <ClCompile Include="ReachedGoalState.cpp" />
     <ClCompile Include="SuffocatingState.cpp" />
     <ClCompile Include="MainCharacter.cpp" />
     <ClCompile Include="Map.cpp" />

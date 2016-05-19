@@ -33,6 +33,10 @@ void SuffocatingState::update(Character& character, const Uint8* keyboardState)
 	{
 		decreaseHealth(character);
 	}
+	if (character.reachedGoal(character.getX(), character.getY()))
+	{
+		character.state = std::make_shared<ReachedGoalState>();
+	}
 }
 
 void SuffocatingState::decreaseHealth(Character& character)

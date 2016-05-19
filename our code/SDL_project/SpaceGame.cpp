@@ -155,7 +155,7 @@ void SpaceGame::run()
 				gameOverText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
 		}			
-		if (characterOne.hasWon())
+		if (characterOne.hasWon)
 		{
 			if (timer < 255)
 			{

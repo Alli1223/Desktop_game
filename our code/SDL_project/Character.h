@@ -47,7 +47,7 @@ public:
 	//! Gets the oxygen level of a given room
 	int getOxygenLevel(int x, int y);
 	//! Checks whether the player has won
-	bool hasWon();
+	bool reachedGoal(int x, int y);
 
 	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
@@ -61,6 +61,7 @@ public:
 	double health = 100;
 	//! Boolean for whether character is alive
 	bool isAlive = true; 
+	bool hasWon = false;
 	//! Integer for the random direction
 	/*!
 		Direction is used to decide the diretion the character 

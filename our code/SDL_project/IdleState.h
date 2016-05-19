@@ -4,6 +4,7 @@
 #include "SuffocatingState.h"
 #include"PlayerControlledState.h"
 #include"WanderingState.h"
+#include"ReachedGoalState.h"
 
 //!  The IdleState is for when there is no danger and the character is not controlling the player 
 /*!
