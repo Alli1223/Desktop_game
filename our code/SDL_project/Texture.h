@@ -1,8 +1,8 @@
 #pragma once
-//! The Texture class used to load and render images
+//! Loads and renders images in the window
 /*!
 This class is used for all the images in the game. It loads textures from a given file location 
-and can alter the image transparency if the image is a PNG
+and can alter the image transparency if the image is a PNG.
 */
 class Texture
 {
