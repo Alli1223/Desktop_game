@@ -89,8 +89,8 @@ void Oxygen::update(int cellSize, Level grid)
 				else if (oxygenLevel >= 0 && oxygenLevel <= 100 && oxygenReserve >= 0)
 				{
 					
-					//if oxygen level is less than the cell to the right 
-					if (cellX + 1 <= grid.grid.size() && oxygenLevel < grid.grid[cellX + 1][cellY]->getOxygenLevel())
+					//if oxygen level is less than the cell to the right and oxygen is within the limits
+					if (cellX + 1 <= grid.grid.size() && oxygenLevel < grid.grid[cellX + 1][cellY]->getOxygenLevel() && oxygenLevel >= 100 && oxygenLevel <= 0)
 					{
 						//increase the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
