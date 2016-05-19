@@ -83,7 +83,7 @@ void Oxygen::update(int cellSize, Level grid)
 				else if (oxygenLevel >= 100)
 					oxygenLevel = 100;
 
-				else if (oxygenLevel >= 0 && oxygenLevel <= 100)
+				else if (oxygenLevel >= 0 && oxygenLevel <= 100 && oxygenReserve >= 0)
 				{
 					
 					//if oxygen level is less than the cell to the right
