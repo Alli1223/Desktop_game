@@ -9,7 +9,7 @@ class CharacterState; //forward declartion I think
   needed to make the character move and react to different states.
 */
 class Character
-{//Abstract character class that the other types of character will inherit from
+{
 public:
 	//! A constructor
 	Character();
@@ -17,24 +17,24 @@ public:
 	~Character();
 		
 	//Getter methods
-	//! Function that gets the characters X value
+	//! Gets the characters X value
 	int getX() { return x; }
-	//! Function that gets the characters Y value
+	//! Gets the characters Y value
 	int getY() { return y; }
-	//! Function that gets the characters size
+	//! Gets the characters size
 	int getSize() { return size; }
-	//! Function that gets the characters speed
+	//! Gets the characters speed
 	int getSpeed() { return speed; }
 
 	//Setter methods
-	//! Function that sets the characters X value
+	//! Sets the characters X value
 	int setX(int newX) { return x = newX; }
-	//! Function that sets the characters Y value
+	//! Sets the characters Y value
 	int setY(int newY) { return y = newY; }
-	//! Function that sets the characters speed
+	//! Sets the characters current speed
 	int setSpeed(int newSpeed) { return speed = newSpeed; }
 	
-	//! Shared pointer to the Level loaded in SpaceGame */
+	//! Shared pointer to the Level loaded in SpaceGame
 	std::shared_ptr<Level> currentRoom;
 
 	//Cell checking functions
@@ -47,9 +47,9 @@ public:
 	//! Gets the oxygen level of a given room
 	int getOxygenLevel(int x, int y);
 
-	//! Moves the character depending on the player's input
+	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
-	//! If the user doesn't input a move for a given time the character will wander around
+	//! Makes the character move in a random direction to look like they're wandering
 	void wanderAroundRoom();
 	
 	//! An shared pointer to the character's state.
@@ -59,35 +59,23 @@ public:
 	double health = 100;
 	//! Boolean for whether character is alive
 	bool isAlive = true; 
-	//! Integer for the direction
+	//! Integer for the random direction
 	/*!
 		Direction is used to decide the diretion the character 
 		will move in when in the wandering state
 	*/
 	int direction = 1;
-	//! Integer to store time
-	/*! 
-		Timer is used to count how long the character has been in the Idle state
-	*/
+	//! Integer to store time spent in a state
 	double timer = 0;
 	//! Integers for the different movement speeds
-	/*!
-		The possible speeds for the character to move at
-	*/
 	int suffocatingSpeed = 1, wanderSpeed = 2, walkSpeed = 3, runSpeed = 3;
 
 private:
 	//! Integers for the character's X and Y position
 	int x = 50, y = 50;
-	//! Integer for the character size 
-	/*!
-		The size of the character sprite when rendered
-	*/
+	//! Integer for the character's size when rendered
 	int size = 50;
-	//! Integer for the characters current
-	/*!
-		The character's current speed
-	*/
+	//! Integer for the characters current speed
 	int speed = 3; 
 };
 
