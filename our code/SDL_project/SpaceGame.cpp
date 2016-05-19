@@ -15,8 +15,8 @@ SpaceGame::SpaceGame()
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
 	oxygenBar("Resources\\oxygenBar.png"),
-	oxygenText("Resources\\oxygenText.png")
-	gameOver("Resources\\health.png")
+	oxygenText("Resources\\oxygenText.png"),
+	gameOver("Resources\\health.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
