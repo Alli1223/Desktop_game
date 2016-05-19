@@ -29,5 +29,7 @@ public:
 	//! Initialising cellX and cellY
 	int cellX, cellY;
 private:
-	int oxygenReserves = 800;
+
+	//! Ammount of oxygen reserve
+	int oxygenReserves = 2000;
 };
