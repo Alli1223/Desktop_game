@@ -138,7 +138,7 @@ void SpaceGame::run()
 		healthBar.render(renderer, WINDOW_WIDTH , 25, characterOne.health * 10, 25);
  		healthBar.alterTransparency(150);
 		healthText.render(renderer, 750, 25, 73, 22);
-		oxygenBar.render(renderer, WINDOW_WIDTH, 50, 1000, 25);
+		oxygenBar.render(renderer, WINDOW_WIDTH, 50, oxygen.getOxygenReserves(), 25);
 		oxygenBar.alterTransparency(150);
 		oxygenText.render(renderer, 750, 50, 73, 22);
 		
