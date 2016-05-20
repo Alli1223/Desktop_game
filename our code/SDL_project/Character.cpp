@@ -10,48 +10,41 @@ Character::~Character()
 {
 }
 
-// Checks keyboard input and moves character accordinly
-void Character::moveCharacter(const Uint8* keyboardState)
-{	 
-	// If the W key is pressed and the character will move up as long as it won't be moved off screen
-	if (keyboardState[SDL_SCANCODE_W] && getY() - getSpeed() > 0 && isCellARoom(getX(), getY() - getSpeed()))
-	{ 
-		setY(getY() - getSpeed());
-	}
-	else if (keyboardState[SDL_SCANCODE_S] && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed())) 
-	{
-		setY(getY() + getSpeed());
-	}
-	else if (keyboardState[SDL_SCANCODE_A] && getX() + getSpeed() > 0 && isCellARoom(getX() - getSpeed(), getY()))
-	{
-		setX(getX() - getSpeed());
-	}
-	else if (keyboardState[SDL_SCANCODE_D] && getX() + getSpeed() < windowWidth && isCellARoom(getX() + getSpeed(), getY()))
-	{
-		setX(getX() + getSpeed());
-	}
-}
 
 // If the player doesn't move the character it will start to move around the room in randomly selected directions
-void Character::wanderAroundRoom()
+void Character::moveCharacter(const Uint8* keyboardState)
 { 
-	if (direction == 0 && getY() + getSpeed() < windowHeight - getSize() && canWanderInRoom(getX(), getY() + getSpeed()))
+	// checks for keyboard input if there is none it assigns a random directions
+	chooseDirection(keyboardState);
+	// if the direction will keep the charcter on screen and is part of a room 
+	if (direction == 0 && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed()))
 	{//Up
-		setY(getY() + getSpeed());		
+		if (isWandering == true && isCellADoor(getX(), getY() + getSpeed()))
+			direction = rand() % 4;
+		else
+			setY(getY() + getSpeed());		
 	}
-	else if (direction == 1 && (getY() + getSpeed()) > 0 + getSize() && canWanderInRoom(getX(), getY() - getSpeed()))
+	else if (direction == 1 && (getY() + getSpeed()) > 0 && isCellARoom(getX(), getY() - getSpeed()))
 	{//Down
-		setY(getY() - getSpeed());
+		if (isWandering == true && isCellADoor(getX(), getY() - getSpeed()))
+			direction = rand() % 4;
+		else
+			setY(getY() - getSpeed());
 	}
-	else if (direction == 2 && (getX() + getSpeed()) < windowWidth - getSize() && canWanderInRoom(getX() + getSpeed(), getY()))
+	else if (direction == 2 && (getX() + getSpeed()) < windowWidth && isCellARoom(getX() + getSpeed(), getY()))
 	{//Right
-		setX(getX() + getSpeed());
+		if (isWandering == true && isCellADoor(getX() + getSpeed(), getY()))
+			direction = rand() % 4;
+		else
+			setX(getX() + getSpeed());
 	}
-	else if (direction == 3 && (getX() - getSpeed()) > 0 && canWanderInRoom(getX() - getSpeed(), getY()))
+	else if (direction == 3 && (getX() - getSpeed()) > 0 && isCellARoom(getX() - getSpeed(), getY()))
 	{//Left
-		setX(getX() - getSpeed());
+		if (isWandering == true && isCellADoor(getX() - getSpeed(), getY()))
+			direction = rand() % 4;
+		else
+			setX(getX() - getSpeed());
 	}
-	//If the character can't move in the current direction it randomly selects a new one
 	else
 	{
 		direction = rand() % 4;
@@ -62,24 +55,20 @@ void Character::chooseDirection(const Uint8* keyboardState)
 {
 	if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_UP])
 	{
-		direction = 0;
+		direction = 1;
 	}
 	else if (keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_DOWN])
 	{
-		direction = 1;
+		direction = 0;
 	}
 	else if (keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_LEFT])
 	{
-		direction = 2;
+		direction = 3;
 	}
 	else if (keyboardState[SDL_SCANCODE_D] || keyboardState[SDL_SCANCODE_RIGHT])
 	{
-		direction = 3;
-	}
-	else
-	{
-		direction = rand() % 4;
-	}
+		direction = 2;
+	}	
 }
 
 // Checks to see if a cell is a room
@@ -96,17 +85,6 @@ bool Character::isCellADoor(int x, int y)
 	int xCell = x / currentRoom->getCellSize();
 	int yCell = y / currentRoom->getCellSize();
 	return currentRoom->grid[xCell][yCell]->isDoor;
-}
-
-// Character can only wander around a room and can't go through door
-bool Character::canWanderInRoom(int x, int y)
-{ 
-	if (isCellARoom(x, y) && !isCellADoor(x, y) )
-	{
-		return true;
-	}
-	else
-		return false;
 }
 
 // Gets the oxygen level of the specified cell

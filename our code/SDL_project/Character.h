@@ -1,6 +1,7 @@
 #pragma once
 #include"Level.h"
 
+class WanderingState;
 class CharacterState; //forward declartion I think
 
 //!  The abstract character class 
@@ -48,13 +49,13 @@ public:
 	int getOxygenLevel(int x, int y);
 	//! Checks whether the player has won
 	bool reachedGoal(int x, int y);
+	//! Checks whether the character is wandering
+	bool isWandering = false;
 
 	void chooseDirection(const Uint8* keyboardState);
 
 	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
-	//! Makes the character move in a random direction to look like they're wandering
-	void wanderAroundRoom();
 	
 	//! An shared pointer to the character's state.
 	std::shared_ptr<CharacterState> state;
