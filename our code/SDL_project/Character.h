@@ -49,6 +49,8 @@ public:
 	//! Checks whether the player has won
 	bool reachedGoal(int x, int y);
 
+	void chooseDirection(const Uint8* keyboardState);
+
 	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
 	//! Makes the character move in a random direction to look like they're wandering
