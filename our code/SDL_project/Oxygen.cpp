@@ -64,7 +64,6 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 			oxygenLevel = 100;
 		}
 	}
-
 }
 
 //Loops through the cells to balance out the oxygen values
@@ -109,7 +108,10 @@ void Oxygen::update(int cellSize, Level grid)
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
+
+						//Decrease oxygen reserves
 						setOxygenReserves(oxygenReserve - 1);
+
 						//icrease the rights cell oxygen level
 						grid.grid[cellX + 1][cellY]->setOxygenLevel(oxygenLevel + 1);
 					}
@@ -124,7 +126,6 @@ void Oxygen::update(int cellSize, Level grid)
 						
 						//decrease the lefts cell oxygen level
 						grid.grid[cellX - 1][cellY]->setOxygenLevel(oxygenLevel - 1);
-
 					}
 
 					//if oxygen level is greater than the cell to the left and does not exceed the size of the grid
@@ -132,7 +133,10 @@ void Oxygen::update(int cellSize, Level grid)
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
+
+						//Decrease oxygen reserves
 						setOxygenReserves(oxygenReserve - 1);
+
 						//icrease the rights cell oxygen level
 						grid.grid[cellX - 1][cellY]->setOxygenLevel(oxygenLevel + 1);
 					}
@@ -154,7 +158,10 @@ void Oxygen::update(int cellSize, Level grid)
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
+
+						//Decrease oxygen reserves
 						setOxygenReserves(oxygenReserve - 1);
+
 						//increase the ceell below oxygen level
 						grid.grid[cellX][cellY + 1]->setOxygenLevel(oxygenLevel + 1);
 					}
@@ -175,7 +182,10 @@ void Oxygen::update(int cellSize, Level grid)
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
+
+						//Decrease oxygen reserves
 						setOxygenReserves(oxygenReserve - 1);
+
 						//increase the ceel aboves oxygen level
 						grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel + 1);
 					}
