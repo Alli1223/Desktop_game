@@ -22,9 +22,9 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 		character.isAlive = false;
 	}
 	// If the oxygenLevel in a cell is beneath 50 the character changes to the Suffocating state
-	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
+	else if (character.getOxygenLevel(character.getX(), character.getY()) < character.lowOxygenThershold)
 	{
-		character.state = std::make_shared<Suffocating>();
+		character.state = std::make_shared<SuffocatingState>();
 		// Character move speed is reduced 
 		character.setSpeed(character.suffocatingSpeed); 
 	}
@@ -41,5 +41,10 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<WanderingState>();
 		// Character will move in a randomly selected direction
 		character.wanderAroundRoom();
+	}
+	// If the character has reached the goal the game ends
+	if (character.reachedGoal(character.getX(), character.getY()))
+	{
+		character.state = std::make_shared<ReachedGoalState>();
 	}
 }

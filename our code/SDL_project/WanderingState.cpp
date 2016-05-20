@@ -11,6 +11,7 @@ WanderingState::~WanderingState()
 
 void WanderingState::update(Character& character, const Uint8* keyboardState)
 {
+	character.setSpeed(character.wanderSpeed);
 	// Moves character in randomly chosen direction
 	character.wanderAroundRoom();	
 
@@ -20,9 +21,9 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<DeadState>();
 	}
 	// If the oxygen goes beneath 50 the character speed reduces
-	else if (character.getOxygenLevel(character.getX(), character.getY()) < 50)
+	else if (character.getOxygenLevel(character.getX(), character.getY()) < 40)
 	{
-		character.state = std::make_shared<Suffocating>();
+		character.state = std::make_shared<SuffocatingState>();
 		//Change to have a low oxygen speed
 		character.setSpeed(character.suffocatingSpeed);
 	}
@@ -32,4 +33,10 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 		character.state = std::make_shared<PlayerControlledState>();
 		character.moveCharacter(keyboardState);
 	}
+	// If the character has reached the goal the game ends
+	if (character.reachedGoal(character.getX(), character.getY()))
+	{
+		character.state = std::make_shared<ReachedGoalState>();
+	}
+	character.setSpeed(character.walkSpeed);
 }
