@@ -11,12 +11,12 @@ SuffocatingState::~SuffocatingState()
 
 void SuffocatingState::update(Character& character, const Uint8* keyboardState)
 {
-	// If character runs out of health they die
+	// If character health reaches 0 they die
 	if (character.health <= 0)
 	{
 		character.state = std::make_shared<DeadState>();
 	}	
-	// If the oxygenLevel reaches acceptableOxygenLevel the character changes to the Idle state and speeds up again 
+	// If the oxygenLevel reaches acceptableOxygenLevel the character changes to the Idle state and moving speed increases
 	else if (character.getOxygenLevel(character.getX(), character.getY()) > character.acceptableOxygenLevel)
 	{
 		character.state = std::make_shared<IdleState>();
@@ -28,7 +28,7 @@ void SuffocatingState::update(Character& character, const Uint8* keyboardState)
 		character.moveCharacter(keyboardState);
 		decreaseHealth(character);
 	}
-	// Character loses health while in the sifficating state
+	// Character loses health while in the suffocating state
 	else
 	{
 		decreaseHealth(character);

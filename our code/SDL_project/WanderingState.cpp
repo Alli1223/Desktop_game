@@ -20,11 +20,10 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 	{
 		character.state = std::make_shared<DeadState>();
 	}
-	// If the oxygen goes beneath 50 the character speed reduces
-	else if (character.getOxygenLevel(character.getX(), character.getY()) < 40)
+	// If the oxygen goes beneath acceptableOxygenLevel the character speed reduces
+	else if (character.getOxygenLevel(character.getX(), character.getY()) < character.acceptableOxygenLevel)
 	{
 		character.state = std::make_shared<SuffocatingState>();
-		//Change to have a low oxygen speed
 		character.setSpeed(character.suffocatingSpeed);
 	}
 	//If the user presses WASD the character will move accordingly
