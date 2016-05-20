@@ -71,10 +71,10 @@ void Oxygen::update(int cellSize, Level grid)
 {
 	for (int x = 0; x < grid.grid.size() - 1; x++)
 	{
-		cellX = grid.grid[x][x]->getX();
+		cellX = x;
 		for (int y = 0; y < grid.grid.size() - 1; y++)
 		{
-			cellY = grid.grid[y][y]->getY();
+			cellY = y;
 
 			//OxygenLevel is set to the current cell in the loop
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
