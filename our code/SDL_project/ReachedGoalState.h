@@ -1,21 +1,20 @@
 #pragma once
 #include "CharacterState.h"
-#include "IdleState.h"
-#include "DeadState.h"
-#include "SuffocatingState.h"
-//! The PlayerControlledState is for when the user is pressing WASD to move the character
+//! The character enters this class once they have reached the end goal
 /*!
-This class checks for keyboard input and updates the character's X and Y depending on what key was pressed
+This class triggers the You Won screen and doesn't let the character move. 
+Once the character has entered this state it can't leave it.
 */
-class PlayerControlledState :
+
+class ReachedGoalState :
 	public CharacterState
 {
-	
 public:
 	//! A constructor
-	PlayerControlledState();
+	ReachedGoalState();
 	//! A destructor
-	~PlayerControlledState();
+	~ReachedGoalState();
+
 	//! The update function that checks and updates the character state.
 	/*!
 	Runs on every frame of the game to check the level and update the character state.
