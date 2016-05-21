@@ -16,7 +16,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 { 
 	// checks for keyboard input if there is none it assigns a random directions
 	chooseDirection(keyboardState);
-	// if the direction will keep the charcter on screen and is part of a room 
+	// if the direction will keep the character on screen and is part of a room 
 	if (direction == 0 && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed()))
 	{//Up
 		if (isWandering == true && isCellADoor(getX(), getY() + getSpeed()))
@@ -68,7 +68,11 @@ void Character::chooseDirection(const Uint8* keyboardState)
 	else if (keyboardState[SDL_SCANCODE_D] || keyboardState[SDL_SCANCODE_RIGHT])
 	{
 		direction = 2;
-	}	
+	}
+	else
+	{
+		direction = 4;
+	}
 }
 
 // Checks to see if a cell is a room
