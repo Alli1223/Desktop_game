@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "MoveDirection.h"
+#include "KeyBoardInput.h"
 
 
 KeyboardInput::KeyboardInput()

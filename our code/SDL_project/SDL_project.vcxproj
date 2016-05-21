@@ -164,7 +164,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InitialisationError.h" />
-    <ClInclude Include="MoveDirection.h" />
+    <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="ReachedGoalState.h" />
     <ClInclude Include="SuffocatingState.h" />
     <ClInclude Include="MainCharacter.h" />
@@ -187,7 +187,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InitialisationError.cpp" />
-    <ClCompile Include="MoveDirection.cpp" />
+    <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="ReachedGoalState.cpp" />
     <ClCompile Include="SuffocatingState.cpp" />
     <ClCompile Include="MainCharacter.cpp" />

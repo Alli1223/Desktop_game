@@ -55,7 +55,7 @@
     <ClCompile Include="ReachedGoalState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="MoveDirection.cpp">
+    <ClCompile Include="KeyboardInput.cpp">
       <Filter>Source Files\Character classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,7 +120,7 @@
     <ClInclude Include="ReachedGoalState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
-    <ClInclude Include="MoveDirection.h">
+    <ClInclude Include="KeyboardInput.h">
       <Filter>Headers\Character Classes</Filter>
     </ClInclude>
   </ItemGroup>
