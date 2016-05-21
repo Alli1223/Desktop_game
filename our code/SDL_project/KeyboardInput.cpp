@@ -2,15 +2,15 @@
 #include "MoveDirection.h"
 
 
-MoveDirection::MoveDirection()
+KeyboardInput::KeyboardInput()
 {
 }
 
 
-MoveDirection::~MoveDirection()
+KeyboardInput::~KeyboardInput()
 {
 }
-bool MoveDirection::validKeyPress(Character& character, const SDL_Scancode keyboardState)
+bool KeyboardInput::validKeyPress(Character& character, const SDL_Scancode keyboardState)
 {
 	if (keyboardState == DEFAULT_UP || keyboardState == ALTERNATE_UP)
 	{

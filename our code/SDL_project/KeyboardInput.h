@@ -1,10 +1,10 @@
 #pragma once
 #include"Character.h"
-class MoveDirection
+class KeyboardInput
 {
 public:
-	MoveDirection();
-	~MoveDirection();
+	KeyboardInput();
+	~KeyboardInput();
 	
 	const SDL_Scancode DEFAULT_UP = SDL_SCANCODE_W;
 	const SDL_Scancode DEFAULT_DOWN = SDL_SCANCODE_S;
