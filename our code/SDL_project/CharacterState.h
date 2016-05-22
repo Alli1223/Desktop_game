@@ -2,7 +2,7 @@
 #include"Character.h"
 #include"Level.h"
 
-//!  The character state class. Used to store the character's current state
+//!  The character state class is used to store the character's current state
 /*!
 This class is the class all the other states inherit from. It is used in the Character to store the current state
 */

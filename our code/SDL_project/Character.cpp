@@ -16,41 +16,50 @@ void Character::moveCharacter(const Uint8* keyboardState)
 { 
 	// checks for keyboard input if there is none it assigns a random directions
 	chooseDirection(keyboardState);
-	// if the direction will keep the charcter on screen and is part of a room 
+	// if the direction will keep the charcter on screen and is part of a room move Character down
 	if (direction == 0 && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed()))
-	{//Up
+	{
+		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX(), getY() + getSpeed()))
 			direction = rand() % 4;
 		else
 			setY(getY() + getSpeed());		
 	}
+	// if the direction will keep the charcter on screen and is part of a room move Character up
 	else if (direction == 1 && (getY() + getSpeed()) > 0 && isCellARoom(getX(), getY() - getSpeed()))
-	{//Down
+	{
+		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX(), getY() - getSpeed()))
 			direction = rand() % 4;
 		else
 			setY(getY() - getSpeed());
 	}
+	// if the direction will keep the charcter on screen and is part of a room move Character right
 	else if (direction == 2 && (getX() + getSpeed()) < windowWidth && isCellARoom(getX() + getSpeed(), getY()))
-	{//Right
+	{
+		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX() + getSpeed(), getY()))
 			direction = rand() % 4;
 		else
 			setX(getX() + getSpeed());
 	}
+	// if the direction will keep the charcter on screen and is part of a room move Character left
 	else if (direction == 3 && (getX() - getSpeed()) > 0 && isCellARoom(getX() - getSpeed(), getY()))
-	{//Left
+	{
+		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX() - getSpeed(), getY()))
 			direction = rand() % 4;
 		else
 			setX(getX() - getSpeed());
 	}
+	// If Character cannot move in current direction randomly choose a new one
 	else
 	{
 		direction = rand() % 4;
 	}
 }
 
+// Sets the direction based on keyboard input
 void Character::chooseDirection(const Uint8* keyboardState)
 {
 	if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_UP])
@@ -95,6 +104,7 @@ int Character::getOxygenLevel(int x, int y)
 	return currentRoom->grid[xCell][yCell]->oxygenLevel;
 }
 
+// Checks whether the cell is the goal cell
 bool Character::reachedGoal(int x, int y)
 {
 	int xCell = x / currentRoom->getCellSize();

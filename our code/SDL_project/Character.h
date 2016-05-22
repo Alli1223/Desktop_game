@@ -2,7 +2,7 @@
 #include"Level.h"
 
 class WanderingState;
-class CharacterState; //forward declartion I think
+class CharacterState;
 
 //!  The abstract character class 
 /*!
@@ -34,9 +34,6 @@ public:
 	int setY(int newY) { return y = newY; }
 	//! Sets the characters current speed
 	int setSpeed(int newSpeed) { return speed = newSpeed; }
-	
-	//! Shared pointer to the Level loaded in SpaceGame
-	std::shared_ptr<Level> currentRoom;
 
 	//Cell checking functions
 	//! Checks whether a cell is a room
@@ -49,14 +46,15 @@ public:
 	bool reachedGoal(int x, int y);
 	//! Checks whether the character is wandering
 	bool isWandering = false;
-
+	// Checks the keyboard input and sets a direction based on it
 	void chooseDirection(const Uint8* keyboardState);
-
 	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
 	
 	//! An shared pointer to the character's state.
 	std::shared_ptr<CharacterState> state;
+	//! Shared pointer to the Level loaded in SpaceGame
+	std::shared_ptr<Level> currentRoom;
 	
 	//! A double for the character's health
 	double health = 100;
