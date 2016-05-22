@@ -172,13 +172,13 @@ void Map::generateMap(Level level)
 	{
 		//loop that trys all directions
 		std::random_shuffle(randomDirections.begin(), randomDirections.end());
-		for (int DirectionIterator = 0; DirectionIterator < randomDirections.size(); DirectionIterator++)																//loop for adding a room
+		for (int DirectionIterator = 0; DirectionIterator < randomDirections.size(); DirectionIterator++)
 		{
 			int direction = randomDirections[DirectionIterator];
 
 			//loop that trys all sizes
 			std::random_shuffle(randomSizes.begin(), randomSizes.end());
-			for (int sizeIterator = 0; sizeIterator < randomSizes.size(); sizeIterator++)																//loop for adding a room
+			for (int sizeIterator = 0; sizeIterator < randomSizes.size(); sizeIterator++)
 			{
 				int size = randomSizes[sizeIterator];
 
