@@ -36,7 +36,8 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 	else if (timer > END_IDLE_TIME)
 	{ 
 		character.state = std::make_shared<WanderingState>();
-		character.wanderAroundRoom();
+		character.isWandering = true;
+		character.moveCharacter(keyboardState);
 	}
 	// If the character has reached the goal the game ends
 	if (character.reachedGoal(character.getX(), character.getY()))
