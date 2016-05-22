@@ -55,9 +55,6 @@
     <ClCompile Include="ReachedGoalState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardInput.cpp">
-      <Filter>Source Files\Character classes</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
@@ -119,9 +116,6 @@
     </ClInclude>
     <ClInclude Include="ReachedGoalState.h">
       <Filter>Headers\States</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardInput.h">
-      <Filter>Headers\Character Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
