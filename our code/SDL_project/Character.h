@@ -43,8 +43,6 @@ public:
 	bool isCellARoom(int x, int y);
 	//! Checks whether a cell is a door
 	bool isCellADoor(int x, int y);
-	//! Checks whether a cell is a room but not a door
-	bool canWanderInRoom(int x, int y);
 	//! Gets the oxygen level of a given room
 	int getOxygenLevel(int x, int y);
 	//! Checks whether the player has won
