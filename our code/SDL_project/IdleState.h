@@ -6,9 +6,9 @@
 #include"WanderingState.h"
 #include"ReachedGoalState.h"
 
-//!  The IdleState is for when there is no danger and the character is not controlling the player 
+//!  The IdleState is for when there is no danger and the player is not controlling the character 
 /*!
-This class is inherits from the CharacterState class.  The character does not do anything in the IdleState it just checks
+This class inherits from the CharacterState class.  The character does not do anything in the IdleState it just checks
 for when it should update to another state
 */
 
@@ -20,17 +20,17 @@ public:
 	//! A destructor
 	~IdleState();
 
-	
-	// Used to measure how long the character has been in the Idle state
-	double timer = 0;
 	//! Used to add to the timer
 	double FRAME_RATE = 60;
 	//! The update function that checks and updates the character state.
 	/*!
 	Runs on every frame of the game to check the level and update the character state.
-	It takes in the character which needs it's state updating and keyboardState to check whether the user has
+	It takes in the Character which needs it's state updating and keyboardState to check whether the user has
 	pressed the keyboard since the last update
 	*/
 	void update(Character& character, const Uint8* keyboardState);
+private:
+	//! Maxmimum time that the character should be in the Idle state
+	int END_IDLE_TIME = 4;
 };
 
