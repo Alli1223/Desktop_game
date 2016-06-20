@@ -1,10 +1,12 @@
 #pragma once
+#include "Level.h"
 class Fire
 {
 public:
 	Fire();
 	~Fire();
-	void update();
+
+	void update(Level grid, int cellX, int cellY);
 
 	void spawn();
 

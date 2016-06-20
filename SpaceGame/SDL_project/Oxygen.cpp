@@ -66,16 +66,17 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 }
 
 //Loops through the cells to balance out the oxygen values
-void Oxygen::update(int cellSize, Level grid)
+void Oxygen::update(Level grid)
 {
+	Fire fire;
 	for (int x = 0; x < grid.grid.size() - 1; x++)
 	{
 		cellX = x;
 		for (int y = 0; y < grid.grid.size() - 1; y++)
 		{
 			cellY = y;
-
-			Fire::update;
+			
+			fire.update(grid, cellX, cellY);
 
 			//OxygenLevel is set to the current cell in the loop
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
