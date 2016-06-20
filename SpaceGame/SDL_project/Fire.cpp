@@ -28,22 +28,24 @@ void Fire::spawn(Level grid, int cellX, int cellY)
 
 void Fire::fireSpread(Level grid, int cellX, int cellY)
 {
-	{
-		
-		if (grid.grid[cellX][cellY]->isOnFire == true)
-		{
-			for (int i = 3; i >= 0; i--)
-			{
-				int randomDirection = rand() % (0 - 2) - 1;
-				if (grid.grid[cellX + (randomDirection)][cellY + (randomDirection)]->isRoom && grid.grid[cellX + (randomDirection)][cellY + (randomDirection)]->isDoor == false)
-				{
-					grid.grid[cellX + (randomDirection)][cellY + (randomDirection)]->isOnFire = true;
-				}
 
+	if (grid.grid[cellX][cellY]->isOnFire == true)
+	{
+
+		int randomDirectionX = rand() % (0 - 2) - 1;
+		int randomDirectionY = rand() % (0 - 2) - 1;
+		if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isRoom && grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isDoor == false)
+		{
+			if (cellX + (randomDirectionX) +1 <= grid.grid.size() && cellX + (randomDirectionX) -1 >= 0 && cellY + (randomDirectionY)+1 <= grid.grid.size() && cellY + (randomDirectionY)-1 >= 0)
+			{
+				grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOnFire = true;
+				grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->oxygenLevel = 0;
 			}
 		}
 	}
 }
+
+
 	
 
 
