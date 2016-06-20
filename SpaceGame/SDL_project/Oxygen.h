@@ -31,5 +31,5 @@ public:
 private:
 
 	//! To store oxygen reserve that user can place
-	int oxygenReserves = 2000;
+	int oxygenReserves = 4000;
 };

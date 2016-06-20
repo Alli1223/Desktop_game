@@ -21,7 +21,7 @@ SpaceGame::SpaceGame()
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
 	gameOverText("Resources\\game_over.png"),
-	fireTexture("Resources\\fire.png"),
+	fireTexture("Resources\\fire2.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -109,6 +109,7 @@ void SpaceGame::run()
 		}
 		oxygen.update(room);
 		
+		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
 			for (int y = 0; y < room.grid[x].size(); y++)
@@ -119,10 +120,11 @@ void SpaceGame::run()
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
 				{
+					
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-
+					
 				}
 				// Checks if the cell is a door
 				if (room.grid[x][y]->isDoor)
@@ -139,10 +141,10 @@ void SpaceGame::run()
 				}
 				if (room.grid[x][y]->isOnFire)
 				{
-					//oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(50);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					fireTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-					//oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

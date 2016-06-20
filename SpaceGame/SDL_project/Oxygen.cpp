@@ -69,27 +69,34 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 void Oxygen::update(Level grid)
 {
 	Fire fire;
+	
 	for (int x = 0; x < grid.grid.size() - 1; x++)
 	{
 		cellX = x;
 		for (int y = 0; y < grid.grid.size() - 1; y++)
 		{
 			cellY = y;
-			
-			fire.update(grid, cellX, cellY);
 
 			//OxygenLevel is set to the current cell in the loop
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 			int oxygenReserve = getOxygenReserves();
 
+			
 			//Loops through the rooms
 			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isDoor)
 			{
+				
+				
+				fire.spawn(grid, cellX, cellY);
+				fire.fireSpread(grid, cellX, cellY);
+
 				//Checks to make sure that the oxygenLevel is within the max/min levels
 				if (oxygenLevel <= 0)
 					oxygenLevel = 0;
 				else if (oxygenLevel >= 100)
 					oxygenLevel = 100;
+
+				
 
 				else if (oxygenLevel >= 0 && oxygenLevel <= 100 && oxygenReserve >= 0)
 				{

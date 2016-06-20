@@ -13,27 +13,40 @@ Fire::~Fire()
 {
 }
 
-void Fire::spawn()
+void Fire::spawn(Level grid, int cellX, int cellY)
 {
+	if (fireSpawnChance <= 0)
+	{
+		fireSpawnChance = 20;
+		grid.grid[cellX][cellY]->isOnFire = true;
+		grid.grid[cellX][cellY]->oxygenLevel = 0;
+	}
+	else
+		fireSpawnChance--;
 
 }
 
-void Fire::update(Level grid, int cellX, int cellY)
+void Fire::fireSpread(Level grid, int cellX, int cellY)
 {
-	
 	if (fireSpawnChance <= 0)
 	{
-		fireSpawnChance = 60;
-
-		//if the cell is a room and contains oxygen
-		if (grid.grid[cellX][cellY]->oxygenLevel > 0)
+		
+		if (grid.grid[cellX][cellY]->isOnFire == true)
 		{
-			grid.grid[cellX][cellY]->isOnFire = true;
+			for (int i = 3; i >= 0; i--)
+			{
+				int randomDirection = rand() % (0 - 2) - 1;
+				if (grid.grid[cellX + (randomDirection)][cellY + (randomDirection)]->isRoom && grid.grid[cellX + (randomDirection)][cellY + (randomDirection)]->isDoor == false)
+				{
+					grid.grid[cellX + (randomDirection)][cellY + (randomDirection)]->isOnFire = true;
+				}
+
+			}
 		}
-
-
 	}
-
 	else
 		fireSpawnChance--;
 }
+	
+
+
