@@ -28,7 +28,6 @@ void Fire::spawn(Level grid, int cellX, int cellY)
 
 void Fire::fireSpread(Level grid, int cellX, int cellY)
 {
-	if (fireSpawnChance <= 0)
 	{
 		
 		if (grid.grid[cellX][cellY]->isOnFire == true)
@@ -44,8 +43,6 @@ void Fire::fireSpread(Level grid, int cellX, int cellY)
 			}
 		}
 	}
-	else
-		fireSpawnChance--;
 }
 	
 
