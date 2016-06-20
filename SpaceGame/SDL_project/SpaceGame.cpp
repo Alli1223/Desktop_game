@@ -136,6 +136,10 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+				if (room.grid[x][y]->isOnFire)
+				{
+
+				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop

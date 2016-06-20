@@ -4,6 +4,7 @@
 #include "MainCharacter.h"
 #include "Level.h"
 #include "Map.h"
+#include "Fire.h"
 
 
 Oxygen::Oxygen()
@@ -73,6 +74,8 @@ void Oxygen::update(int cellSize, Level grid)
 		for (int y = 0; y < grid.grid.size() - 1; y++)
 		{
 			cellY = y;
+
+			Fire::update;
 
 			//OxygenLevel is set to the current cell in the loop
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();

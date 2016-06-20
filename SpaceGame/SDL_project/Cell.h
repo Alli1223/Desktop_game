@@ -41,6 +41,8 @@ public:
 	bool isGoal = false;
 	//! The oxygenLevel of the cell
 	int oxygenLevel = 100;
+	//! Whether the cell is on fire
+	bool isOnFire = false;
 
 private:
 	//! The Cells X and Y values
