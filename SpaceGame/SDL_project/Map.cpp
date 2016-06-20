@@ -127,7 +127,11 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 	}
 	else
 	{
-		oxygenLevel = 0;
+		int randomRoomChance = rand() % (0 - oxygenatedRoomChance);
+		if (randomRoomChance == 0)
+			oxygenLevel = 100;
+		else
+			oxygenLevel = 0;
 	}
 
 	//Gives all the cells in the room it's properties

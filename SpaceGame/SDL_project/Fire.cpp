@@ -42,8 +42,10 @@ void Fire::fireSpread(Level grid, int cellX, int cellY)
 			//Is room and not a door
 			if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isRoom && grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isDoor == false)
 			{
+				//The cell has oxygen
 				if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->getOxygenLevel() > 0)
 				{
+					//random fire spread rate
 					int randomSpawnChance = rand() % (0 - 50);
 					if (randomSpawnChance <= 1)
 					{

@@ -141,10 +141,10 @@ void SpaceGame::run()
 				}
 				if (room.grid[x][y]->isOnFire)
 				{
-					oxygenTex.alterTransparency(50);
+					fireTexture.alterTransparency(95);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					fireTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
