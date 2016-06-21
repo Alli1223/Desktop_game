@@ -18,6 +18,40 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 	
 	//RoomDesign::checkCenterCell(room, cellX, cellY);
 
+	//sets the top and cell edges
+	if (cellX == 0 && room.grid[cellX][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 6;
+	}
+
+	if (cellY == 0 && room.grid[cellX][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 0;
+	}
+	
+	//Sets the top row to curved edges
+	if (cellX >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX - 1][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 7;
+	}
+	if (cellX >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX + 1][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 1;
+	}
+	//sets the left edge to curved edges
+	if (cellY >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX][cellY - 1]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 7;
+	}
+	if (cellY >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX][cellY + 1]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 5;
+	}
+	if (cellX == 1 && cellY == 1)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 8;
+	}
+
 
 	
 	if (cellX + 1 <= room.grid.size() && cellX - 1 >= room.grid.empty() && cellY + 1 <= room.grid.size() && cellY - 1 >= room.grid.empty())

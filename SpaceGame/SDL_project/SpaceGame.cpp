@@ -199,6 +199,10 @@ void SpaceGame::run()
 				{
 					topLeftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+				if (room.grid[x][y]->cellOrientation == 8)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
