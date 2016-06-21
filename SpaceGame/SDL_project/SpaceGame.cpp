@@ -169,12 +169,17 @@ void SpaceGame::run()
 				gameOver.render(renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
 			// Displays text
-			else
+			else if (timer >= 255 && timer < 300)
 			{
+				timer++;
 				gameOver.alterTransparency(255);
 				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				gameOverText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				
 			}
+			//starts a new game
+			else
+				SpaceGame::run();
 		}
 		// If the character has reached the end the You Won screen is displayed
 		if (characterOne.hasWon)
@@ -187,13 +192,15 @@ void SpaceGame::run()
 				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
 			// Displays text
-			else
+			else if(timer >= 255 && timer < 300)
 			{
+				timer++;
 				winTexture.alterTransparency(255);
 				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				winText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
-				
 			}
+			else
+				SpaceGame::run();
 		}
 		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		

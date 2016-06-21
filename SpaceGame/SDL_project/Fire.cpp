@@ -13,7 +13,7 @@ Fire::~Fire()
 {
 }
 
-void Fire::spawn(Level grid, int cellX, int cellY)
+void Fire::spawn(Level& grid, int cellX, int cellY)
 {
 	if (fireSpawnChance <= 0)
 	{
@@ -26,7 +26,7 @@ void Fire::spawn(Level grid, int cellX, int cellY)
 
 }
 
-void Fire::fireSpread(Level grid, int cellX, int cellY)
+void Fire::fireSpread(Level& grid, int cellX, int cellY)
 {
 
 	if (grid.grid[cellX][cellY]->isOnFire == true)
