@@ -7,6 +7,7 @@
 #include "IdleState.h"
 #include "Oxygen.h"
 #include "Fire.h"
+#include "RoomDesign.h"
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\Room_Cell1.png"),
@@ -61,6 +62,7 @@ void SpaceGame::run()
 	
 	Oxygen oxygen;
 	Fire fire;
+	RoomDesign designroom;
 	
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
@@ -125,6 +127,8 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize /2;
 				int yPos = y * cellSize + cellSize /2;
 				
+				
+				
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
 				{
@@ -157,10 +161,8 @@ void SpaceGame::run()
 				// Renders the hullBreach
 				if (room.grid[x][y]->isHullBreach)
 				{
-					
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

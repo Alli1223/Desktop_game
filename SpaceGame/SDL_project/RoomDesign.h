@@ -2,14 +2,14 @@
 #include "Level.h"
 #include "Cell.h"
 
-class HullBreach
+class RoomDesign
 {
 public:
-	HullBreach();
-	~HullBreach();
+	RoomDesign();
+	~RoomDesign();
 
-	void roomDesign(Level& grid, int cellX, int cellY);
+	void designRoom(Level& grid, int cellX, int cellY);
 
-	
+	bool checkCenterCell(Level& room, int cellX, int cellY);
 };
 
