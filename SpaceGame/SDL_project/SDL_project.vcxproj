@@ -162,6 +162,7 @@
     <ClInclude Include="CharacterState.h" />
     <ClInclude Include="DeadState.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="HullBreach.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InitialisationError.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="CharacterState.cpp" />
     <ClCompile Include="DeadState.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="HullBreach.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InitialisationError.cpp" />

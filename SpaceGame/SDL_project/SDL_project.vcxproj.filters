@@ -58,6 +58,7 @@
     <ClCompile Include="Fire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HullBreach.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
@@ -123,6 +124,7 @@
     <ClInclude Include="Fire.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="HullBreach.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />
