@@ -28,6 +28,7 @@ SpaceGame::SpaceGame()
 	fireTexture("Resources\\fire2.png"),
 	backgroundTexture("Resources\\background1.png"),
 	hullBreachTexture("Resources\\roomSprites\\hullBreach.png"),
+	deathAnim("Resources\\deathAnim.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -133,7 +134,7 @@ void SpaceGame::run()
 				
 				//opens the door when a player gets near
 				doorcontroller.OpenDoor(room, xPos, yPos, characterOne);
-				fire.spawn(room, x, y);
+				
 
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
@@ -235,6 +236,7 @@ void SpaceGame::run()
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				
+				
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
@@ -252,6 +254,19 @@ void SpaceGame::run()
 		 // If the character has died the game over screen is displayed
 		if (!characterOne.isAlive)
 		{
+			SDL_Surface * image = IMG_Load("Resources\\deathAnim.png");
+			SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
+
+			Uint32 ticks = SDL_GetTicks();
+			Uint32 sprite = (ticks / 1000) % 6;
+			
+			SDL_Rect srcrect = { sprite * 8, 0, 8, 48,  };
+			SDL_Rect dstrect = { characterOne.getX() - (characterOne.getSize() / 2), characterOne.getY() - (characterOne.getSize() / 2), characterOne.getSize(), characterOne.getSize() };
+
+			SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+			
+			
+
 			// Fades in a red background
 			if (timer < 255)
 			{				

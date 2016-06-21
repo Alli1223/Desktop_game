@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "Level.h"
 #include "Map.h"
+#include "SDL2_image-2.0.1\include\SDL_image.h"
 //! The main class
 /*!
 This is the main class where the game is laoded and run. 
@@ -65,6 +66,8 @@ private:
 	Texture backgroundTexture;
 	//! Is the texture for hull breaches
 	Texture hullBreachTexture;
+	//! Is the death animation texture
+	Texture deathAnim;
 
 	//! Are the textures for the differnt sides of the room cells
 	Texture topRoomCell;
