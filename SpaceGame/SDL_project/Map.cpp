@@ -153,9 +153,9 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 			// Only spawn if it is not the spawn room
 			if (randomRoomChance == 0 && !roomVector.empty())
 			{
-				//room[x][y]->isHullBreach = true;
+				room[x][y]->isHullBreach = true;
 				room[x][y]->oxygenLevel = oxygenLevel = 0;
-				//roomdesign.designRoom(level, x, y);
+				
 			}
 			else
 				room[x][y]->isHullBreach = false;

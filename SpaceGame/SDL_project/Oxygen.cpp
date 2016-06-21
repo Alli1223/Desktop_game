@@ -52,6 +52,8 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 
 	//lower the value of oxygen level
 	oxygenLevel--;
+	int oxygenReserve = getOxygenReserves();
+	oxygenReserve++;
 	grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 
 	//oxygen won't go over the min value
