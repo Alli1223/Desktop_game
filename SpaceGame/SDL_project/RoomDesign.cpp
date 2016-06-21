@@ -20,7 +20,7 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 
 
 	
-	if (cellX +1 <= room.grid.size() && cellX -1 >= 0 && cellY +1 <= room.grid.size() && cellY -1 >= 0)
+	if (cellX + 1 <= room.grid.size() && cellX - 1 >= 0 && cellY + 1 <= room.grid.size() && cellY - 1 >= 0)
 	{
 		//top
 		if (room.grid[cellX][cellY]->isRoom)
@@ -31,7 +31,7 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (!room.grid[cellX][cellY - 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->cellOrientation = 1;
+						room.grid[cellX][cellY]->cellOrientation = 0;
 					}
 				}
 			}
@@ -47,30 +47,126 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 			{
 				if (!room.grid[cellX][cellY - 1]->isRoom)
 				{
-					if(room.grid[cellX][cellY + 1]->isRoom)
+					if (room.grid[cellX][cellY + 1]->isRoom)
 					{
-							room.grid[cellX][cellY]->isHullBreach = true;
-							
+						room.grid[cellX][cellY]->cellOrientation = 1;
 					}
 				}
 			}
-			
-		}
-	}
 
+		}
 		//right
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (!room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						room.grid[cellX][cellY]->cellOrientation = 2;
+					}
+				}
+			}
+
+		}
 
 		//right and bottom
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (!room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (!room.grid[cellX][cellY + 1]->isRoom)
+					{
+						room.grid[cellX][cellY]->cellOrientation = 3;
+					}
+				}
+			}
+
+		}
 
 		//bottom
 
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (!room.grid[cellX][cellY + 1]->isRoom)
+					{
+						room.grid[cellX][cellY]->cellOrientation = 4;
+					}
+				}
+			}
+
+		}
+
 		//bottom and left
+
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (!room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if(!room.grid[cellX - 1][cellY]->isRoom)
+						{ 
+							room.grid[cellX][cellY]->cellOrientation = 5;
+						}
+						
+					}
+				}
+			}
+
+		}
 
 		//left
 
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (!room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 6;
+						}
+					}
+				}
+			}
+
+		}
+
 		//left and top
 
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (!room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (!room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 7;
+						}
+					}
+				}
+			}
+
+		}
+
 		//center
+	}
 }
 
 

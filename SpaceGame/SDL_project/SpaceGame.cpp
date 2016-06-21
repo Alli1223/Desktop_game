@@ -10,8 +10,8 @@
 #include "RoomDesign.h"
 
 SpaceGame::SpaceGame()
-	: roomCell("Resources\\Room_Cell1.png"),
-	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left"), topLeftRoomCell("Resources\\roomSprites\\topLeft"),
+	: roomCell("Resources\\roomSprites\\center.png"),
+	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
