@@ -11,6 +11,7 @@
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\Room_Cell1.png"),
+	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left"), topLeftRoomCell("Resources\\roomSprites\\topLeft"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
@@ -132,7 +133,6 @@ void SpaceGame::run()
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
 				{
-					
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
@@ -151,7 +151,7 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				//renders the fire cells
+				// Renders the fire cells
 				if (room.grid[x][y]->isOnFire)
 				{
 					fireTexture.alterTransparency(95);
@@ -163,6 +163,41 @@ void SpaceGame::run()
 				{
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				// Renders the top cell orientation
+				if (room.grid[x][y]->cellOrientation == 0)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					topRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 1)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					topRightRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 2)
+				{
+					rightRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 3)
+				{
+					bottomRightRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 4)
+				{
+					bottomRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 5)
+				{
+					bottomLeftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 6)
+				{
+					leftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 7)
+				{
+					topLeftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

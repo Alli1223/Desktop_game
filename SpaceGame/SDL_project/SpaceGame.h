@@ -65,6 +65,16 @@ private:
 	//! Is the texture for hull breaches
 	Texture hullBreachTexture;
 
+	//! Are the textures for the differnt sides of the room cells
+	Texture topRoomCell;
+	Texture topRightRoomCell;
+	Texture rightRoomCell;
+	Texture bottomRightRoomCell;
+	Texture bottomRoomCell;
+	Texture bottomLeftRoomCell;
+	Texture leftRoomCell;
+	Texture topLeftRoomCell;
+
 	//! Whether the game is running or not
 	bool running;
 };

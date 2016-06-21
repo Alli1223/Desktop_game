@@ -46,6 +46,9 @@ public:
 	//! Whether the cell is a hull breach
 	bool isHullBreach = false;
 
+	//! cell Orientation
+	int cellOrientation = 9;
+
 private:
 	//! The Cells X and Y values
 	int x = 0, y = 0;

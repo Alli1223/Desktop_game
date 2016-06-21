@@ -31,12 +31,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (!room.grid[cellX][cellY - 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->isHullBreach = true;
-
+						room.grid[cellX][cellY]->cellOrientation = 1;
 					}
 				}
 			}
-
 		}
 
 
