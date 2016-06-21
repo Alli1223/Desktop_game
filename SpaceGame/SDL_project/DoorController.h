@@ -9,5 +9,15 @@ public:
 
 	void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character);
 	void DoorController::CloseDoor(Level grid, int cellX, int cellY);
+
+	//!Get door status
+	bool getDoorStatus() { return doorStatus; }
+
+	//!Set door status
+	bool setDoorStatus(bool newDoorStatus) { return doorStatus = newDoorStatus; }
+
+private:
+	//!Door status - True is open - False is closed
+	bool doorStatus = false;
 };
 

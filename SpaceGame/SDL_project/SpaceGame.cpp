@@ -131,6 +131,7 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize /2;
 				int yPos = y * cellSize + cellSize /2;
 				
+				//opens the door when a player gets near
 				doorcontroller.OpenDoor(room, xPos, yPos, characterOne);
 				
 				// Checks if the cell is a room
@@ -221,11 +222,17 @@ void SpaceGame::run()
 					hullBreachTexture.alterTransparency(150);
 					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				// Renders open door
-				if (room.grid[x][y]->isClosedDoor)
+				// Renders open doors
+				if (room.grid[x][y]->isOpenDoor)
 				{
 					openDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+				// Renders closed doors
+				if (room.grid[x][y]->isClosedDoor)
+				{
+					closedDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				
 				
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
