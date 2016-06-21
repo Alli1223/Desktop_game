@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Character.h"
+#include "Level.h"
 
 Character::Character()
 {
@@ -14,7 +15,7 @@ Character::~Character()
 // If the player doesn't move the character it will start to move around the room in randomly selected directions
 void Character::moveCharacter(const Uint8* keyboardState)
 { 
-	// checks for keyboard input if there is none it assigns a random directions
+	// checks for keyboard input, if there is none it assigns a random directions
 	chooseDirection(keyboardState);
 	// if the direction will keep the charcter on screen and is part of a room move Character down
 	if (direction == 0 && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed()))
@@ -83,8 +84,8 @@ void Character::chooseDirection(const Uint8* keyboardState)
 // Checks to see if a cell is a room
 bool Character::isCellARoom(int x, int y)
 {
-	int xCell = x / currentRoom->getCellSize();
-	int yCell = y / currentRoom->getCellSize();
+	int xCell = x / (currentRoom->getCellSize());
+	int yCell = y / (currentRoom->getCellSize());
 	return currentRoom->grid[xCell][yCell]->isRoom;
 }
 

@@ -19,7 +19,6 @@ void Level::makeGrid(int Window_Width, int Window_Height)
 		{
 			// Populates the column with pointers to cells
 			Cell cell(x,y);
-			cell.isRoom = false;
 			auto sharedCell = std::make_shared<Cell> (cell);
 			grid[x].push_back(sharedCell);
 		}

@@ -33,6 +33,7 @@ private:
 	*/
 	bool generateRoom(Level level, int size, int entranceX, int entranceY, char direction); 
 
+	//! Chance to generate rooms with oxygen
 	int oxygenatedRoomChance = 10;
 
 };

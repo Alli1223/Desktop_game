@@ -54,6 +54,8 @@ void SpaceGame::run()
 	Level room;
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
+
+	//mapLoader.LoadMap("Resources\\test_map.txt", room);
 	mapLoader.generateMap(room);
 	
 	Oxygen oxygen;
@@ -111,15 +113,16 @@ void SpaceGame::run()
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
 
+		// Runs Oxygen spread function
 		oxygen.update(room);
 		
 		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
-			for (int y = 0; y < room.grid[x].size(); y++)
+			for (int y = 0; y < room.grid.size(); y++)
 			{
-				int xPos = x * cellSize + cellSize / 2;
-				int yPos = y * cellSize + cellSize / 2;
+				int xPos = x * cellSize + cellSize /2;
+				int yPos = y * cellSize + cellSize /2;
 				
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
@@ -155,12 +158,14 @@ void SpaceGame::run()
 		}//End for X loop
 
 		 // Renders the health and oxygen bar
-		healthBar.render(renderer, WINDOW_WIDTH, 25, characterOne.health * 10, 25);
+		healthBar.render(renderer, characterOne.getX(), characterOne.getY() - 40, characterOne.health, 10);
 		healthBar.alterTransparency(150);
-		healthText.render(renderer, 750, 25, 73, 22);
-		oxygenBar.render(renderer, WINDOW_WIDTH, 50, oxygen.getOxygenReserves() / 2, 25);
+		healthText.render(renderer, characterOne.getX(), characterOne.getY() - 40, 60, 20);
+		oxygenBar.render(renderer, characterOne.getX(), characterOne.getY() - 30, oxygen.getOxygenReserves() / 20, 10);
 		oxygenBar.alterTransparency(150);
-		oxygenText.render(renderer, 750, 50, 73, 22);
+		oxygenText.render(renderer, characterOne.getX(), characterOne.getY() - 30, 60, 20);
+
+		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 
 		 // If the character has died the game over screen is displayed
 		if (!characterOne.isAlive)
@@ -206,7 +211,7 @@ void SpaceGame::run()
 			else
 				SpaceGame::run();
 		}
-		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		
 		
 		SDL_RenderPresent(renderer);
 	}// End while running
