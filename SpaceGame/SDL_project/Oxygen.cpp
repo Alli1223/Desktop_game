@@ -96,7 +96,7 @@ void Oxygen::update(Level grid)
 			{
 				
 				roomdesign.designRoom(grid, cellX, cellY);
-				fire.spawn(grid, cellX, cellY);
+				
 				fire.fireSpread(grid, cellX, cellY);
 				
 				

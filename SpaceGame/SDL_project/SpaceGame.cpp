@@ -133,7 +133,8 @@ void SpaceGame::run()
 				
 				//opens the door when a player gets near
 				doorcontroller.OpenDoor(room, xPos, yPos, characterOne);
-				
+				fire.spawn(room, x, y);
+
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
 				{

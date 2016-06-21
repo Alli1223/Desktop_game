@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include "Fire.h"
 #include "Cell.h"
@@ -15,15 +16,17 @@ Fire::~Fire()
 
 void Fire::spawn(Level& grid, int cellX, int cellY)
 {
-	if (fireSpawnChance <= 0)
+	
+	if (fireSpawnChance <= 0 && grid.grid[cellX][cellY]->isRoom && grid.grid[cellX][cellY]->isOpenDoor == false && cellX >= 5 && cellY >= 5)
 	{
-		fireSpawnChance = 20;
+		
+		fireSpawnChance = 50000;
 		grid.grid[cellX][cellY]->isOnFire = true;
 		grid.grid[cellX][cellY]->oxygenLevel = 0;
 	}
 	else
 		fireSpawnChance--;
-
+		
 }
 
 void Fire::fireSpread(Level& grid, int cellX, int cellY)
