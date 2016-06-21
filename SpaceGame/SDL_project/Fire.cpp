@@ -40,7 +40,7 @@ void Fire::fireSpread(Level& grid, int cellX, int cellY)
 		if (cellX + (randomDirectionX)+1 <= grid.grid.size() && cellX + (randomDirectionX)-1 >= 0 && cellY + (randomDirectionY)+1 <= grid.grid.size() && cellY + (randomDirectionY)-1 >= 0)
 		{
 			//Is room and not a door
-			if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isRoom && grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isDoor == false)
+			if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isRoom && grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOpenDoor == false)
 			{
 				//The cell has oxygen
 				if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->getOxygenLevel() > 0)

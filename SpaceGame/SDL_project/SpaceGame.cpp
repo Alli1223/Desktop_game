@@ -194,7 +194,7 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Checks if the cell is a door
-				if (room.grid[x][y]->isDoor)
+				if (room.grid[x][y]->isOpenDoor)
 				{
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}

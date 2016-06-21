@@ -94,7 +94,7 @@ bool Character::isCellADoor(int x, int y)
 {
 	int xCell = x / currentRoom->getCellSize();
 	int yCell = y / currentRoom->getCellSize();
-	return currentRoom->grid[xCell][yCell]->isDoor;
+	return currentRoom->grid[xCell][yCell]->isOpenDoor;
 }
 
 // Gets the oxygen level of the specified cell

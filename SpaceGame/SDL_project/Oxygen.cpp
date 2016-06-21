@@ -89,7 +89,7 @@ void Oxygen::update(Level grid)
 
 			
 			//Loops through the rooms
-			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isDoor)
+			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isOpenDoor)
 			{
 				
 				roomdesign.designRoom(grid, cellX, cellY);
