@@ -58,8 +58,10 @@ private:
 	Texture winText;
 	//! Is the texture for the goal
 	Texture goalTexture;
-	//! Os the texture for fire
+	//! Is the texture for fire
 	Texture fireTexture;
+	//! Is the texture for the background
+	Texture backgroundTexture;
 	//! Whether the game is running or not
 	
 	bool running;

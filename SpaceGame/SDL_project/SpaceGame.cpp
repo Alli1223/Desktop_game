@@ -22,6 +22,7 @@ SpaceGame::SpaceGame()
 	gameOver("Resources\\health.png"),
 	gameOverText("Resources\\game_over.png"),
 	fireTexture("Resources\\fire2.png"),
+	backgroundTexture("Resources\\background1.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -95,6 +96,8 @@ void SpaceGame::run()
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
+		backgroundTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+
 		int cellSize = room.getCellSize();
 
 		// Adds and removes oxygen based on mouse click
@@ -107,6 +110,7 @@ void SpaceGame::run()
 		{
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
+
 		oxygen.update(room);
 		
 		
