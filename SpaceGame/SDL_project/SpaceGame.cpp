@@ -7,9 +7,11 @@
 #include "IdleState.h"
 #include "Oxygen.h"
 #include "Fire.h"
+#include "RoomDesign.h"
 
 SpaceGame::SpaceGame()
-	: roomCell("Resources\\Room_Cell1.png"),
+	: roomCell("Resources\\roomSprites\\center.png"),
+	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
 	characterTex("Resources\\crew2.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
@@ -23,7 +25,7 @@ SpaceGame::SpaceGame()
 	gameOverText("Resources\\game_over.png"),
 	fireTexture("Resources\\fire2.png"),
 	backgroundTexture("Resources\\background1.png"),
-	hullBreachTexture("Resources\\RoomCell_Oxygen.png"),
+	hullBreachTexture("Resources\\roomSprites\\hullBreach.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -61,6 +63,7 @@ void SpaceGame::run()
 	
 	Oxygen oxygen;
 	Fire fire;
+	RoomDesign designroom;
 	
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
@@ -125,10 +128,11 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize /2;
 				int yPos = y * cellSize + cellSize /2;
 				
+				
+				
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
 				{
-					
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
@@ -147,7 +151,7 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				//renders the fire cells
+				// Renders the fire cells
 				if (room.grid[x][y]->isOnFire)
 				{
 					fireTexture.alterTransparency(95);
@@ -157,10 +161,47 @@ void SpaceGame::run()
 				// Renders the hullBreach
 				if (room.grid[x][y]->isHullBreach)
 				{
-					
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-
+				}
+				// Renders the top cell orientation
+				if (room.grid[x][y]->cellOrientation == 0)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					topRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 1)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					topRightRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 2)
+				{
+					rightRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 3)
+				{
+					bottomRightRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 4)
+				{
+					bottomRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 5)
+				{
+					bottomLeftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 6)
+				{
+					leftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 7)
+				{
+					topLeftRoomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->cellOrientation == 8)
+				{
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

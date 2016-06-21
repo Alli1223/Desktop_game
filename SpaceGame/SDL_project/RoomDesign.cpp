@@ -3,17 +3,249 @@
 #include "Map.h"
 
 
-HullBreach::HullBreach()
+RoomDesign::RoomDesign()
 {
 }
 
 
-HullBreach::~HullBreach()
+RoomDesign::~RoomDesign()
 {
 }
 
-void HullBreach::roomDesign(Level& grid, int cellX, int cellY)
+void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 {
+
 	
+	//RoomDesign::checkCenterCell(room, cellX, cellY);
 
+	//sets the top and cell edges
+	if (cellX == 0 && room.grid[cellX][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 6;
+	}
+
+	if (cellY == 0 && room.grid[cellX][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 0;
+	}
+	
+	//Sets the top row to curved edges
+	if (cellX >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX - 1][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 7;
+	}
+	if (cellX >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX + 1][cellY]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 1;
+	}
+	//sets the left edge to curved edges
+	if (cellY >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX][cellY - 1]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 7;
+	}
+	if (cellY >= 1 && room.grid[cellX][cellY]->isRoom && !room.grid[cellX][cellY + 1]->isRoom)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 5;
+	}
+	if (cellX == 1 && cellY == 1)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 8;
+	}
+
+
+	
+	if (cellX + 1 <= room.grid.size() && cellX - 1 >= room.grid.empty() && cellY + 1 <= room.grid.size() && cellY - 1 >= room.grid.empty())
+	{
+		//top
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX - 1][cellY]->isRoom)
+				{
+					if (!room.grid[cellX][cellY - 1]->isRoom)
+					{
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 0;
+						}
+					}
+				}
+			}
+		}
+
+
+
+
+		//top and right
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (!room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (!room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 1;
+						}
+					}
+				}
+			}
+
+		}
+		//right
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (!room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 2;
+						}
+					}
+				}
+			}
+
+		}
+
+		//right and bottom
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (!room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (!room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 3;
+						}
+					}
+				}
+			}
+
+		}
+
+		//bottom
+
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (!room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 4;
+						}
+					}
+				}
+			}
+
+		}
+
+		//bottom and left
+
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (!room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if(!room.grid[cellX - 1][cellY]->isRoom)
+						{ 
+							room.grid[cellX][cellY]->cellOrientation = 5;
+						}
+						
+					}
+				}
+			}
+
+		}
+
+		//left
+
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (!room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 6;
+						}
+					}
+				}
+			}
+
+		}
+
+		//left and top
+
+		if (room.grid[cellX][cellY]->isRoom)
+		{
+			if (room.grid[cellX + 1][cellY]->isRoom)
+			{
+				if (!room.grid[cellX][cellY - 1]->isRoom)
+				{
+					if (room.grid[cellX][cellY + 1]->isRoom)
+					{
+						if (!room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 7;
+						}
+					}
+				}
+			}
+
+		}
+
+		//center
+	}
+}
+
+
+bool RoomDesign::checkCenterCell(Level& room, int cellX, int cellY)
+{
+	std::vector<int> directions;
+
+	directions.push_back(-1);
+	directions.push_back(0);
+	directions.push_back(1);
+
+	
+	for (int x = 1; x >= -1; x--)
+	{
+		for (int y = -1; y <= 1; y++)
+		{
+			//is within the map
+			if (cellX + (x)+1 <= room.grid.size() && cellX + ((x) +  (-1)) >= 0 && cellY + (y) +1 <= room.grid.size() && cellY + ((y) + (-1)) >= 0)
+			{
+				//is a room and not a door
+				if (room.grid[cellX + x][cellY + y]->isRoom && !room.grid[cellX + x][cellY + y]->isDoor)
+				{
+					
+					if (room.grid[cellX + x][cellY + y]->isRoom && !room.grid[cellX][cellY]->isRoom)
+					{
+						room.grid[cellX + x][cellY + y]->isHullBreach = true;
+						return true;
+					}
+				}
+			}
+		}
+	}
 }

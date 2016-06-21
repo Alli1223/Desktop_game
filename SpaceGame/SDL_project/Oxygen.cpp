@@ -5,6 +5,7 @@
 #include "Level.h"
 #include "Map.h"
 #include "Fire.h"
+#include "RoomDesign.h"
 
 
 Oxygen::Oxygen()
@@ -51,6 +52,8 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 
 	//lower the value of oxygen level
 	oxygenLevel--;
+	int oxygenReserve = getOxygenReserves();
+	oxygenReserve++;
 	grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel);
 
 	//oxygen won't go over the min value
@@ -69,6 +72,9 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 void Oxygen::update(Level grid)
 {
 	Fire fire;
+	RoomDesign roomdesign;
+
+	
 	
 	for (int x = 0; x < grid.grid.size() - 1; x++)
 	{
@@ -86,9 +92,10 @@ void Oxygen::update(Level grid)
 			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isDoor)
 			{
 				
-				
+				roomdesign.designRoom(grid, cellX, cellY);
 				fire.spawn(grid, cellX, cellY);
 				fire.fireSpread(grid, cellX, cellY);
+				
 
 				//Checks to make sure that the oxygenLevel is within the max/min levels
 				if (oxygenLevel <= 0)

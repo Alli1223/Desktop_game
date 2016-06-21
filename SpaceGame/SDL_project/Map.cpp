@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Map.h"
+#include "RoomDesign.h"
 
 
 void Map::LoadMap(std::string filename, Level room)
@@ -133,7 +134,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		else
 			oxygenLevel = 0;
 	}
-
+	RoomDesign roomdesign;
 	//Gives all the cells in the room it's properties
 	for (int x = 0; x < room.size(); x++)
 	{
@@ -141,6 +142,10 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		{
 			room[x][y]->oxygenLevel = oxygenLevel;
 			room[x][y]->isRoom = true;
+
+			// Designs what the cells look like
+			
+			
 
 			// Spawn random hull breach
 			int randomRoomChance = rand() % (0 - hullBreachSpawnChance);
@@ -150,10 +155,11 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 			{
 				room[x][y]->isHullBreach = true;
 				room[x][y]->oxygenLevel = oxygenLevel = 0;
+				
 			}
 			else
 				room[x][y]->isHullBreach = false;
-			
+				roomdesign.designRoom(level, x, y);
 
 		}
 	}

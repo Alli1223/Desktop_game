@@ -59,7 +59,7 @@
       <Filter>Source Files\Main Game Classes</Filter>
     </ClCompile>
     <ClCompile Include="RoomDesign.cpp">
-      <Filter>Source Files\Disaster Classes</Filter>
+      <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,7 +127,7 @@
       <Filter>Headers\Main Game Classes</Filter>
     </ClInclude>
     <ClInclude Include="RoomDesign.h">
-      <Filter>Headers\Disaster Classes</Filter>
+      <Filter>Headers\Level Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
