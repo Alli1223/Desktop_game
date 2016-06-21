@@ -1,6 +1,6 @@
 #pragma once
 #include "Level.h"
-
+#include "HullBreach.h"
 
 //!  The Class that handlles the creation of rooms
 /*!
@@ -35,6 +35,9 @@ private:
 
 	//! Chance to generate rooms with oxygen
 	int oxygenatedRoomChance = 10;
+
+	//!Chance to spawn hullBreaches
+	int hullBreachSpawnChance = 70;
 
 };
 

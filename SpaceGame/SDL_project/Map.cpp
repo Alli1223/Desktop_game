@@ -141,6 +141,20 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		{
 			room[x][y]->oxygenLevel = oxygenLevel;
 			room[x][y]->isRoom = true;
+
+			// Spawn random hull breach
+			int randomRoomChance = rand() % (0 - hullBreachSpawnChance);
+
+			// Only spawn if it is not the spawn room
+			if (randomRoomChance == 0 && !roomVector.empty())
+			{
+				room[x][y]->isHullBreach = true;
+				room[x][y]->oxygenLevel = oxygenLevel = 0;
+			}
+			else
+				room[x][y]->isHullBreach = false;
+			
+
 		}
 	}
 	roomVector.push_back(room);
@@ -310,6 +324,7 @@ void Map::generateMap(Level level)
 			//Places Goal in last room generated
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isGoal = true;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isDoor = true;
+			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->isHullBreach = false;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->oxygenLevel = 100;
 		}
 	}

@@ -62,8 +62,10 @@ private:
 	Texture fireTexture;
 	//! Is the texture for the background
 	Texture backgroundTexture;
+	//! Is the texture for hull breaches
+	Texture hullBreachTexture;
+
 	//! Whether the game is running or not
-	
 	bool running;
 };
 

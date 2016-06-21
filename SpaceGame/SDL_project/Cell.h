@@ -43,6 +43,8 @@ public:
 	int oxygenLevel = 100;
 	//! Whether the cell is on fire
 	bool isOnFire = false;
+	//! Whether the cell is a hull breach
+	bool isHullBreach = false;
 
 private:
 	//! The Cells X and Y values

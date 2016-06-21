@@ -23,6 +23,7 @@ SpaceGame::SpaceGame()
 	gameOverText("Resources\\game_over.png"),
 	fireTexture("Resources\\fire2.png"),
 	backgroundTexture("Resources\\background1.png"),
+	hullBreachTexture("Resources\\RoomCell_Oxygen.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -146,12 +147,20 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+				//renders the fire cells
 				if (room.grid[x][y]->isOnFire)
 				{
 					fireTexture.alterTransparency(95);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					fireTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				// Renders the hullBreach
+				if (room.grid[x][y]->isHullBreach)
+				{
 					
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+
 				}
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

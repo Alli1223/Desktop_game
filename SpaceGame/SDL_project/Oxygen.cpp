@@ -113,7 +113,7 @@ void Oxygen::update(Level grid)
 
 
 					//if oxygen level is greater than the cell to the right and cellX does not exceed the size of the grid
-					else if (cellX + 1 <= grid.grid.size() && oxygenLevel > grid.grid[cellX + 1][cellY]->getOxygenLevel())
+					if (cellX + 1 <= grid.grid.size() && oxygenLevel > grid.grid[cellX + 1][cellY]->getOxygenLevel())
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
@@ -138,7 +138,7 @@ void Oxygen::update(Level grid)
 					}
 
 					//if oxygen level is greater than the cell to the left and does not exceed the size of the grid
-					else if (cellX - 1 >= 0 && oxygenLevel > grid.grid[cellX - 1][cellY]->getOxygenLevel())
+					if (cellX - 1 >= 0 && oxygenLevel > grid.grid[cellX - 1][cellY]->getOxygenLevel())
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
@@ -163,7 +163,7 @@ void Oxygen::update(Level grid)
 					}
 
 					//if oxygen level is greater than the cell below and does not exceed the size of the grid
-					else if (cellY + 1 <= grid.grid.size() && oxygenLevel > grid.grid[cellX][cellY + 1]->getOxygenLevel())
+					if (cellY + 1 <= grid.grid.size() && oxygenLevel > grid.grid[cellX][cellY + 1]->getOxygenLevel())
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
@@ -182,12 +182,12 @@ void Oxygen::update(Level grid)
 						//increase the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel + 1);
 
-						//decrease the cell belows oxygen level
+						//decrease the cell aboves oxygen level
 						grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel - 1);
 					}
 
 					//if oxygen level is greater than the cell above and does not exceed the size of the grid
-					else if (cellY - 1 >= 0 && oxygenLevel > grid.grid[cellX][cellY - 1]->getOxygenLevel())
+					if (cellY - 1 >= 0 && oxygenLevel > grid.grid[cellX][cellY - 1]->getOxygenLevel())
 					{
 						//decrease the oxygen level
 						grid.grid[cellX][cellY]->setOxygenLevel(oxygenLevel - 1);
@@ -195,7 +195,7 @@ void Oxygen::update(Level grid)
 						//Decrease oxygen reserves
 						setOxygenReserves(oxygenReserve - 1);
 
-						//increase the ceel aboves oxygen level
+						//increase the cell aboves oxygen level
 						grid.grid[cellX][cellY - 1]->setOxygenLevel(oxygenLevel + 1);
 					}
 				}
