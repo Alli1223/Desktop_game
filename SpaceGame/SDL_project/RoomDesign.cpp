@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "HullBreach.h"
+#include "RoomDesign.h"
 #include "Map.h"
 
 
@@ -12,7 +12,7 @@ HullBreach::~HullBreach()
 {
 }
 
-void HullBreach::hullBreachSpawn(Level& grid, int cellX, int cellY)
+void HullBreach::roomDesign(Level& grid, int cellX, int cellY)
 {
 	
 

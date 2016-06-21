@@ -8,7 +8,7 @@ public:
 	HullBreach();
 	~HullBreach();
 
-	void hullBreachSpawn(Level& grid, int cellX, int cellY);
+	void roomDesign(Level& grid, int cellX, int cellY);
 
 	
 };

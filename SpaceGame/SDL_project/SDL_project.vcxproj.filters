@@ -31,9 +31,6 @@
     <ClCompile Include="Fire.cpp">
       <Filter>Source Files\Disaster Classes</Filter>
     </ClCompile>
-    <ClCompile Include="HullBreach.cpp">
-      <Filter>Source Files\Disaster Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
@@ -60,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Main Game Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomDesign.cpp">
+      <Filter>Source Files\Disaster Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,9 +91,6 @@
       <Filter>Headers\Character Classes\States</Filter>
     </ClInclude>
     <ClInclude Include="Fire.h">
-      <Filter>Headers\Disaster Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="HullBreach.h">
       <Filter>Headers\Disaster Classes</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
@@ -128,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomDesign.h">
+      <Filter>Headers\Disaster Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

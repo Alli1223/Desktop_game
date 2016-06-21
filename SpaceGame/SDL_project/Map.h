@@ -1,6 +1,5 @@
 #pragma once
 #include "Level.h"
-#include "HullBreach.h"
 
 //!  The Class that handlles the creation of rooms
 /*!
