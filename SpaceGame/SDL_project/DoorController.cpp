@@ -10,3 +10,13 @@ DoorController::DoorController()
 DoorController::~DoorController()
 {
 }
+
+void DoorController::OpenDoor()
+{
+
+}
+
+void DoorController::CloseDoor()
+{
+
+}
