@@ -10,3 +10,8 @@ HullBreach::HullBreach()
 HullBreach::~HullBreach()
 {
 }
+
+void HullBreach::Spawn()
+{
+
+}
