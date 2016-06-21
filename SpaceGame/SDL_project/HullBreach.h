@@ -9,5 +9,7 @@ public:
 	~HullBreach();
 
 	void hullBreachSpawn(Level& grid, int cellX, int cellY);
+
+	
 };
 
