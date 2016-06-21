@@ -8,12 +8,14 @@
 #include "Oxygen.h"
 #include "Fire.h"
 #include "RoomDesign.h"
+#include "DoorController.h"
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
 	characterTex("Resources\\crew2.png"),
-	doorTexture("Resources\\door_sprite.png"),
+	closedDoorTexture("Resources\\door_sprite.png"),
+	openDoorTexture("Resources\\roomSprites\\center.png"),
 	oxygenTex("Resources\\oxygen.png"),
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
@@ -64,6 +66,7 @@ void SpaceGame::run()
 	Oxygen oxygen;
 	Fire fire;
 	RoomDesign designroom;
+	DoorController doorcontroller;
 	
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
@@ -128,7 +131,8 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize /2;
 				int yPos = y * cellSize + cellSize /2;
 				
-				
+				//opens the door when a player gets near
+				doorcontroller.OpenDoor(room, xPos, yPos, characterOne);
 				
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)
@@ -194,18 +198,11 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Checks if the cell is a door
-				if (room.grid[x][y]->isDoor)
+				if (room.grid[x][y]->isOpenDoor)
 				{
-					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+					closedDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				//Checks if the cell has the goal on it.
-				if (room.grid[x][y]->isGoal)
-				{
-					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
-					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-				}
+				
 				// Renders the fire cells
 				if (room.grid[x][y]->isOnFire)
 				{
@@ -217,6 +214,24 @@ void SpaceGame::run()
 				{
 					hullBreachTexture.alterTransparency(150);
 					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				// Renders open doors
+				if (room.grid[x][y]->isOpenDoor)
+				{
+					openDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				// Renders closed doors
+				if (room.grid[x][y]->isClosedDoor)
+				{
+					closedDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				//Checks if the cell has the goal on it.
+				if (room.grid[x][y]->isGoal)
+				{
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				
 				// Does not render a cell if it isn't part of a room

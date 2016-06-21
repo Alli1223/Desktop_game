@@ -35,8 +35,10 @@ public:
 
 	//! Whether the cell is part of a roomm
 	bool isRoom = false;
-	//! Whether the cell is a door
-	bool isDoor = false;
+	//! Whether the cell is a door is open
+	bool isOpenDoor = false;
+	//! Whether the cell door is closed
+	bool isClosedDoor = false;
 	//! Represents the goal for the player
 	bool isGoal = false;
 	//! The oxygenLevel of the cell

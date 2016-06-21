@@ -236,7 +236,7 @@ bool RoomDesign::checkCenterCell(Level& room, int cellX, int cellY)
 			if (cellX + (x)+1 <= room.grid.size() && cellX + ((x) +  (-1)) >= 0 && cellY + (y) +1 <= room.grid.size() && cellY + ((y) + (-1)) >= 0)
 			{
 				//is a room and not a door
-				if (room.grid[cellX + x][cellY + y]->isRoom && !room.grid[cellX + x][cellY + y]->isDoor)
+				if (room.grid[cellX + x][cellY + y]->isRoom && !room.grid[cellX + x][cellY + y]->isOpenDoor)
 				{
 					
 					if (room.grid[cellX + x][cellY + y]->isRoom && !room.grid[cellX][cellY]->isRoom)

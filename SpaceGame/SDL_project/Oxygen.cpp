@@ -6,6 +6,8 @@
 #include "Map.h"
 #include "Fire.h"
 #include "RoomDesign.h"
+#include "DoorController.h"
+
 
 
 Oxygen::Oxygen()
@@ -73,6 +75,7 @@ void Oxygen::update(Level grid)
 {
 	Fire fire;
 	RoomDesign roomdesign;
+	DoorController doorcontroller;
 
 	
 	
@@ -89,12 +92,13 @@ void Oxygen::update(Level grid)
 
 			
 			//Loops through the rooms
-			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isDoor)
+			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isOpenDoor)
 			{
 				
 				roomdesign.designRoom(grid, cellX, cellY);
 				fire.spawn(grid, cellX, cellY);
 				fire.fireSpread(grid, cellX, cellY);
+				
 				
 
 				//Checks to make sure that the oxygenLevel is within the max/min levels
