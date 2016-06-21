@@ -154,7 +154,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 			if (randomRoomChance == 0 && !roomVector.empty())
 			{
 				room[x][y]->isHullBreach = true;
-				room[x][y]->oxygenLevel = oxygenLevel = 0;
+				room[x][y]->oxygenLevel = 0;
 				
 			}
 			else
