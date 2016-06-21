@@ -202,14 +202,7 @@ void SpaceGame::run()
 				{
 					closedDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				//Checks if the cell has the goal on it.
-				if (room.grid[x][y]->isGoal)
-				{
-					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
-					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
-					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
-				}
+				
 				// Renders the fire cells
 				if (room.grid[x][y]->isOnFire)
 				{
@@ -232,7 +225,14 @@ void SpaceGame::run()
 				{
 					closedDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				
+				//Checks if the cell has the goal on it.
+				if (room.grid[x][y]->isGoal)
+				{
+					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
+					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
+					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
 				
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

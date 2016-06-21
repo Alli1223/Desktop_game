@@ -8,7 +8,7 @@ public:
 	~DoorController();
 
 	void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character);
-	void DoorController::CloseDoor(Level grid, int cellX, int cellY);
+
 
 	//!Get door status
 	bool getDoorStatus() { return doorStatus; }
