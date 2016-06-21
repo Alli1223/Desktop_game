@@ -61,6 +61,7 @@
     <ClCompile Include="RoomDesign.cpp">
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
+    <ClCompile Include="DoorController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -129,6 +130,7 @@
     <ClInclude Include="RoomDesign.h">
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
+    <ClInclude Include="DoorController.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />

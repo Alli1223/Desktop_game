@@ -37,7 +37,8 @@ private:
 	//! For the Character
 	Texture characterTex;
 	//! For door cells
-	Texture doorTexture;
+	Texture closedDoorTexture;
+	Texture openDoorTexture;
 	//! To show the oxygen level in a room
 	Texture oxygenTex;
 	//! To show the character health
