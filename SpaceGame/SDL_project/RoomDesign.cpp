@@ -20,7 +20,7 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 
 
 	
-	if (cellX + 1 <= room.grid.size() && cellX - 1 >= 0 && cellY + 1 <= room.grid.size() && cellY - 1 >= 0)
+	if (cellX + 1 <= room.grid.size() && cellX - 1 >= room.grid.empty() && cellY + 1 <= room.grid.size() && cellY - 1 >= room.grid.empty())
 	{
 		//top
 		if (room.grid[cellX][cellY]->isRoom)
@@ -31,7 +31,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (!room.grid[cellX][cellY - 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->cellOrientation = 0;
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 0;
+						}
 					}
 				}
 			}
@@ -49,7 +52,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (room.grid[cellX][cellY + 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->cellOrientation = 1;
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 1;
+						}
 					}
 				}
 			}
@@ -64,7 +70,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (room.grid[cellX][cellY + 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->cellOrientation = 2;
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 2;
+						}
 					}
 				}
 			}
@@ -80,7 +89,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (!room.grid[cellX][cellY + 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->cellOrientation = 3;
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 3;
+						}
 					}
 				}
 			}
@@ -97,7 +109,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 				{
 					if (!room.grid[cellX][cellY + 1]->isRoom)
 					{
-						room.grid[cellX][cellY]->cellOrientation = 4;
+						if (room.grid[cellX - 1][cellY]->isRoom)
+						{
+							room.grid[cellX][cellY]->cellOrientation = 4;
+						}
 					}
 				}
 			}
