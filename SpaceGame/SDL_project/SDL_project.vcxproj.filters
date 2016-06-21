@@ -1,21 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="InitialisationError.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpaceGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SDL_project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\Character Classes</Filter>
     </ClCompile>
@@ -61,32 +46,23 @@
     <ClCompile Include="Oxygen.cpp">
       <Filter>Source Files\Disaster Classes</Filter>
     </ClCompile>
+    <ClCompile Include="InitialisationError.cpp">
+      <Filter>Source Files\Main Game Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL_project.cpp">
+      <Filter>Source Files\Main Game Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceGame.cpp">
+      <Filter>Source Files\Main Game Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Main Game Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Main Game Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InitialisationError.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Oxygen.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL_project.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SpaceGame.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Headers\Character Classes</Filter>
     </ClInclude>
@@ -129,6 +105,30 @@
     <ClInclude Include="Map.h">
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
+    <ClInclude Include="InitialisationError.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_project.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceGame.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Oxygen.h">
+      <Filter>Headers\Disaster Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headers\Main Game Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />
@@ -170,6 +170,12 @@
     </Filter>
     <Filter Include="Source Files\Character Classes\Character states">
       <UniqueIdentifier>{0472703c-3d4f-499d-b006-349b9381dc66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Main Game Classes">
+      <UniqueIdentifier>{dbf0ae6c-7b23-4079-96ed-6b6cddeddbed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main Game Classes">
+      <UniqueIdentifier>{312cdcf3-796f-49f3-bd1e-c20c8229fb53}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

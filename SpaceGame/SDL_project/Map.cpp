@@ -141,6 +141,10 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		{
 			room[x][y]->oxygenLevel = oxygenLevel;
 			room[x][y]->isRoom = true;
+
+			//spawn random hull breach
+			room[x][y]->isHullBreach = true;
+
 		}
 	}
 	roomVector.push_back(room);

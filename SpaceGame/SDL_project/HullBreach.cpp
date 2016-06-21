@@ -11,7 +11,7 @@ HullBreach::~HullBreach()
 {
 }
 
-void HullBreach::Spawn()
+void HullBreach::hullBreachSpawn(Level& grid, int cellX, int cellY)
 {
 
 }

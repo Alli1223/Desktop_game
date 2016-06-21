@@ -23,6 +23,7 @@ SpaceGame::SpaceGame()
 	gameOverText("Resources\\game_over.png"),
 	fireTexture("Resources\\fire2.png"),
 	backgroundTexture("Resources\\background1.png"),
+	hullBreachTexture("Resources\\hullBreach.png"),
 	goalTexture("Resources\\goal.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
