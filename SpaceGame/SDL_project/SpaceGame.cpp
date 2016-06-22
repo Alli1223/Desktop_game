@@ -13,7 +13,7 @@
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
-	characterTex("Resources\\crew2.png"),
+	characterTex("Resources\\crew2.png"), characterLeft("Resources\\Character\\crewLeft.png"), characterRight("Resources\\Character\\crewRight.png"), characterUp("Resources\\Character\\crewUp.png"), characterDown("Resources\\Character\\crewDown.png"),
 	closedDoorTexture("Resources\\roomSprites\\center.png"),
 	openDoorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
@@ -144,8 +144,8 @@ void SpaceGame::run()
 					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
-					
 				}
+
 				// Renders the top cell orientation
 				if (room.grid[x][y]->cellOrientation == 0)
 				{
@@ -257,7 +257,27 @@ void SpaceGame::run()
 		oxygenBar.alterTransparency(150);
 		oxygenText.render(renderer, characterOne.getX(), characterOne.getY() - 30, 60, 20);
 
-		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+
+		// player orientation
+		
+		if (characterOne.direction == 0)
+		{
+			characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
+		else if (characterOne.direction == 1)
+		{
+			characterUp.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
+		else if (characterOne.direction == 2)
+		{
+			characterRight.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
+		else if (characterOne.direction == 3)
+		{
+			characterLeft.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
+		
+		
 
 		 // If the character has died the game over screen is displayed
 		if (!characterOne.isAlive)
