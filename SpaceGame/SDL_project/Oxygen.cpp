@@ -90,14 +90,17 @@ void Oxygen::update(Level grid)
 			int oxygenLevel = grid.grid[cellX][cellY]->getOxygenLevel();
 			int oxygenReserve = getOxygenReserves();
 
+
+			//spreads the fire 
+			fire.fireSpread(grid, cellX, cellY);
 			
 			//Loops through the rooms
 			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isOpenDoor)
 			{
-				
+				//sets the cell sprites for the edges
 				roomdesign.designRoom(grid, cellX, cellY);
+
 				
-				fire.fireSpread(grid, cellX, cellY);
 				
 				
 

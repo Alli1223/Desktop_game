@@ -20,7 +20,7 @@ void Fire::spawn(Level& grid, int cellX, int cellY)
 	if (fireSpawnChance <= 0 && grid.grid[cellX][cellY]->isRoom && grid.grid[cellX][cellY]->isOpenDoor == false && cellX >= 5 && cellY >= 5)
 	{
 		
-		fireSpawnChance = 50000;
+		fireSpawnChance = 500;
 		grid.grid[cellX][cellY]->isOnFire = true;
 		grid.grid[cellX][cellY]->oxygenLevel = 0;
 	}
@@ -43,17 +43,22 @@ void Fire::fireSpread(Level& grid, int cellX, int cellY)
 		if (cellX + (randomDirectionX)+1 <= grid.grid.size() && cellX + (randomDirectionX)-1 >= 0 && cellY + (randomDirectionY)+1 <= grid.grid.size() && cellY + (randomDirectionY)-1 >= 0)
 		{
 			//Is room and not a door
-			if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isRoom && grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOpenDoor == false)
+			if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isRoom && grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isHullBreach == false)
 			{
-				//The cell has oxygen
-				if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->getOxygenLevel() > 0)
+				if ( grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOpenDoor == false)
 				{
-					//random fire spread rate
-					int randomSpawnChance = rand() % (0 - 50);
-					if (randomSpawnChance <= 1)
+
+
+					//The cell has oxygen
+					if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->getOxygenLevel() >= 25)
 					{
-						grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOnFire = true;
-						grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->oxygenLevel = 0;
+						//random fire spread rate
+						int randomSpawnChance = rand() % (0 - 50);
+						if (randomSpawnChance <= 1)
+						{
+							grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOnFire = true;
+							grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->oxygenLevel = 0;
+						}
 					}
 				}
 			}

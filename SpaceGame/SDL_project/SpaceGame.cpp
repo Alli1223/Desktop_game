@@ -13,9 +13,9 @@
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
-	characterTex("Resources\\crew2.png"),
-	closedDoorTexture("Resources\\door_sprite.png"),
-	openDoorTexture("Resources\\roomSprites\\center.png"),
+	characterTex("Resources\\crew3.png"),
+	closedDoorTexture("Resources\\roomSprites\\center.png"),
+	openDoorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
@@ -134,7 +134,7 @@ void SpaceGame::run()
 				
 				//opens the door when a player gets near
 				doorcontroller.OpenDoor(room, xPos, yPos, characterOne);
-				
+				fire.spawn(room, x, y);
 
 				// Checks if the cell is a room
 				if (room.grid[x][y]->isRoom)

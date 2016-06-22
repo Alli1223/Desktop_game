@@ -64,9 +64,6 @@
     <ClCompile Include="DoorController.cpp">
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Animations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -137,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="DoorController.h">
       <Filter>Headers\Level Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Animations.h">
-      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

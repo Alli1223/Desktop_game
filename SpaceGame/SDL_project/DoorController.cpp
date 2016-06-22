@@ -23,10 +23,10 @@ void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& char
 	int playerX = pX / grid.getCellSize();
 	int playerY = pY / grid.getCellSize();
 
-	if (grid.grid[playerX][playerY]->isClosedDoor == true)
+	if (grid.grid[playerX][playerY]->isOpenDoor == true)
 	{
-		grid.grid[playerX][playerY]->isOpenDoor = true;
-		grid.grid[playerX][playerY]->isClosedDoor = false;
+		grid.grid[playerX][playerY]->isOpenDoor = false;
+		grid.grid[playerX][playerY]->isClosedDoor = true;
 	}
 
 	

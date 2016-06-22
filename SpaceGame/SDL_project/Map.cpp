@@ -32,7 +32,7 @@ void Map::LoadMap(std::string filename, Level room)
 
 				else if (map[x][y] == 'D')
 				{
-					room.grid[x][y]->isClosedDoor = true;
+					room.grid[x][y]->isOpenDoor = true;
 					room.grid[x][y]->isRoom = true;
 				}
 			}
@@ -228,7 +228,7 @@ void Map::generateMap(Level level)
 								if (generateRoom(level, size, xOfDoor, yOfDoor, 'n'))
 								{
 									level.grid[xOfDoor][yOfDoor]->isRoom = true;
-									level.grid[xOfDoor][yOfDoor]->isClosedDoor = true;
+									level.grid[xOfDoor][yOfDoor]->isOpenDoor = true;
 								}
 							}
 						}
@@ -257,7 +257,7 @@ void Map::generateMap(Level level)
 								if (generateRoom(level, size, xOfDoor, yOfDoor, 'e'))
 								{
 									level.grid[xOfDoor][yOfDoor]->isRoom = true;
-									level.grid[xOfDoor][yOfDoor]->isClosedDoor = true;
+									level.grid[xOfDoor][yOfDoor]->isOpenDoor = true;
 								}
 							}
 						}
@@ -285,7 +285,7 @@ void Map::generateMap(Level level)
 								if (generateRoom(level, size, xOfDoor, yOfDoor, 's'))
 								{
 									level.grid[xOfDoor][yOfDoor]->isRoom = true;
-									level.grid[xOfDoor][yOfDoor]->isClosedDoor = true;
+									level.grid[xOfDoor][yOfDoor]->isOpenDoor = true;
 								}
 							}
 						}
@@ -314,7 +314,7 @@ void Map::generateMap(Level level)
 								if (generateRoom(level, size, xOfDoor, yOfDoor, 'w'))
 								{
 									level.grid[xOfDoor][yOfDoor]->isRoom = true;
-									level.grid[xOfDoor][yOfDoor]->isClosedDoor = true;
+									level.grid[xOfDoor][yOfDoor]->isOpenDoor = true;
 								}
 							}
 						}
@@ -329,7 +329,7 @@ void Map::generateMap(Level level)
 			thereIsSpace = false;
 			//Places Goal in last room generated
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isGoal = true;
-			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isClosedDoor = true;
+			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isOpenDoor = true;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->isHullBreach = false;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->oxygenLevel = 100;
 		}
