@@ -218,8 +218,10 @@ void SpaceGame::run()
 					hullBreachTexture.alterTransparency(150);
 					hullBreachTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+				// Renders the oxygen Tanks
 				if (room.grid[x][y]->isOxygenTank)
 				{
+					oxygenTank.alterTransparency(200);
 					oxygenTank.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Renders open doors
