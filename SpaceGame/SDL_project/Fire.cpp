@@ -70,6 +70,13 @@ void Fire::fireSpread(Level& grid, int cellX, int cellY)
 				}
 			}
 		}
+
+		currentTime = SDL_GetTicks();
+		if (currentTime > lastTime +  1000)
+		{
+
+			lastTime = currentTime;
+		}
 	}
 }
 

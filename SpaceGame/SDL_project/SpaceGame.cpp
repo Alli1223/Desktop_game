@@ -26,11 +26,11 @@ SpaceGame::SpaceGame()
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
 	gameOverText("Resources\\game_over.png"),
-	fireTexture("Resources\\fire2.png"),
-	backgroundTexture("Resources\\background1.png"),
+	fireTexture("Resources\\fire1.png"),
+	backgroundTexture("Resources\\background.png"),
 	hullBreachTexture("Resources\\roomSprites\\hullBreach.png"),
 	deathAnim("Resources\\deathAnim.png"),
-	goalTexture("Resources\\goal.png"){
+	goalTexture("Resources\\goal2.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
