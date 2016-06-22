@@ -1,14 +1,14 @@
 #pragma once
 #include "Level.h"
 #include "Character.h"
+#include "Oxygen.h"
 class DoorController
 {
 public:
 	DoorController();
 	~DoorController();
 
-	void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character);
-
+	void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character, Oxygen& oxygen);
 
 	//!Get door status
 	bool getDoorStatus() { return doorStatus; }

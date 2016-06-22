@@ -2,6 +2,7 @@
 #include "DoorController.h"
 #include "Character.h"
 #include "level.h"
+#include "Oxygen.h"
 
 
 
@@ -14,7 +15,7 @@ DoorController::~DoorController()
 {
 }
 
-void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character)
+void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character, Oxygen& oxygen)
 {
 	
 
@@ -28,6 +29,15 @@ void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& char
 		grid.grid[playerX][playerY]->isOpenDoor = false;
 		grid.grid[playerX][playerY]->isClosedDoor = true;
 	}
+
+	if (grid.grid[playerX][playerY]->isOxygenTank == true)
+	{
+		int currentOxygen = oxygen.getOxygenReserves();
+		oxygen.setOxygenReserves(currentOxygen + 1000);
+		grid.grid[playerX][playerY]->isOxygenTank = false;
+	}
+	else
+		grid.grid[playerX][playerY]->isOxygenTank = false;
 
 	
 	

@@ -42,6 +42,8 @@ private:
 	Texture openDoorTexture;
 	//! To show the oxygen level in a room
 	Texture oxygenTex;
+	//! To show oxygen tanks
+	Texture oxygenTank;
 	//! To show the character health
 	Texture healthBar;
 	//! Label for character health

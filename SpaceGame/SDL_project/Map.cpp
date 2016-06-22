@@ -147,19 +147,24 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 			
 			
 
-			// Spawn random hull breach
+			// Spawn random hull breach and oxygen tanks
 			int randomRoomChance = rand() % (0 - hullBreachSpawnChance);
+			int randomOxygenTankChance = rand() % (0 - oxygenTankSpawn);
 
 			// Only spawn if it is not the spawn room
 			if (randomRoomChance == 0 && !roomVector.empty())
 			{
 				room[x][y]->isHullBreach = true;
 				room[x][y]->oxygenLevel = 0;
-				
 			}
-			else
-				room[x][y]->isHullBreach = false;
-				roomdesign.designRoom(level, x, y);
+			
+			
+			if (randomOxygenTankChance == 0 && !roomVector.empty())
+			{
+				room[x][y]->isOxygenTank = true;
+				room[x][y]->setOxygenLevel(100);
+			}
+			
 
 		}
 	}

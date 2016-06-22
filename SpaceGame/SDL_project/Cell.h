@@ -47,6 +47,8 @@ public:
 	bool isOnFire = false;
 	//! Whether the cell is a hull breach
 	bool isHullBreach = false;
+	//! Whether the cell is an oxygen tank
+	bool isOxygenTank = false;
 
 	//! cell Orientation
 	int cellOrientation = 9;

@@ -47,8 +47,6 @@ void Fire::fireSpread(Level& grid, int cellX, int cellY)
 			{
 				if ( grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->isOpenDoor == false)
 				{
-
-
 					//The cell has oxygen
 					if (grid.grid[cellX + (randomDirectionX)][cellY + (randomDirectionY)]->getOxygenLevel() >= 25)
 					{

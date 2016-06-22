@@ -35,8 +35,11 @@ private:
 	//! Chance to generate rooms with oxygen
 	int oxygenatedRoomChance = 10;
 
-	//!Chance to spawn hullBreaches
-	int hullBreachSpawnChance = 70;
+	//! Chance to spawn hullBreaches
+	int hullBreachSpawnChance = 30;
+
+	//! Chance to spawn oxygen tanks
+	int oxygenTankSpawn = 30;
 
 };
 
