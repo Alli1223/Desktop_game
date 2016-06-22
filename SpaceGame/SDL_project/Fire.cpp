@@ -34,25 +34,6 @@ void Fire::spawn(Level& grid, int cellX, int cellY)
 		}
 		lastTime = currentTime;
 	}
-	/*
-	int spawnChance = rand() % (0 + initialFireSpawnNumber);
-
-	//Fire will spawn in a room that is not the spawn room
-	if (spawnChance == 0 && grid.grid[cellX][cellY]->isRoom && cellX >= 5 && cellY >= 5)
-	{
-		
-		// It will not spawn on doors or oxygen tanks or hull breaches
-		if (grid.grid[cellX][cellY]->isOpenDoor == false && grid.grid[cellX][cellY]->isOxygenTank == false && grid.grid[cellX][cellY]->isHullBreach == false)
-		{
-
-			grid.grid[cellX][cellY]->isOnFire = true;
-			grid.grid[cellX][cellY]->oxygenLevel = 0;
-		}
-	}
-
-	else
-		spawnChance--;
-		*/
 }
 
 
