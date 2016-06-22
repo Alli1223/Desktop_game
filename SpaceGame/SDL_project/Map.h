@@ -39,7 +39,13 @@ private:
 	int hullBreachSpawnChance = 30;
 
 	//! Chance to spawn oxygen tanks
-	int oxygenTankSpawn = 30;
+	int oxygenTankSpawnChance = 30;
+
+	//! Chance to spawn fire extinguisher
+	int fireExtinguisherSpawnChance = 30;
+
+	//! Chance to spawn fire
+	int initialFireSpawnChance = 50;
 
 };
 

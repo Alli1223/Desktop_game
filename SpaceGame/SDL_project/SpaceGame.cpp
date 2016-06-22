@@ -17,7 +17,7 @@ SpaceGame::SpaceGame()
 	closedDoorTexture("Resources\\roomSprites\\center.png"),
 	openDoorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
-	oxygenTank("Resources\\oxygenTank.png"),
+	oxygenTank("Resources\\oxygenTank.png"), fireExtinguisher("Resources\\fireExtinguisher.png"),
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
 	winTexture("Resources\\oxygenBar.png"),
@@ -224,6 +224,11 @@ void SpaceGame::run()
 				{
 					oxygenTank.alterTransparency(200);
 					oxygenTank.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->isFireExtinguisher)
+				{
+					fireExtinguisher.alterTransparency(200);
+					fireExtinguisher.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Renders open doors
 				if (room.grid[x][y]->isOpenDoor)
