@@ -71,6 +71,12 @@ private:
 	//! Is the death animation texture
 	Texture deathAnim;
 
+	//! Are the textures for the different character orientations
+	Texture characterLeft;
+	Texture characterRight;
+	Texture characterUp;
+	Texture characterDown;
+
 	//! Are the textures for the differnt sides of the room cells
 	Texture topRoomCell;
 	Texture topRightRoomCell;

@@ -89,7 +89,7 @@ bool Character::isCellARoom(int x, int y)
 	return currentRoom->grid[xCell][yCell]->isRoom;
 }
 
-// Checks to see if a cell is a room
+// Checks to see if a cell is a door
 bool Character::isCellADoor(int x, int y)
 {
 	int xCell = x / currentRoom->getCellSize();
