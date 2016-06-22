@@ -10,10 +10,14 @@ public:
 
 	//! Spawns the fire at level start
 	void spawn(Level& grid, int cellX, int cellY);
+	//! Sets the time variables
+	unsigned int lastTime = 0, currentTime;
 
+	//! time in seconds that fire will spawn
+	int firespawntimer = 1;
 private:
-	int fireSpawnChance = 30;
-
+	
+	int initialFireSpawnNumber = 90000;
 	//! Controlls how fast the oxygen will spread
 	int spawnRate = 10;
 };
