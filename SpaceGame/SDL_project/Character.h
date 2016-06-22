@@ -80,8 +80,8 @@ private:
 	//! Integers for the character's X and Y position
 	int x = 50, y = 50;
 	//! Integer for the character's size when rendered
-	int size = 50;
+	int size = 25;
 	//! Integer for the characters current speed
-	int speed = 3; 
+	int speed = 4; 
 };
 

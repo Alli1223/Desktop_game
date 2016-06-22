@@ -134,17 +134,14 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		else
 			oxygenLevel = 0;
 	}
-	RoomDesign roomdesign;
+	
 	//Gives all the cells in the room it's properties
 	for (int x = 0; x < room.size(); x++)
 	{
-		for (int y = 0; y < room[0].size(); y++)
+		for (int y = 0; y < room.size(); y++)
 		{
 			room[x][y]->oxygenLevel = oxygenLevel;
 			room[x][y]->isRoom = true;
-
-			// Designs what the cells look like
-			
 			
 
 			// Spawn random hull breach and oxygen tanks
@@ -157,8 +154,6 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 				room[x][y]->isHullBreach = true;
 				room[x][y]->oxygenLevel = 0;
 			}
-			
-			
 			if (randomOxygenTankChance == 0 && !roomVector.empty())
 			{
 				room[x][y]->isOxygenTank = true;
@@ -222,7 +217,7 @@ void Map::generateMap(Level level)
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -251,7 +246,7 @@ void Map::generateMap(Level level)
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -279,7 +274,7 @@ void Map::generateMap(Level level)
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -308,7 +303,7 @@ void Map::generateMap(Level level)
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
