@@ -106,7 +106,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		for (int y = topLeftY; y < topLeftY + size; y++)
 		{
 			//Detects if the room goes out the level vertically
-			if (y < 0 || y >= level.grid[0].size())
+			if (y < 0 || y >= level.grid.size())
 			{
 				return false;
 			}

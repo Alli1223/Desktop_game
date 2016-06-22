@@ -13,7 +13,7 @@
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
-	characterTex("Resources\\crew3.png"),
+	characterTex("Resources\\crew2.png"),
 	closedDoorTexture("Resources\\roomSprites\\center.png"),
 	openDoorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),

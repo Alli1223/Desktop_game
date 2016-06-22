@@ -12,7 +12,7 @@ public:
 	void spawn(Level& grid, int cellX, int cellY);
 
 private:
-	
+	int fireSpawnChance = 30;
 
 	//! Controlls how fast the oxygen will spread
 	int spawnRate = 10;
