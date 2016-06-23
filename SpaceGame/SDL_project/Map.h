@@ -45,7 +45,7 @@ private:
 	int healthPackSpawnChance = 60;
 
 	//! Chance to spawn fire
-	int initialFireSpawnChance = 20;
+	int initialFireSpawnChance = 100;
 
 };
 

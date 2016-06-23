@@ -20,9 +20,9 @@ public:
 	void run();
 	
 	//! The window width 
-	static const int WINDOW_WIDTH = 800;
+	static const int WINDOW_WIDTH = 900;
 	//! The window height
-	static const int WINDOW_HEIGHT = 800;
+	static const int WINDOW_HEIGHT = 900;
 	//! Coordinates of the mouse 
 	int mouse_X, mouse_Y;
 

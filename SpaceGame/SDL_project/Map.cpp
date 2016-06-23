@@ -167,7 +167,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 				room[x][y]->isHealthPack = true;
 				room[x][y]->setOxygenLevel(100);
 			}
-			if (randomInitialFireSpawnChance == 0 && !roomVector.empty() && room[x][y]->isHullBreach == false)
+			if (randomInitialFireSpawnChance == 0 && !roomVector.empty() && room[x][y]->isHullBreach == false && room[x][y]->oxygenLevel == 0)
 			{
 				room[x][y]->isOnFire = true;
 				room[x][y]->setOxygenLevel(0);
