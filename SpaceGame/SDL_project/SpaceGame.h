@@ -45,7 +45,7 @@ private:
 	//! To show oxygen tanks
 	Texture oxygenTank;
 	//! To show fireExtinguisher
-	Texture fireExtinguisher;
+	Texture healthPack;
 	//! To show the character health
 	Texture healthBar;
 	//! Label for character health

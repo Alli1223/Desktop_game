@@ -23,6 +23,6 @@ public:
 
 protected:
 	//! The size that the cell will be rendered at
-	int cellSize = 50;
+	int cellSize = 25;
 };
 

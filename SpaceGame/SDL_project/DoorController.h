@@ -19,5 +19,6 @@ public:
 private:
 	//!Door status - True is open - False is closed
 	bool doorStatus = false;
+	int FireExtinguisherEffectiveness = 10;
 };
 

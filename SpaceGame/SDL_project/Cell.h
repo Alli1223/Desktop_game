@@ -50,7 +50,7 @@ public:
 	//! Whether the cell is an oxygen tank
 	bool isOxygenTank = false;
 	//! Whether the cell is an Fire extengusher
-	bool isFireExtinguisher = false;
+	bool isHealthPack = false;
 
 	//! cell Orientation
 	int cellOrientation = 9;

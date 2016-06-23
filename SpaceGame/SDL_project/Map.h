@@ -33,19 +33,19 @@ private:
 	bool generateRoom(Level level, int size, int entranceX, int entranceY, char direction); 
 
 	//! Chance to generate rooms with oxygen
-	int oxygenatedRoomChance = 10;
+	int oxygenatedRoomChance = 5;
 
 	//! Chance to spawn hullBreaches
-	int hullBreachSpawnChance = 30;
+	int hullBreachSpawnChance = 80;
 
 	//! Chance to spawn oxygen tanks
-	int oxygenTankSpawnChance = 30;
+	int oxygenTankSpawnChance = 40;
 
 	//! Chance to spawn fire extinguisher
-	int fireExtinguisherSpawnChance = 30;
+	int healthPackSpawnChance = 60;
 
 	//! Chance to spawn fire
-	int initialFireSpawnChance = 50;
+	int initialFireSpawnChance = 20;
 
 };
 
