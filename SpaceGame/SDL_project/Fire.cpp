@@ -21,7 +21,7 @@ void Fire::spawn(Level& grid, int cellX, int cellY)
 	currentTime = SDL_GetTicks();
 	if (currentTime > lastTime + (firespawntimer * 1000) ) 
 	{
-		if (grid.grid[cellX][cellY]->isRoom && cellX >= 5 && cellY >= 5)
+		if (grid.grid[cellX][cellY]->isRoom && (cellX >= 6 || cellY >= 6))
 		{
 
 			// It will not spawn on doors or oxygen tanks or hull breaches
@@ -78,6 +78,11 @@ void Fire::fireSpread(Level& grid, int cellX, int cellY)
 			lastTime = currentTime;
 		}
 	}
+}
+
+void Fire::fireExtinguisher()
+{
+
 }
 
 

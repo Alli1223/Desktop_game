@@ -49,6 +49,8 @@ public:
 	bool isHullBreach = false;
 	//! Whether the cell is an oxygen tank
 	bool isOxygenTank = false;
+	//! Whether the cell is an Fire extengusher
+	bool isHealthPack = false;
 
 	//! cell Orientation
 	int cellOrientation = 9;

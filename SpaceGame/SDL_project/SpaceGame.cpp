@@ -17,7 +17,7 @@ SpaceGame::SpaceGame()
 	closedDoorTexture("Resources\\roomSprites\\center.png"),
 	openDoorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
-	oxygenTank("Resources\\oxygenTank.png"),
+	oxygenTank("Resources\\SpawnItems\\oxygenTank.png"), healthPack("Resources\\SpawnItems\\healthPack.png"),
 	healthBar("Resources\\health.png"),
 	healthText("Resources\\healthText.png"),
 	winTexture("Resources\\oxygenBar.png"),
@@ -26,11 +26,11 @@ SpaceGame::SpaceGame()
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
 	gameOverText("Resources\\game_over.png"),
-	fireTexture("Resources\\fire1.png"),
+	fireTexture("Resources\\SpawnItems\\fire1.png"),
 	backgroundTexture("Resources\\background.png"),
 	hullBreachTexture("Resources\\roomSprites\\hullBreach.png"),
 	deathAnim("Resources\\deathAnim.png"),
-	goalTexture("Resources\\goal2.png"){
+	goalTexture("Resources\\SpawnItems\\goal2.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -224,6 +224,11 @@ void SpaceGame::run()
 				{
 					oxygenTank.alterTransparency(200);
 					oxygenTank.render(renderer, xPos, yPos, cellSize, cellSize);
+				}
+				if (room.grid[x][y]->isHealthPack)
+				{
+					healthPack.alterTransparency(200);
+					healthPack.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				// Renders open doors
 				if (room.grid[x][y]->isOpenDoor)

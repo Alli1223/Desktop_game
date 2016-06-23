@@ -18,7 +18,7 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 	
 	//RoomDesign::checkCenterCell(room, cellX, cellY);
 
-	//sets the top and cell edges
+	//sets the top and cell edges and other little edge cases
 	if (cellX == 0 && room.grid[cellX][cellY]->isRoom)
 	{
 		room.grid[cellX][cellY]->cellOrientation = 6;
@@ -27,6 +27,10 @@ void RoomDesign::designRoom(Level& room, int cellX, int cellY)
 	if (cellY == 0 && room.grid[cellX][cellY]->isRoom)
 	{
 		room.grid[cellX][cellY]->cellOrientation = 0;
+	}
+	if (cellY == 0 && cellX == 0)
+	{
+		room.grid[cellX][cellY]->cellOrientation = 7;
 	}
 	
 	//Sets the top row to curved edges
