@@ -148,10 +148,10 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 			int randomRoomChance = rand() % (0 - hullBreachSpawnChance);
 			int randomOxygenTankChance = rand() % (0 - oxygenTankSpawnChance);
 			int randomInitialFireSpawnChance = rand() % (0 - initialFireSpawnChance);
-			int randomFireExtinguisherChance = rand() % (0 - fireExtinguisherSpawnChance);
+			int randomHealthPackChance = rand() % (0 - healthPackSpawnChance);
 			
 
-			// Only spawn if it is not the spawn room
+			// Spawns objects within the room
 			if (randomRoomChance == 0 && !roomVector.empty())
 			{
 				room[x][y]->isHullBreach = true;
@@ -162,12 +162,12 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 				room[x][y]->isOxygenTank = true;
 				room[x][y]->setOxygenLevel(100);
 			}
-			if (randomFireExtinguisherChance == 0)
+			if (randomHealthPackChance == 0 && room[x][y]->isOxygenTank == false)
 			{
-				room[x][y]->isFireExtinguisher = true;
+				room[x][y]->isHealthPack = true;
 				room[x][y]->setOxygenLevel(100);
 			}
-			if (randomInitialFireSpawnChance == 0 && !roomVector.empty())
+			if (randomInitialFireSpawnChance == 0 && !roomVector.empty() && room[x][y]->isHullBreach == false)
 			{
 				room[x][y]->isOnFire = true;
 				room[x][y]->setOxygenLevel(0);
@@ -195,6 +195,8 @@ void Map::generateMap(Level level)
 	randomSizes.push_back(2);
 	randomSizes.push_back(3);
 	randomSizes.push_back(4);
+	randomSizes.push_back(5);
+	randomSizes.push_back(6);
 
 	//Makes a list of sizes to make sure that all sizes are attempted
 	std::vector<int> randomDirections;
