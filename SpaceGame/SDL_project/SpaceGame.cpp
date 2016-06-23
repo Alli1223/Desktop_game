@@ -69,8 +69,8 @@ void SpaceGame::run()
 	Fire fire;
 	RoomDesign designroom;
 	DoorController doorcontroller;
-	
 	MainCharacter characterOne;
+
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
 	//Character starts in Idle state
@@ -287,13 +287,15 @@ void SpaceGame::run()
 		 // If the character has died the game over screen is displayed
 		if (!characterOne.isAlive)
 		{
+
+			//Death animation
 			SDL_Surface * image = IMG_Load("Resources\\deathAnim.png");
 			SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
 
 			Uint32 ticks = SDL_GetTicks();
-			Uint32 sprite = (ticks / 1000) % 6;
+			Uint32 sprite = (ticks / 500) % 10;
 			
-			SDL_Rect srcrect = { sprite * 8, 0, 8, 48,  };
+			SDL_Rect srcrect = { sprite * 10, 0, 10, 100,  };
 			SDL_Rect dstrect = { characterOne.getX() - (characterOne.getSize() / 2), characterOne.getY() - (characterOne.getSize() / 2), characterOne.getSize(), characterOne.getSize() };
 
 			SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
