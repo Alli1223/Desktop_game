@@ -9,6 +9,8 @@ class CharacterState;
   This class is the base for the main character and the NPC. It contains all the functions
   needed to make the character move and react to different states.
 */
+
+//TODO: Change Character movement to use vectors
 class Character
 {
 public:
