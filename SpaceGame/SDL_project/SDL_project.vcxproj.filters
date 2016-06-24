@@ -64,6 +64,9 @@
     <ClCompile Include="DoorController.cpp">
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>Source Files\Level Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -133,6 +136,9 @@
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
     <ClInclude Include="DoorController.h">
+      <Filter>Headers\Level Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -163,6 +163,7 @@
     <ClInclude Include="DeadState.h" />
     <ClInclude Include="DoorController.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="RoomDesign.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="IdleState.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="DeadState.cpp" />
     <ClCompile Include="DoorController.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="RoomDesign.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="IdleState.cpp" />
