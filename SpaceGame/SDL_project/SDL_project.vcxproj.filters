@@ -46,17 +46,18 @@
     <ClCompile Include="WanderingState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SuffocatingState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="ReachedGoalState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="PanicingState.cpp" />
-    <ClCompile Include="PanickingState.cpp" />
+    <ClCompile Include="PanickingState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelGeneration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
@@ -110,17 +111,21 @@
     <ClInclude Include="CharacterState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="SuffocatingState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
     <ClInclude Include="ReachedGoalState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
-    <ClInclude Include="PanicingState.h" />
-    <ClInclude Include="PanickingState.h" />
+    <ClInclude Include="PanickingState.h">
+      <Filter>Headers\States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameConfig.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelGeneration.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />
