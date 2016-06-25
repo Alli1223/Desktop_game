@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "Level.h"
+#include "LevelGeneration.h"
 
 //!  The MainCharacter that will be controlled by the user
 /*!

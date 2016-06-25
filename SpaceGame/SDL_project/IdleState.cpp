@@ -27,6 +27,7 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 		character.setSpeed(character.suffocatingSpeed); 
 	}
 	// If the user has pressed WASD the character enters the PlayerControlledState
+	//else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
 	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
 	{
 		character.state = std::make_shared<PlayerControlledState>();

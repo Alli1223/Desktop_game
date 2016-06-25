@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Texture.h"
-#include "Level.h"
+#include "LevelGeneration.h"
 #include "Map.h"
 //! The main class
 /*!

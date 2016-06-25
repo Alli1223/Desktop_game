@@ -1,5 +1,5 @@
 #pragma once
-#include "Level.h"
+#include "LevelGeneration.h"
 #include "Cell.h"
 /*!
 This class manages how the oxygen spreads through the room cells and how much oxygen is able to be placed.
@@ -13,13 +13,13 @@ public:
 	~Oxygen();
 
 	//! Update method updates the oxygen level each frame
-	void update(int cellSize, Level grid);
+	void update(int cellSize, LevelGeneration grid);
 
 	//! Adds oxygen based on where the mouse was clicked
-	void addOxygen(int mouseX, int mouseY, int cellSize, Level grid);
+	void addOxygen(int mouseX, int mouseY, int cellSize, LevelGeneration grid);
 
 	//! Removes oxygen based on where the mouse was clicked
-	void removeOxygen(int mouseX, int mouseY, int cellSize, Level grid);
+	void removeOxygen(int mouseX, int mouseY, int cellSize, LevelGeneration grid);
 
 	//! Getter for getting the oxygen reserve level
 	int getOxygenReserves() { return oxygenReserves; }

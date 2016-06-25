@@ -1,17 +1,20 @@
 #pragma once
 #include "Cell.h"
+//#include "Map.h"
+#include "GameConfig.h"
+
 //! This class generates the base of the level 
 /*!
 This class creates a vector of vector of shared pointers to cells
 */
 
-class Level
+class LevelGeneration
 {
 public:
 	//! A constructor
-	Level();
+	LevelGeneration(int WINDOW_WIDTH, int WINDOW_HEIGHT);
 	//! A deconstructor 
-	~Level();
+	~LevelGeneration();
 
 	//! Return the cellSize
 	int getCellSize() { return cellSize; }
@@ -23,6 +26,6 @@ public:
 
 protected:
 	//! The size that the cell will be rendered at
-	int cellSize = 50;
+	int cellSize = 25;
 };
 

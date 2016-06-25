@@ -2,7 +2,7 @@
 #include "Oxygen.h"
 #include "Cell.h"
 #include "MainCharacter.h"
-#include "Level.h"
+#include "LevelGeneration.h"
 #include "Map.h"
 
 
@@ -16,7 +16,7 @@ Oxygen::~Oxygen()
 }
 
 //Increases oxygen in a selected cell (only if the cell is a room)
-void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
+void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, LevelGeneration grid)
 {
 	//get the cell of where the mouse was clicked
 	int cellX = mouseX / cellSize;
@@ -39,7 +39,7 @@ void Oxygen::addOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 }
 
 //Decreases oxygen in a selected cell
-void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
+void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, LevelGeneration grid)
 {
 	//get the cell of where the mouse was clicked
 	int cellX = mouseX / cellSize;
@@ -65,7 +65,7 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 }
 
 //Loops through the cells to balance out the oxygen values
-void Oxygen::update(int cellSize, Level grid)
+void Oxygen::update(int cellSize, LevelGeneration grid)
 {
 	for (int x = 0; x < grid.grid.size() - 1; x++)
 	{

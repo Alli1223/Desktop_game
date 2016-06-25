@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "Level.h"
+#include "LevelGeneration.h"
 #include "Oxygen.h"
 
 
 // Populates a 2 dimentional vector with pointers to cells
-void Level::makeGrid(int Window_Width, int Window_Height)
+void LevelGeneration::makeGrid(int windowWidth, int windowHeight)
 {
 	// Calculate the number of cells on each axis
-	int XAxis_Max = Window_Width / cellSize;
-	int YAxis_Max = Window_Height / cellSize;
+	int XAxis_Max = windowWidth / cellSize;
+	int YAxis_Max = windowHeight / cellSize;
 
 	for (int x = 0; x < XAxis_Max; x++)
 	{
@@ -26,11 +26,14 @@ void Level::makeGrid(int Window_Width, int Window_Height)
 	}
 }
 
-Level::Level()
+LevelGeneration::LevelGeneration(int WINDOW_WIDTH, int WINDOW_HEIGHT)
 {
+	//Creates an empty grid of cells
+	makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+
 }
 
 
-Level::~Level()
+LevelGeneration::~LevelGeneration()
 {
 }

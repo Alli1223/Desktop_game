@@ -1,5 +1,5 @@
 #pragma once
-#include"Level.h"
+#include"LevelGeneration.h"
 
 class WanderingState;
 class CharacterState;
@@ -56,7 +56,7 @@ public:
 	//! An shared pointer to the character's state.
 	std::shared_ptr<CharacterState> state;
 	//! Shared pointer to the Level loaded in SpaceGame
-	std::shared_ptr<Level> currentRoom;
+	std::shared_ptr<LevelGeneration> currentRoom;
 	
 	//! A double for the character's health
 	double health = 100;
@@ -82,7 +82,7 @@ private:
 	//! Integers for the character's X and Y position
 	int x = 50, y = 50;
 	//! Integer for the character's size when rendered
-	int size = 50;
+	int size = 20;
 	//! Integer for the characters current speed
 	int speed = 3; 
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include"Character.h"
-#include"Level.h"
+#include"LevelGeneration.h"
 
 //!  The character state class is used to store the character's current state
 /*!

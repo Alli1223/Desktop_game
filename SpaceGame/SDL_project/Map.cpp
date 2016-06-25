@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Map.h"
 
-
-void Map::LoadMap(std::string filename, Level room)
+//Loads a map from a text file
+void Map::LoadMap(std::string filename, LevelGeneration room)
 //(filename, grid to load into) loads map from text file into grid
 {
 	//loop through the file
@@ -64,7 +64,7 @@ int roundToNearestWhole(double number)
 	}
 }
 
-bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char direction)
+bool Map::generateRoom(LevelGeneration level, int size, int entranceX, int entranceY, char direction)
 {
 	std::vector<std::vector<std::shared_ptr<Cell>>> room;
 	double topLeftX;
@@ -143,7 +143,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 	return true;
 }
 
-void Map::generateMap(Level level)
+void Map::generateMap(LevelGeneration level)
 {
 	//Creates a seed to use
 	std::srand(time(nullptr));
@@ -193,7 +193,7 @@ void Map::generateMap(Level level)
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -222,7 +222,7 @@ void Map::generateMap(Level level)
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -250,7 +250,7 @@ void Map::generateMap(Level level)
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -279,7 +279,7 @@ void Map::generateMap(Level level)
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (xOfDoor >= 16 || xOfDoor < 0 || yOfDoor >= 16 || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
 						{
 							safe = false;
 						}

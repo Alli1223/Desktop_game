@@ -2,7 +2,6 @@
 #include "SpaceGame.h"
 #include "InitialisationError.h"
 #include "Cell.h"
-#include "Level.h"
 #include "MainCharacter.h"
 #include "IdleState.h"
 #include "Oxygen.h"
@@ -48,16 +47,15 @@ SpaceGame::~SpaceGame()
 void SpaceGame::run()
 {
 	// Level generation
-	Level room;
-	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
+	LevelGeneration currentLevel( WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
-	mapLoader.generateMap(room);
+	mapLoader.generateMap(currentLevel);
 	
 	Oxygen oxygen;
 	
 	MainCharacter characterOne;
 	//Character needs a pointer to the room to get the state
-	characterOne.currentRoom = std::make_shared<Level>(room);
+	characterOne.currentRoom = std::make_shared<LevelGeneration>(currentLevel);
 	//Character starts in Idle state
 	characterOne.state = std::make_shared<IdleState>();
 	characterOne.windowHeight = WINDOW_HEIGHT;
@@ -92,46 +90,48 @@ void SpaceGame::run()
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
-		int cellSize = room.getCellSize();
+		int cellSize = currentLevel.getCellSize();
 
 		// Adds and removes oxygen based on mouse click
 		if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
-			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
+			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, currentLevel);
 		}
 
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
-			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, currentLevel);
 		}
-		oxygen.update(cellSize, room);
+		oxygen.update(cellSize, currentLevel);
 		
-		for (int x = 0; x < room.grid.size(); x++)
+		for (int x = 0; x < currentLevel.grid.size(); x++)
 		{
-			for (int y = 0; y < room.grid[x].size(); y++)
+			for (int y = 0; y < currentLevel.grid[x].size(); y++)
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
 				
+				//currentLevel.grid[x][y]->isRoom = true; //test level gen
+
 				// Checks if the cell is a room
-				if (room.grid[x][y]->isRoom)
+				if (currentLevel.grid[x][y]->isRoom)
 				{
-					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(currentLevel.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 
 				}
 				// Checks if the cell is a door
-				if (room.grid[x][y]->isDoor)
+				if (currentLevel.grid[x][y]->isDoor)
 				{
-					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(currentLevel.grid[x][y]->oxygenLevel);
 					doorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 				//Checks if the cell has the goal on it.
-				if (room.grid[x][y]->isGoal)
+				if (currentLevel.grid[x][y]->isGoal)
 				{
-					oxygenTex.alterTransparency(room.grid[x][y]->oxygenLevel);
+					oxygenTex.alterTransparency(currentLevel.grid[x][y]->oxygenLevel);
 					roomCell.render(renderer, xPos, yPos, cellSize, cellSize);
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);

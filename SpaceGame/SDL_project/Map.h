@@ -1,5 +1,5 @@
 #pragma once
-#include "Level.h"
+#include "LevelGeneration.h"
 
 
 //!  The Class that handlles the creation of rooms
@@ -18,10 +18,10 @@ public:
 	int random(int smallestValue, int largestValue);
 
 	//! Loads in a map from a txt file.
-	void LoadMap(std::string filename, Level room);
+	void LoadMap(std::string filename, LevelGeneration room);
 	
 	//! Randomly generates a map and modifies the level.
-	void generateMap(Level level);
+	void generateMap(LevelGeneration level);
 
 private:
 	//! Used to store room locations
@@ -31,7 +31,7 @@ private:
 	/*!
 		Uses four seperate direction's to place rooms more easily later n = north, e = east, s = south, w = west.
 	*/
-	bool generateRoom(Level level, int size, int entranceX, int entranceY, char direction); 
+	bool generateRoom(LevelGeneration level, int size, int entranceX, int entranceY, char direction); 
 
 };
 
