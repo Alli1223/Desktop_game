@@ -65,7 +65,7 @@
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
     <ClCompile Include="PathFinder.cpp">
-      <Filter>Source Files\Level Classes</Filter>
+      <Filter>Source Files\Level Classes\PathFinding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +139,7 @@
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
     <ClInclude Include="PathFinder.h">
-      <Filter>Headers\Level Classes</Filter>
+      <Filter>Headers\Level Classes\PathFinding</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +188,12 @@
     </Filter>
     <Filter Include="Source Files\Main Game Classes">
       <UniqueIdentifier>{312cdcf3-796f-49f3-bd1e-c20c8229fb53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level Classes\PathFinding">
+      <UniqueIdentifier>{78670b3c-6242-4d7a-8ae8-647743691a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Level Classes\PathFinding">
+      <UniqueIdentifier>{37765115-50b9-4cbb-80f0-1cdc119b11d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
