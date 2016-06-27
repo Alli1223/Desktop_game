@@ -5,7 +5,6 @@
 #include "Level.h"
 #include "Map.h"
 #include "Fire.h"
-#include "RoomDesign.h"
 #include "DoorController.h"
 
 
@@ -71,10 +70,10 @@ void Oxygen::removeOxygen(int mouseX, int mouseY, int cellSize, Level grid)
 }
 
 //Loops through the cells to balance out the oxygen values
-void Oxygen::update(Level grid)
+void Oxygen::update(Level& grid)
 {
 	Fire fire;
-	RoomDesign roomdesign;
+	
 	DoorController doorcontroller;
 
 	
@@ -97,8 +96,7 @@ void Oxygen::update(Level grid)
 			//Loops through the rooms
 			if (grid.grid[cellX][cellY]->isRoom && !grid.grid[cellX][cellY]->isOpenDoor)
 			{
-				//sets the cell sprites for the edges
-				roomdesign.designRoom(grid, cellX, cellY);
+				
 
 				
 				
