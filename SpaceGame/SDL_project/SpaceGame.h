@@ -19,7 +19,7 @@ public:
 	//! 
 	void run();
 
-	void SpaceGame::drawPath(Cell& cell, Level& level);
+	void SpaceGame::drawPath(Cell& cell, Level& level, int startX, int startY);
 	std::vector<Cell> path;
 	
 	//! The window width 

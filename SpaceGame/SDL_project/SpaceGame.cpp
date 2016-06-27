@@ -73,6 +73,8 @@ void SpaceGame::run()
 	RoomDesign designroom;
 	DoorController doorcontroller;
 	MainCharacter characterOne;
+	Cell cell;
+	Pathfinder pathfinder;
 
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
@@ -124,15 +126,19 @@ void SpaceGame::run()
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+			
+			int mouseCellX = mouse_X / cellSize;
+			int mouseCellY = mouse_Y / cellSize;
+			// Draw the found path
+			drawPath(cell, room, mouseCellX, mouseCellY);
+			pathfinder.findPath(room, cell, cell);
 		}
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
 
-		Cell cell;
-		// Draw the found path
-		SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
-		drawPath(cell, room);
+		
+		
 		
 		
 		for (int x = 0; x < room.grid.size(); x++)
@@ -358,7 +364,7 @@ void SpaceGame::run()
 	}// End while running
 }
 
-void SpaceGame::drawPath(Cell& cell, Level& level)
+void SpaceGame::drawPath(Cell& cell, Level& level, int startX, int startY)
 {
 	// Start at the start point
 	// tileSize / 2 is added to all coordinates to put them in the centre of the tile
@@ -374,6 +380,5 @@ void SpaceGame::drawPath(Cell& cell, Level& level)
 		SDL_RenderDrawLine(renderer, lastX, lastY, nextX, nextY);
 		lastX = nextX;
 		lastY = nextY;
-		;
 	}
 }
