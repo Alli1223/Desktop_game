@@ -18,6 +18,9 @@ public:
 
 	//! 
 	void run();
+
+	void SpaceGame::drawPath(Cell& cell, Level& level);
+	std::vector<Cell> path;
 	
 	//! The window width 
 	static const int WINDOW_WIDTH = 900;

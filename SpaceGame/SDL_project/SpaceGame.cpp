@@ -9,6 +9,7 @@
 #include "Fire.h"
 #include "RoomDesign.h"
 #include "DoorController.h"
+#include "PathFinder.h"
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
@@ -81,7 +82,7 @@ void SpaceGame::run()
 	characterOne.windowWidth= WINDOW_WIDTH;
 
 	running = true;
-	double timer = 0;
+	unsigned int timer = 0;
 
 	while (running)
 	{
@@ -127,6 +128,11 @@ void SpaceGame::run()
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
+
+		Cell cell;
+		// Draw the found path
+		SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
+		drawPath(cell, room);
 		
 		
 		for (int x = 0; x < room.grid.size(); x++)
@@ -341,6 +347,7 @@ void SpaceGame::run()
 				winTexture.alterTransparency(255);
 				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				winText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				
 			}
 			else
 				SpaceGame::run();
@@ -349,4 +356,24 @@ void SpaceGame::run()
 		
 		SDL_RenderPresent(renderer);
 	}// End while running
+}
+
+void SpaceGame::drawPath(Cell& cell, Level& level)
+{
+	// Start at the start point
+	// tileSize / 2 is added to all coordinates to put them in the centre of the tile
+	int lastX = cell.getX() * level.getCellSize() + level.getCellSize()  / 2;
+	int lastY = cell.getX() * level.getCellSize() + level.getCellSize() / 2;
+
+	// Step through the path
+	for (const Cell& cell : path)
+	{
+		int nextX = cell.getX() * level.getCellSize() + level.getCellSize() / 2;
+		int nextY = cell.getY() * level.getCellSize() + level.getCellSize() / 2;
+
+		SDL_RenderDrawLine(renderer, lastX, lastY, nextX, nextY);
+		lastX = nextX;
+		lastY = nextY;
+		;
+	}
 }

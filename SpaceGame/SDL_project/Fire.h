@@ -18,7 +18,7 @@ public:
 	unsigned int lastTime = 0, currentTime;
 
 	//! time in seconds that fire will spawn
-	float firespawntimer = 0.5;
+	float firespawntimer = 5;
 private:
 	
 	

@@ -16,12 +16,12 @@ public:
 	Cell(int x, int y);
 	//! A destructor 
 	~Cell();
-	
+
 	// Getter functions
 	//! Gets the Cell's X value
-	int getX() { return x; }
+	int getX() const { return x; }
 	//! Gets the Cell's Y value
-	int getY() { return y; }
+	int getY() const { return y; }
 	//! Gets the Cell's oxygenLevel
 	int getOxygenLevel() { return oxygenLevel; }
 	

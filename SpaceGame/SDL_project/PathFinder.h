@@ -1,39 +1,25 @@
 #pragma once
 #include "Map.h"
-
-
-class Point
-{
-public:
-	Point() : x(0), y(0) { }
-	Point(int x, int y) : x(x), y(y) { }
-
-	int getX() const { return x; }
-	int getY() const { return y; }
-
-private:
-	int x, y;
-};
-
-
+#include "Cell.h"
+#include "Level.h"
 
 enum class NodeStatus { None, Closed, Open };
 
 class Node
 {
 public:
-	Point point;
+	Cell cell;
 	NodeStatus status = NodeStatus::None;
 	double g = 0, h = 0;
 	std::shared_ptr<Node> cameFrom;
 
-	Node(const Point& point)
-		: point(point)
+	Node(Cell& point)
+		: cell(point)
 	{
 	}
 
 	Node(int x, int y)
-		: point(x, y)
+		: cell(x, y)
 	{
 	}
 };
@@ -49,8 +35,8 @@ struct CompareNodeByGPlusH
 class Pathfinder
 {
 public:
-	std::vector<Point> findPath(const Level& map, const Point& start, const Point& goal);
-	std::vector<Point> reconstructPath(std::shared_ptr<Node> goalNode);
+	std::vector<Cell> findPath(const Level& map, const Cell& start, const Cell& goal);
+	std::vector<Cell> reconstructPath(std::shared_ptr<Node> goalNode);
 
 private:
 	std::vector<std::vector<std::shared_ptr<Node>>> nodes;
@@ -65,8 +51,8 @@ private:
 
 	std::vector<std::shared_ptr<Node>> getNeighbours(std::shared_ptr<Node> node);
 	std::shared_ptr<Node> getOrCreateNode(int x, int y);
-	std::shared_ptr<Node> getOrCreateNode(const Point& point);
-	bool isInClosedSet(const Point& point);
+	std::shared_ptr<Node> getOrCreateNode(const Cell& point);
+	bool isInClosedSet(Cell& point);
 };
 
 class PathfinderError : public std::exception
