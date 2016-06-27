@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Level.h"
 #include "Oxygen.h"
+#include "RoomDesign.h"
 
 
 // Populates a 2 dimentional vector with pointers to cells
@@ -19,6 +20,7 @@ void Level::makeGrid(int Window_Width, int Window_Height)
 		{
 			// Populates the column with pointers to cells
 			Cell cell(x,y);
+			
 			auto sharedCell = std::make_shared<Cell> (cell);
 			grid[x].push_back(sharedCell);
 		}

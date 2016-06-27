@@ -67,6 +67,7 @@ int roundToNearestWhole(double number)
 
 bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char direction)
 {
+	
 	std::vector<std::vector<std::shared_ptr<Cell>>> room;
 	double topLeftX;
 	double topLeftY;
@@ -125,6 +126,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 	if (roomVector.empty()) 
 	{
 		oxygenLevel = 100;
+		
 	}
 	else
 	{
@@ -142,6 +144,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		{
 			room[x][y]->oxygenLevel = oxygenLevel;
 			room[x][y]->isRoom = true;
+
 			
 
 			// Spawn random hull breach and oxygen tanks
@@ -173,7 +176,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 				room[x][y]->setOxygenLevel(0);
 			}
 			
-
+			
 		}
 	}
 	roomVector.push_back(room);
@@ -182,6 +185,8 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 
 void Map::generateMap(Level level)
 {
+	RoomDesign roomdesign;
+
 	//Creates a seed to use
 	std::srand(time(nullptr));
 	//Clear a starting room(room 0)
@@ -335,6 +340,8 @@ void Map::generateMap(Level level)
 						}
 					}
 				}
+				
+				
 			}
 		}
 		//Check if you can attempt to place a new room
@@ -347,6 +354,15 @@ void Map::generateMap(Level level)
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isOpenDoor = true;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->isHullBreach = false;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->oxygenLevel = 100;
+		}
+	}
+
+	//Loops through all the cells and sets the orientation of the cells
+	for (int x = 0; x < level.grid.size() - 1; x++)
+	{
+		for (int y = 0; y < level.grid.size() - 1; y++)
+		{
+			roomdesign.designRoom(level, x, y);
 		}
 	}
 }
