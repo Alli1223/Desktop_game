@@ -67,7 +67,7 @@ int roundToNearestWhole(double number)
 
 bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char direction)
 {
-	
+
 	std::vector<std::vector<std::shared_ptr<Cell>>> room;
 	double topLeftX;
 	double topLeftY;
@@ -120,13 +120,13 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		}
 		room.push_back(column);
 	}
-	
+
 	// Checks if it is the first room and sets the relevant oxygen level.
 	int oxygenLevel;
-	if (roomVector.empty()) 
+	if (roomVector.empty())
 	{
 		oxygenLevel = 100;
-		
+
 	}
 	else
 	{
@@ -136,7 +136,7 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 		else
 			oxygenLevel = 0;
 	}
-	
+
 	//Gives all the cells in the room it's properties
 	for (int x = 0; x < room.size(); x++)
 	{
@@ -145,17 +145,15 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 			room[x][y]->oxygenLevel = oxygenLevel;
 			room[x][y]->isRoom = true;
 
-			
 
 			// Spawn random hull breach and oxygen tanks
-			int randomRoomChance = rand() % (0 - hullBreachSpawnChance);
+			int randomHullBreachChance = rand() % (0 - hullBreachSpawnChance);
 			int randomOxygenTankChance = rand() % (0 - oxygenTankSpawnChance);
 			int randomInitialFireSpawnChance = rand() % (0 - initialFireSpawnChance);
 			int randomHealthPackChance = rand() % (0 - healthPackSpawnChance);
-			
 
 			// Spawns objects within the room
-			if (randomRoomChance == 0 && !roomVector.empty())
+			if (randomHullBreachChance == 0 && !roomVector.empty())
 			{
 				room[x][y]->isHullBreach = true;
 				room[x][y]->oxygenLevel = 0;
@@ -175,8 +173,6 @@ bool Map::generateRoom(Level level, int size, int entranceX, int entranceY, char
 				room[x][y]->isOnFire = true;
 				room[x][y]->setOxygenLevel(0);
 			}
-			
-			
 		}
 	}
 	roomVector.push_back(room);
