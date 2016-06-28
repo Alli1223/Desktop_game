@@ -131,7 +131,7 @@ void SpaceGame::run()
 			int mouseCellY = mouse_Y / cellSize;
 			// Draw the found path
 			drawPath(cell, room, mouseCellX, mouseCellY);
-			pathfinder.findPath(room, cell, cell);
+			//pathfinder.findPath(room, cell, cell);
 		}
 
 		// Runs Oxygen spread function

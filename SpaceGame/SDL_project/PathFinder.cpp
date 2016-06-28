@@ -2,7 +2,7 @@
 #include "PathFinder.h"
 
 
-double euclideanDistance(const Cell& a, const Cell& b)
+double euclideanDistance(const Point& a, const Point& b)
 {
 	double dx = a.getX() - b.getX();
 	double dy = a.getY() - b.getY();
@@ -23,10 +23,10 @@ std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Nod
 {
 	std::vector<std::shared_ptr<Node>> result;
 
-	result.push_back(getOrCreateNode(node->cell.getX() - 1, node->cell.getY()));
-	result.push_back(getOrCreateNode(node->cell.getX() + 1, node->cell.getY()));
-	result.push_back(getOrCreateNode(node->cell.getX(), node->cell.getY() - 1));
-	result.push_back(getOrCreateNode(node->cell.getX(), node->cell.getY() + 1));
+	result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
+	result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY()));
+	result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() - 1));
+	result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
 
 	return result;
 }
@@ -42,12 +42,12 @@ std::shared_ptr<Node> Pathfinder::getOrCreateNode(int x, int y)
 	return result;
 }
 
-std::shared_ptr<Node> Pathfinder::getOrCreateNode(const Cell& cell)
+std::shared_ptr<Node> Pathfinder::getOrCreateNode(const Point& point)
 {
-	return getOrCreateNode(cell.getX(), cell.getY());
+	return getOrCreateNode(point.getX(), point.getY());
 }
 
-bool Pathfinder::isInClosedSet(Cell& point)
+bool Pathfinder::isInClosedSet(Point& point)
 {
 	auto node = nodes[point.getX()][point.getY()];
 	return node != nullptr && node->status == NodeStatus::Closed;
@@ -77,7 +77,7 @@ std::shared_ptr<Node> Pathfinder::getOpenSetElementWithLowestScore()
 	return result;
 }
 
-std::vector<Cell> Pathfinder::findPath(const Level& map, const Cell& start, const Cell& goal)
+std::vector<Point> Pathfinder::findPath(const Level& map, const Point& start, const Point& goal)
 {
 	// TODO: implement the A* algorithm to find a path from start to goal
 
@@ -99,8 +99,8 @@ std::vector<Cell> Pathfinder::findPath(const Level& map, const Cell& start, cons
 	while (auto currentNode = getOpenSetElementWithLowestScore())
 	{
 		//if the current node is the goal construct the path
-		if (currentNode->cell.getX() == map.grid[currentNode->cell.getX()][currentNode->cell.getY()]->isGoal
-			&& currentNode->cell.getY() == map.grid[currentNode->cell.getX()][currentNode->cell.getY()]->isGoal)
+		if (currentNode->point.getX() == map.grid[currentNode->point.getX()][currentNode->point.getY()]->isGoal
+			&& currentNode->point.getY() == map.grid[currentNode->point.getX()][currentNode->point.getY()]->isGoal)
 		{
 			return reconstructPath(currentNode);
 		}
@@ -111,14 +111,14 @@ std::vector<Cell> Pathfinder::findPath(const Level& map, const Cell& start, cons
 		for (auto neighbour : getNeighbours(currentNode))
 		{
 			//if the cell is free and not in closed set
-			if (map.grid[currentNode->cell.getX()][currentNode->cell.getY()]->isRoom && !isInClosedSet(neighbour->cell))
+			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom) //!isInClosedSet(neighbour->point))
 			{
 				double gTentative = currentNode->g + 1;
 
 				if (neighbour->status != NodeStatus::Open || gTentative < neighbour->g)
 				{
 					neighbour->g = gTentative;
-					neighbour->h = euclideanDistance(neighbour->cell, goal);
+					neighbour->h = euclideanDistance(neighbour->point, goal);
 					neighbour->cameFrom = currentNode;
 
 					if (neighbour->status != NodeStatus::Open)
@@ -133,12 +133,12 @@ std::vector<Cell> Pathfinder::findPath(const Level& map, const Cell& start, cons
 	throw PathfinderError();
 }
 
-std::vector<Cell> Pathfinder::reconstructPath(std::shared_ptr<Node> goalNode)
+std::vector<Point> Pathfinder::reconstructPath(std::shared_ptr<Node> goalNode)
 {
-	std::vector<Cell> result;
+	std::vector<Point> result;
 	for (auto currentNode = goalNode; currentNode; currentNode = currentNode->cameFrom)
 	{
-		result.insert(result.begin(), currentNode->cell);
+		result.insert(result.begin(), currentNode->point);
 	}
 
 	return result;

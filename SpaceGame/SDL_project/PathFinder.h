@@ -1,25 +1,24 @@
 #pragma once
 #include "Map.h"
-#include "Cell.h"
-#include "Level.h"
+#include "Point.h"
 
 enum class NodeStatus { None, Closed, Open };
 
 class Node
 {
 public:
-	Cell cell;
+	Point point;
 	NodeStatus status = NodeStatus::None;
 	double g = 0, h = 0;
 	std::shared_ptr<Node> cameFrom;
 
-	Node(Cell& point)
-		: cell(point)
+	Node(Point& point)
+		: point(point)
 	{
 	}
 
 	Node(int x, int y)
-		: cell(x, y)
+		: point(x, y)
 	{
 	}
 };
@@ -35,8 +34,8 @@ struct CompareNodeByGPlusH
 class Pathfinder
 {
 public:
-	std::vector<Cell> findPath(const Level& map, const Cell& start, const Cell& goal);
-	std::vector<Cell> reconstructPath(std::shared_ptr<Node> goalNode);
+	std::vector<Point> findPath(const Level& map, const Point& start, const Point& goal);
+	std::vector<Point> reconstructPath(std::shared_ptr<Node> goalNode);
 
 private:
 	std::vector<std::vector<std::shared_ptr<Node>>> nodes;
@@ -51,8 +50,8 @@ private:
 
 	std::vector<std::shared_ptr<Node>> getNeighbours(std::shared_ptr<Node> node);
 	std::shared_ptr<Node> getOrCreateNode(int x, int y);
-	std::shared_ptr<Node> getOrCreateNode(const Cell& point);
-	bool isInClosedSet(Cell& point);
+	std::shared_ptr<Node> getOrCreateNode(const Point& point);
+	bool isInClosedSet(Point& point);
 };
 
 class PathfinderError : public std::exception
