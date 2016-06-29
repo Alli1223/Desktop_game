@@ -193,7 +193,7 @@ void Map::generateMap(LevelGeneration level)
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid[0].size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -222,7 +222,7 @@ void Map::generateMap(LevelGeneration level)
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid[0].size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -250,7 +250,7 @@ void Map::generateMap(LevelGeneration level)
 						int xStart = roomVector[roomBase][0][0]->getX();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase].size() / 2);
 						int xOfDoor = xStart + halfRoomSize;
-						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid[0].size() || yOfDoor < 0)
 						{
 							safe = false;
 						}
@@ -279,7 +279,7 @@ void Map::generateMap(LevelGeneration level)
 						int yStart = roomVector[roomBase][0][0]->getY();
 						int halfRoomSize = roundToNearestWhole(roomVector[roomBase][0].size() / 2);
 						int yOfDoor = yStart + halfRoomSize;
-						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid.size() || yOfDoor < 0)
+						if (xOfDoor >= level.grid.size() || xOfDoor < 0 || yOfDoor >= level.grid[0].size() || yOfDoor < 0)
 						{
 							safe = false;
 						}

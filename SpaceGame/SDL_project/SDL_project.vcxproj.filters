@@ -58,6 +58,7 @@
     <ClCompile Include="LevelGeneration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
@@ -120,12 +121,10 @@
     <ClInclude Include="PanickingState.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
-    <ClInclude Include="GameConfig.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="LevelGeneration.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="GameSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />

@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "LevelGeneration.h"
 #include "Map.h"
+#include "GameSettings.h"
 //! The main class
 /*!
 This is the main class where the game is laoded and run. 
@@ -18,10 +19,12 @@ public:
 	//! 
 	void run();
 	
+	GameSettings gameSettings;
+
 	//! The window width 
-	static const int WINDOW_WIDTH = 800;
+	const int WINDOW_WIDTH = gameSettings.WINDOW_WIDTH;
 	//! The window height
-	static const int WINDOW_HEIGHT = 800;
+	const int WINDOW_HEIGHT = gameSettings.WINDOW_HEIGHT;
 	//! Coordinates of the mouse 
 	int mouse_X, mouse_Y;
 

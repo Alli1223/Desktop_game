@@ -1,7 +1,6 @@
 #pragma once
 #include "Cell.h"
 //#include "Map.h"
-#include "GameConfig.h"
 
 //! This class generates the base of the level 
 /*!
