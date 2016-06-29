@@ -7,7 +7,7 @@ public:
 
 	const int FRAME_RATE = 60;
 
-	int WINDOW_WIDTH = 800;
+	int WINDOW_WIDTH = 1000;
 	int WINDOW_HEIGHT = 800;
 
 	bool fullscreen = false;
