@@ -108,10 +108,10 @@ std::vector<Point> Pathfinder::findPath(const Level& map, const Point& start, co
 		addToClosedSet(currentNode);
 
 		//loops through each of the neighbours
-		for (auto neighbour : getNeighbours(currentNode))
+		for each (auto neighbour in getNeighbours(currentNode))
 		{
 			//if the cell is free and not in closed set
-			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom) //!isInClosedSet(neighbour->point))
+			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom && !isInClosedSet(neighbour->point))
 			{
 				double gTentative = currentNode->g + 1;
 

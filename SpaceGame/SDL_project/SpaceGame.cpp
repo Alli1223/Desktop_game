@@ -75,6 +75,7 @@ void SpaceGame::run()
 	MainCharacter characterOne;
 	Cell cell;
 	Pathfinder pathfinder;
+	Point point;
 
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
@@ -127,11 +128,20 @@ void SpaceGame::run()
 		{
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 			
+			//get the cell the mouse is on
 			int mouseCellX = mouse_X / cellSize;
 			int mouseCellY = mouse_Y / cellSize;
-			// Draw the found path
-			drawPath(cell, room, mouseCellX, mouseCellY);
-			//pathfinder.findPath(room, cell, cell);
+
+			// set the start and end points
+			startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
+			endPoint = Point(mouseCellX, mouseCellY);
+
+			//find path
+			pathfinder.findPath(room, startPoint, endPoint);
+
+			//draw the path
+			drawPath(point, room, startPoint, endPoint);
+			
 		}
 
 		// Runs Oxygen spread function
@@ -364,18 +374,19 @@ void SpaceGame::run()
 	}// End while running
 }
 
-void SpaceGame::drawPath(Cell& cell, Level& level, int startX, int startY)
+void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
 {
 	// Start at the start point
+	
 	// tileSize / 2 is added to all coordinates to put them in the centre of the tile
-	int lastX = cell.getX() * level.getCellSize() + level.getCellSize()  / 2;
-	int lastY = cell.getX() * level.getCellSize() + level.getCellSize() / 2;
+	int lastX = point.getX() * level.getCellSize() + level.getCellSize()  / 2;
+	int lastY = point.getX() * level.getCellSize() + level.getCellSize() / 2;
 
 	// Step through the path
-	for (const Cell& cell : path)
+	for (const Point& point : path)
 	{
-		int nextX = cell.getX() * level.getCellSize() + level.getCellSize() / 2;
-		int nextY = cell.getY() * level.getCellSize() + level.getCellSize() / 2;
+		int nextX = point.getX() * level.getCellSize() + level.getCellSize() / 2;
+		int nextY = point.getY() * level.getCellSize() + level.getCellSize() / 2;
 
 		SDL_RenderDrawLine(renderer, lastX, lastY, nextX, nextY);
 		lastX = nextX;

@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "Level.h"
 #include "Map.h"
+#include "Point.h"
 #include "SDL2_image-2.0.1\include\SDL_image.h"
 //! The main class
 /*!
@@ -16,12 +17,18 @@ public:
 	//! A deconstructor
 	~SpaceGame();
 
-	//! 
+	const Point& getStartPoint() const { return startPoint; }
+	int getStartX() const { return startPoint.getX(); }
+	int getStartY() const { return startPoint.getY(); }
+
+	//! Main Run loop
 	void run();
 
-	void SpaceGame::drawPath(Cell& cell, Level& level, int startX, int startY);
-	std::vector<Cell> path;
-	
+	//! Pathfinding function
+	void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY);
+
+	std::vector<Point> path;
+
 	//! The window width 
 	static const int WINDOW_WIDTH = 900;
 	//! The window height
@@ -30,6 +37,10 @@ public:
 	int mouse_X, mouse_Y;
 
 private:
+
+	//! start point and end point for pathfinding
+	Point startPoint, endPoint;
+
 	//! Pointer to the window that the game will be rendered in
 	SDL_Window* window;
 	//" Pointer to the renderer
@@ -94,5 +105,7 @@ private:
 
 	//! Whether the game is running or not
 	bool running;
+
+	
 };
 
