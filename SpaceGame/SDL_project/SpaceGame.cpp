@@ -8,7 +8,10 @@
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\Room_Cell1.png"),
-	characterTex("Resources\\crew2.png"),
+	characterUpTex("Resources\\crew_up.png"),
+	characterDownTex("Resources\\crew_down.png"),
+	characterRightTex("Resources\\crew_right.png"),
+	characterLeftTex("Resources\\crew_left.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
 	healthBar("Resources\\health.png"),
@@ -185,7 +188,15 @@ void SpaceGame::run()
 				
 			}
 		}
-		characterTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		// sprite render direction
+		if (characterOne.direction == 0)
+			characterDownTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		else if (characterOne.direction == 1)
+			characterUpTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		else if (characterOne.direction == 2)
+			characterRightTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		else if (characterOne.direction == 3)
+			characterLeftTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		
 		SDL_RenderPresent(renderer);
 	}// End while running

@@ -38,7 +38,13 @@ private:
 	//! For cells that are a room
 	Texture roomCell;
 	//! For the Character
-	Texture characterTex;
+	Texture characterUpTex;
+	//! For the Character
+	Texture characterDownTex;
+	//! For the Character
+	Texture characterRightTex;
+	//! For the Character
+	Texture characterLeftTex;
 	//! For door cells
 	Texture doorTexture;
 	//! To show the oxygen level in a room
