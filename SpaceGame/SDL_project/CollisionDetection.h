@@ -7,5 +7,10 @@ class CollisionDetection
 public:
 	CollisionDetection();
 	~CollisionDetection();
+
+	void checkForIntersect();
+	// make list of cells around character that need checking
+	// check how close other characters/objects are
+	// for loop going though lists and checking for collision
 };
 
