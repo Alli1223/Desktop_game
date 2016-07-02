@@ -124,9 +124,10 @@ void SpaceGame::run()
 			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
 
+		//Pathfinding finction
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
-			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+			//oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 
 			// set the start and end points
 			if (characterOne.getX() / cellSize >= 1 && characterOne.getY() / cellSize >= 1)
