@@ -27,6 +27,7 @@ public:
 	//! Pathfinding function
 	void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY);
 
+	//! Conains the list of nodes that makes the path
 	std::vector<Point> path;
 
 	//! The window width 

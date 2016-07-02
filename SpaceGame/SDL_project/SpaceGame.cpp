@@ -271,7 +271,7 @@ void SpaceGame::run()
 				}
 
 				
-				SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
+				//SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
 				drawPath(point, room, startPoint, endPoint);
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop

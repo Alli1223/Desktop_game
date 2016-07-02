@@ -19,13 +19,14 @@ void Pathfinder::addToOpenSet(std::shared_ptr<Node> node)
 	node->status = NodeStatus::Open;
 }
 
-std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Node> node)
+std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Node> node, Level& level)
 {
 	std::vector<std::shared_ptr<Node>> result;
+	int levelSize = level.grid.size();
 	
-	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= 17)
+	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= levelSize - 1)
 	{
-		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= 17)
+		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= levelSize - 1)
 		{
 			//left
 			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
@@ -46,7 +47,6 @@ std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Nod
 			return result;
 		}
 	}
-	
 }
 
 
@@ -96,10 +96,9 @@ std::shared_ptr<Node> Pathfinder::getOpenSetElementWithLowestScore()
 	return result;
 }
 
-std::vector<Point> Pathfinder::findPath(const Level& map, const Point& start, const Point& goal)
+std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Point& goal)
 {
 	// TODO: implement the A* algorithm to find a path from start to goal
-
 	nodes.clear();
 
 	for (int x = 0; x < map.grid.size(); x++)
@@ -127,7 +126,7 @@ std::vector<Point> Pathfinder::findPath(const Level& map, const Point& start, co
 		addToClosedSet(currentNode);
 
 		//loops through each of the neighbours
-		for (auto neighbour : getNeighbours(currentNode))
+		for (auto neighbour : getNeighbours(currentNode, map))
 		{
 			//if the cell is free and not in closed set
 			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom && !isInClosedSet(neighbour->point))

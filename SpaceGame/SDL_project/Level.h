@@ -16,6 +16,9 @@ public:
 	//! Return the cellSize
 	int getCellSize() { return cellSize; }
 
+	int getLevelSize() { return levelSize; }
+	int setLevelSize(int newLevelSize) { return levelSize = newLevelSize; }
+
 	//! The base grid that contains the cells
 	std::vector<std::vector<std::shared_ptr<Cell>>> grid;
 
@@ -26,5 +29,6 @@ public:
 protected:
 	//! The size that the cell will be rendered at
 	int cellSize = 50;
+	int levelSize;
 };
 

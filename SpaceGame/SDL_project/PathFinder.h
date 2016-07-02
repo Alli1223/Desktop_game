@@ -34,21 +34,19 @@ struct CompareNodeByGPlusH
 class Pathfinder
 {
 public:
-	std::vector<Point> findPath(const Level& map, const Point& start, const Point& goal);
+	std::vector<Point> findPath(Level& map, const Point& start, const Point& goal);
 	std::vector<Point> reconstructPath(std::shared_ptr<Node> goalNode);
 
 private:
 	std::vector<std::vector<std::shared_ptr<Node>>> nodes;
-	/*std::priority_queue<std::shared_ptr<Node>,
-	std::vector<std::shared_ptr<Node>>,
-	CompareNodeByGPlusH> openSet;*/
+	
 
 	void addToClosedSet(std::shared_ptr<Node> node);
 	void addToOpenSet(std::shared_ptr<Node> node);
 
 	std::shared_ptr<Node> getOpenSetElementWithLowestScore();
 
-	std::vector<std::shared_ptr<Node>> getNeighbours(std::shared_ptr<Node> node);
+	std::vector<std::shared_ptr<Node>> getNeighbours(std::shared_ptr<Node> node, Level& level);
 	std::shared_ptr<Node> getOrCreateNode(int x, int y);
 	std::shared_ptr<Node> getOrCreateNode(const Point& point);
 	bool isInClosedSet(Point& point);
