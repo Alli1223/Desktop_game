@@ -124,13 +124,17 @@ void SpaceGame::run()
 			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
 
+		//Pathfinding finction
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
-			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+			//oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 
 			// set the start and end points
-			startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
-			endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
+			if (characterOne.getX() / cellSize >= 1 && characterOne.getY() / cellSize >= 1)
+			{
+				startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
+				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
+			}
 
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
@@ -271,11 +275,14 @@ void SpaceGame::run()
 				}
 
 				
-				//SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
-				drawPath(point, room, startPoint, endPoint);
+				
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
+
+		//Renders the path
+		 SDL_SetRenderDrawColor(renderer, 255, 10, 128, 255);
+		drawPath(point, room, startPoint, endPoint);
 
 		 // Renders the health and oxygen bar
 		healthBar.render(renderer, characterOne.getX(), characterOne.getY() - 40, characterOne.health, 10);
@@ -344,6 +351,7 @@ void SpaceGame::run()
 			}
 			//starts a new game
 			else
+				SDL_RenderClear(renderer);
 				SpaceGame::run();
 		}
 		// If the character has reached the end the You Won screen is displayed
@@ -366,6 +374,7 @@ void SpaceGame::run()
 				
 			}
 			else
+				SDL_RenderClear(renderer);
 				SpaceGame::run();
 		}
 		
@@ -379,8 +388,8 @@ void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
 	// Start at the start point
 	
 	// tileSize / 2 is added to all coordinates to put them in the centre of the tile
-	int lastX = point.getX() * level.getCellSize() + level.getCellSize()  / 2;
-	int lastY = point.getX() * level.getCellSize() + level.getCellSize() / 2;
+	int lastX = point.getX() * (level.getCellSize() + level.getCellSize()  / 2);
+	int lastY = point.getY() * (level.getCellSize() + level.getCellSize() / 2);
 
 	// Step through the path
 	for each (const Point& point in path)
@@ -391,5 +400,6 @@ void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
 		SDL_RenderDrawLine(renderer, lastX, lastY, nextX, nextY);
 		lastX = nextX;
 		lastY = nextY;
+		
 	}
 }
