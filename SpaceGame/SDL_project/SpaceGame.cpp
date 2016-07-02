@@ -114,8 +114,6 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
 				
-				//currentLevel.grid[x][y]->isRoom = true; //test level gen
-
 				// Checks if the cell is a room
 				if (currentLevel.grid[x][y]->isRoom)
 				{
@@ -139,7 +137,7 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				// Does not render a cell if it isn't part of a room
+
 			} //End for Y loop
 		}//End for X loop
 

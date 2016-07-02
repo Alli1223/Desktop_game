@@ -8,8 +8,8 @@ public:
 	//! int that will be used to control movement speed
 	const int FRAME_RATE = 60;
 
-	int WINDOW_WIDTH = 1000;
-	int WINDOW_HEIGHT = 800;
+	int WINDOW_WIDTH = 800;
+	int WINDOW_HEIGHT = 600;
 
 	bool fullscreen = false;
 
