@@ -4,8 +4,8 @@
 
 double euclideanDistance(const Point& a, const Point& b)
 {
-	double dx = a.getX() - b.getX();
-	double dy = a.getY() - b.getY();
+	double dx = a.getX() - a.getX();
+	double dy = b.getY() - b.getY();
 	return sqrt(dx*dx + dy*dy);
 }
 
@@ -134,14 +134,14 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 			//if the cell is a room and not in closed set
 			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom && !isInClosedSet(neighbour->point))
 			{
-				double gTentative = currentNode->g + 1;
+				double gTentative = currentNode->g + euclideanDistance(neighbour->point, goal);
 
 				if (neighbour->status != NodeStatus::Open || gTentative < neighbour->g)
 				{
 					neighbour->g = gTentative;
 					neighbour->h = euclideanDistance(neighbour->point, goal);
 					neighbour->cameFrom = currentNode;
-
+					map.grid[currentNode->point.getX()][currentNode->point.getY()]->oxygenLevel = 100;
 					if (neighbour->status != NodeStatus::Open)
 					{
 						addToOpenSet(neighbour);
