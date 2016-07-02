@@ -8,10 +8,10 @@
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\Room_Cell1.png"),
-	characterUpTex("Resources\\crew_up.png"),
-	characterDownTex("Resources\\crew_down.png"),
-	characterRightTex("Resources\\crew_right.png"),
-	characterLeftTex("Resources\\crew_left.png"),
+	characterUpTex("Resources\\Crew\\crew_up.png"),
+	characterDownTex("Resources\\Crew\\crew_down.png"),
+	characterRightTex("Resources\\Crew\\crew_right.png"),
+	characterLeftTex("Resources\\Crew\\crew_left.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
 	healthBar("Resources\\health.png"),
@@ -189,6 +189,7 @@ void SpaceGame::run()
 			}
 		}
 		// sprite render direction
+		// TODO: Collision detection to stop characters spinning in corners and appearing slightly outside room
 		if (characterOne.direction == 0)
 			characterDownTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		else if (characterOne.direction == 1)
