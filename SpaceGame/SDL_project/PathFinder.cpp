@@ -28,23 +28,26 @@ std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Nod
 	{
 		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= levelSize - 1)
 		{
-			//left
-			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
-			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() - 1));
-			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() + 1));
+			if (node->point.getY() - 1 >= 0 && node->point.getX() - 1 >= 0)
+			{
+				//left
+				result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
+				//right
+				result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY()));
+				//up
+				result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() - 1));
+				//down
+				result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
 
-			//right
-			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY()));
-			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() - 1));
-			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() + 1));
+				/*diagonal
+				result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() - 1));
+				result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() + 1));
+				result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() - 1));
+				result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() + 1));
+				*/
 
-			//up
-			result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() - 1));
-
-			//down
-			result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
-
-			return result;
+				return result;
+			}
 		}
 	}
 }
@@ -128,7 +131,7 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 		//loops through each of the neighbours
 		for (auto neighbour : getNeighbours(currentNode, map))
 		{
-			//if the cell is free and not in closed set
+			//if the cell is a room and not in closed set
 			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom && !isInClosedSet(neighbour->point))
 			{
 				double gTentative = currentNode->g + 1;
