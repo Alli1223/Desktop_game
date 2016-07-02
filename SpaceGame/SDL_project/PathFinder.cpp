@@ -141,7 +141,8 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 					neighbour->g = gTentative;
 					neighbour->h = euclideanDistance(neighbour->point, goal);
 					neighbour->cameFrom = currentNode;
-					map.grid[currentNode->point.getX()][currentNode->point.getY()]->oxygenLevel = 100;
+
+					
 					if (neighbour->status != NodeStatus::Open)
 					{
 						addToOpenSet(neighbour);

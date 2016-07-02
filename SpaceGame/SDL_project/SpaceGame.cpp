@@ -351,6 +351,7 @@ void SpaceGame::run()
 			}
 			//starts a new game
 			else
+				SDL_RenderClear(renderer);
 				SpaceGame::run();
 		}
 		// If the character has reached the end the You Won screen is displayed
@@ -373,6 +374,7 @@ void SpaceGame::run()
 				
 			}
 			else
+				SDL_RenderClear(renderer);
 				SpaceGame::run();
 		}
 		
