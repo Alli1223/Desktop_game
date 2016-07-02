@@ -23,14 +23,26 @@ std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Nod
 {
 	std::vector<std::shared_ptr<Node>> result;
 	
-	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= 16)
+	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= 17)
 	{
-		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= 16)
+		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= 17)
 		{
+			//left
 			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
+			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() - 1));
+			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() + 1));
+
+			//right
 			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY()));
+			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() - 1));
+			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() + 1));
+
+			//up
 			result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() - 1));
+
+			//down
 			result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
+
 			return result;
 		}
 	}
