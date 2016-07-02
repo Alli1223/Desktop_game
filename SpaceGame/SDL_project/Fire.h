@@ -19,9 +19,8 @@ public:
 
 	//! time in seconds that fire will spawn
 	float firespawntimer = 5;
+
 private:
-	
-	
 	//! Controlls how fast the oxygen will spread
 	int spawnRate = 50;
 };

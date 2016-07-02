@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "Level.h"
-#include "Oxygen.h"
-#include "RoomDesign.h"
 
 
 // Populates a 2 dimentional vector with pointers to cells

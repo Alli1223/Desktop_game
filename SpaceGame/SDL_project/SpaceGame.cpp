@@ -12,6 +12,7 @@
 #include "PathFinder.h"
 
 SpaceGame::SpaceGame()
+	// Texture file locations
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
 	characterTex("Resources\\crew2.png"), characterLeft("Resources\\Character\\crewLeft.png"), characterRight("Resources\\Character\\crewRight.png"), characterUp("Resources\\Character\\crewUp.png"), characterDown("Resources\\Character\\crewDown.png"),
@@ -37,7 +38,6 @@ SpaceGame::SpaceGame()
 		throw InitialisationError("SDL_Init failed");
 	}
 	
-
 	window = SDL_CreateWindow("SpaceGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
@@ -49,7 +49,6 @@ SpaceGame::SpaceGame()
 		throw InitialisationError("SDL_CreateRenderer failed");
 	}
 }
-
 
 SpaceGame::~SpaceGame()
 {
@@ -67,7 +66,7 @@ void SpaceGame::run()
 
 	//mapLoader.LoadMap("Resources\\test_map.txt", room);
 	mapLoader.generateMap(room);
-	
+
 	Oxygen oxygen;
 	Fire fire;
 	RoomDesign designroom;
@@ -82,7 +81,7 @@ void SpaceGame::run()
 	//Character starts in Idle state
 	characterOne.state = std::make_shared<IdleState>();
 	characterOne.windowHeight = WINDOW_HEIGHT;
-	characterOne.windowWidth= WINDOW_WIDTH;
+	characterOne.windowWidth = WINDOW_WIDTH;
 
 	running = true;
 	unsigned int timer = 0;
@@ -108,7 +107,7 @@ void SpaceGame::run()
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		// Checks and updates the character state
 		characterOne.state->update(characterOne, keyboardState);
-		
+
 		// Rendering process:
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
@@ -138,27 +137,33 @@ void SpaceGame::run()
 
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
+			for each (point in path)
+			{
+				int playerX = characterOne.getX();
+				int playerY = characterOne.getY();
+
+				characterOne.setX(point.getX() * cellSize);
+				characterOne.setY(point.getY() * cellSize);
+
+				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+			}
 
 			//draw the path
 			SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
 			drawPath(point, room, startPoint, endPoint);
-			
+
 		}
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
 
-		
-		
-		
-		
 		for (int x = 0; x < room.grid.size(); x++)
 		{
 			for (int y = 0; y < room.grid.size(); y++)
 			{
-				int xPos = x * cellSize + cellSize /2;
-				int yPos = y * cellSize + cellSize /2;
-				
+				int xPos = x * cellSize + cellSize / 2;
+				int yPos = y * cellSize + cellSize / 2;
+
 				//opens the door when a player gets near
 				doorcontroller.OpenDoor(room, xPos, yPos, characterOne, oxygen);
 				fire.spawn(room, x, y);
@@ -231,7 +236,7 @@ void SpaceGame::run()
 				{
 					closedDoorTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-				
+
 				// Renders the fire cells
 				if (room.grid[x][y]->isOnFire)
 				{
@@ -274,17 +279,17 @@ void SpaceGame::run()
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
 
-				
-				
+
+
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
 
 		//Renders the path
-		 SDL_SetRenderDrawColor(renderer, 255, 10, 128, 255);
+		SDL_SetRenderDrawColor(renderer, 255, 10, 128, 255);
 		drawPath(point, room, startPoint, endPoint);
 
-		 // Renders the health and oxygen bar
+		// Renders the health and oxygen bar
 		healthBar.render(renderer, characterOne.getX(), characterOne.getY() - 40, characterOne.health, 10);
 		healthBar.alterTransparency(150);
 		healthText.render(renderer, characterOne.getX(), characterOne.getY() - 40, 60, 20);
@@ -294,7 +299,7 @@ void SpaceGame::run()
 
 
 		// player orientation
-		
+
 		if (characterOne.direction == 0)
 		{
 			characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
@@ -311,11 +316,11 @@ void SpaceGame::run()
 		{
 			characterLeft.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		}
-		
-		
-		
 
-		 // If the character has died the game over screen is displayed
+
+
+
+		// If the character has died the game over screen is displayed
 		if (!characterOne.isAlive)
 		{
 
@@ -325,20 +330,20 @@ void SpaceGame::run()
 
 			Uint32 ticks = SDL_GetTicks();
 			Uint32 sprite = (ticks / 500) % 10;
-			
-			SDL_Rect srcrect = { sprite * 10, 0, 10, 100,  };
+
+			SDL_Rect srcrect = { sprite * 10, 0, 10, 100, };
 			SDL_Rect dstrect = { characterOne.getX() - (characterOne.getSize() / 2), characterOne.getY() - (characterOne.getSize() / 2), characterOne.getSize(), characterOne.getSize() };
 
 			SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
-			
-			
+
+
 
 			// Fades in a red background
 			if (timer < 255)
-			{				
+			{
 				timer++;
 				gameOver.alterTransparency(timer);
-				gameOver.render(renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
 			// Displays text
 			else if (timer >= 255 && timer < 300)
@@ -347,12 +352,12 @@ void SpaceGame::run()
 				gameOver.alterTransparency(255);
 				gameOver.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				gameOverText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
-				
+
 			}
 			//starts a new game
 			else
 				SDL_RenderClear(renderer);
-				SpaceGame::run();
+			SpaceGame::run();
 		}
 		// If the character has reached the end the You Won screen is displayed
 		if (characterOne.hasWon)
@@ -365,20 +370,18 @@ void SpaceGame::run()
 				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 			}
 			// Displays text
-			else if(timer >= 255 && timer < 300)
+			else if (timer >= 255 && timer < 300)
 			{
 				timer++;
-				winTexture.alterTransparency(255);
-				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				winText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
-				
+
 			}
 			else
 				SDL_RenderClear(renderer);
-				SpaceGame::run();
+			SpaceGame::run();
 		}
-		
-		
+
+
 		SDL_RenderPresent(renderer);
 	}// End while running
 }

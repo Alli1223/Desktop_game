@@ -31,9 +31,9 @@ public:
 	std::vector<Point> path;
 
 	//! The window width 
-	static const int WINDOW_WIDTH = 900;
+	static const int WINDOW_WIDTH = 800;
 	//! The window height
-	static const int WINDOW_HEIGHT = 900;
+	static const int WINDOW_HEIGHT = 800;
 	//! Coordinates of the mouse 
 	int mouse_X, mouse_Y;
 

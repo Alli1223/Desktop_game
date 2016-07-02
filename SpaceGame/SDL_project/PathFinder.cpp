@@ -22,11 +22,11 @@ void Pathfinder::addToOpenSet(std::shared_ptr<Node> node)
 std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Node> node, Level& level)
 {
 	std::vector<std::shared_ptr<Node>> result;
-	int levelSize = level.grid.size();
+	int levelSize = level.grid.size() - 1;
 	
-	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= levelSize - 1)
+	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= levelSize)
 	{
-		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= levelSize - 1)
+		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= levelSize)
 		{
 			if (node->point.getY() - 1 >= 0 && node->point.getX() - 1 >= 0)
 			{

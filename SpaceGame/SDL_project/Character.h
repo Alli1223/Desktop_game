@@ -50,6 +50,8 @@ public:
 	void chooseDirection(const Uint8* keyboardState);
 	//! Changes the character's X and Y value depending on the player's input
 	void moveCharacter(const Uint8* keyboardState);
+	//! Moves the player from one cell to the next
+	void Character::LinearMovement(int currentX, int currentY, int nextX, int nextY);
 	
 	//! An shared pointer to the character's state.
 	std::shared_ptr<CharacterState> state;

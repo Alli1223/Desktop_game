@@ -112,3 +112,12 @@ bool Character::reachedGoal(int x, int y)
 	int yCell = y / currentRoom->getCellSize();
 	return currentRoom->grid[xCell][yCell]->isGoal;
 }
+
+// Moves the player across the cell to the next cell
+void Character::LinearMovement(int currentX, int currentY, int nextX, int nextY)
+{
+	if (nextX >= currentX)
+	{
+	}
+	
+}
