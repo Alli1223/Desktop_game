@@ -127,17 +127,13 @@ void SpaceGame::run()
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
-			
-			//get the cell the mouse is on
-			int mouseCellX = mouse_X / cellSize;
-			int mouseCellY = mouse_Y / cellSize;
 
 			// set the start and end points
 			startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
-			endPoint = Point(mouseCellX, mouseCellY);
+			endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
 
 			//find path
-			pathfinder.findPath(room, startPoint, endPoint);
+			path = pathfinder.findPath(room, startPoint, endPoint);
 
 			//draw the path
 			SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
@@ -273,8 +269,10 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+
 				
-				
+				SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
+				drawPath(point, room, startPoint, endPoint);
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
@@ -306,6 +304,7 @@ void SpaceGame::run()
 		{
 			characterLeft.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		}
+		
 		
 		
 
@@ -384,7 +383,7 @@ void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
 	int lastY = point.getX() * level.getCellSize() + level.getCellSize() / 2;
 
 	// Step through the path
-	for (const Point& point : path)
+	for each (const Point& point in path)
 	{
 		int nextX = point.getX() * level.getCellSize() + level.getCellSize() / 2;
 		int nextY = point.getY() * level.getCellSize() + level.getCellSize() / 2;
