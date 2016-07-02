@@ -397,6 +397,6 @@ void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
 		SDL_RenderDrawLine(renderer, lastX, lastY, nextX, nextY);
 		lastX = nextX;
 		lastY = nextY;
-		;
+		
 	}
 }
