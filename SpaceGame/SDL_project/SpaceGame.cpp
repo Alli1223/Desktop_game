@@ -9,6 +9,7 @@
 #include "Fire.h"
 #include "RoomDesign.h"
 #include "DoorController.h"
+#include "PathFinder.h"
 
 SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
@@ -35,7 +36,9 @@ SpaceGame::SpaceGame()
 	{
 		throw InitialisationError("SDL_Init failed");
 	}
-	window = SDL_CreateWindow("COMP150 Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	
+
+	window = SDL_CreateWindow("SpaceGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
 		throw InitialisationError("SDL_CreateWindow failed");
@@ -70,6 +73,9 @@ void SpaceGame::run()
 	RoomDesign designroom;
 	DoorController doorcontroller;
 	MainCharacter characterOne;
+	Cell cell;
+	Pathfinder pathfinder;
+	Point point;
 
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
@@ -79,7 +85,7 @@ void SpaceGame::run()
 	characterOne.windowWidth= WINDOW_WIDTH;
 
 	running = true;
-	double timer = 0;
+	unsigned int timer = 0;
 
 	while (running)
 	{
@@ -121,10 +127,25 @@ void SpaceGame::run()
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
 			oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
+
+			// set the start and end points
+			startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
+			endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
+
+			//find path
+			path = pathfinder.findPath(room, startPoint, endPoint);
+
+			//draw the path
+			SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
+			drawPath(point, room, startPoint, endPoint);
+			
 		}
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
+
+		
+		
 		
 		
 		for (int x = 0; x < room.grid.size(); x++)
@@ -248,8 +269,10 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
+
 				
-				
+				//SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
+				drawPath(point, room, startPoint, endPoint);
 				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
@@ -281,6 +304,7 @@ void SpaceGame::run()
 		{
 			characterLeft.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		}
+		
 		
 		
 
@@ -339,6 +363,7 @@ void SpaceGame::run()
 				winTexture.alterTransparency(255);
 				winTexture.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
 				winText.render(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+				
 			}
 			else
 				SpaceGame::run();
@@ -347,4 +372,24 @@ void SpaceGame::run()
 		
 		SDL_RenderPresent(renderer);
 	}// End while running
+}
+
+void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
+{
+	// Start at the start point
+	
+	// tileSize / 2 is added to all coordinates to put them in the centre of the tile
+	int lastX = point.getX() * level.getCellSize() + level.getCellSize()  / 2;
+	int lastY = point.getX() * level.getCellSize() + level.getCellSize() / 2;
+
+	// Step through the path
+	for each (const Point& point in path)
+	{
+		int nextX = point.getX() * level.getCellSize() + level.getCellSize() / 2;
+		int nextY = point.getY() * level.getCellSize() + level.getCellSize() / 2;
+
+		SDL_RenderDrawLine(renderer, lastX, lastY, nextX, nextY);
+		lastX = nextX;
+		lastY = nextY;
+	}
 }
