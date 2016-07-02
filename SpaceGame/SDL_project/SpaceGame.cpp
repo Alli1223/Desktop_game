@@ -140,6 +140,7 @@ void SpaceGame::run()
 			pathfinder.findPath(room, startPoint, endPoint);
 
 			//draw the path
+			SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
 			drawPath(point, room, startPoint, endPoint);
 			
 		}

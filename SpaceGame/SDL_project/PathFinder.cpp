@@ -22,14 +22,21 @@ void Pathfinder::addToOpenSet(std::shared_ptr<Node> node)
 std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Node> node)
 {
 	std::vector<std::shared_ptr<Node>> result;
-
-	result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
-	result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY()));
-	result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() - 1));
-	result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
-
-	return result;
+	
+	if (node->point.getX() - 1 >= 0 && node->point.getX() + 1 <= 16)
+	{
+		if (node->point.getY() - 1 >= 0 && node->point.getY() + 1 <= 16)
+		{
+			result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY()));
+			result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY()));
+			result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() - 1));
+			result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
+			return result;
+		}
+	}
+	
 }
+
 
 std::shared_ptr<Node> Pathfinder::getOrCreateNode(int x, int y)
 {
@@ -98,9 +105,9 @@ std::vector<Point> Pathfinder::findPath(const Level& map, const Point& start, co
 	//chooses which neighbour cell to move to
 	while (auto currentNode = getOpenSetElementWithLowestScore())
 	{
-		//if the current node is the goal construct the path
-		if (currentNode->point.getX() == map.grid[currentNode->point.getX()][currentNode->point.getY()]->isGoal
-			&& currentNode->point.getY() == map.grid[currentNode->point.getX()][currentNode->point.getY()]->isGoal)
+
+		if (currentNode->point.getX() == goal.getX()
+			&& currentNode->point.getY() == goal.getY())
 		{
 			return reconstructPath(currentNode);
 		}
@@ -108,7 +115,7 @@ std::vector<Point> Pathfinder::findPath(const Level& map, const Point& start, co
 		addToClosedSet(currentNode);
 
 		//loops through each of the neighbours
-		for each (auto neighbour in getNeighbours(currentNode))
+		for (auto neighbour : getNeighbours(currentNode))
 		{
 			//if the cell is free and not in closed set
 			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom && !isInClosedSet(neighbour->point))
