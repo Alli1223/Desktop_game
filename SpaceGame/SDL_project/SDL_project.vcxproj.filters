@@ -70,6 +70,9 @@
     <ClCompile Include="Point.cpp">
       <Filter>Source Files\Level Classes\PathFinding</Filter>
     </ClCompile>
+    <ClCompile Include="TraversePath.cpp">
+      <Filter>Source Files\Level Classes\PathFinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -145,6 +148,9 @@
       <Filter>Headers\Level Classes\PathFinding</Filter>
     </ClInclude>
     <ClInclude Include="Point.h">
+      <Filter>Headers\Level Classes\PathFinding</Filter>
+    </ClInclude>
+    <ClInclude Include="TraversePath.h">
       <Filter>Headers\Level Classes\PathFinding</Filter>
     </ClInclude>
   </ItemGroup>

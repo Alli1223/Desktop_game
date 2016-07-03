@@ -10,6 +10,7 @@
 #include "RoomDesign.h"
 #include "DoorController.h"
 #include "PathFinder.h"
+#include "TraversePath.h"
 
 SpaceGame::SpaceGame()
 	// Texture file locations
@@ -75,6 +76,7 @@ void SpaceGame::run()
 	Cell cell;
 	Pathfinder pathfinder;
 	Point point;
+	TraversePath traversepath;
 
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
@@ -137,21 +139,16 @@ void SpaceGame::run()
 
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
+
+			//Move the player along the path
 			for each (point in path)
 			{
-				int playerX = characterOne.getX();
-				int playerY = characterOne.getY();
-				int pouintX = point.getX();
-				//characterOne.LinearMovement(characterOne.getX(), characterOne.getY(), point.getX() * cellSize, point.getY() * cellSize);
-				characterOne.setX(point.getX() * cellSize);
-				characterOne.setY(point.getY() * cellSize);
+				traversepath.LinearMovement(characterOne.getX(), characterOne.getY(), point.getX() * cellSize, point.getY() * cellSize);
+				//characterOne.setX(point.getX() * cellSize);
+				//characterOne.setY(point.getY() * cellSize);
 
 				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 			}
-
-			//draw the path
-			//SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
-			//drawPath(point, room, startPoint, endPoint);
 
 		}
 
