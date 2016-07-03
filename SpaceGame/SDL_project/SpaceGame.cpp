@@ -141,17 +141,17 @@ void SpaceGame::run()
 			{
 				int playerX = characterOne.getX();
 				int playerY = characterOne.getY();
-
-				characterOne.LinearMovement(characterOne.getX(), characterOne.getY(), point.getX() * cellSize, point.getY() * cellSize);
-				//characterOne.setX(point.getX() * cellSize);
-				//characterOne.setY(point.getY() * cellSize);
+				int pouintX = point.getX();
+				//characterOne.LinearMovement(characterOne.getX(), characterOne.getY(), point.getX() * cellSize, point.getY() * cellSize);
+				characterOne.setX(point.getX() * cellSize);
+				characterOne.setY(point.getY() * cellSize);
 
 				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 			}
 
 			//draw the path
-			SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
-			drawPath(point, room, startPoint, endPoint);
+			//SDL_SetRenderDrawColor(renderer, 255, 255, 128, 255);
+			//drawPath(point, room, startPoint, endPoint);
 
 		}
 
