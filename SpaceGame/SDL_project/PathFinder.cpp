@@ -142,7 +142,7 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 					neighbour->h = euclideanDistance(neighbour->point, goal);
 					neighbour->cameFrom = currentNode;
 
-					
+
 					if (neighbour->status != NodeStatus::Open)
 					{
 						addToOpenSet(neighbour);

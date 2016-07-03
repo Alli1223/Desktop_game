@@ -142,8 +142,9 @@ void SpaceGame::run()
 				int playerX = characterOne.getX();
 				int playerY = characterOne.getY();
 
-				characterOne.setX(point.getX() * cellSize);
-				characterOne.setY(point.getY() * cellSize);
+				characterOne.LinearMovement(characterOne.getX(), characterOne.getY(), point.getX() * cellSize, point.getY() * cellSize);
+				//characterOne.setX(point.getX() * cellSize);
+				//characterOne.setY(point.getY() * cellSize);
 
 				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 			}

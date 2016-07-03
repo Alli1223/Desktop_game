@@ -116,8 +116,36 @@ bool Character::reachedGoal(int x, int y)
 // Moves the player across the cell to the next cell
 void Character::LinearMovement(int currentX, int currentY, int nextX, int nextY)
 {
-	if (nextX >= currentX)
+	setX(currentX);
+	setY(currentY);
+
+	if (nextX > currentX)
 	{
+		currentX++;
+		setX(currentX);
+	}
+	else if (nextX < currentX)
+	{
+		currentX--;
+		setX(currentX);
+	}
+	else if (nextX == currentX)
+	{
+		setX(currentX);
+	}
+	if (nextY > currentY)
+	{
+		currentY++;
+		setY(currentY);
+	}
+	else if (nextY < currentY)
+	{
+		currentX--;
+		setY(currentY);
+	}
+	else if (nextY == currentY)
+	{
+		setY(currentY);
 	}
 	
 }
