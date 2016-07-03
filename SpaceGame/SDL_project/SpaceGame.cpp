@@ -143,9 +143,9 @@ void SpaceGame::run()
 			//Move the player along the path
 			for each (point in path)
 			{
-				traversepath.LinearMovement(characterOne.getX(), characterOne.getY(), point.getX() * cellSize, point.getY() * cellSize);
-				//characterOne.setX(point.getX() * cellSize);
-				//characterOne.setY(point.getY() * cellSize);
+				traversepath.LinearMovement(characterOne);
+				characterOne.setX(point.getX() * cellSize);
+				characterOne.setY(point.getY() * cellSize);
 
 				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 			}
