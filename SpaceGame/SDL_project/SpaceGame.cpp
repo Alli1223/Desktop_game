@@ -139,21 +139,27 @@ void SpaceGame::run()
 
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
-
-			//Move the player along the path
-			for each (point in path)
-			{
-				traversepath.LinearMovement(characterOne);
-				characterOne.setX(point.getX() * cellSize);
-				characterOne.setY(point.getY() * cellSize);
-
+		
+				traversepath.LinearMovement(characterOne, point);
 				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-			}
+			
+			traversepath.getNextPoint(path);
 
+
+
+			
 		}
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
+
+		//get next point
+		if (path.size() > 1)
+		{
+			point = traversepath.getNextPoint(path);
+			traversepath.LinearMovement(characterOne, point);
+			characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
 
 		for (int x = 0; x < room.grid.size(); x++)
 		{
