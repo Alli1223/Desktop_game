@@ -13,15 +13,15 @@ TraversePath::~TraversePath()
 // Moves the player across the cell to the next cell
 void TraversePath::LinearMovement(Character& characterOne, Point point)
 {
-	//if (previousPoint.getX() < point.getX() && previousPoint.getX() > 0 && point.getY() == previousPoint.getY())
-
+	//if the x axis is the same as before, move vertically
 	if (point.getX() == previousPoint.getX())
 		VerticalMovement(characterOne, point);
 
+	// If the Y axis is the same as before move horizontally 
 	if (point.getY() == previousPoint.getY())
 		HorizontalMovement(characterOne, point);
 
-	//VerticalMovement(characterOne, point);
+	//set the previous point to the current one
 	previousPoint = point;
 }
 void TraversePath::VerticalMovement(Character& characterOne, Point point)
@@ -29,10 +29,16 @@ void TraversePath::VerticalMovement(Character& characterOne, Point point)
 	int pointY = point.getY() * 25;
 	//move down
 	if (characterOne.getY() < pointY)
+	{
 		characterOne.setY(characterOne.getY() + 1);
+		characterOne.direction = 0;
+	}
 	//move up
-	else if (characterOne.getY() > pointY)
+	if (characterOne.getY() > pointY)
+	{
 		characterOne.setY(characterOne.getY() - 1);
+		characterOne.direction = 1;
+	}
 	else if (characterOne.getY() == pointY)
 		seekNextNode(characterOne, point);
 
@@ -43,10 +49,16 @@ void TraversePath::HorizontalMovement(Character& characterOne, Point point)
 	int pointX = point.getX() * 25;
 	//move right
 	if (characterOne.getX() < pointX)
+	{
 		characterOne.setX(characterOne.getX() + 1);
+		characterOne.direction = 2;
+	}
 	//move left
-	else if (characterOne.getX() > pointX)
+	if (characterOne.getX() > pointX)
+	{
 		characterOne.setX(characterOne.getX() - 1);
+		characterOne.direction = 3;
+	}
 
 	else if (characterOne.getX() == pointX)
 		seekNextNode(characterOne, point);
@@ -65,4 +77,10 @@ Point TraversePath::getNextPoint(std::vector<Point> path)
 {
 	if (pathPointIterator < path.size())
 		return path[pathPointIterator];
+
+	//
+	else
+		pathPointIterator = 0;
+		path.erase(path.begin(), path.end());
+		pathComplete = true;
 }

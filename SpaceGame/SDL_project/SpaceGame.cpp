@@ -358,8 +358,13 @@ void SpaceGame::run()
 			}
 			//starts a new game
 			else
-				SDL_RenderClear(renderer);
-			SpaceGame::run();
+			{
+				path.erase(path.begin(), path.end());
+				traversepath.pathComplete = false;
+				traversepath.pathPointIterator = 0;
+				SpaceGame::run();
+			}
+			
 		}
 		// If the character has reached the end the You Won screen is displayed
 		if (characterOne.hasWon)
@@ -379,8 +384,13 @@ void SpaceGame::run()
 
 			}
 			else
-				SDL_RenderClear(renderer);
-			SpaceGame::run();
+			{
+
+				path.erase(path.begin(), path.end());
+				traversepath.pathComplete = false;
+				traversepath.pathPointIterator = 0;
+				SpaceGame::run();
+			}
 		}
 
 

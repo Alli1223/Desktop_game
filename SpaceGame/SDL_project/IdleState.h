@@ -31,6 +31,6 @@ public:
 	void update(Character& character, const Uint8* keyboardState);
 private:
 	//! Maxmimum time that the character should be in the Idle state
-	int END_IDLE_TIME = 4;
+	int END_IDLE_TIME = 10;
 };
 
