@@ -28,9 +28,6 @@ public:
 	//! Used for determineing what node the player is at in the path
 	int pathPointIterator = 0;
 
-	//Shared_Ptr doesn't work for some reason?
-	//std::shared_ptr<Level> currentRoom;
-
 	//! Using another instance of level instead
 	Level level;
 

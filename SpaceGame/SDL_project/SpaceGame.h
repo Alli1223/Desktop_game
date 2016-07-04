@@ -38,7 +38,6 @@ public:
 	int mouse_X, mouse_Y;
 
 	//! Fog of War distance
-	int fogOfWar = 50;
 
 private:
 

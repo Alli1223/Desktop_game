@@ -31,7 +31,7 @@ SpaceGame::SpaceGame()
 	gameOverText("Resources\\game_over.png"),
 	fireTexture("Resources\\SpawnItems\\fire1.png"),
 	backgroundTexture("Resources\\background.png"),
-	hullBreachTexture("Resources\\roomSprites\\hullBreach.png"),
+	hullBreachTexture("Resources\\roomSprites\\hullBreach2.png"),
 	deathAnim("Resources\\deathAnim.png"),
 	goalTexture("Resources\\SpawnItems\\goal2.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -73,6 +73,7 @@ void SpaceGame::run()
 	RoomDesign designroom;
 	DoorController doorcontroller;
 	MainCharacter characterOne;
+	MainCharacter characterTwo;
 	Cell cell;
 	Pathfinder pathfinder;
 	Point point;
