@@ -14,19 +14,20 @@ TraversePath::~TraversePath()
 void TraversePath::LinearMovement(Character& characterOne, Point point)
 {
 	//if the x axis is the same as before, move vertically
-	if (point.getX() == previousPoint.getX())
+	if (point.getX() == previousNode.getX())
 		VerticalMovement(characterOne, point);
 
 	// If the Y axis is the same as before move horizontally 
-	if (point.getY() == previousPoint.getY())
+	if (point.getY() == previousNode.getY())
 		HorizontalMovement(characterOne, point);
 
 	//set the previous point to the current one
-	previousPoint = point;
+	previousNode = point;
 }
 void TraversePath::VerticalMovement(Character& characterOne, Point point)
 {
-	int pointY = point.getY() * 25;
+	int cellsize = level.getCellSize();
+	int pointY = point.getY() * cellsize;
 	//move down
 	if (characterOne.getY() < pointY)
 	{
@@ -40,13 +41,13 @@ void TraversePath::VerticalMovement(Character& characterOne, Point point)
 		characterOne.direction = 1;
 	}
 	else if (characterOne.getY() == pointY)
-		seekNextNode(characterOne, point);
-
+		IterateToNextNode(characterOne, point);
 }
 
 void TraversePath::HorizontalMovement(Character& characterOne, Point point)
 {
-	int pointX = point.getX() * 25;
+	int cellsize = level.getCellSize();
+	int pointX = point.getX() * cellsize;
 	//move right
 	if (characterOne.getX() < pointX)
 	{
@@ -61,9 +62,9 @@ void TraversePath::HorizontalMovement(Character& characterOne, Point point)
 	}
 
 	else if (characterOne.getX() == pointX)
-		seekNextNode(characterOne, point);
+		IterateToNextNode(characterOne, point);
 }
-void TraversePath::seekNextNode(Character& characterOne, Point point)
+void TraversePath::IterateToNextNode(Character& characterOne, Point point)
 {
 	int pointX = point.getX() * 25;
 	int pointY = point.getY() * 25;

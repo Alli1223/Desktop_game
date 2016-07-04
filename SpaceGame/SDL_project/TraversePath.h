@@ -1,29 +1,43 @@
 #pragma once
 #include "Character.h"
 #include "Point.h"
+#include "Level.h"
 class TraversePath
 {
 public:
 	TraversePath();
 
-	//! Moves the player linearly from one cell to the next
+	//! Choses which direction the player should move
 	void TraversePath::LinearMovement(Character& characterOne, Point point);
 
-	void TraversePath::seekNextNode(Character& characterOne, Point point);
+	//! Gets the next node for the object to walk to
+	void TraversePath::IterateToNextNode(Character& characterOne, Point point);
 
+	//! Returns the point of the next node in the path
 	Point TraversePath::getNextPoint(std::vector<Point> path);
 
+	//! Controls how he player moves vertiacally
 	void TraversePath::VerticalMovement(Character& characterOne, Point point);
 
+	//! Controls how he player moves horizontally
 	void TraversePath::HorizontalMovement(Character& characterOne, Point point);
 
-	Point previousPoint;
+	//! contains a point of the previous node
+	Point previousNode;
+
+	//! Used for determineing what node the player is at in the path
 	int pathPointIterator = 0;
 
+	//Shared_Ptr doesn't work for some reason?
+	//std::shared_ptr<Level> currentRoom;
+
+	//! Using another instance of level instead
+	Level level;
+
+	// Used for determineing if the path has finished
 	bool pathComplete = false;
 
 	~TraversePath();
-private:
 	
 };
 
