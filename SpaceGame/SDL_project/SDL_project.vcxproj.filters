@@ -73,6 +73,9 @@
     <ClCompile Include="TraversePath.cpp">
       <Filter>Source Files\Level Classes\PathFinding</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Source Files\Character Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="TraversePath.h">
       <Filter>Headers\Level Classes\PathFinding</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Headers\Character Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

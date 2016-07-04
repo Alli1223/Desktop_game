@@ -4,6 +4,7 @@
 #include "Cell.h"
 #include "Level.h"
 #include "MainCharacter.h"
+#include "NPC.h"
 #include "IdleState.h"
 #include "Oxygen.h"
 #include "Fire.h"
@@ -73,7 +74,7 @@ void SpaceGame::run()
 	RoomDesign designroom;
 	DoorController doorcontroller;
 	MainCharacter characterOne;
-	MainCharacter characterTwo;
+	NPC NpcOne;
 	Cell cell;
 	Pathfinder pathfinder;
 	Point point;
