@@ -139,22 +139,13 @@ void SpaceGame::run()
 
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
-		
-				traversepath.LinearMovement(characterOne, point);
-				characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-			
-			traversepath.getNextPoint(path);
-
-
-
-			
 		}
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
 
-		//get next point
-		if (path.size() > 1)
+		//If the path vector contains a elements - move along it
+		if (path.size() > 0)
 		{
 			point = traversepath.getNextPoint(path);
 			traversepath.LinearMovement(characterOne, point);
@@ -168,8 +159,10 @@ void SpaceGame::run()
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
 
-				//opens the door when a player gets near
+				//opens the door when a player goes through
 				doorcontroller.OpenDoor(room, xPos, yPos, characterOne, oxygen);
+
+				//Spawns fire randomly in rooms over time
 				fire.spawn(room, x, y);
 
 				// Checks if the cell is a room
@@ -282,10 +275,6 @@ void SpaceGame::run()
 					oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 					goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 				}
-
-
-
-				// Does not render a cell if it isn't part of a room
 			} //End for Y loop
 		}//End for X loop
 
@@ -303,7 +292,6 @@ void SpaceGame::run()
 
 
 		// player orientation
-
 		if (characterOne.direction == 0)
 		{
 			characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
@@ -399,7 +387,7 @@ void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
 	int lastY = point.getY() * (level.getCellSize() + level.getCellSize() / 2);
 
 	// Step through the path
-	for each (const Point& point in path)
+	for (const Point& point : path)
 	{
 		int nextX = point.getX() * level.getCellSize() + level.getCellSize() / 2;
 		int nextY = point.getY() * level.getCellSize() + level.getCellSize() / 2;

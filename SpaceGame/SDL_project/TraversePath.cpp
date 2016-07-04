@@ -13,31 +13,52 @@ TraversePath::~TraversePath()
 // Moves the player across the cell to the next cell
 void TraversePath::LinearMovement(Character& characterOne, Point point)
 {
-	//seeks the next node in the path
-	if (characterOne.getX() < point.getX() * 25) 
-		characterOne.setX(characterOne.getX() + 1);
-	else if (characterOne.getX() > point.getX() * 25)
-		characterOne.setX(characterOne.getX() - 1);
-	else if (characterOne.getX() == point.getX() * 25)
-		pathPointIterator++;
+	//if (previousPoint.getX() < point.getX() && previousPoint.getX() > 0 && point.getY() == previousPoint.getY())
 
-	if (characterOne.getY() <= point.getY() * 25)
+	if (point.getX() == previousPoint.getX())
+		VerticalMovement(characterOne, point);
+
+	if (point.getY() == previousPoint.getY())
+		HorizontalMovement(characterOne, point);
+
+	//VerticalMovement(characterOne, point);
+	previousPoint = point;
+}
+void TraversePath::VerticalMovement(Character& characterOne, Point point)
+{
+	int pointY = point.getY() * 25;
+	//move down
+	if (characterOne.getY() < pointY)
 		characterOne.setY(characterOne.getY() + 1);
-	else if (characterOne.getY() >= point.getY() * 25)
+	//move up
+	else if (characterOne.getY() > pointY)
 		characterOne.setY(characterOne.getY() - 1);
-	else if (characterOne.getY() == point.getY() * 25)
-		pathPointIterator++;
-		
+	else if (characterOne.getY() == pointY)
+		seekNextNode(characterOne, point);
+
 }
 
-bool TraversePath::seekNextNode(Character& characterOne, Point& point)
+void TraversePath::HorizontalMovement(Character& characterOne, Point point)
 {
-	if (characterOne.getX() < point.getX() * 25 || characterOne.getY() < point.getY() * 25)
-		return true;
-	if (characterOne.getX() > point.getX() * 25 || characterOne.getY() > point.getY() * 25)
-		return true;
-	if (characterOne.getX() == point.getX() * 25 && characterOne.getY() == point.getY() * 25)
-		return false;
+	int pointX = point.getX() * 25;
+	//move right
+	if (characterOne.getX() < pointX)
+		characterOne.setX(characterOne.getX() + 1);
+	//move left
+	else if (characterOne.getX() > pointX)
+		characterOne.setX(characterOne.getX() - 1);
+
+	else if (characterOne.getX() == pointX)
+		seekNextNode(characterOne, point);
+}
+void TraversePath::seekNextNode(Character& characterOne, Point point)
+{
+	int pointX = point.getX() * 25;
+	int pointY = point.getY() * 25;
+	if (characterOne.getX() == pointX && characterOne.getY() == pointY)
+	{
+		pathPointIterator++;
+	}
 }
 
 Point TraversePath::getNextPoint(std::vector<Point> path)
