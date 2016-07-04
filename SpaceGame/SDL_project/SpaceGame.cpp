@@ -289,8 +289,8 @@ void SpaceGame::run()
 		}//End for X loop
 
 		//Renders the path
-		SDL_SetRenderDrawColor(renderer, 255, 10, 128, 255);
-		drawPath(point, room, startPoint, endPoint);
+		//SDL_SetRenderDrawColor(renderer, 255, 10, 128, 255);
+		//drawPath(point, room, startPoint, endPoint);
 
 		// Renders the health and oxygen bar
 		healthBar.render(renderer, characterOne.getX(), characterOne.getY() - 40, characterOne.health, 10);

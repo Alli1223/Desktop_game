@@ -34,6 +34,9 @@ public:
 	//! Using another instance of level instead
 	Level level;
 
+	//! Gets the cell size
+	int cellSize = level.getCellSize();
+
 	// Used for determineing if the path has finished
 	bool pathComplete = false;
 

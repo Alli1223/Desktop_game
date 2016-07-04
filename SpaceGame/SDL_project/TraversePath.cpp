@@ -26,8 +26,7 @@ void TraversePath::LinearMovement(Character& characterOne, Point point)
 }
 void TraversePath::VerticalMovement(Character& characterOne, Point point)
 {
-	int cellsize = level.getCellSize();
-	int pointY = point.getY() * cellsize;
+	int pointY = point.getY() * ((cellSize + cellSize) /2) ;
 	//move down
 	if (characterOne.getY() < pointY)
 	{
@@ -46,8 +45,7 @@ void TraversePath::VerticalMovement(Character& characterOne, Point point)
 
 void TraversePath::HorizontalMovement(Character& characterOne, Point point)
 {
-	int cellsize = level.getCellSize();
-	int pointX = point.getX() * cellsize;
+	int pointX = point.getX() * ((cellSize + cellSize) / 2);
 	//move right
 	if (characterOne.getX() < pointX)
 	{
@@ -66,8 +64,8 @@ void TraversePath::HorizontalMovement(Character& characterOne, Point point)
 }
 void TraversePath::IterateToNextNode(Character& characterOne, Point point)
 {
-	int pointX = point.getX() * 25;
-	int pointY = point.getY() * 25;
+	int pointX = point.getX() * cellSize;
+	int pointY = point.getY() * cellSize;
 	if (characterOne.getX() == pointX && characterOne.getY() == pointY)
 	{
 		pathPointIterator++;
