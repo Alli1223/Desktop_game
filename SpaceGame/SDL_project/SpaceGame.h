@@ -96,6 +96,9 @@ private:
 	Texture characterUp;
 	Texture characterDown;
 
+	//! Are the textures for the NPC
+	Texture NpcTex;
+
 	//! Are the textures for the differnt sides of the room cells
 	Texture topRoomCell;
 	Texture topRightRoomCell;
