@@ -14,15 +14,15 @@ public:
 	bool fullscreen = false;
 
 	// Will be WASD/default movement
-	int DEAFULT_UP;
-	int DEAFULT_DOWN;
-	int DEFAULT_LEFT;
-	int DEFAULT_RIGHT;
+	SDL_Scancode DEFAULT_UP = SDL_SCANCODE_W;
+	SDL_Scancode DEFAULT_DOWN = SDL_SCANCODE_S;
+	SDL_Scancode DEFAULT_LEFT = SDL_SCANCODE_A;
+	SDL_Scancode DEFAULT_RIGHT = SDL_SCANCODE_D;
 
 	//Alternate movement keys will be customisable
-	int ALTERNATE_UP;
-	int ALTERNATE_DOWN;
-	int ALTERNATE_LEFT;
-	int ALTERNATE_RIGHT;
+	SDL_Scancode ALTERNATE_UP = SDL_SCANCODE_UP;
+	SDL_Scancode ALTERNATE_DOWN = SDL_SCANCODE_DOWN;
+	SDL_Scancode ALTERNATE_LEFT = SDL_SCANCODE_LEFT;
+	SDL_Scancode ALTERNATE_RIGHT = SDL_SCANCODE_RIGHT;
 };
 

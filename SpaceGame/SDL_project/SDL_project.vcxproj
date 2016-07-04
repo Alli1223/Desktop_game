@@ -167,6 +167,7 @@
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InitialisationError.h" />
     <ClInclude Include="PanickingState.h" />
+    <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="ReachedGoalState.h" />
     <ClInclude Include="SuffocatingState.h" />
     <ClInclude Include="MainCharacter.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InitialisationError.cpp" />
     <ClCompile Include="PanickingState.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="ReachedGoalState.cpp" />
     <ClCompile Include="SuffocatingState.cpp" />
     <ClCompile Include="MainCharacter.cpp" />

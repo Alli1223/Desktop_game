@@ -59,27 +59,6 @@ void Character::moveCharacter(const Uint8* keyboardState)
 	}
 }
 
-// Sets the direction based on keyboard input
-void Character::chooseDirection(const Uint8* keyboardState)
-{
-	if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_UP])
-	{
-		direction = 1;
-	}
-	else if (keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_DOWN])
-	{
-		direction = 0;
-	}
-	else if (keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_LEFT])
-	{
-		direction = 3;
-	}
-	else if (keyboardState[SDL_SCANCODE_D] || keyboardState[SDL_SCANCODE_RIGHT])
-	{
-		direction = 2;
-	}	
-}
-
 // Checks to see if a cell is a room
 bool Character::isCellARoom(int x, int y)
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include"LevelGeneration.h"
+#include "GameSettings.h"
 
 class WanderingState;
 class CharacterState;
@@ -18,6 +19,8 @@ public:
 	Character();
 	//! A destructor
 	~Character();
+
+	GameSettings settings;
 		
 	//Getter methods
 	//! Gets the characters X value

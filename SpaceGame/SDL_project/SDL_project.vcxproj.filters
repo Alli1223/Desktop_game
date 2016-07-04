@@ -60,6 +60,7 @@
     </ClCompile>
     <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
@@ -127,6 +128,7 @@
     </ClInclude>
     <ClInclude Include="GameSettings.h" />
     <ClInclude Include="CollisionDetection.h" />
+    <ClInclude Include="PlayerInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />
