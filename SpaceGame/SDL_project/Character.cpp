@@ -53,7 +53,7 @@ void Character::moveCharacter(const Uint8* keyboardState)
 			setX(getX() - getSpeed());
 	}
 	// If Character cannot move in current direction randomly choose a new one
-	else
+	else if (isWandering == true)
 	{
 		direction = rand() % 4;
 	}
