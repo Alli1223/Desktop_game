@@ -18,6 +18,7 @@ SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
 	characterTex("Resources\\crew2.png"), characterLeft("Resources\\Character\\crewLeft.png"), characterRight("Resources\\Character\\crewRight.png"), characterUp("Resources\\Character\\crewUp.png"), characterDown("Resources\\Character\\crewDown.png"),
+	NpcTex("Resources\\Character\\NPC.png"),
 	closedDoorTexture("Resources\\roomSprites\\center.png"),
 	openDoorTexture("Resources\\door_sprite.png"),
 	oxygenTex("Resources\\oxygen.png"),
@@ -131,18 +132,25 @@ void SpaceGame::run()
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
 			//oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
-
+			
 			// set the start and end points
 			if (characterOne.getX() / cellSize >= 1 && characterOne.getY() / cellSize >= 1)
 			{
 				startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
 				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
 			}
-
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
 			// Allow the traversepath to start
 			traversepath.pathComplete == false;
+		}
+		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_MIDDLE))
+		{
+			if (NpcOne.getX() / cellSize >= 1 && NpcOne.getY() / cellSize >= 1)
+			{
+				startPoint = Point(NpcOne.getX() / cellSize, NpcOne.getY() / cellSize);
+				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
+			}
 		}
 
 		// Runs Oxygen spread function
@@ -153,7 +161,7 @@ void SpaceGame::run()
 		{
 			point = traversepath.getNextPoint(path);
 			traversepath.LinearMovement(characterOne, point);
-			characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+			traversepath.LinearMovement(NpcOne, point);
 		}
 
 		// Reset the pathfinder if the path is complete
@@ -325,6 +333,10 @@ void SpaceGame::run()
 		else if (characterOne.direction == 3)
 		{
 			characterLeft.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
+		if (NpcOne.direction >= 0)
+		{
+			NpcTex.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
 		}
 
 
