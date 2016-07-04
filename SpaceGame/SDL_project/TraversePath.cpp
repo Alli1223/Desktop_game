@@ -63,5 +63,6 @@ void TraversePath::seekNextNode(Character& characterOne, Point point)
 
 Point TraversePath::getNextPoint(std::vector<Point> path)
 {
-	return path[pathPointIterator];
+	if (pathPointIterator < path.size())
+		return path[pathPointIterator];
 }

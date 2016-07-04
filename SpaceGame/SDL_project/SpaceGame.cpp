@@ -125,7 +125,7 @@ void SpaceGame::run()
 			oxygen.addOxygen(mouse_X, mouse_Y, cellSize, room);
 		}
 
-		//Pathfinding finction
+		//Pathfinding function
 		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		{
 			//oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
@@ -139,17 +139,27 @@ void SpaceGame::run()
 
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
+			// Allow the traversepath to start
+			traversepath.pathComplete == false;
 		}
 
 		// Runs Oxygen spread function
 		oxygen.update(room);
 
 		//If the path vector contains a elements - move along it
-		if (path.size() > 0)
+		if (path.size() && traversepath.pathComplete == false)
 		{
 			point = traversepath.getNextPoint(path);
 			traversepath.LinearMovement(characterOne, point);
 			characterDown.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		}
+
+		// Reset the pathfinder if the path is complete
+		else if (traversepath.pathComplete == true)
+		{
+			path.erase(path.begin(), path.end());
+			traversepath.pathComplete = false;
+			traversepath.pathPointIterator = 0;
 		}
 
 		for (int x = 0; x < room.grid.size(); x++)

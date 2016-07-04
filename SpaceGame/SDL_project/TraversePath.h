@@ -20,6 +20,8 @@ public:
 	Point previousPoint;
 	int pathPointIterator = 0;
 
+	bool pathComplete = false;
+
 	~TraversePath();
 private:
 	
