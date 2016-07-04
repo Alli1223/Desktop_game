@@ -39,7 +39,7 @@ std::vector<std::shared_ptr<Node>> Pathfinder::getNeighbours(std::shared_ptr<Nod
 				//down
 				result.push_back(getOrCreateNode(node->point.getX(), node->point.getY() + 1));
 
-				/*diagonal
+				/* uncomment for diagonal paths
 				result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() - 1));
 				result.push_back(getOrCreateNode(node->point.getX() - 1, node->point.getY() + 1));
 				result.push_back(getOrCreateNode(node->point.getX() + 1, node->point.getY() - 1));
@@ -101,9 +101,10 @@ std::shared_ptr<Node> Pathfinder::getOpenSetElementWithLowestScore()
 
 std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Point& goal)
 {
-	// TODO: implement the A* algorithm to find a path from start to goal
+	//clear all the node for fresh pathfind
 	nodes.clear();
 
+	//create nodes for evert cell in the grid
 	for (int x = 0; x < map.grid.size(); x++)
 	{
 		nodes.push_back(std::vector<std::shared_ptr<Node>>(map.grid.size(), nullptr));
@@ -116,12 +117,11 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 	addToOpenSet(startNode);
 
 
-	//chooses which neighbour cell to move to
+	//chooses the best neighbour cell to move to
 	while (auto currentNode = getOpenSetElementWithLowestScore())
 	{
-
-		if (currentNode->point.getX() == goal.getX()
-			&& currentNode->point.getY() == goal.getY())
+		//if the current cell is the goal, make the path
+		if (currentNode->point.getX() == goal.getX() && currentNode->point.getY() == goal.getY())
 		{
 			return reconstructPath(currentNode);
 		}
@@ -131,7 +131,7 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 		//loops through each of the neighbours
 		for (auto neighbour : getNeighbours(currentNode, map))
 		{
-			//if the cell is a room and not in closed set
+			//if the cell is a room and not in closed set and not on fire
 			if (map.grid[currentNode->point.getX()][currentNode->point.getY()]->isRoom && !isInClosedSet(neighbour->point))
 			{
 				double gTentative = currentNode->g + euclideanDistance(neighbour->point, goal);
@@ -151,7 +151,6 @@ std::vector<Point> Pathfinder::findPath(Level& map, const Point& start, const Po
 			}
 		}
 	}
-
 	throw PathfinderError();
 }
 

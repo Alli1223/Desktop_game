@@ -37,6 +37,9 @@ public:
 	//! Coordinates of the mouse 
 	int mouse_X, mouse_Y;
 
+	//! Fog of War distance
+	int fogOfWar = 50;
+
 private:
 
 	//! start point and end point for pathfinding
