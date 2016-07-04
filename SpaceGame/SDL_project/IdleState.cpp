@@ -10,7 +10,7 @@ IdleState::~IdleState()
 }
 
 // Checks and updates character state
-void IdleState::update(Character& character, const Uint8* keyboardState)
+void IdleState::update(Character& character, PlayerInput::KeyboardDirections direction)
 {
 	timer = timer + (1 / FRAME_RATE); 
 	
@@ -27,18 +27,17 @@ void IdleState::update(Character& character, const Uint8* keyboardState)
 		character.setSpeed(character.suffocatingSpeed); 
 	}
 	// If the user has pressed WASD the character enters the PlayerControlledState
-	//else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
-	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
+	else if (direction != PlayerInput::KeyboardDirections::None)
 	{
 		character.state = std::make_shared<PlayerControlledState>();
-		character.moveCharacter(keyboardState);
+		character.moveCharacter(direction);
 	}
 	// If the character is in the Idle state for too long it changes to the WanderingState
 	else if (timer > END_IDLE_TIME)
 	{ 
 		character.state = std::make_shared<WanderingState>();
 		character.isWandering = true;
-		character.moveCharacter(keyboardState);
+		character.moveCharacter(direction);
 	}
 	// If the character has reached the goal the game ends
 	if (character.reachedGoal(character.getX(), character.getY()))

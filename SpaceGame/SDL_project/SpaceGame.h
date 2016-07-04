@@ -4,6 +4,8 @@
 #include "LevelGeneration.h"
 #include "Map.h"
 #include "GameSettings.h"
+#include "PlayerInput.h"
+
 //! The main class
 /*!
 This is the main class where the game is laoded and run. 
@@ -20,6 +22,7 @@ public:
 	void run();
 	
 	GameSettings gameSettings;
+	PlayerInput inputHandler;
 
 	//! The window width 
 	const int WINDOW_WIDTH = gameSettings.WINDOW_WIDTH;

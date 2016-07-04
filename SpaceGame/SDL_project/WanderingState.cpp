@@ -9,11 +9,11 @@ WanderingState::~WanderingState()
 {
 }
 
-void WanderingState::update(Character& character, const Uint8* keyboardState)
+void WanderingState::update(Character& character, PlayerInput::KeyboardDirections direction)
 {
 	character.setSpeed(character.wanderSpeed);
 	// Moves character in randomly chosen direction
-	character.moveCharacter(keyboardState);
+	character.moveCharacter(direction);
 
 	// Character enters dead state when health reaches 0
 	if (character.health == 0)
@@ -28,11 +28,11 @@ void WanderingState::update(Character& character, const Uint8* keyboardState)
 		character.setSpeed(character.suffocatingSpeed);
 	}
 	//If the user presses WASD the character will move accordingly
-	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
+	else if (direction != PlayerInput::KeyboardDirections::None)
 	{
 		character.state = std::make_shared<PlayerControlledState>();
 		character.isWandering = false;
-		character.moveCharacter(keyboardState);
+		character.moveCharacter(direction);
 	}
 	// If the character has reached the goal the game ends
 	if (character.reachedGoal(character.getX(), character.getY()))

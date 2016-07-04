@@ -28,7 +28,7 @@ public:
 	It takes in the Character which needs it's state updating and keyboardState to check whether the user has
 	pressed the keyboard since the last update
 	*/
-	void update(Character& character, const Uint8* keyboardState);
+	void update(Character& character, PlayerInput::KeyboardDirections direction);
 private:
 	//! Maxmimum time that the character should be in the Idle state
 	int END_IDLE_TIME = 4;

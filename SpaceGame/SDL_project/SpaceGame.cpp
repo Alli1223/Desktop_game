@@ -86,8 +86,10 @@ void SpaceGame::run()
 
 		// Checks the keyboard for input
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+		
+		inputHandler.handleKeyBoardInput(keyboardState);
 		// Checks and updates the character state
-		characterOne.state->update(characterOne, keyboardState);
+		characterOne.state->update(characterOne, inputHandler.currentDirection);
 		
 		// Rendering process:
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -188,14 +190,36 @@ void SpaceGame::run()
 		}
 		// sprite render direction
 		// TODO: Collision detection to stop characters spinning in corners and appearing slightly outside room
-		if (characterOne.direction == 0)
-			characterDownTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		else if (characterOne.direction == 1)
-			characterUpTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		else if (characterOne.direction == 2)
-			characterRightTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
-		else if (characterOne.direction == 3)
-			characterLeftTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+		bool characterNotRendered = true;
+
+		while (characterNotRendered)
+		{
+			if (inputHandler.currentDirection == PlayerInput::KeyboardDirections::Down)
+			{
+				characterDownTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+				characterNotRendered = false;
+			}
+			else if (inputHandler.currentDirection == PlayerInput::KeyboardDirections::Up)
+			{
+				characterUpTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+				characterNotRendered = false;
+			}
+			else if (inputHandler.currentDirection == PlayerInput::KeyboardDirections::Right)
+			{
+				characterRightTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+				characterNotRendered = false;
+			}
+			else if (inputHandler.currentDirection == PlayerInput::KeyboardDirections::Left)
+			{
+				characterLeftTex.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
+				characterNotRendered = false;
+			}
+			else
+				inputHandler.currentDirection = inputHandler.previousDirection;
+			
+		}
+		
+
 		
 		SDL_RenderPresent(renderer);
 	}// End while running

@@ -1,6 +1,7 @@
 #pragma once
 #include"Character.h"
 #include"LevelGeneration.h"
+#include"PlayerInput.h"
 
 //!  The character state class is used to store the character's current state
 /*!
@@ -21,7 +22,7 @@ public:
 		It takes in the character which needs it's state updating and keyboardState to check whether the user has 
 		pressed the keyboard since the last update
 	*/
-	virtual void update(Character& character, const Uint8* keyboardState) = 0;
+	virtual void update(Character& character, PlayerInput::KeyboardDirections direction) = 0;
 
 	//! Used to time how long the character has been in a state
 	double timer = 0;

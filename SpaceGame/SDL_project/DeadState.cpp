@@ -12,7 +12,7 @@ DeadState::~DeadState()
 }
 
 // Character can not leave the dead state 
-void DeadState::update(Character& character, const Uint8* keyboardState)
+void DeadState::update(Character& character, PlayerInput::KeyboardDirections direction)
 {
 	character.isAlive = false;
 }

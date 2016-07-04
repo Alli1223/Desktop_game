@@ -11,9 +11,9 @@ PlayerControlledState::~PlayerControlledState()
 {
 }
 
-void PlayerControlledState::update(Character& character, const Uint8* keyboardState)
+void PlayerControlledState::update(Character& character, PlayerInput::KeyboardDirections direction)
 {
-	character.moveCharacter(keyboardState);
+	character.moveCharacter(direction);
 
 	// If the health reaches 0 the character enters the dead state
 	if (character.health == 0)
@@ -21,7 +21,7 @@ void PlayerControlledState::update(Character& character, const Uint8* keyboardSt
 		character.state = std::make_shared<DeadState>();
 	}
 	// If the keyboard input is not WASD/valid returns to idle state
-	else if (!(keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D]))
+	else if (direction == PlayerInput::KeyboardDirections::None)
 	{
 		character.state = std::make_shared<IdleState>();
 		character.state->timer = 0;

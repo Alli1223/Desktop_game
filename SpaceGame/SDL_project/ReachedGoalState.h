@@ -21,6 +21,6 @@ public:
 	It takes in the character which needs it's state updating and keyboardState to check whether the user has
 	pressed the keyboard since the last update
 	*/
-	void update(Character& character, const Uint8* keyboardState);
+	void update(Character& character, PlayerInput::KeyboardDirections direction);
 };
 

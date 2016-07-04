@@ -9,7 +9,7 @@ SuffocatingState::~SuffocatingState()
 {
 }
 
-void SuffocatingState::update(Character& character, const Uint8* keyboardState)
+void SuffocatingState::update(Character& character, PlayerInput::KeyboardDirections direction)
 {
 	// If character health reaches 0 they die
 	if (character.health <= 0)
@@ -23,9 +23,9 @@ void SuffocatingState::update(Character& character, const Uint8* keyboardState)
 		character.setSpeed(character.walkSpeed);
 	}
 	// The character can still move in the Suffocating state but speed is reduced
-	else if (keyboardState[SDL_SCANCODE_W] || keyboardState[SDL_SCANCODE_A] || keyboardState[SDL_SCANCODE_S] || keyboardState[SDL_SCANCODE_D])
+	else if (direction != PlayerInput::KeyboardDirections::None)
 	{
-		character.moveCharacter(keyboardState);
+		character.moveCharacter(direction);
 		decreaseHealth(character);
 	}
 	// Character loses health while in the suffocating state

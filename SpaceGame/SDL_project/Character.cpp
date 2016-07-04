@@ -12,50 +12,48 @@ Character::~Character()
 
 
 // If the player doesn't move the character it will start to move around the room in randomly selected directions
-void Character::moveCharacter(const Uint8* keyboardState)
+void Character::moveCharacter(PlayerInput::KeyboardDirections direction)
 { 
-	// checks for keyboard input if there is none it assigns a random directions
-	chooseDirection(keyboardState);
 	// if the direction will keep the charcter on screen and is part of a room move Character down
-	if (direction == 0 && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed()))
+	if (direction == PlayerInput::KeyboardDirections::Down && getY() + getSpeed() < windowHeight && isCellARoom(getX(), getY() + getSpeed()))
 	{
 		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX(), getY() + getSpeed()))
-			direction = rand() % 4;
+			direction = static_cast<PlayerInput::KeyboardDirections>(rand() % 4);
 		else
 			setY(getY() + getSpeed());		
 	}
 	// if the direction will keep the charcter on screen and is part of a room move Character up
-	else if (direction == 1 && (getY() + getSpeed()) > 0 && isCellARoom(getX(), getY() - getSpeed()))
+	else if (direction == PlayerInput::KeyboardDirections::Up && (getY() + getSpeed()) > 0 && isCellARoom(getX(), getY() - getSpeed()))
 	{
 		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX(), getY() - getSpeed()))
-			direction = rand() % 4;
+			direction = static_cast<PlayerInput::KeyboardDirections>(rand() % 4);
 		else
 			setY(getY() - getSpeed());
 	}
 	// if the direction will keep the charcter on screen and is part of a room move Character right
-	else if (direction == 2 && (getX() + getSpeed()) < windowWidth && isCellARoom(getX() + getSpeed(), getY()))
+	else if (direction == PlayerInput::KeyboardDirections::Right && (getX() + getSpeed()) < windowWidth && isCellARoom(getX() + getSpeed(), getY()))
 	{
 		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX() + getSpeed(), getY()))
-			direction = rand() % 4;
+			direction = static_cast<PlayerInput::KeyboardDirections>(rand() % 4);
 		else
 			setX(getX() + getSpeed());
 	}
 	// if the direction will keep the charcter on screen and is part of a room move Character left
-	else if (direction == 3 && (getX() - getSpeed()) > 0 && isCellARoom(getX() - getSpeed(), getY()))
+	else if (direction == PlayerInput::KeyboardDirections::Left && (getX() - getSpeed()) > 0 && isCellARoom(getX() - getSpeed(), getY()))
 	{
 		// If the Characer is wandering also check is the cell is a door
 		if (isWandering == true && isCellADoor(getX() - getSpeed(), getY()))
-			direction = rand() % 4;
+			direction = static_cast<PlayerInput::KeyboardDirections>(rand() % 4);
 		else
 			setX(getX() - getSpeed());
 	}
 	// If Character cannot move in current direction randomly choose a new one
 	else if (isWandering == true)
 	{
-		direction = rand() % 4;
+		direction = static_cast<PlayerInput::KeyboardDirections>(rand() % 4);
 	}
 }
 

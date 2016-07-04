@@ -9,7 +9,7 @@ ReachedGoalState::~ReachedGoalState()
 {
 }
 
-void ReachedGoalState::update(Character& character, const Uint8* keyboardState)
+void ReachedGoalState::update(Character& character, PlayerInput::KeyboardDirections direction)
 {
 	character.hasWon = true;
 }

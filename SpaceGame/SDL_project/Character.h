@@ -1,6 +1,7 @@
 #pragma once
 #include"LevelGeneration.h"
 #include "GameSettings.h"
+#include "PlayerInput.h"
 
 class WanderingState;
 class CharacterState;
@@ -51,10 +52,8 @@ public:
 	bool reachedGoal(int x, int y);
 	//! Checks whether the character is wandering
 	bool isWandering = false;
-	// Checks the keyboard input and sets a direction based on it
-	void chooseDirection(const Uint8* keyboardState);
 	//! Changes the character's X and Y value depending on the player's input
-	void moveCharacter(const Uint8* keyboardState);
+	void moveCharacter(PlayerInput::KeyboardDirections direction);
 	
 	//! An shared pointer to the character's state.
 	std::shared_ptr<CharacterState> state;
