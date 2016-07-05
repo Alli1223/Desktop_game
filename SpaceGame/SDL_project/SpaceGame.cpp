@@ -18,6 +18,7 @@ SpaceGame::SpaceGame()
 	: roomCell("Resources\\roomSprites\\center.png"),
 	topRoomCell("Resources\\roomSprites\\top.png"), topRightRoomCell("Resources\\roomSprites\\topRight.png"), rightRoomCell("Resources\\roomSprites\\right.png"), bottomRightRoomCell("Resources\\roomSprites\\bottomRight.png"), bottomRoomCell("Resources\\roomSprites\\bottom.png"), bottomLeftRoomCell("Resources\\roomSprites\\bottomLeft.png"), leftRoomCell("Resources\\roomSprites\\left.png"), topLeftRoomCell("Resources\\roomSprites\\topLeft.png"),
 	characterTex("Resources\\crew2.png"), characterLeft("Resources\\Character\\crewLeft.png"), characterRight("Resources\\Character\\crewRight.png"), characterUp("Resources\\Character\\crewUp.png"), characterDown("Resources\\Character\\crewDown.png"),
+	npcLeft("Resources\\Character\\npcLeft.png"), npcRight("Resources\\Character\\npcRight.png"), npcUp("Resources\\Character\\npcUp.png"), npcDown("Resources\\Character\\npcDown.png"),
 	NpcTex("Resources\\Character\\NPC.png"),
 	closedDoorTexture("Resources\\roomSprites\\center.png"),
 	openDoorTexture("Resources\\door_sprite.png"),
@@ -31,11 +32,11 @@ SpaceGame::SpaceGame()
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
 	gameOverText("Resources\\game_over.png"),
-	fireTexture("Resources\\SpawnItems\\fire1.png"),
+	fireTexture("Resources\\SpawnItems\\fire2.png"),
 	backgroundTexture("Resources\\background.png"),
 	hullBreachTexture("Resources\\roomSprites\\hullBreach2.png"),
 	deathAnim("Resources\\deathAnim.png"),
-	goalTexture("Resources\\SpawnItems\\goal2.png"){
+	goalTexture("Resources\\roomSprites\\crate1.png"){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		throw InitialisationError("SDL_Init failed");
@@ -134,23 +135,15 @@ void SpaceGame::run()
 			//oxygen.removeOxygen(mouse_X, mouse_Y, cellSize, room);
 			
 			// set the start and end points
-			if (characterOne.getX() / cellSize >= 1 && characterOne.getY() / cellSize >= 1)
+			if (NpcOne.getX() / cellSize >= 1 && NpcOne.getY() / cellSize >= 1)
 			{
-				startPoint = Point(characterOne.getX() / cellSize, characterOne.getY() / cellSize);
+				startPoint = Point(NpcOne.getX() / cellSize, NpcOne.getY() / cellSize);
 				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
 			}
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
 			// Allow the traversepath to start
 			traversepath.pathComplete == false;
-		}
-		else if (SDL_GetMouseState(&mouse_X, &mouse_Y) & SDL_BUTTON(SDL_BUTTON_MIDDLE))
-		{
-			if (NpcOne.getX() / cellSize >= 1 && NpcOne.getY() / cellSize >= 1)
-			{
-				startPoint = Point(NpcOne.getX() / cellSize, NpcOne.getY() / cellSize);
-				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
-			}
 		}
 
 		// Runs Oxygen spread function
@@ -160,7 +153,7 @@ void SpaceGame::run()
 		if (path.size() && traversepath.pathComplete == false)
 		{
 			point = traversepath.getNextPoint(path);
-			traversepath.LinearMovement(characterOne, point);
+			//traversepath.LinearMovement(characterOne, point);
 			traversepath.LinearMovement(NpcOne, point);
 		}
 
@@ -316,7 +309,7 @@ void SpaceGame::run()
 		oxygenBar.alterTransparency(150);
 		oxygenText.render(renderer, characterOne.getX(), characterOne.getY() - 30, 60, 20);
 
-
+		
 		// player orientation
 		if (characterOne.direction == 0)
 		{
@@ -334,11 +327,25 @@ void SpaceGame::run()
 		{
 			characterLeft.render(renderer, characterOne.getX(), characterOne.getY(), characterOne.getSize(), characterOne.getSize());
 		}
-		if (NpcOne.direction >= 0)
-		{
-			NpcTex.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
-		}
 
+
+		//NPC orientation
+		if (NpcOne.direction == 0)
+		{
+			npcDown.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+		}
+		else if (NpcOne.direction == 1)
+		{
+			npcUp.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+		}
+		else if (NpcOne.direction == 2)
+		{
+			npcRight.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+		}
+		else if (NpcOne.direction == 3)
+		{
+			npcLeft.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+		}
 
 
 
@@ -405,7 +412,7 @@ void SpaceGame::run()
 			}
 			else
 			{
-
+				//Remove path from the game
 				path.erase(path.begin(), path.end());
 				traversepath.pathComplete = false;
 				traversepath.pathPointIterator = 0;

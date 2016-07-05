@@ -38,7 +38,7 @@ public:
 	int mouse_X, mouse_Y;
 
 	//! Fog of War distance
-	int fogOfWar = 32;
+	int fogOfWar = 5;
 private:
 
 	//! start point and end point for pathfinding
@@ -98,6 +98,10 @@ private:
 
 	//! Are the textures for the NPC
 	Texture NpcTex;
+	Texture npcLeft;
+	Texture npcRight;
+	Texture npcUp;
+	Texture npcDown;
 
 	//! Are the textures for the differnt sides of the room cells
 	Texture topRoomCell;
