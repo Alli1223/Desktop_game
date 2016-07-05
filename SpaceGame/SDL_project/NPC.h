@@ -5,5 +5,7 @@ class NPC : public Character
 public:
 	NPC();
 	~NPC();
+
+	bool isHoldingObjective = false;
 };
 

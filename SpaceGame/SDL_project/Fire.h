@@ -21,7 +21,7 @@ public:
 	float firespawntimer = 5;
 
 private:
-	//! Controlls how fast the oxygen will spread
+	//! Controls how fast the oxygen will spread
 	int spawnRate = 50;
 };
 
