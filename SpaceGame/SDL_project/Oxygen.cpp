@@ -5,7 +5,7 @@
 #include "Level.h"
 #include "Map.h"
 #include "Fire.h"
-#include "DoorController.h"
+#include "ItemController.h"
 
 
 
@@ -74,7 +74,7 @@ void Oxygen::update(Level& grid)
 {
 	Fire fire;
 	
-	DoorController doorcontroller;
+	ItemController doorcontroller;
 
 	
 	

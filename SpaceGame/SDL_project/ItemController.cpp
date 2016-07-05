@@ -1,21 +1,21 @@
 #include "stdafx.h"
-#include "DoorController.h"
+#include "ItemController.h"
 #include "Character.h"
 #include "level.h"
 #include "Oxygen.h"
 
 
 
-DoorController::DoorController()
+ItemController::ItemController()
 {
 }
 
 
-DoorController::~DoorController()
+ItemController::~ItemController()
 {
 }
 
-void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character, Oxygen& oxygen)
+void ItemController::Interaction(Level& grid, int cellX, int cellY, Character& character, Oxygen& oxygen)
 {
 	
 	//Gets the player X and Y values

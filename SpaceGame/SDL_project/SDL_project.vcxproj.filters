@@ -61,9 +61,6 @@
     <ClCompile Include="RoomDesign.cpp">
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
-    <ClCompile Include="DoorController.cpp">
-      <Filter>Source Files\Level Classes</Filter>
-    </ClCompile>
     <ClCompile Include="PathFinder.cpp">
       <Filter>Source Files\Level Classes\PathFinding</Filter>
     </ClCompile>
@@ -75,6 +72,9 @@
     </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files\Character Classes\NPC Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemController.cpp">
+      <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +144,6 @@
     <ClInclude Include="RoomDesign.h">
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
-    <ClInclude Include="DoorController.h">
-      <Filter>Headers\Level Classes</Filter>
-    </ClInclude>
     <ClInclude Include="PathFinder.h">
       <Filter>Headers\Level Classes\PathFinding</Filter>
     </ClInclude>
@@ -158,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="NPC.h">
       <Filter>Headers\Character Classes\NPC Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemController.h">
+      <Filter>Headers\Level Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

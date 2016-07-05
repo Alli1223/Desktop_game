@@ -83,6 +83,6 @@ private:
 	//! Integer for the character's size when rendered
 	int size = 25;
 	//! Integer for the characters current speed
-	int speed = 3; 
+	int speed = 1; 
 };
 

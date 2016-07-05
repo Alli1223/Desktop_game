@@ -2,13 +2,13 @@
 #include "Level.h"
 #include "Character.h"
 #include "Oxygen.h"
-class DoorController
+class ItemController
 {
 public:
-	DoorController();
-	~DoorController();
+	ItemController();
+	~ItemController();
 
-	void DoorController::OpenDoor(Level& grid, int cellX, int cellY, Character& character, Oxygen& oxygen);
+	void ItemController::Interaction(Level& grid, int cellX, int cellY, Character& character, Oxygen& oxygen);
 
 	//!Get door status
 	bool getDoorStatus() { return doorStatus; }
