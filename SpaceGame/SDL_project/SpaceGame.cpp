@@ -43,6 +43,7 @@ SpaceGame::SpaceGame()
 	}
 	
 	window = SDL_CreateWindow("SpaceGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	//SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	if (window == nullptr)
 	{
 		throw InitialisationError("SDL_CreateWindow failed");
