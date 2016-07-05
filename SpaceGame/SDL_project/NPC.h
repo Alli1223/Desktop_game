@@ -6,6 +6,5 @@ public:
 	NPC();
 	~NPC();
 
-	bool isHoldingObjective = false;
 };
 

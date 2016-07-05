@@ -44,6 +44,8 @@ public:
 	int getOxygenLevel(int x, int y);
 	//! Checks whether the player has won
 	bool reachedGoal(int x, int y);
+	//! Checks wether the npc has objective
+	bool hasObjective = false;
 	//! Checks whether the character is wandering
 	bool isWandering = false;
 	// Checks the keyboard input and sets a direction based on it

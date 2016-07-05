@@ -129,7 +129,7 @@ void SpaceGame::run()
 			if (NpcOne.getX() / cellSize >= 1 && NpcOne.getY() / cellSize >= 1)
 			{
 				startPoint = Point(NpcOne.getX() / cellSize, NpcOne.getY() / cellSize);
-				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
+				endPoint = objectivemanager.GoalPoint;
 			}
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
@@ -158,7 +158,8 @@ void SpaceGame::run()
 		}
 
 		//Spawn a random objective for the player to do
-		objectivemanager.SpawnObjective(room);
+		objectivemanager.SpawnObjective(room, NpcOne);
+	
 
 		for (int x = 0; x < room.grid.size(); x++)
 		{
