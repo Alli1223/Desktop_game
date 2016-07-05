@@ -1,17 +1,6 @@
 #include "stdafx.h"
 #include "SpaceGame.h"
 #include "InitialisationError.h"
-#include "Cell.h"
-#include "Level.h"
-#include "MainCharacter.h"
-#include "NPC.h"
-#include "IdleState.h"
-#include "Oxygen.h"
-#include "Fire.h"
-#include "RoomDesign.h"
-#include "DoorController.h"
-#include "PathFinder.h"
-#include "TraversePath.h"
 
 SpaceGame::SpaceGame()
 	// Texture file locations
@@ -75,7 +64,7 @@ void SpaceGame::run()
 	Oxygen oxygen;
 	Fire fire;
 	RoomDesign designroom;
-	DoorController doorcontroller;
+	ItemController doorcontroller;
 	MainCharacter characterOne;
 	NPC NpcOne;
 	Cell cell;
@@ -164,6 +153,9 @@ void SpaceGame::run()
 			path.erase(path.begin(), path.end());
 			traversepath.pathComplete = false;
 			traversepath.pathPointIterator = 0;
+
+			
+
 		}
 
 		for (int x = 0; x < room.grid.size(); x++)
@@ -178,7 +170,8 @@ void SpaceGame::run()
 					{
 
 						//opens the door when a player goes through
-						doorcontroller.OpenDoor(room, xPos, yPos, characterOne, oxygen);
+						doorcontroller.Interaction(room, xPos, yPos, characterOne, oxygen);
+						doorcontroller.Interaction(room, xPos, yPos, NpcOne, oxygen);
 
 						//Spawns fire randomly in rooms over time
 						fire.spawn(room, x, y);

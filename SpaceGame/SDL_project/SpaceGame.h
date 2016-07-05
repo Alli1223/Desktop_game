@@ -5,6 +5,17 @@
 #include "Map.h"
 #include "Point.h"
 #include "SDL2_image-2.0.1\include\SDL_image.h"
+#include "Cell.h"
+#include "MainCharacter.h"
+#include "NPC.h"
+#include "IdleState.h"
+#include "Oxygen.h"
+#include "Fire.h"
+#include "RoomDesign.h"
+#include "ItemController.h"
+#include "PathFinder.h"
+#include "TraversePath.h"
+
 //! The main class
 /*!
 This is the main class where the game is laoded and run. 
@@ -38,7 +49,8 @@ public:
 	int mouse_X, mouse_Y;
 
 	//! Fog of War distance
-	int fogOfWar = 5;private:
+	int fogOfWar = 32;
+private:
 
 	//! start point and end point for pathfinding
 	Point startPoint, endPoint;
