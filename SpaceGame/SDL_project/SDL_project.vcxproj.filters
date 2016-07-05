@@ -73,6 +73,9 @@
     <ClCompile Include="TraversePath.cpp">
       <Filter>Source Files\Level Classes\PathFinding</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Source Files\Character Classes\NPC Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -153,6 +156,9 @@
     <ClInclude Include="TraversePath.h">
       <Filter>Headers\Level Classes\PathFinding</Filter>
     </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Headers\Character Classes\NPC Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />
@@ -206,6 +212,12 @@
     </Filter>
     <Filter Include="Headers\Level Classes\PathFinding">
       <UniqueIdentifier>{37765115-50b9-4cbb-80f0-1cdc119b11d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Character Classes\NPC Classes">
+      <UniqueIdentifier>{5948eb68-75d0-4e4b-a7da-736d9c4df11e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Character Classes\NPC Classes">
+      <UniqueIdentifier>{fe432389-1c62-43a4-803c-135f08cd75fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
