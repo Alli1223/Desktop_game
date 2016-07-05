@@ -21,7 +21,7 @@ SpaceGame::SpaceGame()
 	oxygenText("Resources\\oxygenText.png"),
 	gameOver("Resources\\health.png"),
 	gameOverText("Resources\\game_over.png"),
-	fireTexture("Resources\\SpawnItems\\fire2.png"),
+	fireTexture("Resources\\SpawnItems\\fire1.png"),
 	backgroundTexture("Resources\\background.png"),
 	hullBreachTexture("Resources\\roomSprites\\hullBreach2.png"),
 	deathAnim("Resources\\deathAnim.png"),
@@ -31,8 +31,8 @@ SpaceGame::SpaceGame()
 		throw InitialisationError("SDL_Init failed");
 	}
 	
-	window = SDL_CreateWindow("SpaceGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
-	//SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	window = SDL_CreateWindow("SpaceGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
+	
 	if (window == nullptr)
 	{
 		throw InitialisationError("SDL_CreateWindow failed");
@@ -136,8 +136,9 @@ void SpaceGame::run()
 			traversepath.pathComplete == false;
 		}
 
-		// Runs Oxygen spread function
-		oxygen.update(room);
+		
+
+		
 
 		//If the path vector contains a elements - move along it
 		if (path.size() && traversepath.pathComplete == false)
@@ -164,6 +165,8 @@ void SpaceGame::run()
 			{
 				int xPos = x * cellSize + cellSize / 2;
 				int yPos = y * cellSize + cellSize / 2;
+
+				// only renders cells around the player to make it difficult for the player to make it to the end 
 				if (room.grid[x][y]->getX() <= characterOne.getX() / cellSize + fogOfWar && room.grid[x][y]->getX() >= characterOne.getX() / cellSize - fogOfWar)
 				{
 					if (room.grid[x][y]->getY() <= characterOne.getY() / cellSize + fogOfWar && room.grid[x][y]->getY() >= characterOne.getY() / cellSize - fogOfWar)
@@ -175,6 +178,10 @@ void SpaceGame::run()
 
 						//Spawns fire randomly in rooms over time
 						fire.spawn(room, x, y);
+						fire.fireSpread(room, x, y);
+
+						// Runs Oxygen spread function
+						oxygen.update(room, x, y);
 
 						// Checks if the cell is a room
 						if (room.grid[x][y]->isRoom)
@@ -286,6 +293,31 @@ void SpaceGame::run()
 							oxygenTex.render(renderer, xPos, yPos, cellSize, cellSize);
 							goalTexture.render(renderer, xPos, yPos, cellSize, cellSize);
 						}
+						// Fog of war for the NPC
+						if (NpcOne.getX() / cellSize <= characterOne.getX() / cellSize + fogOfWar && NpcOne.getX() / cellSize >= characterOne.getX() / cellSize - fogOfWar)
+						{
+							if (NpcOne.getY() / cellSize <= characterOne.getY() / cellSize + fogOfWar && NpcOne.getY() / cellSize >= characterOne.getY() / cellSize - fogOfWar)
+							{
+								//NPC orientation
+								if (NpcOne.direction == 0)
+								{
+									npcDown.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+								}
+								else if (NpcOne.direction == 1)
+								{
+									npcUp.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+								}
+								else if (NpcOne.direction == 2)
+								{
+									npcRight.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+								}
+								else if (NpcOne.direction == 3)
+								{
+									npcLeft.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
+								}
+							}
+						}
+						
 					}
 				}
 			} //End for Y loop
@@ -299,7 +331,7 @@ void SpaceGame::run()
 		healthBar.render(renderer, characterOne.getX(), characterOne.getY() - 40, characterOne.health, 10);
 		healthBar.alterTransparency(150);
 		healthText.render(renderer, characterOne.getX(), characterOne.getY() - 40, 60, 20);
-		oxygenBar.render(renderer, characterOne.getX(), characterOne.getY() - 30, oxygen.getOxygenReserves() / 20, 10);
+		oxygenBar.render(renderer, characterOne.getX(), characterOne.getY() - 30, oxygen.getOxygenReserves() / 40, 10);
 		oxygenBar.alterTransparency(150);
 		oxygenText.render(renderer, characterOne.getX(), characterOne.getY() - 30, 60, 20);
 
@@ -323,23 +355,7 @@ void SpaceGame::run()
 		}
 
 
-		//NPC orientation
-		if (NpcOne.direction == 0)
-		{
-			npcDown.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
-		}
-		else if (NpcOne.direction == 1)
-		{
-			npcUp.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
-		}
-		else if (NpcOne.direction == 2)
-		{
-			npcRight.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
-		}
-		else if (NpcOne.direction == 3)
-		{
-			npcLeft.render(renderer, NpcOne.getX(), NpcOne.getY(), NpcOne.getSize(), NpcOne.getSize());
-		}
+		
 
 
 
@@ -419,7 +435,7 @@ void SpaceGame::run()
 	}// End while running
 }
 
-void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY)
+void SpaceGame::drawPath(Point& point, Level& level)
 {
 	// Start at the start point
 	

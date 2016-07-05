@@ -254,7 +254,7 @@ void Map::generateMap(Level level)
 				else if (direction == 1)
 				{
 					int east = roomVector[roomBase][0][0]->getY();
-					if (east < level.grid.size())
+					if (east < level.grid[0].size())
 					{	
 						bool safe = true;
 						int xSize = roomVector[roomBase].size();

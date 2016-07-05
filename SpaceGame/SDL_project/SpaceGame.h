@@ -36,7 +36,7 @@ public:
 	void run();
 
 	//! Pathfinding function
-	void SpaceGame::drawPath(Point& point, Level& level, Point startX, Point startY);
+	void SpaceGame::drawPath(Point& point, Level& level);
 
 	//! Conains the list of nodes that makes the path
 	std::vector<Point> path;
@@ -49,7 +49,7 @@ public:
 	int mouse_X, mouse_Y;
 
 	//! Fog of War distance
-	int fogOfWar = 32;
+	int fogOfWar = 3;
 private:
 
 	//! start point and end point for pathfinding

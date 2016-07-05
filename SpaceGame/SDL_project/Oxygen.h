@@ -13,7 +13,7 @@ public:
 	~Oxygen();
 
 	//! Update method updates the oxygen level each frame
-	void update(Level& grid);
+	void update(Level& grid, int cellX, int cellY);
 
 	//! Adds oxygen based on where the mouse was clicked
 	void addOxygen(int mouseX, int mouseY, int cellSize, Level grid);
@@ -31,5 +31,5 @@ public:
 private:
 
 	//! To store oxygen reserve that user can place
-	int oxygenReserves = 2000;
+	int oxygenReserves = 4000;
 };

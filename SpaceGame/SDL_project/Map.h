@@ -33,7 +33,7 @@ private:
 	bool generateRoom(Level level, int size, int entranceX, int entranceY, char direction); 
 
 	//! Chance to generate rooms with oxygen (lower the higher chance)
-	int oxygenatedRoomChance = 1;
+	int oxygenatedRoomChance = 10;
 
 	//! Chance to spawn hullBreaches
 	int hullBreachSpawnChance = 80;
