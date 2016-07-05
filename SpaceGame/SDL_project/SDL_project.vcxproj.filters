@@ -76,6 +76,7 @@
     <ClCompile Include="ItemController.cpp">
       <Filter>Source Files\Level Classes</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectiveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -159,6 +160,7 @@
     <ClInclude Include="ItemController.h">
       <Filter>Headers\Level Classes</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectiveManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />

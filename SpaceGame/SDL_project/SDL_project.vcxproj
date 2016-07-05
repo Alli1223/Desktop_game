@@ -165,6 +165,7 @@
     <ClInclude Include="ItemController.h" />
     <ClInclude Include="Fire.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="ObjectiveManager.h" />
     <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RoomDesign.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="ItemController.cpp" />
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="ObjectiveManager.cpp" />
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RoomDesign.cpp" />

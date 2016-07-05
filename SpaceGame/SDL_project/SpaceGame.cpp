@@ -71,6 +71,7 @@ void SpaceGame::run()
 	Pathfinder pathfinder;
 	Point point;
 	TraversePath traversepath;
+	ObjectiveManager objectivemanager;
 
 	//Character needs a pointer to the room to get the state
 	characterOne.currentRoom = std::make_shared<Level>(room);
@@ -154,10 +155,10 @@ void SpaceGame::run()
 			path.erase(path.begin(), path.end());
 			traversepath.pathComplete = false;
 			traversepath.pathPointIterator = 0;
-
-			
-
 		}
+
+		//Spawn a random objective for the player to do
+		objectivemanager.SpawnObjective(room);
 
 		for (int x = 0; x < room.grid.size(); x++)
 		{

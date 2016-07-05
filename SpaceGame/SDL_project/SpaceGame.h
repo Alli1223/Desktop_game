@@ -15,6 +15,7 @@
 #include "ItemController.h"
 #include "PathFinder.h"
 #include "TraversePath.h"
+#include "ObjectiveManager.h"
 
 //! The main class
 /*!
@@ -49,7 +50,7 @@ public:
 	int mouse_X, mouse_Y;
 
 	//! Fog of War distance
-	int fogOfWar = 3;
+	int fogOfWar = 32;
 private:
 
 	//! start point and end point for pathfinding
