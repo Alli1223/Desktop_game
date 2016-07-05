@@ -11,7 +11,7 @@ TraversePath::~TraversePath()
 }
 
 // Moves the player across the cell to the next cell
-void TraversePath::LinearMovement(Character& characterOne, Point point)
+void TraversePath::Move(Character& characterOne, Point point)
 {
 	//if the x axis is the same as before, move vertically
 	if (point.getX() == previousNode.getX())

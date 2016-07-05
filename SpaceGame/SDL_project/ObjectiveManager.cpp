@@ -34,12 +34,12 @@ void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc)
 		}
 	}
 
+	//if the npc reaches the goal start heading back to spawn
 	if (npc.getX() / level.getCellSize() == GoalPoint.getX() && npc.getY() / level.getCellSize() == GoalPoint.getY())
 	{
 		//set the goal as the spawn
-		
-		npc.hasObjective = true;
 		GoalPoint = Point(1, 1);
+		npc.hasObjective = true;
 
 		//Drop off the objective
 		if (npc.getX() / level.getCellSize() == 1 && npc.getY() / level.getCellSize() == 1)
@@ -47,5 +47,48 @@ void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc)
 			npc.hasObjective = false;
 		}
 	}
+}
 
+void ObjectiveManager::NPCRetrieveCrate(Level& level, Character& npc, Pathfinder pathfinder, TraversePath& traversepath)
+{
+	startPoint = Point(npc.getX() / level.getCellSize(), npc.getY() / level.getCellSize());
+	endPoint = GoalPoint;
+
+	if (!pathToGoal)
+	{
+		path.erase(path.begin(), path.end());
+		path = pathfinder.findPath(level, startPoint, endPoint);
+		pathToGoal = true;
+	}
+
+	//if there is a path go along it & the npc isnt already doing an objective
+	else if (pathToGoal && !npc.hasObjective)
+	{
+		point = traversepath.getNextPoint(path);
+		traversepath.Move(npc, point);
+	}
+	else if (npc.hasObjective)
+	{
+		point = traversepath.getNextPoint(path);
+		traversepath.Move(npc, point);
+	}
+
+	//when the npc reaches the goal
+	if (npc.getX() / level.getCellSize() == GoalPoint.getX() && npc.getY() / level.getCellSize() == GoalPoint.getY())
+	{
+		level.grid[npc.getX() / level.getCellSize()][npc.getY() / level.getCellSize()]->isGoal = false;
+		npc.hasObjective = true;
+		pathToGoal = false;
+		//erase the path and start a new one back
+		path.erase(path.begin(), path.end());
+		startPoint = Point(npc.getX() / level.getCellSize(), npc.getY() / level.getCellSize());
+		endPoint = Point(1, 1);
+		path = pathfinder.findPath(level, startPoint, endPoint);
+	}
+
+	if (npc.getX() / level.getCellSize() == 1 && npc.getY() / level.getCellSize() == 1)
+	{
+		npc.hasObjective = false;
+		level.grid[1][1]->isGoal = true;
+	}
 }

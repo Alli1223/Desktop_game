@@ -137,28 +137,9 @@ void SpaceGame::run()
 			traversepath.pathComplete == false;
 		}
 
-		
-
-		
-
-		//If the path vector contains a elements - move along it
-		if (path.size() && traversepath.pathComplete == false)
-		{
-			point = traversepath.getNextPoint(path);
-			//traversepath.LinearMovement(characterOne, point);
-			traversepath.LinearMovement(NpcOne, point);
-		}
-
-		// Reset the pathfinder if the path is complete
-		else if (traversepath.pathComplete == true)
-		{
-			path.erase(path.begin(), path.end());
-			traversepath.pathComplete = false;
-			traversepath.pathPointIterator = 0;
-		}
-
 		//Spawn a random objective for the player to do
 		objectivemanager.SpawnObjective(room, NpcOne);
+		objectivemanager.NPCRetrieveCrate(room, NpcOne, pathfinder, traversepath);
 	
 
 		for (int x = 0; x < room.grid.size(); x++)

@@ -8,7 +8,7 @@ public:
 	TraversePath();
 
 	//! Choses which direction the player should move
-	void TraversePath::LinearMovement(Character& characterOne, Point point);
+	void TraversePath::Move(Character& characterOne, Point point);
 
 	//! Gets the next node for the object to walk to
 	void TraversePath::IterateToNextNode(Character& characterOne, Point point);
