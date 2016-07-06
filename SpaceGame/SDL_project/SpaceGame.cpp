@@ -137,6 +137,8 @@ void SpaceGame::run()
 			traversepath.pathComplete == false;
 		}
 
+
+
 		//Spawn a random objective for the player to do
 		objectivemanager.SpawnObjective(room, NpcOne);
 		objectivemanager.NPCRetrieveCrate(room, NpcOne, pathfinder, traversepath);

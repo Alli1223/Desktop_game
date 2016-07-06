@@ -14,6 +14,7 @@ public:
 	void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc);
 	void ObjectiveManager::SpawnObjective(Level& level, Character& npc);
 	void ObjectiveManager::NPCRetrieveCrate(Level& level, Character& npc, Pathfinder pathfinder, TraversePath& traversepath);
+	void ObjectiveManager::PickRandomCell(Level& level, Point& GoalPoint, bool thereIsAGoal);
 
 	std::vector<Point> path;
 	Point GoalPoint;
@@ -21,6 +22,7 @@ public:
 
 	bool pathToGoal = false;
 	bool thereIsAGoal = false;
+	bool foundRandomLolcation = false;
 
 private:
 	Point startPoint; Point endPoint;

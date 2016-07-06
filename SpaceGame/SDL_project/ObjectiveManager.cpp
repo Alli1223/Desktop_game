@@ -20,18 +20,23 @@ void ObjectiveManager::SpawnObjective(Level& level, Character& npc)
 void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc)
 {
 	
-	if (thereIsAGoal == false)
+	if (!thereIsAGoal)
 	{
-		int randomCellX = rand() & 0 + level.grid.size() - 1;
-		int randomCellY = rand() & 0 + level.grid.size() - 1;
-		if (level.grid[randomCellX][randomCellY]->isRoom && !level.grid[randomCellX][randomCellY]->isOpenDoor)
+		while (foundRandomLolcation == false)
 		{
-			level.grid[randomCellX][randomCellY]->isGoal = true;
-			thereIsAGoal = true;
-			
-			GoalPoint = Point(randomCellX, randomCellY);
-			
+			int randomCellX = rand() & 0 + level.grid.size() - 1;
+			int randomCellY = rand() & 0 + level.grid.size() - 1;
+			if (level.grid[randomCellX][randomCellY]->isRoom && !level.grid[randomCellX][randomCellY]->isOpenDoor)
+			{
+				level.grid[randomCellX][randomCellY]->isGoal = true;
+				thereIsAGoal = true;
+				GoalPoint = Point(randomCellX, randomCellY);
+				foundRandomLolcation = true;
+			}
+			else
+				foundRandomLolcation = false;
 		}
+
 	}
 
 	//if the npc reaches the goal start heading back to spawn
@@ -67,6 +72,8 @@ void ObjectiveManager::NPCRetrieveCrate(Level& level, Character& npc, Pathfinder
 		point = traversepath.getNextPoint(path);
 		traversepath.Move(npc, point);
 	}
+
+	//walk the path back if the npc has the objective
 	else if (npc.hasObjective)
 	{
 		point = traversepath.getNextPoint(path);
@@ -90,5 +97,12 @@ void ObjectiveManager::NPCRetrieveCrate(Level& level, Character& npc, Pathfinder
 	{
 		npc.hasObjective = false;
 		level.grid[1][1]->isGoal = true;
+		thereIsAGoal = false;
 	}
+}
+
+void ObjectiveManager::PickRandomCell(Level& level, Point& GoalPoint, bool thereIsAGoal)
+{
+	
+
 }
