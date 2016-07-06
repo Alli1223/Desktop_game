@@ -24,8 +24,8 @@ void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc)
 	{
 		while (foundRandomLolcation == false)
 		{
-			int randomCellX = rand() & 0 + level.grid.size() - 1;
-			int randomCellY = rand() & 0 + level.grid.size() - 1;
+			int randomCellX = rand() % (1 + (level.grid.size() - 1));
+			int randomCellY = rand() % (1 + (level.grid.size() - 1));
 			if (level.grid[randomCellX][randomCellY]->isRoom && !level.grid[randomCellX][randomCellY]->isOpenDoor)
 			{
 				level.grid[randomCellX][randomCellY]->isGoal = true;
