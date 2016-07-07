@@ -37,18 +37,14 @@ void Map::LoadMap(std::string filename, Level room)
 			if (character == '#')
 			{
 				
-				room.grid[x][y]->isRoom = true;
+				room.grid[x][y]->isRoom = false;
 			}
 
 			if (character == ' ')
 			{
-				room.grid[x][y]->isRoom = false;
+				room.grid[x][y]->isRoom = true;
 			}
-			else
-			{
-				room.grid[x / cellSize][y / cellSize]->isOpenDoor = true;
-				
-			}
+
 			
 		}
 

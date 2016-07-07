@@ -15,6 +15,7 @@ public:
 	void ObjectiveManager::SpawnObjective(Level& level, Character& npc);
 	void ObjectiveManager::NPCRetrieveCrate(Level& level, Character& npc, Pathfinder pathfinder, TraversePath& traversepath);
 	void ObjectiveManager::PickRandomCell(Level& level, Point& GoalPoint, bool thereIsAGoal);
+	void ObjectiveManager::SearchForObjective(Level& level);
 
 	std::vector<Point> path;
 	Point GoalPoint;

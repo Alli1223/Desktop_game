@@ -17,11 +17,29 @@ void ObjectiveManager::SpawnObjective(Level& level, Character& npc)
 	RetrieveCrateObjective(level, npc);
 }
 
+void ObjectiveManager::SearchForObjective(Level& level)
+{
+	//Search map to see if there is an objective
+	for (int x = 0; x < level.grid.size(); x++)
+	{
+		for (int y = 0; y < level.grid.size(); y++)
+		{
+			if (level.grid[x][y]->isGoal)
+			{
+				thereIsAGoal = true;
+				GoalPoint = Point(x, y);
+			}
+		}
+	}
+}
 void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc)
 {
-	
+	SearchForObjective(level);
+
+	/*Spawn a objective at random location
 	if (!thereIsAGoal)
 	{
+		
 		while (foundRandomLolcation == false)
 		{
 			int randomCellX = rand() % (1 + (level.grid.size() - 1));
@@ -37,7 +55,7 @@ void ObjectiveManager::RetrieveCrateObjective(Level& level, Character& npc)
 				foundRandomLolcation = false;
 		}
 
-	}
+	}*/
 
 	//if the npc reaches the goal start heading back to spawn
 	if (npc.getX() / level.getCellSize() == GoalPoint.getX() && npc.getY() / level.getCellSize() == GoalPoint.getY())

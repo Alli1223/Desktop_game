@@ -58,6 +58,8 @@ void SpaceGame::run()
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
 
+
+	// Choose whether to generate or load a map
 	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
 	//mapLoader.generateMap(room);
 
@@ -129,18 +131,22 @@ void SpaceGame::run()
 			if (NpcOne.getX() / cellSize >= 1 && NpcOne.getY() / cellSize >= 1)
 			{
 				startPoint = Point(NpcOne.getX() / cellSize, NpcOne.getY() / cellSize);
-				endPoint = objectivemanager.GoalPoint;
+				endPoint = Point(mouse_X / cellSize, mouse_Y / cellSize);
 			}
 			//find path
 			path = pathfinder.findPath(room, startPoint, endPoint);
 			// Allow the traversepath to start
-			traversepath.pathComplete == false;
+			traversepath.pathComplete = false;
 		}
 
-
+		if (traversepath.pathComplete == false)
+		{
+			point = traversepath.getNextPoint(path);
+			traversepath.Move(NpcOne, point);
+		}
 
 		//Spawn a random objective for the player to do
-		//objectivemanager.SpawnObjective(room, NpcOne);
+		objectivemanager.SpawnObjective(room, NpcOne);
 		//objectivemanager.NPCRetrieveCrate(room, NpcOne, pathfinder, traversepath);
 	
 
