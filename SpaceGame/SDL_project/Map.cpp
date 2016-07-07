@@ -6,44 +6,55 @@
 void Map::LoadMap(std::string filename, Level room)
 //(filename, grid to load into) loads map from text file into grid
 {
-	//loop through the file
+	
+	int cellSize = room.getCellSize();
 	std::ifstream mapFile(filename);
-	std::vector<std::string> map;
-	while (!mapFile.eof())
+	std::vector<std::string> lines;
+	width = 0;
+	for (int i = 0; i < room.grid.size(); i++)
 	{
 		//make a vector containing all the lines in the file
 		std::string line;
 		std::getline(mapFile, line);
-		map.push_back(line);
-	}
-	//loop through the cells on display
-	for (int x = 0; x < room.grid.size(); x++)
-	{
-		for (int y = 0; y < room.grid[0].size(); y++)
-		{
-			//checks if the character exhists
-			if (x < map.size() && y < map[x].size())
-			{
-				//checks if the character is a wall
-				if (map[x][y] == '#')
-				{
-					room.grid[x][y]->isRoom = false;
-				}
+		lines.push_back(line);
 
-				else if (map[x][y] == 'D')
-				{
-					room.grid[x][y]->isOpenDoor = true;
-					room.grid[x][y]->isRoom = true;
-				}
+		if (line.length() > width)
+			width = line.length();
+	}
+	height = lines.size();
+
+	RoomDesign roomdesign;
+	for (int y = 0; y < height; y++)
+	{
+		const std::string& line = lines[y];
+		for (int x = 0; x < width; x++)
+		{
+			char character;
+			if (x < line.length())
+			{
+				character = line[x];
 			}
-			//closes off smaller levels
-			else
+			if (character == '#')
+			{
+				
+				room.grid[x][y]->isRoom = true;
+			}
+
+			if (character == ' ')
 			{
 				room.grid[x][y]->isRoom = false;
 			}
+			else
+			{
+				room.grid[x / cellSize][y / cellSize]->isOpenDoor = true;
+				
+			}
+			
 		}
+
 	}
 }
+
 
 //returns a random value
 int Map::random(int smallestValue, int largestValue)
@@ -193,7 +204,6 @@ void Map::generateMap(Level level)
 	//Makes a list of sizes to make sure that all sizes are attempted
 	std::vector<int> randomSizes;
 
-	randomSizes.push_back(2);
 	randomSizes.push_back(3);
 	randomSizes.push_back(4);
 	randomSizes.push_back(5);
@@ -336,8 +346,6 @@ void Map::generateMap(Level level)
 						}
 					}
 				}
-				
-				
 			}
 		}
 		//Check if you can attempt to place a new room
@@ -347,7 +355,7 @@ void Map::generateMap(Level level)
 			thereIsSpace = false;
 			//Places Goal in last room generated
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isGoal = true;
-			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isOpenDoor = true;
+			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2] ->isOpenDoor = false;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->isHullBreach = false;
 			roomVector[roomVector.size() - 1][roomVector[0].size() / 2][roomVector[0][0].size() / 2]->oxygenLevel = 100;
 		}

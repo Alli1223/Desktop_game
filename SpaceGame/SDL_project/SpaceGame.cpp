@@ -58,8 +58,8 @@ void SpaceGame::run()
 	room.makeGrid(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Map mapLoader;
 
-	//mapLoader.LoadMap("Resources\\test_map.txt", room);
-	mapLoader.generateMap(room);
+	mapLoader.LoadMap("Resources\\Map\\test_map.txt", room);
+	//mapLoader.generateMap(room);
 
 	Oxygen oxygen;
 	Fire fire;
@@ -140,8 +140,8 @@ void SpaceGame::run()
 
 
 		//Spawn a random objective for the player to do
-		objectivemanager.SpawnObjective(room, NpcOne);
-		objectivemanager.NPCRetrieveCrate(room, NpcOne, pathfinder, traversepath);
+		//objectivemanager.SpawnObjective(room, NpcOne);
+		//objectivemanager.NPCRetrieveCrate(room, NpcOne, pathfinder, traversepath);
 	
 
 		for (int x = 0; x < room.grid.size(); x++)
