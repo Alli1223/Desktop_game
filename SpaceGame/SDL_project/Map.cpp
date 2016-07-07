@@ -43,11 +43,16 @@ void Map::LoadMap(std::string filename, Level room)
 			if (character == ' ')
 			{
 				room.grid[x][y]->isRoom = true;
+				
 			}
-
-			
 		}
-
+	}
+	for (int x = 0; x < room.grid.size() - 1; x++)
+	{
+		for (int y = 0; y < room.grid.size() - 1; y++)
+		{
+			roomdesign.designRoom(room, x, y);
+		}
 	}
 }
 
